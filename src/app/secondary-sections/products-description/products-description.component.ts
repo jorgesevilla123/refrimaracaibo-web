@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { AlertService } from '../../shared/alert.service'
 import { LoginService } from '../../services/login.service'
-import { CartOverviewComponent } from '../cart-overview/cart-overview.component'
+import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-overview.component'
 import { WebsocketService } from '../../services/websocket.service'
 
 
@@ -27,9 +27,35 @@ export class ProductsDescriptionComponent implements OnInit, AfterViewInit {
 
   private scrollContainer: any
   private isNearBottom = true
-  data: any;
+  product: any;
   currentRate = 5;
-  quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+  quantities = [
+    {name: 'cantidad', value: 1},
+    {name: 'cantidad', value: 2},
+    {name: 'cantidad', value: 3},
+    {name: 'cantidad', value: 4},
+    {name: 'cantidad', value: 5},
+    {name: 'cantidad', value: 6},
+    {name: 'cantidad', value: 7},
+    {name: 'cantidad', value: 8},
+    {name: 'cantidad', value: 9},
+    {name: 'cantidad', value: 10},
+    {name: 'cantidad', value: 11},
+    {name: 'cantidad', value: 12},
+    {name: 'cantidad', value: 13},
+    {name: 'cantidad', value: 14},
+    {name: 'cantidad', value: 15},
+    {name: 'cantidad', value: 16},
+    {name: 'cantidad', value: 17},
+    {name: 'cantidad', value: 18},
+    {name: 'cantidad', value: 19},
+    {name: 'cantidad', value: 20},
+    {name: 'cantidad', value: 21},
+    {name: 'cantidad', value: 22},
+    {name: 'cantidad', value: 23},
+    {name: 'cantidad', value: 24},
+    {name: 'cantidad', value: 25},
+  ];
   selectedQuantity: any
   price: number = 19
   inCart: any
@@ -111,9 +137,9 @@ export class ProductsDescriptionComponent implements OnInit, AfterViewInit {
     this.route.queryParams.subscribe(
       val => {
         let product = JSON.parse(val.product)
-       this.data = product
+       this.product = product
        console.log('passsed here')
-       this.data.hasOwnProperty('quantity') ? this.selectedQuantity = this.data.quantity : this.selectedQuantity = 1
+       this.product.hasOwnProperty('quantity') ? this.selectedQuantity = this.product.quantity : this.selectedQuantity = 1
       }
     )
 
@@ -167,36 +193,11 @@ export class ProductsDescriptionComponent implements OnInit, AfterViewInit {
   
 
 
-  checkCart(data){
-    
-    if(this.loginService.selectedUser.length === 0){
-      let isInCart = this.cartService.cartProducts.some( productFound => productFound.title === data.title)
-      if(isInCart){
-        return true
-      }
-      else {
-        return false
-      }
-    }
-    else{
-      let isInCart = this.loginService.selectedUser[0].cart.some(productFound => productFound.title === data.title)
-    if (isInCart) {
-      return true
-    }
-    else {
-      return false
-    }
-    }
-  }
-
-
-
-
 
 
 
   removeFromCart(){
-    this.cartService.deleteById(this.data).subscribe(
+    this.cartService.deleteById(this.product).subscribe(
       val => {
         this.inCart = val.inCart
       },
@@ -215,23 +216,59 @@ export class ProductsDescriptionComponent implements OnInit, AfterViewInit {
 
 
 
-  addToCart(){
-    this.data.quantity = 1
-    this.cartService.addProductsToCart(this.data)
-    this.cartService.updateCount()
-    this.checkCart(this.data)
-    this.alert.notifySuccess('Producto agregado al carrito', 800, 'top', 'center')
-    this.cartDrawer.open()
+  addToCart(quantity){
+    let productExists = this.loginService.selectedUser[0].cart.some(productFound => productFound.title === this.product.title)
+    if(productExists){
+      console.log("incart")
+      this.alert.notifySuccess('Ya agregaste este producto al carrito', 2000, 'top', 'center') 
+    }
+    else{
+      this.product.quantity = quantity
+    
+      if(this.loginService.selectedUser.length === 0){
+        console.log('user sekected for adding products')
+        this.cartService.addProductsNotLoggedUserCart(this.product)
+      }
+      else {
+        this.cartService.addProductsToLoggedUserCart(this.product).subscribe(
+          val => {
+            console.log(val)
+          }
+        )
+      }
+      this.cartService.updateCount();
+      this.cartDrawer.open()
+
+    }
 
   }
 
 
 
 
-  updateQuantity(){
-    this.cartService.updateQuantity(this.data, this.selectedQuantity)
+  selectQuantity(quantity){
+    console.log('cliecked')
+    let quantityValue = Number(quantity)
+    let index = this.loginService.selectedUser[0].cart.findIndex(val => val.title === this.product.title)
+   if(index === -1){
+    this.addToCart(quantityValue)
+   }
+   else {
+    this.loginService.selectedUser[0].cart[index].quantity = quantityValue
+    this.cartService.updateQuantity().subscribe(
+      val => {
+        console.log(val)
+      }
+    )
+   }
+
+   
     
     
+  }
+
+  hey(){
+    console.log('hello')
   }
 
   

@@ -31,16 +31,47 @@ export class UserShippingComponent implements OnInit {
   addShipping(){
     let dialogConfig = new MatDialogConfig()
     dialogConfig.width = '25%'
+    dialogConfig.data = {update: false}
     let dialogRef = this.dialog.open(ShippingModalComponent, dialogConfig)
     dialogRef.afterClosed().subscribe(
       val => {
-        if(val.AddedShipping){
-
-          
-        }
+        console.log('shipping added')
+   
       }
     )
+  }
 
+
+
+  deleteShippingAddress(address_name){
+    console.log('clicked')
+    let index = this.loginService.selectedUser[0].shipping_addresses.findIndex( address => address.descripcion === address_name)
+    this.loginService.selectedUser[0].shipping_addresses.splice(index, 1)
+    this.loginService.deleteShippingAddress(this.loginService.selectedUser[0]).subscribe(
+      val => {
+        console.log('shipping deleted')
+      }
+    )
+  }
+
+
+  updateShippingAddress(address){
+
+    let index = this.loginService.selectedUser[0].findIndex( userAddress => userAddress.descripcion === address.descripcion)
+    this.loginService.selectedUser[0].shipping_addresses[index]
+
+
+
+  }
+
+
+  openShippingUpdateDialog(address){
+    this.loginService.selectedUser[0]
+    let dialogConfig = new MatDialogConfig
+    dialogConfig.data = {update: true, address}
+    this.loginService.populateForm(address)
+    this.dialog.open(ShippingModalComponent, dialogConfig)
+    
   }
 
   

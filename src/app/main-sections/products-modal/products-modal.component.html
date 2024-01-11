@@ -36,11 +36,11 @@
 
 
     <div *ngFor="let product of cartProducts" class="product-cart">
-      <button style="float: right;margin-right: 40px;" mat-icon-button disableRipple (click)="removeProduct(product)">Eliminar <mat-icon style="color: red;">delete</mat-icon></button>
+  
 
         <div class="image">
             <img class="products-img" 
-                [src]="product.imagePath" >
+            [src]="product.imageMetadata.path_to_file"  >
         </div>
 
 
@@ -63,7 +63,7 @@
 
 
 
-<div style="display: flex;">
+<div style="display: flex; align-items: baseline;">
     
 
   <h1 style="margin-left: 10px; margin-top: 30px;">
@@ -74,9 +74,11 @@
     {{total | currency: 'USD'}}
   </h1>
 
+  <button style="height: 35px;"  mat-stroked-button routerLink="/cart">Editar carrito</button>
+
+
 </div>
 
-<button mat-stroked-button routerLink="/cart">Editar carrito de compra</button>
 
 
 </ng-template>

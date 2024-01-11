@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'secadora', component: SecadoraSectionsComponent },
   { path: 'automotriz', component: AutomotrizSectionsComponent },
   { path: 'marcas', component: MarcasComponent },
-  { path: 'pago', component: BillingComponent, canActivate: [LoginGuardGuard] },
+  { path: 'pago', component: BillingComponent },
   {
     path: 'dashboard', component: UserDashboardComponent,
     children: [

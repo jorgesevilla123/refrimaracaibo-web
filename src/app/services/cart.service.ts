@@ -14,6 +14,7 @@ export class CartService {
   count
   total = 0
   uri = 'http://localhost:4300/api/sessions'
+  orderStatus: any = 'waitingCode'
 
 
   constructor(
@@ -32,27 +33,33 @@ export class CartService {
 
 
 
-  addProductsToCart(product) {
+  addProductsToLoggedUserCart(product) {
     product.selected = true 
-    if(this.loginService.selectedUser.length === 0){
-      this.cartProducts.push(product)
-      return from([{notUser: false}])
-      
-
-    }
-    else {
-      return this.http.post(`${this.uri}/add-to-cart`, 'nigga what')
-    }
+      this.loginService.selectedUser[0].cart.push(product)
+      console.log(this.loginService.selectedUser[0])
+      return this.http.post(`${this.uri}/add-to-cart`, {user: this.loginService.selectedUser[0], product: product})
+    
     // this.loginService.selectedUser.length === 0 ? this.cartProducts.push(product) : this.loginService.selectedUser[0].cart.push(product) 
 
   }
 
 
 
+
+
+  addProductsNotLoggedUserCart(product){
+    product.selected = true 
+    this.cartProducts.push(product)
+  }
+
+
+
   deleteProductFromCart(product) {
     let index = this.loginService.selectedUser[0].cart.indexOf(product)
-
     this.loginService.selectedUser[0].cart.splice(index, 1)
+    let profile = this.loginService.selectedUser[0]
+
+    return this.http.post(`${this.uri}/remove-from-cart`, profile)
 
   }
 
@@ -70,16 +77,18 @@ export class CartService {
 
 
   updateCount() {
+    console.log(this.loginService.selectedUser[0])
     this.loginService.selectedUser.length === 0 ? this.count = this.cartProducts.length : this.count = this.loginService.selectedUser[0].cart.length
-
+ 
   }
 
 
 
-  updateQuantity(product, quantity){
-    console.log(this.loginService.selectedUser[0])
-    let index = this.loginService.selectedUser[0].cart.findIndex(val => val.title === product.title)
-    this.loginService.selectedUser[0].cart[index].quantity = quantity
+  updateQuantity(){
+
+    return this.http.put(`${this.uri}/update-quantities`, this.loginService.selectedUser[0])
+
+
   }
 
 
@@ -163,6 +172,18 @@ export class CartService {
 
     return this.total * -1
   }
+
+
+
+
+  updateSelectedProducts(products){
+    return this.http.post(`${this.uri}/product-selection`, products)
+  }
+
+
+
+
+  
 
 
 

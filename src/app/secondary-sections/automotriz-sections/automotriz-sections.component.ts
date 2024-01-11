@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { getCategories } from 'FOR-TEST/products-management'
 import { CartService } from 'src/app/services/cart.service';
 import { ProductsService } from 'src/app/services/products.service';
-import { CartOverviewComponent } from '../cart-overview/cart-overview.component'
+import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-overview.component'
 import { LoginService } from '../../services/login.service'
 
 @Component({
@@ -131,7 +131,7 @@ export class AutomotrizSectionsComponent implements OnInit {
 
   getProducts(category, page) {
     console.log(category)
-    this.productService.getProductsCategory(category, page).subscribe(
+    this.productService.getProductsCategory(category, page, 'iluminacion').subscribe(
       pager => {
         this.pager = pager
         this.sectionsToRender = pager.pageOfItems
@@ -322,7 +322,7 @@ export class AutomotrizSectionsComponent implements OnInit {
 
   addToCart(product) {
     product.quantity = 1
-    this.cartService.addProductsToCart(product)
+    this.cartService.addProductsToLoggedUserCart(product)
     this.cartService.updateCount();
     this.cartDrawer.open()
   }

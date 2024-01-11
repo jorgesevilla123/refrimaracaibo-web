@@ -32,7 +32,7 @@ export class MainSearchBarComponent implements OnInit {
 
 
     this.filteredProducts = this.productService.searchForm.get('product')?.valueChanges.pipe(
-      debounceTime(300),
+      
 
       map( val => {
         if(val === ''){
@@ -45,7 +45,8 @@ export class MainSearchBarComponent implements OnInit {
 
         }
        
-      })
+      }),
+      debounceTime(800),
     )
     
   }

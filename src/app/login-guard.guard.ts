@@ -23,15 +23,16 @@ export class LoginGuardGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.loginService.isLogged()){
-        console.log('logged in')
-        return true
-        
-      }
-      else {
-        this.router.navigate(['/login'])
-        return false
-      }
+    if(this.loginService.logged){
+      console.log('logged')
+      return true
+    }
+    else {
+      console.log('not logged')
+      this.router.navigate(['/home'])
+      return false
+    }
+      
     
   }
   

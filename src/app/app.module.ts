@@ -13,14 +13,16 @@ import { MainSectionsModule } from './main-sections/main-sections.module';
 import { SecondarySectionsModule } from './secondary-sections/secondary-sections.module';
 import { MainToolbarComponent } from './main-sections/main-toolbar/main-toolbar.component';
 import { UpdateModalComponent } from './shared/update-modal/update-modal.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OrderStatusModalComponent } from './shared/order-status-modal/order-status-modal.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     MainToolbarComponent,
-    UpdateModalComponent
+    UpdateModalComponent,
+    OrderStatusModalComponent
 
   ],
   imports: [

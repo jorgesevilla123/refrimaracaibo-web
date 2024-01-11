@@ -2,7 +2,7 @@
 
 
 
-<form (submit)="search(searchBox.value)">
+<form style="margin-top: 10px;" (submit)="search(searchBox.value)">
 
 
         <mat-form-field [formGroup]="productService.searchForm" appearance="outline" class="search-form" >
@@ -20,7 +20,5 @@
    
 
 
-        <button class="search-button" style="background-color: dodgerblue" type="submit" mat-fab >
-       <mat-icon class="search-icon">search</mat-icon>
-      </button>
+     
     </form>

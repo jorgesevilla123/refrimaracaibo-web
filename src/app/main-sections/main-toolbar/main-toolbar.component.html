@@ -1,7 +1,5 @@
-
-
-
-<mat-sidenav-container  class="sidenav-container">
+<!-- 
+<mat-sidenav-container style="margin-left: 40px; margin-right: 40px;"  class="sidenav-container">
     <mat-sidenav #drawer class="sidenav" fixedInViewport="false">
       <mat-toolbar class="main-toolbar" style="padding: 10px; width: auto;">Navegacion <mat-icon>apps</mat-icon></mat-toolbar>
       <mat-nav-list>
@@ -12,10 +10,22 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <mat-toolbar class="desktop-toolbar">
-        <a routerLink="/home"><img src="../../assets/finishedlogo.png" alt=""></a>
-        <span class="spacer"></span>
-        <!-- menu for navigating through the app -->
-  <mat-menu #menu="matMenu">
+       
+        <a routerLink="/home"><img src="../../assets/finishedlogo.png" alt=""></a> -->
+
+<!-- COMMENT menu for navigating through the app -->
+
+<!-- 
+
+        <div style="height: 20px;">
+          <app-main-search-bar></app-main-search-bar>
+
+
+        </div>
+ -->
+
+
+<!-- <mat-menu #menu="matMenu">
     <button class="nav-menu-buttons" mat-menu-item routerLink="/inventario/busqueda">Inventario <mat-icon class="inventory">store</mat-icon></button>
     <button class="nav-menu-buttons" mat-menu-item routerLink="/finanzas">Configuraciones <mat-icon class="config">settings</mat-icon></button>
     <button class="nav-menu-buttons" mat-menu-item routerLink="/ventas-y-clientes">Clientes y ventas <mat-icon class="clientes-ventas">search</mat-icon></button>
@@ -60,11 +70,11 @@
     <button class="nav-menu-buttons" mat-menu-item routerLink="/finanzas">Configuraciones <mat-icon class="config">settings</mat-icon></button>
     <button class="nav-menu-buttons" mat-menu-item routerLink="/ventas-y-clientes">Clientes y ventas <mat-icon class="clientes-ventas">search</mat-icon></button>
   </mat-menu>
+ -->
 
-
-
+<!-- 
  
-<div  *ngIf="loginService.isLogged(); then userLogged else notLogged"></div>
+<div  *ngIf="loginService.logged; then userLogged else notLogged"></div>
 
 
 
@@ -82,11 +92,11 @@
   <button routerLink="/cart" [matBadge]="cartService.count" mat-fab style="background-color: white; width: 45px; height: 45px; color: black; margin-left: 30px;"><mat-icon style="font-size: 18px;">shopping_cart</mat-icon></button>
 
 
-  </ng-template>
+  </ng-template> -->
 
 
-  
-  <!-- <div style="float: right">
+
+<!-- <div style="float: right">
   
   <button class="desktop-display" mat-button [matMenuTriggerFor]="settingsMenu"><mat-icon>settings</mat-icon> <mat-icon>expand_more</mat-icon></button>
   <mat-menu #settingsMenu="matMenu">
@@ -99,13 +109,185 @@
   </mat-menu>
   
   </div> -->
-      </mat-toolbar>
+<!-- </mat-toolbar>
       <ng-content></ng-content>
     </mat-sidenav-content>
   </mat-sidenav-container>
   
+   -->
+
+<mat-toolbar style="background-color: white; padding-left: 100px; margin-top: 20px">
+  <mat-toolbar-row>
+    <a routerLink="/home"><img src="../../assets/finishedlogo.png" alt=""></a>
+
+    <span class="example-spacer"></span>
+
+    <div clas="search-box-container" style="font-size: 13px; margin-left: 80px;">
+      <app-main-search-bar></app-main-search-bar>
+    </div>
+
+
+    <div style="padding-left: 80px; padding-top: 20px" class="session-config">
+
+      <div *ngIf="loginService.logged; then userLogged else notLogged"></div>
+
+      <ng-template #userLogged>
+      
+        <button routerLink="/cart"  mat-icon-button><mat-icon
+            style="font-size: 25px;">shopping_cart</mat-icon>  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+              {{cartService.count}}
+              <span class="visually-hidden">unread messages</span>
+            </span></button>
+            <button style="width: 70px; height: 70px;" mat-icon-button routerLink="/dashboard"><mat-icon
+              style="color: dodgerblue; width: auto; height: auto; font-size: 30px;" >account_circle</mat-icon></button>
+
+      </ng-template>
+
+      <ng-template #notLogged>
+
+        <button mat-button routerLink="/login">Inicia sesion <mat-icon
+            style="color: dodgerblue;">account_circle</mat-icon></button>
+        <button mat-button routerLink="/registration">Registrate! <mat-icon
+            style="color: dodgerblue;">login</mat-icon></button>
+        <button routerLink="/cart" [matBadge]="cartService.count" mat-fab
+          style="background-color: white; width: 45px; height: 45px; color: black; margin-left: 30px;"><mat-icon
+            style="font-size: 18px;">shopping_cart</mat-icon></button>
+
+
+      </ng-template>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+  </mat-toolbar-row>
+
+  <mat-toolbar-row style="margin-top: 20px; position: relative;">
+    <button type="button" style="background-color: dodgerblue; color: white; font-size: 15px;" class="btn btn-lg "><i  style="margin-right: 10px;" class="bi bi-grid"></i>Todas las categorias</button>
+    <span class="example-spacer"></span>
+
+
+
+    <div class="dragdown">
+
   
+    <button style="font-size: 15px;" class="desktop-display" mat-button >Compresores<mat-icon>expand_more</mat-icon></button>
+
+    <div class="dragdown-content">
+      <div class="content">
+ 
+        <div class="title">
+          <p >Compresores para nevera</p>
+        </div>
+
+        <div class="title">
+          <p >Compresores para aire acondicionado</p>
+        </div> 
+
+     
+
+        <div class="grid-item">
+          <p class="grid-text">Donper</p>
+        </div>
+
+        <div class="grid-item rowsection">
+          <p class="grid-text">Copeland</p>
+        </div>
+
+
+
+        <a class="grid-item rowsection" (click)="someFunction()">
+          <p  class="grid-text">Toshiba</p>
+        </a>
+
+        <div class="grid-item rowsection">
+          <p class="grid-text">Trane</p>
+        </div>
+
+        <div class="grid-item">
+          <p class="grid-text">Trane</p>
+        </div>
+
+
+        <div class="grid-item">
+          <p class="grid-text">Trane</p>
+        </div>
+
+
+
+        <div class="grid-item">
+          <p class="grid-text">Trane</p>
+        </div>
+
+
+     
+      
+
+      </div>
+   
+
+     
+    </div>
+  </div>
+
+    
+ 
+
   
+
+
   
+  <button style="font-size: 15px;  " class="desktop-display" mat-button [matMenuTriggerFor]="Herramientas">Evaporadores automotriz<mat-icon>expand_more</mat-icon></button>
+  <mat-menu #Herramientas="matMenu">
+    <button class="nav-menu-buttons" mat-menu-item routerLink="/inventario/busqueda">Inventario <mat-icon class="inventory">store</mat-icon></button>
+    <button class="nav-menu-buttons" mat-menu-item routerLink="/finanzas">Configuraciones <mat-icon class="config">settings</mat-icon></button>
+    <button class="nav-menu-buttons" mat-menu-item routerLink="/ventas-y-clientes">Clientes y ventas <mat-icon class="clientes-ventas">search</mat-icon></button>
+  </mat-menu>
+
+
   
-  
+  <button style="font-size: 15px;  " class="desktop-display" mat-button [matMenuTriggerFor]="Herramientas">Condensadores automotriz<mat-icon>expand_more</mat-icon></button>
+  <mat-menu #Herramientas="matMenu">
+    <button class="nav-menu-buttons" mat-menu-item routerLink="/inventario/busqueda">Inventario <mat-icon class="inventory">store</mat-icon></button>
+    <button class="nav-menu-buttons" mat-menu-item routerLink="/finanzas">Configuraciones <mat-icon class="config">settings</mat-icon></button>
+    <button class="nav-menu-buttons" mat-menu-item routerLink="/ventas-y-clientes">Clientes y ventas <mat-icon class="clientes-ventas">search</mat-icon></button>
+  </mat-menu>
+
+
+
+
+
+      
+  <button style="font-size: 15px; " class="desktop-display" mat-button [matMenuTriggerFor]="automotriz">Marcas<mat-icon>expand_more</mat-icon></button>
+  <mat-menu #automotriz="matMenu">
+    <button class="nav-menu-buttons" mat-menu-item routerLink="/inventario/busqueda">Inventario <mat-icon class="inventory">store</mat-icon></button>
+    <button class="nav-menu-buttons" mat-menu-item routerLink="/finanzas">Configuraciones <mat-icon class="config">settings</mat-icon></button>
+    <button class="nav-menu-buttons" mat-menu-item routerLink="/ventas-y-clientes">Clientes y ventas <mat-icon class="clientes-ventas">search</mat-icon></button>
+  </mat-menu>
+
+
+      
+  <button style="font-size: 15px; " class="desktop-display" mat-button [matMenuTriggerFor]="automotriz">Soldables<mat-icon>expand_more</mat-icon></button>
+  <mat-menu #automotriz="matMenu">
+    <button class="nav-menu-buttons" mat-menu-item routerLink="/inventario/busqueda">Inventario <mat-icon class="inventory">store</mat-icon></button>
+    <button class="nav-menu-buttons" mat-menu-item routerLink="/finanzas">Configuraciones <mat-icon class="config">settings</mat-icon></button>
+    <button class="nav-menu-buttons" mat-menu-item routerLink="/ventas-y-clientes">Clientes y ventas <mat-icon class="clientes-ventas">search</mat-icon></button>
+  </mat-menu>
+
+
+    
+
+
+    
+    
+    
+  </mat-toolbar-row>
+</mat-toolbar>

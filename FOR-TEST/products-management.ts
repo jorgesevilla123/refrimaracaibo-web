@@ -21,4 +21,11 @@ export function getCategories(category_query): Observable<any>{
 }
 
 
+export function getRootCategories(): Observable<any>{
+   let categorySource = from([productsCategory])
+
+   return categorySource
+}
+
+
 

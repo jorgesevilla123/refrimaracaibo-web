@@ -1,21 +1,22 @@
-<div class="wrapper">
+<div class="wrapper" >
     <div>
 
 
         <mat-vertical-stepper style="height: auto;" [linear]="true" #stepper [animationDuration]="'200'">
-            <mat-step [stepControl]="loginService.shippingAddressForm">
+            <mat-step>
+                <ng-template matStepLabel>Direccion de envio</ng-template>
 
                 <mat-tab-group>
 
                     <mat-tab label="Direcciones agregadas">
 
 
-                        <div *ngIf="loginService.isLogged(); then logged else notLogged"></div>
+                        <div *ngIf="loginService.logged; then logged else notLogged"></div>
 
 
                         <ng-template #logged>
 
-                            <div *ngIf="shippingService.haveShipping(); then have else donthave"></div>
+                            <div *ngIf="loginService.selectedUser[0].shipping_addresses.length > 0; then have else donthave"></div>
 
 
 
@@ -37,12 +38,12 @@
                                         <mat-card class="shipping-card">
 
                                             <mat-radio-button #radio
-                                                (click)="selectShipping(radio, shipping)"></mat-radio-button>
+                                                (click)="selectAddress(radio, shipping)"></mat-radio-button>
                                             <h3>{{shipping.descripcion}} | </h3>
                                             <small> {{shipping.avenida}}, {{shipping.calle}},
                                                 {{shipping.casa_apartamento}}</small>
                                             <button style="font-size: 15px; margin-left: auto; margin-right: 20px;"
-                                                mat-button>Actualizar <mat-icon
+                                                mat-button (click)="openShippingUpdateDialog(shipping)">Actualizar <mat-icon
                                                     style="font-size: 18px;">edit</mat-icon></button>
                                         </mat-card>
                                     </div>
@@ -115,54 +116,6 @@
 
 
 
-
-
-
-                    <mat-tab label="Envio para direccion unica">
-
-
-                        <div class="address-section">
-                            <h3 style="font-weight: 300;">Si deseas solo enviar a alguna direccion en particular
-                                completa el siguiente formulario</h3>
-                            <form class="shipping-form" [formGroup]="loginService.shippingAddressForm">
-                                <ng-template matStepLabel>Direccion de envio</ng-template>
-                                <mat-form-field appearance="fill">
-                                    <mat-label>Estado</mat-label>
-                                    <mat-select>
-                                        <mat-option *ngFor="let state of states"
-                                            [value]="state.value">{{state.viewValue}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                <mat-form-field class="address-field" appearance="fill">
-                                    <mat-label>Avenida</mat-label>
-                                    <input matInput placeholder="Avenida" formControlName="avenida" required>
-                                </mat-form-field>
-                                <mat-form-field class="address-field" appearance="fill">
-                                    <mat-label>Calle</mat-label>
-                                    <input matInput placeholder="Calle" formControlName="calle" required>
-                                </mat-form-field>
-                                <mat-form-field class="address-field" appearance="fill">
-                                    <mat-label>Casa o apartamento</mat-label>
-                                    <input matInput placeholder="Casa o apartamento" formControlName="casa_apartamento"
-                                        required>
-                                </mat-form-field>
-                                <mat-form-field class="address-field-aditional" appearance="fill">
-                                    <mat-label>Informacion adicional de envio</mat-label>
-                                    <input matInput
-                                        placeholder="Agrega algun detalle que tengamos que saber sobre tu envio"
-                                        formControlName="casa_apartamento">
-                                </mat-form-field>
-                                <div>
-                                    <button mat-button matStepperPrevious><mat-icon>navigate_before</mat-icon>
-                                        Volver</button>
-                                    <button mat-button matStepperNext>Siguiente
-                                        <mat-icon>navigate_next</mat-icon></button>
-                                </div>
-                            </form>
-
-                        </div>
-                    </mat-tab>
-
                 </mat-tab-group>
             </mat-step>
 
@@ -191,8 +144,8 @@
                             Enviar a
                         </h3>
                         <h3>
-                            {{selectedShipping === undefined ? 'No has seleccionado un lugar para enviar' :
-                            selectedShipping.avenida}}
+                            {{selectedAddress === undefined ? 'No has seleccionado un lugar para enviar' :
+                            selectedAddress.descripcion}}
                         </h3>
                     </div>
                 </mat-card>
@@ -202,48 +155,34 @@
 
 
 
-
+ 
                 <h3 style="margin-top: 20px;">Tipo de envio o retiro</h3>
-                <mat-card>
+                <mat-card  *ngFor="let payment of shippingMethods">
+                    <div *ngIf="payment.cost === 'free' then free; else notFree "></div>
 
-                    <div style="display: flex; align-items: baseline;">
-                        <mat-radio-button></mat-radio-button>
-                        <h3>Retirar en tienda</h3>
-                        <h3 style="margin-left: auto; color: green;">Sin costo</h3>
-                    </div>
+                    <ng-template #free>
+                        <div style="display: flex; align-items: baseline;">
+                            <mat-radio-button #paymentRadio (click)="selectShipping(paymentRadio, payment)"></mat-radio-button>
+                            <h3>{{payment.method}}</h3>
+                            <h3 style="margin-left: auto; color: green;">{{payment.precio}}</h3>
+                        </div>
+                    </ng-template>
 
-                    <mat-divider></mat-divider>
-
-                    <div style="display: flex; align-items: baseline;  margin-top: 20px;">
-                        <mat-radio-button></mat-radio-button>
-                        <h3>Envio propio al mismo dia</h3>
-                        <h3 style="margin-left: auto; color: green;">Gratis</h3>
-                    </div>
-
-                    <mat-divider></mat-divider>
-
-                    <div style="display: flex; align-items: baseline; margin-top: 20px;">
-                        <mat-radio-button></mat-radio-button>
-                        <h3>Envio con domi</h3>
-                        <h3 style="margin-left: auto;">{{3 | currency: 'USD'}}</h3>
-
-                    </div>
-
-                    <mat-divider></mat-divider>
-
-                    <div style="display: flex; align-items: baseline; margin-top: 20px;">
-                        <mat-radio-button></mat-radio-button>
-                        <h3>Envio con quik</h3>
-                        <h3 style="margin-left: auto;">{{3 | currency: 'USD'}}</h3>
-
-                    </div>
-
+                    <ng-template #notFree>
+                        <div style="display: flex; align-items: baseline;">
+                            <mat-radio-button #paymentRadio (click)="selectShipping(paymentRadio, payment)"></mat-radio-button>
+                            <h3>{{payment.method}}</h3>
+                            <h3 style="margin-left: auto;">{{payment.precio | currency : 'USD'}}</h3>
+                        </div>
+                    </ng-template>
+             
                 </mat-card>
 
+             
                 <div>
                     <button mat-button matStepperPrevious><mat-icon>navigate_before</mat-icon>
                         Volver</button>
-                    <button mat-button matStepperNext>Siguiente
+                    <button mat-button matStepperNext [disabled]="paymentMethod === '' ? true : false">Siguiente
                         <mat-icon>navigate_next</mat-icon></button>
                 </div>
 
@@ -265,17 +204,16 @@
                     <form>
                         <mat-form-field appearance="fill">
                             <mat-label>Metodo de pago</mat-label>
-                            <mat-select [(ngModel)]="selectedValue" name="food">
+                            <mat-select [(ngModel)]="selectedValue" name="food" (selectionChange)="paymentMethodSelected($event)">
                                 <mat-option *ngFor="let food of foods" [value]="food.value">
                                     {{food.viewValue}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
                         <p> Metodo de pago seleccionado: <b>{{selectedValue}}</b></p>
-
                     </form>
                     <div>
-                        <button mat-button matStepperNext>Siguiente</button>
+                        <button mat-button matStepperNext [disabled]="paymentMethod === '' ? true : false">Siguiente</button>
                     </div>
                 </form>
             </mat-step>
@@ -286,14 +224,24 @@
 
 
 
-            <mat-step>
-                <div class="payment-confirmation">
+            <mat-step [editable]="">
+                <div class="payment-confirmation" [ngSwitch]="selectedPayment">
                     <ng-template matStepLabel>Confirmacion de pago</ng-template>
+
+                
                     <h3 style="font-weight: 300; margin-top: 20px;">Has seleccionado como metodo de pago
                         <b>{{selectedValue}}</b> completa los siguientes pasos para validar el
                         pago
                     </h3>
 
+
+
+
+
+
+
+                    <div *ngSwitchCase="'Zelle'">
+                        
                     <div style="display: inline-flex;" class="step1">
                         <button style="background-color: dodgerblue; color: white;" mat-mini-fab disabled>1</button>
                         <h3 style="margin-left: 20px; font-weight: 300;">Verifica los productos en el recuadro derecho y
@@ -314,8 +262,6 @@
                     </div>
 
 
-
-
                     <div style="display: flex; align-items: baseline; justify-content: space-evenly;">
 
                         <form style="margin-left: 40px;" [formGroup]="confirmationForm">
@@ -330,33 +276,173 @@
                             (click)="validate()">Validar codigo <mat-icon>done</mat-icon></button>
                     </div>
 
+                    
 
-                    <div [ngSwitch]="paymentProcessed">
+              
 
-
-                        <div *ngSwitchCase="'waitingCode'">
-                            <h3 style="margin-left: 40px">Estado del pago: <b>En espera de codigo</b></h3>
-                        </div>
-
+                    <button (click)="openOrderStatusModal('Zelle')" style="background-color: dodgerblue; color: white;" mat-stroked-button>Ver estado del pedido</button>
+                        
 
 
 
-                        <div *ngSwitchCase="'processing'">
-                            <h3 style="margin-left: 40px">Estado del pago: <b>Procesando</b></h3>
-                            <mat-progress-bar
-                                style="width: 80%; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px;"
-                                mode="indeterminate"></mat-progress-bar>
-                        </div>
 
-                        <div *ngSwitchCase="'processed'">
-                            <h3 style="margin-left: 40px">Estado del pago: <b>Procesado <mat-icon>done</mat-icon></b>
-                            </h3>
-                        </div>
+
+
 
 
                     </div>
 
 
+                    <div *ngSwitchCase="'Transferencia'">
+
+
+
+                        
+                    <div style="display: inline-flex;" class="step1">
+                        <button style="background-color: dodgerblue; color: white;" mat-mini-fab disabled>1</button>
+                        <h3 style="margin-left: 20px; font-weight: 300;">Verifica los productos en el recuadro derecho y
+                            realiza el pago por transferencia al mismo banco por el monto indicado en Bs a la siguiente cuenta:  </h3>
+
+                          
+                    </div>
+
+                    <div class="step1">
+                        <h4><b>Cedula:</b> {{27847008 | number }}</h4>
+                        <h4><b>Numero de cuenta: </b>0108-0047-1300100399748</h4>
+                        <h4><b>Banco: </b>BBVA Provincial</h4>
+                    </div>
+
+                    <mat-divider></mat-divider>
+
+
+                    <div style="display: inline-flex;" class="step1">
+                        <button style="background-color: dodgerblue; color: white;" mat-mini-fab disabled>2</button>
+                        <h3 style="margin-left: 20px; font-weight: 300;">
+                            Escribe el numero de referencia o sube una captura del pago realizado, verificaremos tu pago de inmediato</h3>
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div [ngSwitch]="paymentProcessed">
+                        <div style="display: flex; align-items: baseline; justify-content: space-evenly;">
+
+                            <form style="margin-left: 40px;" [formGroup]="confirmationForm">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Numero de referencia</mat-label>
+                                    <input matInput placeholder="Ingresa solo los ultimas 6 digitos" formControlName="numero_confirmacion"
+                                        required>
+                                </mat-form-field>
+                            </form>
+    
+                            <button style="background-color: green; color: white" mat-raised-button
+                                (click)="validate()">Validar codigo <mat-icon>done</mat-icon></button>
+                        </div>
+    
+    
+
+
+
+                    </div>
+
+
+                    <button (click)="openOrderStatusModal('Transferencia')" style="background-color: dodgerblue; color: white;" mat-stroked-button>Ver estado del pedido</button>
+                        
+
+                        
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div *ngSwitchCase="'Pago movil'">
+
+                    <div style="display: inline-flex;" class="step1">
+                        <button style="background-color: dodgerblue; color: white;" mat-mini-fab disabled>1</button>
+                        <h3 style="margin-left: 20px; font-weight: 300;">Verifica los productos en el recuadro derecho y
+                            realiza el pago movil por el monto indicado en Bs al siguiente numero:  </h3>
+
+                          
+                    </div>
+
+                    <div class="step1">
+                        <h4><b>Cedula:</b> {{27847008 | number }}</h4>
+                        <h4><b>Numero de telefono:</b> 04149675244</h4>
+                        <h4><b>Banco:</b> Provincial</h4>
+                    </div>
+
+                    <mat-divider></mat-divider>
+
+
+                    <div style="display: inline-flex;" class="step1">
+                        <button style="background-color: dodgerblue; color: white;" mat-mini-fab disabled>2</button>
+                        <h3 style="margin-left: 20px; font-weight: 300;">
+                            Escribe el numero de referencia o sube una captura del pago realizado, verificaremos tu pago de inmediato</h3>
+                    </div>
+
+
+                    <div [ngSwitch]="paymentProcessed">
+
+
+
+                        <div style="display: flex; align-items: baseline; justify-content: space-evenly;">
+
+                            <form style="margin-left: 40px;" [formGroup]="confirmationForm">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Numero de referencia</mat-label>
+                                    <input matInput placeholder="Ingresa solo los ultimas 6 digitos" formControlName="numero_confirmacion"
+                                        required>
+                                </mat-form-field>
+                            </form>
+    
+                            <button style="background-color: green; color: white" mat-raised-button
+                                (click)="validate()">Validar codigo <mat-icon>done</mat-icon></button>
+                        </div>
+    
+    
+
+                        <button (click)="openOrderStatusModal('Pago movil')" style="background-color: dodgerblue; color: white;" mat-stroked-button>Ver estado del pedido</button>
+
+
+
+                    </div>
+
+
+
+                    
+
+
+                    </div>
+
+
+
+
+                    <div *ngSwitchCase="'Efectivo en divisas'">
+                        <h3>El delivery recibira tu pago de divisas en efectivo al llegar al sitio, por favor confirma la cantidad a pagar
+                            para confirmar el cambio
+                        </h3>
+
+                        <button (click)="openOrderStatusModal('Efectivo')" style="background-color: dodgerblue; color: white;" mat-stroked-button>Ver estado del pedido</button>
+
+                    </div>
+
+
+                  
 
 
 

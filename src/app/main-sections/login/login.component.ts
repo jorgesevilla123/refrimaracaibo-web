@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LoginService } from '../../services/login.service'
 import { CartService } from 'src/app/services/cart.service';
+import { AlertService } from 'src/app/shared/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public loginService: LoginService,
-    private cartService: CartService
+    private cartService: CartService,
+    private alert: AlertService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -36,24 +40,30 @@ export class LoginComponent implements OnInit {
     let secret = this.loginForm.get('password').value
     console.log(email)
     console.log(secret)
-
-    let user = this.loginService.users.find(
-      val => val.email === email
-      
-    )
-
-    let passwordMatch = user.password === secret
-    console.log(passwordMatch)
-
-    if(passwordMatch){
-      this.loginService.setLogin(user) 
-      this.cartService.updateCount()
-
+    let userData = {
+      email: email,
+      password: secret
     }
-    else {
-      this.loginService.setLogout()
 
-    }
+
+      this.loginService.setLogin(userData).subscribe(
+        {
+         next:  (val: any) => {
+           if(val.login){
+            this.loginService.logged = true
+            this.loginService.selectedUser.push(val.user)
+            this.router.navigate(['/home'])
+           }
+           else {
+            this.alert.notifySuccess('Algunos datos son incorrectos', 2000, 'top', 'center')
+
+           }
+        
+         }
+        }
+       ) 
+  
+
 
 
 

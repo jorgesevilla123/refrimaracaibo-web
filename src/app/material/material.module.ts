@@ -31,7 +31,7 @@ import {  MatDatepickerModule, MatDatepickerActions } from '@angular/material/da
 import { MatNativeDateModule } from '@angular/material/core'
 import { MatButtonToggleModule } from '@angular/material/button-toggle'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
-
+import { MatTreeModule } from '@angular/material/tree'
 
 
 
@@ -70,7 +70,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar'
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonToggleModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTreeModule
   ],
   exports: [
     CommonModule,
@@ -105,7 +106,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar'
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonToggleModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTreeModule
     
   ]
 })

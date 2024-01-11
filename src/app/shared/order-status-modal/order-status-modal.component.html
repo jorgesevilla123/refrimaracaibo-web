@@ -1,0 +1,105 @@
+<div mat-dialog-title>
+    Estado de la orden
+</div>
+
+
+<div mat-dialog-content>
+
+    <div *ngIf="method === 'Efectivo' then cash else notCash"></div>
+
+    <ng-template #cash>
+
+        
+
+        <div [ngSwitch]="cartService.orderStatus">
+ 
+
+
+
+       
+        <div *ngSwitchCase="'processed'">
+            <div style="display: flex; flex-direction: row;">
+                <h2 style="margin-left: 40px; margin-right: 20px;"><b>Empacando orden</b>
+                </h2>
+                <img src="../../../assets/package.gif" alt="" height="90px" width="90px">
+            </div>
+      
+        </div>
+
+
+        <div *ngSwitchCase="'onWay'">
+            <div style="display: flex; flex-direction: row;">
+                <h2 style="margin-left: 40px; margin-right: 20px;"><b>Pedido en camino!</b>
+                </h2>
+                <img src="../../../assets/delivery-scooter.gif" alt="" height="90px" width="90px">
+            </div>
+      
+        </div>
+
+        
+        </div>
+       
+
+
+    </ng-template>
+
+
+
+
+
+
+
+   
+    <ng-template #notCash>
+
+
+
+        <div [ngSwitch]="cartService.orderStatus">
+ 
+
+
+
+        
+        <div *ngSwitchCase="'waitingCode'">
+            <div style="display: flex; flex-direction: row;">
+                <h2 style="margin-left: 40px; margin-right: 20px;"><b>Esperando referencia de transferencia</b>
+                </h2>
+                <img src="../../../assets/hourglass.gif" alt="" height="90px" width="90px">
+            </div>
+      
+        </div>
+
+
+
+
+        <div *ngSwitchCase="'processing'">
+            <div style="display: flex; flex-direction: row;">
+                <h2 style="margin-left: 40px; margin-right: 20px;"><b>Procesando pago</b></h2>
+                <img src="../../../assets/cash.gif" alt="" height="90px" width="90px">
+            </div>
+           
+        </div>
+
+        <div *ngSwitchCase="'processed'">
+            <div style="display: flex; flex-direction: row;">
+                <h2 style="margin-left: 40px; margin-right: 20px;"><b>Empacando orden</b>
+                </h2>
+                <img src="../../../assets/package.gif" alt="" height="90px" width="90px">
+            </div>
+      
+        </div>
+
+
+        <div *ngSwitchCase="'onWay'">
+            <div style="display: flex; flex-direction: row;">
+                <h2 style="margin-left: 40px; margin-right: 20px;"><b>Pedido en camino!</b>
+                </h2>
+                <img src="../../../assets/delivery-scooter.gif" alt="" height="90px" width="90px">
+            </div>
+      
+        </div>
+        </div>
+
+
+    </ng-template>
+   

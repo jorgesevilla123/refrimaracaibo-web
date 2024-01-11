@@ -40,7 +40,7 @@
 
 
                     <div class="image">
-                        <img class="products-img" src="../../../assets/bombillo 15w.jpeg">
+                        <img class="products-img"  [src]="product.imageMetadata.path_to_file">
                     </div>
 
 
@@ -55,7 +55,7 @@
                     <div class="price-quantity" style="display:flex; margin-left: 20px; align-items: baseline;">
 
 
-                        <mat-button-toggle-group style="width: 100%;" name="fontStyle" aria-label="Font Style">
+                        <mat-button-toggle-group  name="fontStyle" aria-label="Font Style">
                             <mat-button-toggle
                                 (click)="decreaseQuantity(product)"><mat-icon>remove</mat-icon></mat-button-toggle>
                             <mat-button-toggle>{{product.quantity}}</mat-button-toggle>

@@ -15,7 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { NgbRatingModule, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap'
-
+import { CartOverviewComponent } from './cart-overview/cart-overview.component'
 
 
 @NgModule({
@@ -27,7 +27,8 @@ import { NgbRatingModule, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap'
     ProductsModalComponent,
     LoginComponent,
     RegistrationComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    CartOverviewComponent
 
 
   ],

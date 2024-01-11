@@ -4,7 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../shared/alert.service'
 import { LoginService } from '../../services/login.service'
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { productsCategory } from 'FOR-TEST/database-collections-test';
+import { SessionService } from 'src/app/services/session.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-main-cart',
@@ -22,13 +23,15 @@ export class MainCartComponent implements OnInit {
     public route: ActivatedRoute,
     public router: Router,
     public alert: AlertService,
-    public loginService: LoginService
+    public loginService: LoginService,
+    private sessionService: SessionService
+
   ) { }
 
   cartProducts: any
 
   currentRate = 8;
-  
+
   sections = [
     {
       section_name: 'Productos en el carrito', route: "/categories", query: 'iluminacion', all_button: 'Ver toda la iluminacion', cols: 4, rowHeight: '220px'
@@ -40,98 +43,148 @@ export class MainCartComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getCartProducts()
-    this.total = this.cartService.calculateTotal()
- 
+    this.sessionService.getProfile().subscribe(
+      {
+        next: (profile) => { this.loginService.selectedUser.push(profile.parsedProfile) },
+        error: (err) => { },
+        complete: () => { console.log('updating count'), this.getCartProducts(), this.total = this.cartService.calculateTotal() }
+      }
+    )
+
+
+
+
   }
 
-  isLoggedIn(){
-    
+  isLoggedIn() {
+
   }
 
 
-  
-  increaseQuantity(product){
 
-    console.log(product)
+  increaseQuantity(product) {
     let quantity = Number(product.quantity + 1)
-    this.cartService.updateQuantity(product, quantity)
-    product.selected ? this.total = this.cartService.IncreaseTotal() : this.total
-    
+    let index = this.loginService.selectedUser[0].cart.findIndex(val => val.title === product.title)
+    this.loginService.selectedUser[0].cart[index].quantity = quantity
+    this.cartService.updateQuantity().subscribe(
+      val => {
+        console.log(val)
+
+        product.selected ? this.total = this.cartService.IncreaseTotal() : this.total
+
+      }
+    )
+
   }
 
-  decreaseQuantity(product){
+  decreaseQuantity(product) {
     let quantity = Number(product.quantity - 1)
-    this.cartService.updateQuantity(product, quantity)
-    product.selected ? this.total = this.cartService.decreaseTotal() : this.total
+    let index = this.loginService.selectedUser[0].cart.findIndex(val => val.title === product.title)
+    this.loginService.selectedUser[0].cart[index].quantity = quantity
+    this.cartService.updateQuantity().subscribe(
+      val => {
+        console.log(val)
+        product.selected ? this.total = this.cartService.decreaseTotal() : this.total
+      }
+    )
+
+
+
 
   }
 
-  selectProduct(checkbox, product){
-   if(product.selected){
-    console.log(product)
-    product.selected = false
-    this.allDeselected()
-    this.total = this.cartService.calculateTotal()
-   }
-   else {
-    product.selected = true
-    console.log(product)
-    this.allDeselected()
-    this.total = this.cartService.calculateTotal()
-   }
+  selectProduct(checkbox, product) {
+    if (product.selected) {
+      console.log(product)
+      product.selected = false
+      this.selectionUpdate(this.loginService.selectedUser[0]).subscribe(
+        cart => {
+          if (cart.updated) {
+            this.allDeselected()
+            this.total = this.cartService.calculateTotal()
+          }
+        }
+      )
+    }
+    else {
+      product.selected = true
+      console.log(product)
+      this.selectionUpdate(this.loginService.selectedUser[0]).subscribe(
+        cart => {
+          if (cart.updated) {
+            this.allDeselected()
+            this.total = this.cartService.calculateTotal()
+          }
+        }
+      )
+    }
     // else {
     //   this.loginService.selectedUser[0].selectedCart.push(product)
     //   console.log(this.loginService.selectedUser[0].selectedCart)
     // }
-  
+
 
 
   }
 
 
 
-  allDeselected(){
-    let allDeselected = this.cartProducts.every( product => {return product.selected === false}) 
+  allDeselected() {
+    let allDeselected = this.cartProducts.every(product => { return product.selected === false })
     this.deselected = allDeselected
     console.log(allDeselected)
   }
 
 
-  toggleAll(event: MatCheckboxChange) { 
-    if(event.checked){
+  toggleAll(event: MatCheckboxChange) {
+    if (event.checked) {
+      console.log('checked')
       console.log('products not checked')
-      this.cartProducts.forEach( product => {
-        if(product.selected === false){
+      this.cartProducts.forEach(product => {
+        if (!product.selected) {
           product.selected = true
         }
       })
-          this.total = this.cartService.calculateTotal()
-          this.allDeselected()
+      this.selectionUpdate(this.loginService.selectedUser[0]).subscribe(
+        cart => {
+          if (cart.updated) {
+            this.allDeselected()
+            this.total = this.cartService.calculateTotal()
+          }
+        }
+      )
+
     }
     else {
       console.log('products checked')
-      this.cartProducts.filter( product => {product.selected === true})
-      this.cartProducts.forEach( product => {
-        if(product.selected === true){
+      this.cartProducts.filter(product => { product.selected === true })
+      this.cartProducts.forEach(product => {
+        if (product.selected) {
           product.selected = false
         }
       })
-          this.total = this.cartService.calculateTotal()
-          this.allDeselected()
-      
+
+      this.selectionUpdate(this.loginService.selectedUser[0]).subscribe(
+        cart => {
+          if (cart.updated) {
+            this.allDeselected()
+            this.total = this.cartService.calculateTotal()
+          }
+        }
+      )
     }
 
-    
-}
+
+  }
 
 
 
 
-  getCartProducts(){
+  getCartProducts() {
     this.cartService.getCartProducts().subscribe(
       val => {
         this.cartProducts = val
+        console.log(val)
       }
     )
 
@@ -139,19 +192,25 @@ export class MainCartComponent implements OnInit {
 
 
 
-  removeProduct(product){
-    this.cartService.deleteProductFromCart(product)
-    this.getCartProducts()
-    this.alert.notifySuccess('Producto eliminado del carrito', 800, 'top', 'center')
-    this.cartService.updateCount()
-    this.total = this.cartService.calculateTotal()
+  removeProduct(product) {
+    product.inCart = false
+    this.cartService.deleteProductFromCart(product).subscribe(
+      val => {
+        console.log(val)
+        this.getCartProducts()
+        this.alert.notifySuccess('Producto eliminado del carrito', 800, 'top', 'center')
+        this.cartService.updateCount()
+        this.total = this.cartService.calculateTotal()
+
+
+      })
 
   }
 
 
 
 
-  updateQuantity(product){
+  updateQuantity(product) {
     console.log(product)
     let route_data = JSON.stringify(product)
     let route = `/product-details/${product.title}?d=${route_data}`
@@ -162,7 +221,14 @@ export class MainCartComponent implements OnInit {
 
 
 
-  
+  selectionUpdate(products): Observable<any> {
+    return this.cartService.updateSelectedProducts(products)
+  }
+
+
+
+
+
 
 
 

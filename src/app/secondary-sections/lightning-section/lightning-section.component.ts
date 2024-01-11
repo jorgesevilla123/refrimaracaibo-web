@@ -33,8 +33,10 @@ import { MatOptionSelectionChange } from '@angular/material/core';
 import { CartService } from '../../services/cart.service'
 import { AlertService } from '../../shared/alert.service'
 import { ProductsService } from '../../services/products.service'
-import { CartOverviewComponent } from '../cart-overview/cart-overview.component'
+import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-overview.component'
 import { LoginService } from '../../services/login.service'
+import { SessionService } from 'src/app/services/session.service';
+import { PaginationService } from 'src/app/services/pagination.service';
 
 
 
@@ -60,6 +62,7 @@ import { LoginService } from '../../services/login.service'
 export class LightningSectionComponent implements OnInit {
   @ViewChild(CartOverviewComponent) cartDrawer: CartOverviewComponent
   @Input() data: any
+  @Input() product
 
 
 
@@ -70,7 +73,9 @@ export class LightningSectionComponent implements OnInit {
     public cartService: CartService,
     public alert: AlertService,
     public productService: ProductsService,
-    public loginService: LoginService
+    public loginService: LoginService,
+    public paginationService: PaginationService
+   
 
   ) { }
 
@@ -153,7 +158,6 @@ export class LightningSectionComponent implements OnInit {
     { category_name: 'Embraco', category_id: [1], capacity: '12w', route: "/product-details", query: 'bombillos', img_src: '../assets/embraco.png', img_w: '180px', img_h: '100px', quantity: 20 },
     { category_name: 'Frigidaire', category_id: [3], capacity: '12w', route: "/product-details", query: 'bombillos', img_src: '../assets/frigidaire.png', img_w: '180px', img_h: '100px', quantity: 20 },
     { category_name: 'Whirlpool', category_id: [2], capacity: '15w', route: "/product-details", query: 'dicroicos', img_src: '../assets/whirlpool.png', img_w: '180px', img_h: '100px', quantity: 20 },
-
   ]
 
 
@@ -182,12 +186,10 @@ export class LightningSectionComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.pageName = 'iluminacion'
-
-
-
-
-
+    console.log()
+    this.pageName = 'iluminacion' //pagename for using in the paginator 
+    console.log(this.loginService.selectedUser)
+   
 
     // add page this.currentPage
 
@@ -206,25 +208,39 @@ export class LightningSectionComponent implements OnInit {
     this.route.queryParams.subscribe(
       val => {
         this.currentPage = val.page
-        this.getProducts('iluminacion', this.currentPage)
+        console.log(this.currentPage)
+        this.getProducts('ILUMINACION', this.currentPage, this.pageName)
+        this.paginationService.pageName = this.pageName
+  
         setTimeout( () => {
           this.completed = true
+          console.log('Rendering pager')
 
-        }, 500)
-
+        }, 1000)
       }
     )
+
+
+
+  
   }
 
+ 
 
 
 
-
-  getProducts(category, page) {
-    this.productService.getProductsCategory(category, page).subscribe(
-      pager => {
-        this.pager = pager
-        this.sectionsToRender = pager.pageOfItems
+  getProducts(category, page, pagename) {
+   this.productService.getProductsCategory(category, page, pagename).subscribe(
+      {
+        next: (pager) => {
+          console.log(pager)
+          this.pager = pager
+          this.paginationService.pager = this.pager 
+          console.log('pager set')
+          console.log(this.paginationService.pager)
+          this.sectionsToRender = pager.pageOfItems
+        },
+        complete: () => {console.log('Observable completed')}
       }
     )
 
@@ -294,7 +310,6 @@ export class LightningSectionComponent implements OnInit {
 
   optionHandler(value: MatOptionSelectionChange) {
 
-
     if (value.source.selected === false) {
       let index = this.categoryValues.indexOf(value.source.value.id)
       // prevents that the remove function is executed again when the onChangeSelection function triggers on filter deselection
@@ -311,10 +326,7 @@ export class LightningSectionComponent implements OnInit {
     else {
 
 
-
       this.categoryChips.push({ id: value.source.value.id, name: value.source.value.label_value, mat_select: value })
-
-
       let label_value = value.source.value.id
       this.categoryValues.push(label_value)
 
@@ -362,7 +374,6 @@ export class LightningSectionComponent implements OnInit {
 
   remove(category) {
 
-
     let index = this.categoryChips.indexOf(category)
 
     this.categoryChips.splice(index, 1)
@@ -388,11 +399,6 @@ export class LightningSectionComponent implements OnInit {
     }
 
 
-
-
-
-
-
   }
 
 
@@ -405,7 +411,7 @@ export class LightningSectionComponent implements OnInit {
 
 
   checkCart(product) {
-    console.log(this.loginService.selectedUser)
+  
     if(this.loginService.selectedUser.length === 0){
       let isInCart = this.cartService.cartProducts.some( productFound => productFound.title === product.title)
       if(isInCart){
@@ -459,6 +465,13 @@ export class LightningSectionComponent implements OnInit {
 
 
 
+
+
+
+
+
+
+  
   sortByPrice() {
 
 
@@ -472,23 +485,51 @@ export class LightningSectionComponent implements OnInit {
 
 
   addToCart(product) {
-    product.quantity = 1
-    this.cartService.addProductsToCart(product).subscribe(
-      val => {
-        console.log(val)
+    let productExists = this.loginService.selectedUser[0].cart.some(productFound => productFound.title === product.title)
+    if(productExists){
+      console.log("incart")
+      this.alert.notifySuccess('Ya agregaste este producto al carrito', 2000, 'top', 'center') 
+    }
+    else{
+      product.quantity = 1
+    
+      if(this.loginService.selectedUser.length === 0){
+        console.log('user sekected for adding products')
+        this.cartService.addProductsNotLoggedUserCart(product)
       }
-    )
-    this.cartService.updateCount();
-    this.cartDrawer.open()
+      else {
+        this.cartService.addProductsToLoggedUserCart(product).subscribe(
+          val => {
+            console.log(val)
+          }
+        )
+      }
+      this.cartService.updateCount();
+      this.cartDrawer.open()
+
+    }
+  
   }
 
 
 
   removeFromCart(product) {
-    this.cartService.deleteById(product)
-    this.checkCart(product)
-    this.cartService.updateCount()
-    this.alert.notifySuccess('Producto eliminado del carrito', 800, 'top', 'center');
+   
+    this.cartService.deleteProductFromCart(product).subscribe(
+      {
+        next: (val) => {
+          console.log(val)
+    
+        },
+        complete: () => {
+          this.checkCart(product)
+          this.cartService.updateCount()
+          this.alert.notifySuccess('Producto eliminado del carrito', 800, 'top', 'center');
+        }
+      }
+
+    )
+ 
   }
 
 

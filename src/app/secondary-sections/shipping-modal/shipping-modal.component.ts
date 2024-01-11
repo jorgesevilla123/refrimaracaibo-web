@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service'
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog'
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { AlertService } from 'src/app/shared/alert.service';
 
 
 @Component({
@@ -11,11 +11,19 @@ import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dial
 })
 export class ShippingModalComponent implements OnInit {
 
+
+
+  state: any
+
   constructor(
     public loginService: LoginService,
     public dialog: MatDialog,
-    public dialogRef: MatDialogRef<ShippingModalComponent>
-  ) { }
+    public alert: AlertService,
+    public dialogRef: MatDialogRef<ShippingModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { 
+    this.state = this.data
+  }
 
   ngOnInit(
 
@@ -33,16 +41,40 @@ export class ShippingModalComponent implements OnInit {
 
 
   addShipping(){
-    this.loginService.addShipping()
-    this.closeDialog()
+    if(this.state.update){
+      console.log('for update')
+      this.loginService.updateShippingAddress(this.state.address).subscribe(
+        (val: any) => {
+        
+          console.log('Shipping updated')
+          this.loginService.shippingAddressForm.reset()
+  
+        }
+      )
+    }
+    else {
+      this.loginService.addShipping().subscribe(
+        val => {
+          console.log('Shipping added')
+          this.dialogRef.close({added: true})
+  
+        }
+      )
 
+    }
+   
+  
   }
 
 
-  closeDialog(){
-    this.dialogRef.close({AddedShipping: true})
-    
+  onClose(){
+    this.loginService.shippingAddressForm.reset()
   }
+
+
+
+  
+
 
 
 

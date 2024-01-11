@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, RequiredValidator} from '@angular/forms';
-import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig} from '@angular/material/dialog';
 import { LoginService } from '../../services/login.service'
 import { ShippingModalComponent } from '../../secondary-sections/shipping-modal/shipping-modal.component'
 import { ShippingService } from '../../services/shipping.service'
-
-
+import { OrderStatusModalComponent } from '../../shared/order-status-modal/order-status-modal.component'
 
 interface Food {
   value: string;
@@ -34,8 +33,18 @@ export class BillingComponent implements OnInit {
   selectedValue: string;
   selectedCar: string;
   selectedState: String
-  selectedShipping: any
+  selectedAddress: any
+  selectedPayment
   paymentProcessed:any = 'waitingCode'
+  paymentMethod: any = ''
+
+
+  shippingMethods: any = [
+    {method: 'Retirar en tienda', precio: 'Sin costo', cost: 'free'},
+    {method: 'Envio propio', precio: 'Gratis', cost: 'free'},
+    {method: 'Envio con domi', precio: 3, cost: 'not-free'},
+    {method: 'Envio con quik', precio: 2, cost: 'not-free'}
+  ]
 
 
 
@@ -46,6 +55,7 @@ export class BillingComponent implements OnInit {
     {value: 'Zelle', viewValue: 'Zelle'},
     {value: 'Pago movil', viewValue: 'Pago movil'},
     {value: 'Transferencia', viewValue: 'Transferencia'},
+    {value: 'Efectivo en divisas', viewValue: 'Efectivo en divisas'},
   ];
 
   states = [
@@ -69,12 +79,14 @@ export class BillingComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.loginService.sessionChecker()
   } 
 
 
 
-  selectShipping(radio, shipping){
-    radio.checked ? (radio.checked = false, this.selectedShipping = undefined) : (radio.checked = true, this.selectedShipping = shipping)
+  selectAddress(radio, shipping){
+    console.log(radio, shipping)
+    radio.checked ? (this.selectedAddress = shipping) : (radio.checked = true, this.selectedAddress = shipping)
     
   }
 
@@ -87,7 +99,35 @@ export class BillingComponent implements OnInit {
 
 
   openDialog(){
-    this.dialog.open(ShippingModalComponent)
+    let dialogConfig = new MatDialogConfig()
+    dialogConfig.width = '25%'
+    dialogConfig.data = {update: false}
+    let dialogRef = this.dialog.open(ShippingModalComponent, dialogConfig)
+    dialogRef.afterClosed().subscribe(
+      val => {
+        console.log(val)
+          this.loginService.shippingAddressForm.reset()
+        
+      }
+    )
+  }
+
+
+
+  selectShipping(radio, payment){
+  
+    radio.checked ? (this.paymentMethod = payment) : (radio.checked = true, this.paymentMethod = payment)
+    console.log(this.paymentMethod)
+
+  }
+
+  
+
+
+  paymentMethodSelected(event){
+    this.selectedPayment = event.value
+    
+
   }
 
 
@@ -103,5 +143,30 @@ export class BillingComponent implements OnInit {
       this.paymentProcessed = 'processed'
     }, 4000)
   }
+
+
+  openShippingUpdateDialog(address){
+    this.loginService.selectedUser[0]
+    let dialogConfig = new MatDialogConfig
+    dialogConfig.data = {update: true, address}
+    this.loginService.populateForm(address)
+    this.dialog.open(ShippingModalComponent, dialogConfig)
+    
+  }
+
+
+
+
+
+  openOrderStatusModal(paymentMethod){
+    let dialogConfig = new MatDialogConfig
+    dialogConfig.data = { method: paymentMethod }
+    dialogConfig.width = '400px'
+    dialogConfig.height = '200px'
+
+    this.dialog.open(OrderStatusModalComponent, dialogConfig)
+  }
+
+  
 
 }

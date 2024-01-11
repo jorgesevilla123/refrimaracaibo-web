@@ -3,10 +3,6 @@
 
 
 
-
-<app-cart-overview>
-
-
 <div *ngFor="let section of sections">
 
 
@@ -20,10 +16,14 @@
     <mat-card style="margin-bottom: 20px;">
 
 
-
+        
         <div class="filter-controls">
+            
+            <app-main-search-bar></app-main-search-bar>
 
 
+
+            
             <mat-form-field appearance="outline" class="filter-form">
                 <mat-label>Filtrar</mat-label>
                 <mat-select [formControl]="filters" multiple>
@@ -64,7 +64,6 @@
 
 
 
-            <app-main-search-bar></app-main-search-bar>
 
 
 <!-- 
@@ -136,7 +135,7 @@
             <div style="width: 250px" class="products-ui">
                 <div class="image" (click)="getDescription(product)">
                     <img class="products-img" 
-                        [src]="product.imagePath" alt="">
+                    src="../../../assets/bombillo 15w.jpeg" alt="">
                 </div>
 
 
@@ -149,24 +148,13 @@
                 
                 <h2 style="color: rgb(1, 157, 1);">{{product.precio | currency: 'USD'}}</h2>
 
-                
-                <div *ngIf="checkCart(product); then isInCart else notInCart"></div>
+    
 
-
-                <ng-template #isInCart>
-                    <button class="cart-button" mat-stroked-button style="background-color: red" (click)="removeFromCart(product)">
-                        Eliminar del carrito <mat-icon>delete</mat-icon>
-                        </button>
-                </ng-template>
-
-
-
-
-                <ng-template #notInCart>
+       
                     <button class="cart-button"  style="background-color: dodgerblue;" mat-stroked-button (click)="addToCart(product)">
                         Agregar a carrito <mat-icon>add_shopping_cart</mat-icon>
                     </button>
-                </ng-template>
+        
                 
 
                 </div>
@@ -209,7 +197,7 @@
 <ng-template #paginator>
     
     
-    <app-pagination [pager]="pager" [pageName]="pageName"  [currentPage]="currentPage"></app-pagination>
+    <app-pagination [pageName]="pageName"  [currentPage]="currentPage"></app-pagination>
 
 
 
@@ -224,4 +212,3 @@
 
 </div>
 
-</app-cart-overview>

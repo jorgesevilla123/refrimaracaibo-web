@@ -103,11 +103,18 @@ export class ProductsService {
 
 
 
-  getProductsCategory(category, page){
-    let api =  `${this.API}/get-category/${category}/${page}`
+  getProductsCategory(category, page, pagename){
+    let api =  `${this.API}/get-category/${category}/${page}/${pagename}`
     return this.http.get<any>(api).pipe(
       map(products => {return products})
     )
+  }
+
+
+
+  filterCategories(categories){
+    let api = `${this.API}/filter`
+    return this.http.post<any>(api, categories)
 
   }
 

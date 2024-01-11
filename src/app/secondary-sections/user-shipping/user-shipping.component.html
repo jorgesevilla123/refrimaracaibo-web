@@ -15,12 +15,12 @@
             <div class="addresses" *ngFor="let shipping of loginService.selectedUser[0].shipping_addresses">
                <mat-card class="shipping-card">
                 <div style="display: flex; justify-content: baseline;" mat-card-title>
-                    <h2>{{shipping.avenida}}</h2>
-                    <button style="margin-left: auto; color: red;" mat-icon-button><mat-icon>delete</mat-icon></button>
+                    <h2>{{shipping.descripcion }}</h2>
+                    <button style="margin-left: auto; color: red;" mat-icon-button (click)="deleteShippingAddress(shipping.descripcion)"><mat-icon>delete</mat-icon></button>
                 </div>
 
                 <div mat-card-actions>
-                    <button mat-stroked-button>Actualizar <mat-icon>edit</mat-icon></button>
+                    <button mat-stroked-button (click)="openShippingUpdateDialog(shipping)">Actualizar <mat-icon>edit</mat-icon></button>
                    
 
                 </div>

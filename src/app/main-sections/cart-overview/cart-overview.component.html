@@ -6,7 +6,7 @@
 
 
 
-<mat-sidenav-container class="example-container">
+<mat-sidenav-container style="background-color: white" class="example-container">
  
     <mat-sidenav #sidenav class="sidenav-content" position="end" mode="over" fixedInViewport="true" disableClose="true" >
 
@@ -51,7 +51,7 @@
     
             <div class="image">
                 <img class="products-img" 
-                    [src]="product.imagePath" >
+                [src]="product.imageMetadata.path_to_file" >
             </div>
 
 

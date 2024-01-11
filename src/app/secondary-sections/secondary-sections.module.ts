@@ -13,14 +13,13 @@ import { MarcasComponent } from './marcas/marcas.component';
 import { SecadoraSectionsComponent } from './secadora-sections/secadora-sections.component';
 import { AutomotrizSectionsComponent } from './automotriz-sections/automotriz-sections.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
-import { CartOverviewComponent } from './cart-overview/cart-overview.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { UserPurchasesComponent } from './user-purchases/user-purchases.component';
 import { UsersCartComponent } from './users-cart/users-cart.component';
 import { UserShippingComponent } from './user-shipping/user-shipping.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { ShippingModalComponent } from './shipping-modal/shipping-modal.component';
-import { NgbRatingModule,  NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbRatingModule,  NgbCarouselModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -33,7 +32,6 @@ import { NgbRatingModule,  NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap'
     SecadoraSectionsComponent,
     AutomotrizSectionsComponent,
     SearchResultsComponent,
-    CartOverviewComponent,
     UserAccountComponent,
     UserPurchasesComponent,
     UsersCartComponent,
@@ -49,7 +47,8 @@ import { NgbRatingModule,  NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap'
     MaterialModule,
     MainSectionsModule,
     NgbRatingModule,
-     NgbCarouselModule
+     NgbCarouselModule,
+     NgbDropdownModule
   ]
 })
 export class SecondarySectionsModule { }

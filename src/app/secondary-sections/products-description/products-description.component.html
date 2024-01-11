@@ -1,5 +1,3 @@
-<app-cart-overview>
-
 
 
     <app-main-search-bar></app-main-search-bar>
@@ -22,13 +20,11 @@
                 </div>
 
                 <div class="product-description">
-                    <h3>{{data.title}}</h3>
+                    <h2>{{product.title}}</h2>
 
 
-                    <h3><b>Modelo: </b>{{data.modelo}}</h3>
-                    <h3><b>Detalles de producto: </b> </h3>
-                
-
+                    <h2><b>Modelo: </b>{{product.modelo}}</h2>
+           
                 </div>
 
 
@@ -58,10 +54,22 @@
                 <h4 style="margin-top: 20px; margin-left: 20px;">¿Alguna duda?</h4>
                 <button (click)="openChat()" style="width: 80%; margin-left: auto; margin-right: auto;" mat-raised-button>Escribenos! <i class="bi bi-chat-text"></i></button>
 
+                <div class="quantity-field" style="margin-left: 20px; margin-top: 20px">
+                    <mat-form-field>
+                        <mat-label>Cantidad</mat-label>
+                        <mat-select name="food">
+                          <mat-option *ngFor="let quantity of quantities" [value]="quantity.value" (click)="selectQuantity(quantity.value)">
+                            {{quantity.value}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+            
+                </div>
+                
 
                     <h1 style="font-weight: 700; margin-top: 20px; font-size: 30px; margin-left: 20px;">{{price | currency: 'USD'}}</h1>
        
-              
+            
 
               
     
@@ -77,17 +85,10 @@
 
 
               
-                                  <div *ngIf="checkCart(data); then isInCart else notInCart"></div>
+                    
               
-                                  <ng-template #isInCart>
-                                          <button mat-button style="width: 90%; height: 50px; margin-left: auto; margin-right: auto; background-color: red; color: white; margin-bottom: 20px;" (click)="removeFromCart()">Eliminar del carrito<mat-icon>remove_shopping_cart</mat-icon></button>
-                                  </ng-template>
-              
-                                
-              
-                                  <ng-template #notInCart>
-                                      <button style="width: 90%; height: 50px; margin-left: auto; margin-right: auto; margin-bottom: 20px;" mat-raised-button (click)="addToCart()">Agregar al carrito <mat-icon>add_shopping_cart</mat-icon></button>
-                                  </ng-template>
+                                      <button style="width: 90%; height: 50px; margin-left: auto; margin-right: auto; margin-bottom: 20px;" mat-raised-button (click)="addToCart(1)">Agregar al carrito <mat-icon>add_shopping_cart</mat-icon></button>
+                              
                                 
                     <button routerLink="/cart" style="width: 90%; height: 50px; margin-left: auto; margin-right: auto; margin-bottom: 10px; background-color: dodgerblue; color: white;" mat-raised-button>Verificar y comprar <mat-icon>shopping_bag</mat-icon></button>
 
@@ -357,12 +358,6 @@
 
 
 </div>
-
-
-
-
-</app-cart-overview>
-
 
 
 

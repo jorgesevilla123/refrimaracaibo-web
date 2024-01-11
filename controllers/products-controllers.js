@@ -129,6 +129,8 @@ function searchProducts(req, res){
 function getProductsByCategory(req, res){
     let category = req.params.category
     let page = req.params.page
+    let pageName = req.params.pageName
+    console.log('reading pagename', pageName)
     let categoryUpCase = category.toUpperCase()
     console.log(categoryUpCase)
     let itemsPerPage = 42
@@ -142,11 +144,19 @@ function getProductsByCategory(req, res){
                 let pageToInt = parseInt(page);
                 const pager = paginate(products.length, pageToInt, itemsPerPage);
                 const pageOfItems = products.slice(pager.startIndex, pager.endIndex + 1);
-                res.json({ products: products, current: page, pages: Math.ceil(products.length / itemsPerPage), count: count, pageOfItems, pager })
+                res.json({ products: products, current: page, pages: Math.ceil(products.length / itemsPerPage), count: count, pageOfItems, pager, pageName: pageName })
             }
         }
     
     )
+}
+
+
+
+function filterCategory(res, req){
+    let categoryFilters = req.body
+    console.log(categoryFilters)
+
 }
 
 
@@ -203,6 +213,6 @@ function increaseInventory(req, res){
 
 
 
-module.exports = {getProducts, searchProducts, decreaseInventory, getProductsByCategory}
+module.exports = {getProducts, searchProducts, decreaseInventory, getProductsByCategory, filterCategory}
 
 

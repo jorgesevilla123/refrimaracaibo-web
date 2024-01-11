@@ -15,6 +15,12 @@ export class UserDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('Home component')
+    this.loginService.checkSession().subscribe(
+      val => {
+        console.log(val)
+      }
+    )
   }
 
   

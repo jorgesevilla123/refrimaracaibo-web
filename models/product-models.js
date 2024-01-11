@@ -9,7 +9,8 @@ const productSchema = new Schema({
     precio: Number,
     cantidad: Number,
     imagePath: String,
-    categorias: Array,
+    rootCategory: String,
+    categories: Array
 })
 
 
