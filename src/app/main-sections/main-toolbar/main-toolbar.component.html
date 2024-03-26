@@ -116,7 +116,7 @@
   
    -->
 
-<mat-toolbar style="background-color: white; padding-left: 100px; margin-top: 20px">
+<mat-toolbar style="background-color: white; padding-left: 50px; margin-top: 20px">
   <mat-toolbar-row>
     <a routerLink="/home"><img src="../../assets/finishedlogo.png" alt=""></a>
 
@@ -132,14 +132,14 @@
       <div *ngIf="loginService.logged; then userLogged else notLogged"></div>
 
       <ng-template #userLogged>
-      
-        <button routerLink="/cart"  mat-icon-button><mat-icon
-            style="font-size: 25px;">shopping_cart</mat-icon>  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-              {{cartService.count}}
-              <span class="visually-hidden">unread messages</span>
-            </span></button>
-            <button style="width: 70px; height: 70px;" mat-icon-button routerLink="/dashboard"><mat-icon
-              style="color: dodgerblue; width: auto; height: auto; font-size: 30px;" >account_circle</mat-icon></button>
+
+        <button routerLink="/cart" mat-icon-button><mat-icon style="font-size: 25px;">shopping_cart</mat-icon> <span
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+            {{cartService.count}}
+            <span class="visually-hidden">unread messages</span>
+          </span></button>
+        <button style="width: 70px; height: 70px;" mat-icon-button routerLink="/dashboard"><mat-icon
+            style="color: dodgerblue; width: auto; height: auto; font-size: 30px;">account_circle</mat-icon></button>
 
       </ng-template>
 
@@ -170,124 +170,222 @@
 
   </mat-toolbar-row>
 
-  <mat-toolbar-row style="margin-top: 20px; position: relative;">
-    <button type="button" style="background-color: dodgerblue; color: white; font-size: 15px;" class="btn btn-lg "><i  style="margin-right: 10px;" class="bi bi-grid"></i>Todas las categorias</button>
+  <mat-toolbar-row style="margin-top: 20px; position: relative; ">
+
+
+     <div class="dragdown">
+      <button type="button" style="background-color: dodgerblue; color: white; font-size: 15px;" class="btn btn-lg "><i
+        style="margin-right: 10px;" class="bi bi-grid"></i>Principales categorias</button>
+       
+      <div class="dragdown-content">
+        <div class="content-1">
+
+          <div class="row-1">
+            <img style="width: auto; height: 100px;" class="mx-auto d-block" src="../../../assets/repuestos de aire acondicionado.webp" alt="">
+            <p style="font-size: 15px; font-family: sans-serif;">Repuestos de aire acondicionado</p>
+            
+          </div>
+       
+
+          <div class="row-2">
+            <img style="width: auto; height: 100px;" class="mx-auto d-block" src="../../../assets/fridge-removebg-preview.png" alt="">
+            <p style="font-size: 15px; font-family: sans-serif;">Repuestos para nevera</p>
+          </div>
+
+          <div class="row-2">
+            <img style="width: auto; height:100px;" class="mx-auto d-block" src="../../../assets/repuestos de refrigeracion automotriz.jpg" alt="">
+            <p style="font-size: 15px; font-family: sans-serif;">Refrigeracion automotriz</p>
+          </div>
+
+          <div class="row-2">
+            <img style="width: auto; height: 100px;" class="mx-auto d-block" src="../../../assets/LG WASHING MACHINE.jpg" alt="">
+            <p style="font-size: 15px; font-family: sans-serif;">Repuestos de lavadora y secadora</p>
+          </div>
+
+          <button
+            style="font-family: sans-serif;color: white;background-color: dodgerblue;margin-top: 10px;align-self: center; justify-self: stretch; grid-column: 4 / 6;"
+            mat-raised-button>Ver todas las marcas <i class="bi bi-chevron-right"></i></button>
+        </div>
+        </div>
+
+
+     </div>
+  
+
+
     <span class="example-spacer"></span>
+
+
+
+<!-- 
+    <div class="dragdown">
+
+      <button style="font-size: 15px; font-family: sans-serif;" class="desktop-display"
+        mat-button>Compresores<mat-icon>expand_more</mat-icon></button>
+
+      <div class="dragdown-content">
+        <div class="content">
+
+          <div class="row-1">
+            <p class="title">Compresores para nevera</p>
+            <button style="font-family: sans-serif;" mat-button>Embraco</button>
+            <button style="font-family: sans-serif;" mat-button>Matsusihta</button>
+            <button style="font-family: sans-serif;" mat-button>Donper</button>
+
+          </div>
+
+          <div class="row-2">
+            <p class="title">Compresores para aire acondicionado</p>
+            <button style="font-family: sans-serif;" mat-button>Toshiba</button>
+            <button style="font-family: sans-serif;" mat-button>Trane</button>
+            <button style="font-family: sans-serif;" mat-button>Copeland</button>
+            <button style="font-family: sans-serif;" mat-button>Sanyo</button>
+            <button style="font-family: sans-serif;" mat-button>Rechi</button>
+          </div>
+
+          <button
+            style="font-family: sans-serif;color: white;background-color: dodgerblue;margin-top: 10px;align-self: center; justify-self: stretch; grid-column: 1 / 3;"
+            mat-raised-button>Ver todas las marcas</button>
+        </div>
+
+
+      </div>
+    </div>
+
+ -->
+
+
+ 
+ <div class="dragdown">
+  <button style="font-size: 15px;  font-family: sans-serif;" class="desktop-display" mat-button
+    >Compresores<mat-icon>expand_more</mat-icon></button>
+  <div class="dragdown-content">
+    <div class="content-evaporators">
+      <a class="evaporator-brand"><img class="drag-img mx-auto d-block" src="../../../assets/embraco.png" alt=""></a>
+      <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/matsushita logo.png" alt=""></a>
+      <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/tecumseh.png" alt=""></a>
+      <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/toshiba logo.png" alt=""></a>
+      <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/copeland logo.png" alt=""></a>
+      <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/trane.png" alt=""></a>
+      <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/samsung logo.png" alt=""></a>
+      <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/lg logo.png" alt=""></a>
+      <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/donper.png" alt=""></a>
+      <button
+      style="margin-right: 20px;margin-bottom: 20px ;font-family: sans-serif;color: white;background-color: dodgerblue;margin-top: 10px;align-self: center; justify-self: stretch; grid-column: 2 / 4;"
+      mat-raised-button>Ver todos los compresores <i class="bi bi-chevron-right"></i></button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+    <div class="dragdown">
+      <button style="font-size: 15px;  font-family: sans-serif;" class="desktop-display" mat-button
+        >Evaporadores automotriz<mat-icon>expand_more</mat-icon></button>
+      <div class="dragdown-content">
+        <div class="content-evaporators">
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/ford logo.jpg" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/chevrolet_logo-removebg-preview.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/toyota logo.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/hyundai logo.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/jeep logo.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/mitsubushi log 2.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/kia logo.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/honda logo.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/mazda logo 1.png" alt=""></a>
+          <button
+          style="margin-right: 20px;margin-bottom: 20px ;font-family: sans-serif;color: white;background-color: dodgerblue;margin-top: 10px;align-self: center; justify-self: stretch; grid-column: 2 / 4;"
+          mat-raised-button>Ver todos los evaporadores <i class="bi bi-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="dragdown">
+      <button style="font-size: 15px;  font-family: sans-serif;" class="desktop-display" mat-button
+        >Condensadores automotriz<mat-icon>expand_more</mat-icon></button>
+      <div class="dragdown-content">
+        <div class="content-evaporators">
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/ford logo.jpg" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/chevrolet_logo-removebg-preview.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/toyota logo.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/hyundai logo.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/jeep logo.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/mitsubushi log 2.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/kia logo.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/honda logo.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/mazda logo 1.png" alt=""></a>
+          <button
+          style="margin: 20px 20px 20px 20px ;font-family: sans-serif;color: white;background-color: dodgerblue;margin-top: 10px;align-self: center; justify-self: stretch; grid-column: 1 / 4;"
+          mat-raised-button>Ver todos los condensadores <i class="bi bi-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="dragdown">
+      <button style="font-size: 15px;  font-family: sans-serif;" class="desktop-display" mat-button
+        >Lavadoras y secadoras<mat-icon>expand_more</mat-icon></button>
+      <div class="dragdown-content">
+        <div class="content-evaporators">
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/frigidaire logo.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/whirlpool logo.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/GENERAL ELECTRIC LOGO.jpg" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/KENMORE LOGO.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/ELECTROLUX LOGO.jpg" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/HAIER LOGO.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/lg logo.png" alt=""></a>
+          <a class="evaporator-brand"><img class="drag-img mx-auto d-block"  src="../../../assets/samsung logo.png" alt=""></a>
+          <button
+          style="margin:20px 20px 20px 20px ;font-family: sans-serif;color: white;background-color: dodgerblue;margin-top: 10px;align-self: center; justify-self: stretch; grid-column: 1 / 4;"
+          mat-raised-button>Ver repuestos de lavadora y secadora <i class="bi bi-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+
 
 
 
     <div class="dragdown">
 
-  
-    <button style="font-size: 15px;" class="desktop-display" mat-button >Compresores<mat-icon>expand_more</mat-icon></button>
+      <button style="font-size: 15px; font-family: sans-serif;" class="desktop-display"
+        mat-button>Soldables<mat-icon>expand_more</mat-icon></button>
 
-    <div class="dragdown-content">
-      <div class="content">
- 
-        <div class="title">
-          <p >Compresores para nevera</p>
+      <div class="dragdown-content">
+        <div class="content">
+          <button style="font-family: sans-serif;" mat-button>Tuberia</button>
+          <button style="font-family: sans-serif;" mat-button>Varillas</button>
+          <button style="font-family: sans-serif;" mat-button>Capilares</button>
+          <button style="font-family: sans-serif;" mat-button>Filtros</button>
+          <button style="font-family: sans-serif;" mat-button>Codos</button>
+          <button style="font-family: sans-serif;" mat-button>Anillos</button>
+
+    
+          
         </div>
 
-        <div class="title">
-          <p >Compresores para aire acondicionado</p>
-        </div> 
-
-     
-
-        <div class="grid-item">
-          <p class="grid-text">Donper</p>
-        </div>
-
-        <div class="grid-item rowsection">
-          <p class="grid-text">Copeland</p>
-        </div>
-
-
-
-        <a class="grid-item rowsection" (click)="someFunction()">
-          <p  class="grid-text">Toshiba</p>
-        </a>
-
-        <div class="grid-item rowsection">
-          <p class="grid-text">Trane</p>
-        </div>
-
-        <div class="grid-item">
-          <p class="grid-text">Trane</p>
-        </div>
-
-
-        <div class="grid-item">
-          <p class="grid-text">Trane</p>
-        </div>
-
-
-
-        <div class="grid-item">
-          <p class="grid-text">Trane</p>
-        </div>
-
-
-     
-      
 
       </div>
-   
-
-     
     </div>
-  </div>
-
-    
- 
-
-  
-
-
-  
-  <button style="font-size: 15px;  " class="desktop-display" mat-button [matMenuTriggerFor]="Herramientas">Evaporadores automotriz<mat-icon>expand_more</mat-icon></button>
-  <mat-menu #Herramientas="matMenu">
-    <button class="nav-menu-buttons" mat-menu-item routerLink="/inventario/busqueda">Inventario <mat-icon class="inventory">store</mat-icon></button>
-    <button class="nav-menu-buttons" mat-menu-item routerLink="/finanzas">Configuraciones <mat-icon class="config">settings</mat-icon></button>
-    <button class="nav-menu-buttons" mat-menu-item routerLink="/ventas-y-clientes">Clientes y ventas <mat-icon class="clientes-ventas">search</mat-icon></button>
-  </mat-menu>
-
-
-  
-  <button style="font-size: 15px;  " class="desktop-display" mat-button [matMenuTriggerFor]="Herramientas">Condensadores automotriz<mat-icon>expand_more</mat-icon></button>
-  <mat-menu #Herramientas="matMenu">
-    <button class="nav-menu-buttons" mat-menu-item routerLink="/inventario/busqueda">Inventario <mat-icon class="inventory">store</mat-icon></button>
-    <button class="nav-menu-buttons" mat-menu-item routerLink="/finanzas">Configuraciones <mat-icon class="config">settings</mat-icon></button>
-    <button class="nav-menu-buttons" mat-menu-item routerLink="/ventas-y-clientes">Clientes y ventas <mat-icon class="clientes-ventas">search</mat-icon></button>
-  </mat-menu>
 
 
 
 
 
-      
-  <button style="font-size: 15px; " class="desktop-display" mat-button [matMenuTriggerFor]="automotriz">Marcas<mat-icon>expand_more</mat-icon></button>
-  <mat-menu #automotriz="matMenu">
-    <button class="nav-menu-buttons" mat-menu-item routerLink="/inventario/busqueda">Inventario <mat-icon class="inventory">store</mat-icon></button>
-    <button class="nav-menu-buttons" mat-menu-item routerLink="/finanzas">Configuraciones <mat-icon class="config">settings</mat-icon></button>
-    <button class="nav-menu-buttons" mat-menu-item routerLink="/ventas-y-clientes">Clientes y ventas <mat-icon class="clientes-ventas">search</mat-icon></button>
-  </mat-menu>
 
 
-      
-  <button style="font-size: 15px; " class="desktop-display" mat-button [matMenuTriggerFor]="automotriz">Soldables<mat-icon>expand_more</mat-icon></button>
-  <mat-menu #automotriz="matMenu">
-    <button class="nav-menu-buttons" mat-menu-item routerLink="/inventario/busqueda">Inventario <mat-icon class="inventory">store</mat-icon></button>
-    <button class="nav-menu-buttons" mat-menu-item routerLink="/finanzas">Configuraciones <mat-icon class="config">settings</mat-icon></button>
-    <button class="nav-menu-buttons" mat-menu-item routerLink="/ventas-y-clientes">Clientes y ventas <mat-icon class="clientes-ventas">search</mat-icon></button>
-  </mat-menu>
-
-
-    
-
-
-    
-    
-    
   </mat-toolbar-row>
 </mat-toolbar>

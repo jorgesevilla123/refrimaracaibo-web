@@ -96,7 +96,6 @@ export class CartService {
   calculateTotal() {
     console.log(this.cartProducts)
     this.total = 0
-
     if(this.loginService.selectedUser.length === 0){
 
       let productsSelected = this.cartProducts.filter( product => product.selected)
@@ -110,8 +109,6 @@ export class CartService {
       }
     )
     return this.total
-
-
     }
     else {
       let productsSelected = this.loginService.selectedUser[0].cart.filter( product => product.selected)

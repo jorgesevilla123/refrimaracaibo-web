@@ -113,20 +113,20 @@
          <!-- col -->
 
          <aside style="margin-top: 40px" class="col-lg-3 col-md-4 mb-6 mb-md-0">
-           <p class="h2" style="margin-top: 40px"><b>Categorias</b></p>
+           <h3 style="font-size: 20px;margin-top: 40px; font-family: sans-serif;"><b>Categorias</b></h3>
 
            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
             <!-- This is the tree node template for leaf nodes -->
             <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
             <!-- use a disabled button to provide padding for tree leaf -->
-             <button mat-icon-button disabled></button>
+             <button style="font-family: sans-serif;" mat-icon-button disabled></button>
                        {{node.name}}
                      </mat-tree-node>
 
 
             <!-- This is the tree node template for expandable nodes -->
              <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-                       <button mat-icon-button matTreeNodeToggle
+                       <button style="font-family: sans-serif;" mat-icon-button matTreeNodeToggle
                                [attr.aria-label]="'Toggle ' + node.name">
                          <mat-icon class="mat-icon-rtl-mirror">
                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
@@ -138,6 +138,42 @@
                      </mat-tree-node>
 
                    </mat-tree>
+
+
+                   
+                   <mat-divider style="margin-top: 40px;"></mat-divider>
+
+
+                   <h3 style="font-size: 20px;margin-top: 40px; font-family: sans-serif;"><b>Filtrar precio</b></h3>
+                   <mat-checkbox style="margin-top: 20px;width: 100%; font-family: sans-serif; font-size: 15px;">{{0 | currency: 'USD'}} - {{19}}</mat-checkbox>
+                   <mat-checkbox style="margin-top: 20px;width: 100%; font-family: sans-serif; font-size: 15px;">{{20 | currency: 'USD'}} - {{49}}</mat-checkbox>
+                   <mat-checkbox style="margin-top: 20px;width: 100%; font-family: sans-serif; font-size: 15px;">{{50 | currency: 'USD'}} - {{79}}</mat-checkbox>
+                   <mat-checkbox style="margin-top: 20px;width: 100%; font-family: sans-serif; font-size: 15px;">{{80 | currency: 'USD'}}+</mat-checkbox>
+                   
+
+                   <mat-divider style="margin-top: 40px;"></mat-divider>
+
+                   <div style="margin-top: 40px;">
+                     <!-- Banner Design -->
+                     <!-- Banner Content -->
+                     <div>
+                        <h3 style="font-size: 20px;margin-top: 40px; font-family: sans-serif;"><b>Ofertas!</b></h3>
+
+                        <h3>Promociones en productos seleccionados!</h3>
+                     
+                     </div>
+                     <!-- Banner Content -->
+                     <!-- Banner Image -->
+                     <!-- img -->
+                     <img style="width: auto; height: 200px;" src="../../../assets/fridge.png" alt="" class="img-fluid rounded">
+
+
+                     <a href="#" style="color: white; margin-top: 20px; width: 100%;" class="btn btn-primary">
+                        Ver promociones
+                        <i class="bi bi-arrow-right-short"></i>
+                     </a>
+                     <!-- Banner Image -->
+                  </div>
 
 
 
@@ -152,13 +188,13 @@
             <div style="margin-top: 20px; padding-top: 20px; padding-bottom: 20px; background-color: rgba(30, 143, 255, 0.151);" class="card mb-4 border-0">
                <!-- card body -->
                <div  class="card-body p-9">
-                  <h2 class="mb-0 fs-1">Resultados de busqueda</h2>
+                  <h2 style="font-family: sans-serif;" class="mb-0 fs-1">Resultados de busqueda</h2>
                </div>
             </div>
             <!-- list icon -->
             <div class="d-lg-flex justify-content-between align-items-center">
                <div class="mb-3 mb-lg-0">
-                  <h3 style="margin-left: 10px; margin-top: 20px;"><b>{{resultsLength}}</b> resultados para la busqueda
+                  <h3 style="margin-left: 10px; margin-top: 20px; font-family: sans-serif;"><b>{{resultsLength}}</b> resultados para la busqueda
                      para <b>{{query}}</b>: </h3>
                </div>
 
@@ -216,7 +252,7 @@
                            </div>
                            <a href="shop-single.html">
                               <!-- img -->
-                              <img [src]="product.imageMetadata.path_to_file" alt="product photo"
+                              <img [src]="product.imageMetadata?.path_to_file" alt="product photo"
                                  class="products-img mb-3 img-fluid">
                            </a>
                            <!-- action btn -->
@@ -235,9 +271,9 @@
                         </div>
                         <!-- heading -->
                         <div class="text-small mb-1">
-                           <a href="#!" class="text-decoration-none text-muted"><small>{{product.categoria}}</small></a>
+                           <a href="#!" class="text-decoration-none text-muted"><small style="font-family: sans-serif;">{{product.categoria}}</small></a>
                         </div>
-                        <h2 class="h6" style="font-size: 15px"><a href="#"
+                        <h2 class="h6" style="font-size: 13px"><a style="font-family: sans-serif;" href="#"
                               class="text-inherit text-decoration-none">{{product.title}}</a></h2>
                         <!-- <div> -->
                            <!-- rating -->
@@ -258,7 +294,7 @@
                            </div>
                            <!-- btn -->
                            <div>
-                              <button style="font-size: 12px;" type="button" class="btn btn-primary" (click)="addToCart(product)">Agregar <i
+                              <button style="font-size: 12px; font-family: sans-serif;" type="button" class="btn btn-primary" (click)="addToCart(product)">Agregar <i
                                     class="bi bi-bag-plus"></i></button>
                            </div>
                         </div>

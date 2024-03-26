@@ -12,18 +12,18 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./cart-overview.component.scss']
 })
 export class CartOverviewComponent implements OnInit {
-  @ViewChild('sidenav') sidenav: MatDrawer
 
   cartProducts: any = []
   total
 
   constructor(
     public cartService: CartService,
-    private loginService: LoginService
+    public loginService: LoginService
 
   ) { }
 
   ngOnInit(): void {
+    this.total = this.cartService.calculateTotal()
   }
 
 
@@ -43,8 +43,7 @@ export class CartOverviewComponent implements OnInit {
           }
      
         },
-        error: (err) => { console.log(err) },
-        complete: () => {    this.sidenav.open()}
+        error: (err) => { console.log(err) }
       }
     )
 

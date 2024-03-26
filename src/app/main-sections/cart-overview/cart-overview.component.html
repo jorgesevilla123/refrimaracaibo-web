@@ -3,23 +3,13 @@
 
 
 
+  <div style="display: flex; text-align: center; margin-top: 10px; align-items: baseline; flex-direction: row;" class="title">
 
 
+    <h2 mat-dialog-title style="margin-left: 20px;">Resumen del carrito</h2>
 
-<mat-sidenav-container style="background-color: white" class="example-container">
- 
-    <mat-sidenav #sidenav class="sidenav-content" position="end" mode="over" fixedInViewport="true" disableClose="true" >
+    <button mat-button mat-dialog-close style="margin-left: auto;">Cerrar</button>
 
-
-
-
-
-
-  <div style="display: flex; text-align: center; margin-top: 20px;" class="title">
-
-
-    <button style="margin-left: 10px;margin-right: 10px; " mat-icon-button (click)="sidenav.close()" disableRipple="true" ><mat-icon style="font-size: 30px;">arrow_back</mat-icon></button>
-    <h1 style="margin-left: 20px;">Resumen del carrito</h1>
     
     
 
@@ -29,20 +19,24 @@
 
 
 
-      <div *ngIf="cartProducts.length === 0; then noProducts else products"></div>
+
+      <div *ngIf="loginService.selectedUser[0].cart.length === 0; then noProducts else products"></div>
 
 
 
-
+      
       <ng-template #products >
 
 
 
-        <div class="cart-product-display">
+        <div>
+          <mat-dialog-content style="background-color: white; max-height: 280px;" class="example-container">
+ 
+
 
      
     
-        <div *ngFor="let product of cartProducts" class="product-cart">
+        <div *ngFor="let product of loginService.selectedUser[0].cart" class="product-cart">
 
           <button style="float: right;margin-right: 40px;" mat-icon-button disableRipple (click)="removeProduct(product)">Eliminar <mat-icon style="color: red;">delete</mat-icon></button>
 
@@ -96,38 +90,40 @@
 
 
         </div>
-
+      </mat-dialog-content>
         </div>
 
         <mat-divider style="margin-top: 10px;"></mat-divider>
 
       
+        <mat-dialog-actions>
+          <div class="checkout-section" style="text-align: center;">
 
-        <div class="checkout-section" style="text-align: center;">
-
-          <div style="display: flex;">
-
-            <h1 style="margin-left: 10px; margin-top: 30px;">
-              TOTAL
-            </h1>
+            <div style="display: flex;">
   
-            <h1 style="margin-left: auto; margin-right: 20px; margin-top: 20px;">
-              {{total | currency: 'USD'}}
-            </h1>
+              <h2 style="margin-left: 10px; margin-top: 10px;">
+                TOTAL
+              </h2>
+    
+              <h2 style="margin-left: auto; margin-right: 20px; margin-top: 20px;">
+                {{total | currency: 'USD'}}
+              </h2>
+    
   
-
+            </div>
+  
+        
+            <button routerLink="/pago" mat-flat-button style="margin-top: 20px; margin-bottom: 10px;font-weight: 200;font-size: 15px;color: white;background-color: dodgerblue; width: 500px; height: 40px; margin-right: auto; margin-left: auto; display: block;" >
+              Verificar y pagar <mat-icon>credit_card</mat-icon>
+            </button>
+  
+            <button mat-button style="font-weight: 400; font-size: 18px;" routerLink="/cart" >Ver detalle de carrito</button>
+  
+       
           </div>
 
-       
-
-          <button routerLink="/pago" mat-flat-button style="margin-top: 20px; margin-bottom: 10px;font-weight: 200;font-size: 20px;color: white;background-color: dodgerblue; width: 500px; height: 60px; margin-right: auto; margin-left: auto; display: block;" >
-            Verificar y pagar <mat-icon>credit_card</mat-icon>
-          </button>
-
-          <button mat-button style="font-weight: 400; font-size: 18px;" routerLink="/cart" >Ver detalle de carrito</button>
-
+        </mat-dialog-actions>
      
-        </div>
 
         
 
@@ -140,27 +136,20 @@
 
 
       </ng-template>
-
-
+    
       <ng-template #noProducts>
         <div class="no-products-content">
          
             <h1>Tu carrito esta vacio </h1>
          
          
-          <button style="background-color: dodgerblue; color: white;" mat-stroked-button (click)="sidenav.close()">Agrega productos!</button>
+          <button style="background-color: dodgerblue; color: white;" mat-stroked-button>Agrega productos!</button>
 
         </div>
  
       </ng-template>
     
       
-    </mat-sidenav>
-  
-    <mat-sidenav-content>
-    <ng-content></ng-content>
-    </mat-sidenav-content>
 
 
-  </mat-sidenav-container>
-  
+ 

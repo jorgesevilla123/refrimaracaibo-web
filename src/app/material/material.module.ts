@@ -32,6 +32,7 @@ import { MatNativeDateModule } from '@angular/material/core'
 import { MatButtonToggleModule } from '@angular/material/button-toggle'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatTreeModule } from '@angular/material/tree'
+import { MatSliderModule } from '@angular/material/slider'
 
 
 
@@ -71,7 +72,8 @@ import { MatTreeModule } from '@angular/material/tree'
     MatNativeDateModule,
     MatButtonToggleModule,
     MatProgressBarModule,
-    MatTreeModule
+    MatTreeModule,
+    MatSliderModule
   ],
   exports: [
     CommonModule,
@@ -107,7 +109,8 @@ import { MatTreeModule } from '@angular/material/tree'
     MatNativeDateModule,
     MatButtonToggleModule,
     MatProgressBarModule,
-    MatTreeModule
+    MatTreeModule,
+    MatSliderModule
     
   ]
 })

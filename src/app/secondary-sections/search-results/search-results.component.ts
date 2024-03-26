@@ -2,16 +2,17 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CartService } from '../../services/cart.service'
+import { LoginService } from '../../services/login.service'
 import { AlertService } from 'src/app/shared/alert.service';
 import { FormControl } from '@angular/forms'
 import { getCategories, getRootCategories } from 'FOR-TEST/products-management'
-import { tap } from 'rxjs';
 import { PaginationService } from '../../services/pagination.service'
 import { PaginationComponent } from '../pagination/pagination.component'
 import { MatOptionSelectionChange } from '@angular/material/core';
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-overview.component'
+import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-overview.component';
+import { MatDialog } from '@angular/material/dialog'
 
 
 // this is the implementation of the tree shown in the filters sidenav //////////////////////////////
@@ -116,10 +117,6 @@ interface ExampleFlatNode {
 export class SearchResultsComponent implements OnInit {
 
 
-
-
-
-
   //this functions are part of the tree implementation
 
   private _transformer = (node: FoodNode, level: number) => {
@@ -194,6 +191,8 @@ export class SearchResultsComponent implements OnInit {
     public cartService: CartService,
     public alert: AlertService,
     public paginationService: PaginationService,
+    public dialog: MatDialog,
+    public loginService: LoginService
 
   ) {
     this.dataSource.data = TREE_DATA;
@@ -274,7 +273,16 @@ export class SearchResultsComponent implements OnInit {
     product.quantity = 1
     this.cartService.addProductsToLoggedUserCart(product)
     this.cartService.updateCount();
-    this.cartDrawer.open()
+    console.log(this.loginService.selectedUser[0].cart)
+    
+
+    const dialogRef = this.dialog.open(CartOverviewComponent);
+   
+    dialogRef.afterClosed().subscribe(
+      () => {
+        console.log('cerrado')
+      }
+    )
   }
 
 
