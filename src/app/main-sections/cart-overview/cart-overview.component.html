@@ -8,7 +8,7 @@
 
     <h2 mat-dialog-title style="margin-left: 20px;">Resumen del carrito</h2>
 
-    <button mat-button mat-dialog-close style="margin-left: auto;">Cerrar</button>
+    <button mat-button mat-dialog-close style="margin-left: auto; font-size: 30px;"><i class="bi bi-x-circle"></i></button>
 
     
     
@@ -97,7 +97,7 @@
 
       
         <mat-dialog-actions>
-          <div class="checkout-section" style="text-align: center;">
+          <div class="checkout-section" style="text-align: center; padding-bottom: 10px;">
 
             <div style="display: flex;">
   
@@ -117,7 +117,7 @@
               Verificar y pagar <mat-icon>credit_card</mat-icon>
             </button>
   
-            <button mat-button style="font-weight: 400; font-size: 18px;" routerLink="/cart" >Ver detalle de carrito</button>
+            <button class="btn btn-dark" mat-dialog-close style="font-weight: 400; font-size: 15px;" routerLink="/cart" >Ver detalle de carrito <i class="bi bi-cart4"></i></button>
   
        
           </div>
