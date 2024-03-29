@@ -46,7 +46,7 @@ export class PaginationService {
           next: (val) => {
             this.pager = val
             console.log(this.pager)
-            this.router.navigate([`/search`], {queryParams: {q: this.query, page: page}})
+            this.router.navigate([`/search`], {queryParams: {q: this.query, page: page}, fragment: 'resultados'})
           },
           error: (err) => {console.log(err)},
           complete: () => {

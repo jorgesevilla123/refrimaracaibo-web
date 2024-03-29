@@ -12,7 +12,7 @@ import { MatOptionSelectionChange } from '@angular/material/core';
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-overview.component';
-import { MatDialog } from '@angular/material/dialog'
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 
 
 // this is the implementation of the tree shown in the filters sidenav //////////////////////////////
@@ -276,7 +276,10 @@ export class SearchResultsComponent implements OnInit {
     console.log(this.loginService.selectedUser[0].cart)
     
 
-    const dialogRef = this.dialog.open(CartOverviewComponent);
+    const dialogRef = this.dialog.open(CartOverviewComponent, {
+      width: '550px'
+    });
+    
    
     dialogRef.afterClosed().subscribe(
       () => {

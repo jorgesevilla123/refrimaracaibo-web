@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, ExtraOptions } from '@angular/router';
 import { HomeComponent } from './main-sections/home/home.component';
 import { MainCartComponent } from './main-sections/main-cart/main-cart.component';
 import { AutomotrizSectionsComponent } from './secondary-sections/automotriz-sections/automotriz-sections.component';
@@ -23,6 +23,10 @@ import { LoginGuardGuard } from './login-guard.guard'
 
 
 
+const routerOptions: ExtraOptions = {
+  scrollPositionRestoration: 'enabled',
+  anchorScrolling: 'enabled'
+}
 
 
 
@@ -59,7 +63,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

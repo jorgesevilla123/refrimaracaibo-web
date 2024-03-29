@@ -34,6 +34,7 @@ export class CartService {
 
 
   addProductsToLoggedUserCart(product) {
+    console.log(this.loginService.selectedUser)
     product.selected = true 
       this.loginService.selectedUser[0].cart.push(product)
       console.log(this.loginService.selectedUser[0])

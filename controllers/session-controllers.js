@@ -111,13 +111,14 @@ function createUser(req, res) {
  function login(req, res){
     let {email, password} = req.body
 
+ 
 
     User.findOne({ email: email}, (err, result) => {
         if(err){
             console.log(err)
         }
         else {
-            if(result.password === password){
+            if(result?.password === password){
                 let user = {
                     name: result.name,
                     email: result.email,

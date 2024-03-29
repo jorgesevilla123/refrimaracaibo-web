@@ -44,7 +44,7 @@
         <div *ngIf="paginationService.pager.pager.currentPage === page; then activeButton else notActive"></div>
         <ng-template #activeButton>
 
-            <button disabled style="background-color: dodgerblue; color: white;" mat-mini-fab>{{page}}</button>
+            <a  disabled style="background-color: dodgerblue; color: white;" mat-mini-fab>{{page}}</a>
 
         </ng-template>
 
