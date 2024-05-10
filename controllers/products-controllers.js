@@ -85,7 +85,7 @@ function getProducts(req, res){
 
 
 
-function getProducts(req, res){
+function getSomeProducts(req, res){
     Product.find( (err, products) => {
         if(err){
             res.send(err)
@@ -94,7 +94,7 @@ function getProducts(req, res){
             res.json(products)
         }
 
-    }).limit(10)
+    }).limit(4)
 }
 
 
@@ -229,6 +229,6 @@ function increaseInventory(req, res){
 
 
 
-module.exports = {getProducts, searchProducts, decreaseInventory, getProductsByCategory, filterCategory}
+module.exports = {getProducts, searchProducts, decreaseInventory, getProductsByCategory, filterCategory, getSomeProducts}
 
 
