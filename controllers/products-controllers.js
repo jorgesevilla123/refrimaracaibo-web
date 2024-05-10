@@ -85,6 +85,22 @@ function getProducts(req, res){
 
 
 
+function getProducts(req, res){
+    Product.find( (err, products) => {
+        if(err){
+            res.send(err)
+        }
+        else {
+            res.json(products)
+        }
+
+    }).limit(10)
+}
+
+
+
+
+
 
 
 

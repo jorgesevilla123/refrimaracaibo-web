@@ -13,6 +13,11 @@ router.route('/get-products').get(getProducts)
 
 
 
+router.route('/get-some-products').get(getProducts)
+
+
+
+
 router.route('/search-products').get(searchProducts)
 
 
