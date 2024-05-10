@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { map, Observable } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 
@@ -71,9 +71,12 @@ export class ProductsService {
 
   getProducts(): Observable<any> {
     let api = `${this.API}/get-products`
-    return this.http.get<any>(api).pipe(
-      map( products => { return products})
-    )
+    return this.http.get<any>(api)
+  }
+
+  getSomeProducts(): Observable<any> {
+    let api = `${this.API}/get-some-products`
+    return this.http.get<any>(api).pipe(take(5))
   }
 
 

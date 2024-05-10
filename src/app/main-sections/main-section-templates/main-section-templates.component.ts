@@ -17,6 +17,8 @@
 
 
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../../services/products.service'
+import { map, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main-section-templates',
@@ -24,6 +26,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-section-templates.component.scss']
 })
 export class MainSectionTemplatesComponent implements OnInit {
+
+  products: any
 
 
   // implement the logic for templating the sections here
@@ -137,9 +141,23 @@ export class MainSectionTemplatesComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor(
+    public productService: ProductsService
+  ) { }
 
   ngOnInit(): void {
+    this.getProducts()
+  }
+
+
+  getProducts(){
+    this.productService.getSomeProducts().subscribe(
+      products => {
+        console.log(products.splice(4))
+      }
+    )
+
+    
   }
 
 
