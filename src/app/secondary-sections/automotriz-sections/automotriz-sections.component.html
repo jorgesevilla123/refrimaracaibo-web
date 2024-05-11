@@ -1,9 +1,9 @@
 
+<h1>Seccion automotriz</h1>
 
 
 
-
-
+<!-- 
 
 <div *ngFor="let section of sections">
 
@@ -18,14 +18,14 @@
 
             <mat-form-field appearance="outline" class="filter-form">
                 <mat-label>Filtrar</mat-label>
-                <mat-select [formControl]="filters" multiple>
+                <mat-select [formControl]="filters" multiple> -->
                     <!-- <mat-select-trigger>
                         {{filters.value?.[0].label_value || ''}}
                         <span *ngIf="(filters.value?.length || 0) > 1">
                             (+{{(filters.value?.length || 0) -1}} {{filters.value?.length === 2 ? 'otro': 'otros'}})
                         </span>
                     </mat-select-trigger> -->
-                    <mat-option *ngFor="let category of categories" [value]="category" (onSelectionChange)="optionHandler($event)">
+                    <!-- <mat-option *ngFor="let category of categories" [value]="category" (onSelectionChange)="optionHandler($event)">
                         <span><b>{{category.label_name}}</b></span> | <span>{{category.label_value}}</span>
                     </mat-option>
                 </mat-select>
@@ -56,7 +56,7 @@
 
 
 
-            <app-main-search-bar></app-main-search-bar>
+            <app-main-search-bar></app-main-search-bar> -->
 
 
 <!-- 
@@ -82,7 +82,7 @@
 
 
 
-
+<!-- 
         </div>
 
         
@@ -117,9 +117,9 @@
 
             <mat-grid-list rowHeight="350px" cols="3">
                 <mat-grid-tile *ngFor="let product of sectionsToRender">
-        
+         -->
                     <!-- this is the product card -->
-                    <div style="width: 250px" class="products-ui" >
+                    <!-- <div style="width: 250px" class="products-ui" >
                       
             
                         <div class="image">
@@ -199,4 +199,4 @@
 </div>
 
 
-
+ -->

@@ -22,7 +22,7 @@ import { UserSettingsComponent } from './secondary-sections/user-settings/user-s
 import { LoginGuardGuard } from './login-guard.guard'
 
 
-
+//For autoscrolling in searchproducts component
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
   anchorScrolling: 'enabled'
