@@ -5,8 +5,117 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { getCategories } from 'FOR-TEST/products-management'
 import { CartService } from 'src/app/services/cart.service';
 import { ProductsService } from 'src/app/services/products.service';
-import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-overview.component'
-import { LoginService } from '../../services/login.service'
+import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-overview.component';
+import { LoginService } from '../../services/login.service';
+import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
+import { FlatTreeControl } from '@angular/cdk/tree';
+
+
+
+
+
+interface FoodNode {
+  name: string;
+  children?: FoodNode[];
+}
+
+const TREE_DATA: FoodNode[] = [
+  {
+    name: 'Aire acondicionado',
+    children: [
+      { name: 'Aceites' }, { name: 'Armaflex' }, { name: 'Aspas' },
+      { name: 'Capacitores' }, { name: 'Capilares' }, { name: 'Cintas' },
+      { name: 'Compresores' }, { name: 'Conexiones' }, { name: 'Filtros' },
+      { name: 'Gas refrigerante' }, { name: 'Motores' }, { name: 'protectores termicos' },
+      { name: 'Capacitores' }, { name: 'Capilares' }, { name: 'Cintas' },
+      { name: 'Compresores' }, { name: 'Conexiones' }, { name: 'Cintas' },
+    ]
+    ,
+  },
+  {
+    name: 'Automotriz',
+    children: [
+      { name: 'Abrazaderas' }, { name: 'Aceites' }, { name: 'Acoples' },
+      { name: 'Compresores' }, { name: 'Condensasdores' }, { name: 'Conectores' },
+      { name: 'Empacaduras' }, { name: 'Evaporadores' }, { name: 'Filtros' },
+      { name: 'Gas' }, { name: 'Gusanillos' }, { name: 'Mangueras' },
+      { name: 'Orings' }, { name: 'Motor fan' }, { name: 'Presostatos' },
+      { name: 'Relays' }, { name: 'Rolineras' },
+    ],
+  },
+  {
+    name: 'Componentes electricos',
+    children: [
+      {
+        name: 'Motores'
+      }
+    ]
+  },
+  {
+    name: 'Herramientas',
+    children: [
+      {
+        name: 'Motores'
+      }
+    ]
+  },
+  {
+    name: 'Iluminacion',
+    children: [
+      {
+        name: 'Motores'
+      }
+    ]
+  },
+  {
+    name: 'Lavadora',
+    children: [
+      {
+        name: 'Motores'
+      }
+    ]
+  },
+  {
+    name: 'Nevera',
+    children: [
+      {
+        name: 'Motores'
+      }
+    ]
+  },
+  {
+    name: 'Secadora',
+    children: [
+      {
+        name: 'Motores'
+      }
+    ]
+  },
+
+
+];
+
+
+interface ExampleFlatNode {
+  expandable: boolean;
+  name: string;
+  level: number;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @Component({
   selector: 'app-automotriz-sections',
@@ -14,6 +123,42 @@ import { LoginService } from '../../services/login.service'
   styleUrls: ['./automotriz-sections.component.scss']
 })
 export class AutomotrizSectionsComponent implements OnInit {
+
+
+  
+  private _transformer = (node: FoodNode, level: number) => {
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      name: node.name,
+      level: level,
+    };
+  };
+
+
+
+  treeControl = new FlatTreeControl<ExampleFlatNode>(
+    node => node.level,
+    node => node.expandable,
+  );
+
+  treeFlattener = new MatTreeFlattener(
+    this._transformer,
+    node => node.level,
+    node => node.expandable,
+    node => node.children,
+  );
+
+  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+
+
+
+
+
+
+
+
+
+
   @ViewChild(CartOverviewComponent) cartDrawer: CartOverviewComponent
   @Input() data: any
 
@@ -27,20 +172,6 @@ export class AutomotrizSectionsComponent implements OnInit {
   page_name: any
   products: any
   completed: boolean = false
-
-
-
-  sections_template: Array<any> = [
-    { category_name: 'Evaporadores', category_id: [1], route: "/categories", query: 'evaporador-auto', img_src: '../assets/bombillo 15w.jpeg', img_w: '100px', img_h: '100px' },
-    { category_name: 'Condensadores', category_id: [2], route: "/categories", query: 'condensador-auto', img_src: '../assets/bombillo dicroico.jpeg', img_w: '100px', img_h: '100px' },
-    { category_name: 'Sellos autommotriz', category_id: [6], route: "/categories", query: 'sello-auto', img_src: '../assets/bombillo emergencia.jpeg', img_w: '100px', img_h: '100px' },
-    { category_name: 'Deshidratadores', route: "/categories", category_id: [6], query: 'deshidratador-auto', img_src: '../assets/ip66.jpeg', img_w: '100px', img_h: '100px' },
-    { category_name: 'Blowers', category_id: [], route: "/categories", query: 'blower-auto', img_src: '../assets/lampara cuadrada.jpeg', img_w: '100px', img_h: '100px' },
-    { category_name: 'Presostatos automotriz', category_id: [5], route: "/categories", query: 'presostato-auto', img_src: '../assets/lampara redonda.jpeg', img_w: '100px', img_h: '100px' },
-    { category_name: 'Rolineras automotriz', category_id: [], route: "/categories", query: 'rolinera-auto', img_src: '../assets/lampara redonda.jpeg', img_w: '100px', img_h: '100px' },
-    { category_name: 'Valvulas block', category_id: [3], route: "/categories", query: 'valvula-block', img_src: '../assets/lampara redonda.jpeg', img_w: '100px', img_h: '100px' },
-  ]
-
 
 
 
@@ -82,7 +213,13 @@ export class AutomotrizSectionsComponent implements OnInit {
     public cartService: CartService,
     public productService: ProductsService,
     public loginService: LoginService
-  ) { }
+  ) {
+    this.dataSource.data = TREE_DATA;
+   }
+
+   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
+
+
 
 
 
@@ -146,36 +283,36 @@ export class AutomotrizSectionsComponent implements OnInit {
 
 
 
-  filterCategory(value) {
+  // filterCategory(value) {
 
 
-    if (value.length === 0) {
-      const reg = new RegExp('', 'gi');
-      let matchedSection = this.sections_template.filter(
-        ({ category_name }) => category_name.match(reg)
-      )
-      this.sectionsToRender = this.sections_template
-    }
-    else {
+  //   if (value.length === 0) {
+  //     const reg = new RegExp('', 'gi');
+  //     let matchedSection = this.sections_template.filter(
+  //       ({ category_name }) => category_name.match(reg)
+  //     )
+  //     this.sectionsToRender = this.sections_template
+  //   }
+  //   else {
 
 
-      let string = value.join('|')
-      console.log(string)
-      const reg = new RegExp(string, 'gi');
-      let matchedSection = this.sections_template.filter(
-        ({ category_name }) => category_name.match(reg)
-      )
-      console.log(matchedSection)
+  //     let string = value.join('|')
+  //     console.log(string)
+  //     const reg = new RegExp(string, 'gi');
+  //     let matchedSection = this.sections_template.filter(
+  //       ({ category_name }) => category_name.match(reg)
+  //     )
+  //     console.log(matchedSection)
 
-      this.sectionsToRender = matchedSection
+  //     this.sectionsToRender = matchedSection
 
-    }
+  //   }
 
-    console.log(value)
+  //   console.log(value)
 
 
 
-  }
+  // }
 
 
 
@@ -187,104 +324,104 @@ export class AutomotrizSectionsComponent implements OnInit {
 
 
 
-  optionHandler(value: MatOptionSelectionChange) {
+  // optionHandler(value: MatOptionSelectionChange) {
 
 
-    if (value.source.selected === false) {
-      let index = this.categoryValues.indexOf(value.source.value.id)
-      // prevents that the remove function is executed again when the onChangeSelection function triggers on filter deselection
-      if (index === -1) {
-        return
-      }
-      else {
-        //removes the product filter
-        this.remove({ id: value.source.value.id, name: value.source.value.label_value, mat_select: value })
-      }
+  //   if (value.source.selected === false) {
+  //     let index = this.categoryValues.indexOf(value.source.value.id)
+  //     // prevents that the remove function is executed again when the onChangeSelection function triggers on filter deselection
+  //     if (index === -1) {
+  //       return
+  //     }
+  //     else {
+  //       //removes the product filter
+  //       this.remove({ id: value.source.value.id, name: value.source.value.label_value, mat_select: value })
+  //     }
 
-    }
+  //   }
 
-    else {
-
-
-      console.log(value)
+  //   else {
 
 
-      this.categoryChips.push({ id: value.source.value.id, name: value.source.value.label_value, mat_select: value })
+  //     console.log(value)
 
 
-      let label_value = value.source.value.id
-      this.categoryValues.push(label_value)
-
-      this.filter()
-
-    }
-  }
+  //     this.categoryChips.push({ id: value.source.value.id, name: value.source.value.label_value, mat_select: value })
 
 
+  //     let label_value = value.source.value.id
+  //     this.categoryValues.push(label_value)
 
+  //     this.filter()
 
-  remove(category) {
-    console.log(category.id)
-    console.log(this.categoryChips)
-
-    let index = this.categoryChips.indexOf(category)
-    console.log(index)
-    this.categoryChips.splice(index, 1)
-
-    let categoryIndex = this.categoryValues.indexOf(category.id)
-    console.log(categoryIndex)
-    this.categoryValues.splice(categoryIndex, 1)
-    category.mat_select.source.deselect()
-
-    if (this.categoryValues.length > 0) {
-
-      this.filter()
-
-
-    }
-    else {
-      this.isFiltering = true
-      this.matchExist = true
-      this.sectionsToRender = this.sections_template
-
-    }
+  //   }
+  // }
 
 
 
 
+  // remove(category) {
+  //   console.log(category.id)
+  //   console.log(this.categoryChips)
+
+  //   let index = this.categoryChips.indexOf(category)
+  //   console.log(index)
+  //   this.categoryChips.splice(index, 1)
+
+  //   let categoryIndex = this.categoryValues.indexOf(category.id)
+  //   console.log(categoryIndex)
+  //   this.categoryValues.splice(categoryIndex, 1)
+  //   category.mat_select.source.deselect()
+
+  //   if (this.categoryValues.length > 0) {
+
+  //     this.filter()
 
 
-  }
+  //   }
+  //   else {
+  //     this.isFiltering = true
+  //     this.matchExist = true
+  //     this.sectionsToRender = this.sections_template
+
+  //   }
 
 
 
 
 
-  filter() {
-    let filterValues = new Set(this.categoryValues)
 
-
-    let matched = this.sections_template.filter(value =>
-      value.category_id.some(n => filterValues.has(n))
-    )
-
-    if (matched.length === 0) {
-      this.isFiltering = true
-      this.matchExist = false
+  // }
 
 
 
-    }
-
-    else {
-
-      this.sectionsToRender = matched
-      this.isFiltering = true
-      this.matchExist = true
-    }
 
 
-  }
+  // filter() {
+  //   let filterValues = new Set(this.categoryValues)
+
+
+  //   let matched = this.sections_template.filter(value =>
+  //     value.category_id.some(n => filterValues.has(n))
+  //   )
+
+  //   if (matched.length === 0) {
+  //     this.isFiltering = true
+  //     this.matchExist = false
+
+
+
+  //   }
+
+  //   else {
+
+  //     this.sectionsToRender = matched
+  //     this.isFiltering = true
+  //     this.matchExist = true
+  //   }
+
+
+  // }
 
 
 
