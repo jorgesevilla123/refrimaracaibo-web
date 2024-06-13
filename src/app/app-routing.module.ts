@@ -20,8 +20,9 @@ import { UsersCartComponent } from './secondary-sections/users-cart/users-cart.c
 import { UserShippingComponent } from './secondary-sections/user-shipping/user-shipping.component';
 import { UserSettingsComponent } from './secondary-sections/user-settings/user-settings.component';
 import { LoginGuardGuard } from './login-guard.guard'
-
-
+import { MainAutomotrizComponent } from '../app/secondary-sections/automotriz-sections/main-automotriz/main-automotriz.component'
+import { AutomotrizCategoriesComponent } from '../app/secondary-sections/automotriz-sections/automotriz-categories/automotriz-categories.component'
+import { MainHerramientasComponent } from '../app/secondary-sections/herramientas-section/main-herramientas/main-herramientas.component'
 //For autoscrolling in searchproducts component
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
@@ -35,22 +36,58 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'cart', component: MainCartComponent },
   { path: 'search', component: SearchResultsComponent },
-  { path: 'herramientas', component: HerramientasSectionComponent },
-  { path: 'iluminacion', component: LightningSectionComponent },
-  { path: 'lavadora', component: LavadoraSectionsComponent },
-  { path: 'secadora', component: SecadoraSectionsComponent },
-  { path: 'automotriz', component: AutomotrizSectionsComponent },
+  {
+    path: 'herramientas', component: HerramientasSectionComponent,
+    children: [
+      { path: '', redirectTo: 'principal', pathMatch: 'full' },
+      { path: 'principal', component: MainHerramientasComponent }
+    ]
+  },
+  { 
+    path: 'Hogar', component: LightningSectionComponent, 
+    children: [
+      {path: '', redirectTo: 'principal'},
+      {path: 'principal'}
+      {path: 'categorias'}
+    ]
+  },
+  {
+    path: 'lavadora', component: LavadoraSectionsComponent,
+    children: [
+      { path: '', redirectTo: 'principal', pathMatch: 'full' },
+      { path: 'principal', },
+      { path: 'categorias' }
+    ]
+  },
+  {
+    path: 'secadora', component: SecadoraSectionsComponent,
+    children: [
+      {path: '', redirectTo: 'principal'},
+      {path: 'principal'},
+      {path: 'categorias'}
+    ]
+  },
+  {
+    path: 'automotriz', component: AutomotrizSectionsComponent,
+    children: [
+      { path: '', redirectTo: 'principal', pathMatch: 'full' },
+      { path: 'principal', component: MainAutomotrizComponent },
+      { path: 'categorias', component: AutomotrizCategoriesComponent }
+
+    ]
+  }
+  ,
   { path: 'marcas', component: MarcasComponent },
   { path: 'pago', component: BillingComponent },
   {
     path: 'dashboard', component: UserDashboardComponent,
     children: [
-      {path: '', redirectTo: 'account', pathMatch: 'full'},
-      {path: 'account', component: UserAccountComponent}, 
-      {path: 'purchases', component: UserPurchasesComponent}, 
-      {path: 'cart', component: UsersCartComponent}, 
-      {path: 'shipping', component: UserShippingComponent}, 
-      {path: 'settings', component: UserSettingsComponent}, 
+      { path: '', redirectTo: 'account', pathMatch: 'full' },
+      { path: 'account', component: UserAccountComponent },
+      { path: 'purchases', component: UserPurchasesComponent },
+      { path: 'cart', component: UsersCartComponent },
+      { path: 'shipping', component: UserShippingComponent },
+      { path: 'settings', component: UserSettingsComponent },
     ],
     canActivate: [LoginGuardGuard]
 

@@ -226,36 +226,7 @@ export class AutomotrizSectionsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.pageName = 'automotriz'
-    this.isFiltering = true
-    this.matchExist = true
-
-
-
-
-
-
-
-    getCategories('Automotriz').subscribe(
-      val => {
-        this.categories = val.category_data
-      }
-    )
-
-
-    this.route.queryParams.subscribe(
-      val => {
-        console.log(val)
-        this.currentPage = val.page
-        this.getProducts('automotriz', this.currentPage)
-        setTimeout(() => {
-          this.completed = true
-
-        }, 500)
-
-      }
-    )
-
+  
 
 
 

@@ -19,7 +19,10 @@ import { UsersCartComponent } from './users-cart/users-cart.component';
 import { UserShippingComponent } from './user-shipping/user-shipping.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { ShippingModalComponent } from './shipping-modal/shipping-modal.component';
-import { NgbRatingModule,  NgbCarouselModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbRatingModule,  NgbCarouselModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { MainAutomotrizComponent } from './automotriz-sections/main-automotriz/main-automotriz.component';
+import { AutomotrizCategoriesComponent } from './automotriz-sections/automotriz-categories/automotriz-categories.component';
+import { MainHerramientasComponent } from './herramientas-section/main-herramientas/main-herramientas.component'
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import { NgbRatingModule,  NgbCarouselModule, NgbDropdownModule } from '@ng-boot
     UsersCartComponent,
     UserShippingComponent,
     UserSettingsComponent,
-    ShippingModalComponent
+    ShippingModalComponent,
+    MainAutomotrizComponent,
+    AutomotrizCategoriesComponent,
+    MainHerramientasComponent
   ],
   imports: [
     CommonModule,
