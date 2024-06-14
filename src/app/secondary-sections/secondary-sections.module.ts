@@ -22,7 +22,8 @@ import { ShippingModalComponent } from './shipping-modal/shipping-modal.componen
 import { NgbRatingModule,  NgbCarouselModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainAutomotrizComponent } from './automotriz-sections/main-automotriz/main-automotriz.component';
 import { AutomotrizCategoriesComponent } from './automotriz-sections/automotriz-categories/automotriz-categories.component';
-import { MainHerramientasComponent } from './herramientas-section/main-herramientas/main-herramientas.component'
+import { MainHerramientasComponent } from './herramientas-section/main-herramientas/main-herramientas.component';
+import { MainLavadoraComponent } from './lavadora-sections/main-lavadora/main-lavadora.component'
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MainHerramientasComponent } from './herramientas-section/main-herramien
     ShippingModalComponent,
     MainAutomotrizComponent,
     AutomotrizCategoriesComponent,
-    MainHerramientasComponent
+    MainHerramientasComponent,
+    MainLavadoraComponent
   ],
   imports: [
     CommonModule,

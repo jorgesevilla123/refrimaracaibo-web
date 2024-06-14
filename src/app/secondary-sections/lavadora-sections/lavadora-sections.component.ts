@@ -113,33 +113,33 @@ export class LavadoraSectionsComponent implements OnInit{
 
   ngOnInit(): void {
     
-    this.pageName = 'lavadora'
+    // this.pageName = 'lavadora'
 
 
-    this.isFiltering = true
-    this.matchExist = true
+    // this.isFiltering = true
+    // this.matchExist = true
 
 
 
 
-    getCategories('Lavadora').subscribe(
-      val => {
-        this.categories = val.category_data
-      }
-    )
+    // getCategories('Lavadora').subscribe(
+    //   val => {
+    //     this.categories = val.category_data
+    //   }
+    // )
 
     
-    this.route.queryParams.subscribe(
-      val => {
-        console.log(val)
-        this.currentPage = val.page
-        this.getProducts('lavadora', this.currentPage)
-        setTimeout(() => {
-          this.completed = true
-        })
+    // this.route.queryParams.subscribe(
+    //   val => {
+    //     console.log(val)
+    //     this.currentPage = val.page
+    //     this.getProducts('lavadora', this.currentPage)
+    //     setTimeout(() => {
+    //       this.completed = true
+    //     })
 
-      }
-    )
+    //   }
+    // )
   }
 
 

@@ -23,6 +23,7 @@ import { LoginGuardGuard } from './login-guard.guard'
 import { MainAutomotrizComponent } from '../app/secondary-sections/automotriz-sections/main-automotriz/main-automotriz.component'
 import { AutomotrizCategoriesComponent } from '../app/secondary-sections/automotriz-sections/automotriz-categories/automotriz-categories.component'
 import { MainHerramientasComponent } from '../app/secondary-sections/herramientas-section/main-herramientas/main-herramientas.component'
+import { MainLavadoraComponent } from './secondary-sections/lavadora-sections/main-lavadora/main-lavadora.component';
 //For autoscrolling in searchproducts component
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
@@ -46,25 +47,24 @@ const routes: Routes = [
   { 
     path: 'Hogar', component: LightningSectionComponent, 
     children: [
-      {path: '', redirectTo: 'principal'},
-      {path: 'principal'}
-      {path: 'categorias'}
+      // {path: '', redirectTo: 'principal', pathMatch: 'full'},
+      // {path: 'principal', component: LightningSectionComponent},
+      // {path: 'categorias'}
     ]
   },
   {
     path: 'lavadora', component: LavadoraSectionsComponent,
     children: [
       { path: '', redirectTo: 'principal', pathMatch: 'full' },
-      { path: 'principal', },
-      { path: 'categorias' }
+      { path: 'principal', component: MainLavadoraComponent},
     ]
   },
   {
     path: 'secadora', component: SecadoraSectionsComponent,
     children: [
-      {path: '', redirectTo: 'principal'},
-      {path: 'principal'},
-      {path: 'categorias'}
+      // {path: '', redirectTo: 'principal'},
+      // {path: 'principal'},
+      // {path: 'categorias'}
     ]
   },
   {
