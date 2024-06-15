@@ -23,7 +23,8 @@ import { NgbRatingModule,  NgbCarouselModule, NgbDropdownModule } from '@ng-boot
 import { MainAutomotrizComponent } from './automotriz-sections/main-automotriz/main-automotriz.component';
 import { AutomotrizCategoriesComponent } from './automotriz-sections/automotriz-categories/automotriz-categories.component';
 import { MainHerramientasComponent } from './herramientas-section/main-herramientas/main-herramientas.component';
-import { MainLavadoraComponent } from './lavadora-sections/main-lavadora/main-lavadora.component'
+import { MainLavadoraComponent } from './lavadora-sections/main-lavadora/main-lavadora.component';
+import { MainSecadoraComponent } from './secadora-sections/main-secadora/main-secadora.component'
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { MainLavadoraComponent } from './lavadora-sections/main-lavadora/main-la
     MainAutomotrizComponent,
     AutomotrizCategoriesComponent,
     MainHerramientasComponent,
-    MainLavadoraComponent
+    MainLavadoraComponent,
+    MainSecadoraComponent
   ],
   imports: [
     CommonModule,

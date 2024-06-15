@@ -24,6 +24,7 @@ import { MainAutomotrizComponent } from '../app/secondary-sections/automotriz-se
 import { AutomotrizCategoriesComponent } from '../app/secondary-sections/automotriz-sections/automotriz-categories/automotriz-categories.component'
 import { MainHerramientasComponent } from '../app/secondary-sections/herramientas-section/main-herramientas/main-herramientas.component'
 import { MainLavadoraComponent } from './secondary-sections/lavadora-sections/main-lavadora/main-lavadora.component';
+import { MainSecadoraComponent } from './secondary-sections/secadora-sections/main-secadora/main-secadora.component';
 //For autoscrolling in searchproducts component
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
@@ -62,8 +63,8 @@ const routes: Routes = [
   {
     path: 'secadora', component: SecadoraSectionsComponent,
     children: [
-      // {path: '', redirectTo: 'principal'},
-      // {path: 'principal'},
+      {path: '', redirectTo: 'principal', pathMatch: 'full'},
+      {path: 'principal', component: MainSecadoraComponent},
       // {path: 'categorias'}
     ]
   },

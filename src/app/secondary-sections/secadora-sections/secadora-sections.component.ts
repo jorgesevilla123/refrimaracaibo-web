@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms'
 import { MatOptionSelectionChange } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -138,26 +138,26 @@ export class SecadoraSectionsComponent implements OnInit {
 
 
 
-    getCategories('Secadora').subscribe(
-      val => {
-        this.categories = val.category_data
-      }
-    )
+    // getCategories('Secadora').subscribe(
+    //   val => {
+    //     this.categories = val.category_data
+    //   }
+    // )
 
     
-    this.route.queryParams.subscribe(
-      val => {
-        console.log(val)
-        this.currentPage = val.page
-        this.getProducts('secadora', this.currentPage),
-        setTimeout(() => {
-          this.completed = true
+    // this.route.queryParams.subscribe(
+    //   val => {
+    //     console.log(val)
+    //     this.currentPage = val.page
+    //     this.getProducts('secadora', this.currentPage),
+    //     setTimeout(() => {
+    //       this.completed = true
 
-        }, 500)
+    //     }, 500)
 
 
-      }
-    )
+    //   }
+    // )
 
 
 
