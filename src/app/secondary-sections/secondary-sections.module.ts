@@ -24,7 +24,9 @@ import { MainAutomotrizComponent } from './automotriz-sections/main-automotriz/m
 import { AutomotrizCategoriesComponent } from './automotriz-sections/automotriz-categories/automotriz-categories.component';
 import { MainHerramientasComponent } from './herramientas-section/main-herramientas/main-herramientas.component';
 import { MainLavadoraComponent } from './lavadora-sections/main-lavadora/main-lavadora.component';
-import { MainSecadoraComponent } from './secadora-sections/main-secadora/main-secadora.component'
+import { MainSecadoraComponent } from './secadora-sections/main-secadora/main-secadora.component';
+import { MainNeveraComponent } from './nevera-section/main-nevera/main-nevera.component';
+import { NeveraSectionComponent } from './nevera-section/nevera-section.component'
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { MainSecadoraComponent } from './secadora-sections/main-secadora/main-se
     AutomotrizCategoriesComponent,
     MainHerramientasComponent,
     MainLavadoraComponent,
-    MainSecadoraComponent
+    MainSecadoraComponent,
+    MainNeveraComponent,
+    NeveraSectionComponent
   ],
   imports: [
     CommonModule,

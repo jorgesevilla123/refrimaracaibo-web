@@ -25,6 +25,9 @@ import { AutomotrizCategoriesComponent } from '../app/secondary-sections/automot
 import { MainHerramientasComponent } from '../app/secondary-sections/herramientas-section/main-herramientas/main-herramientas.component'
 import { MainLavadoraComponent } from './secondary-sections/lavadora-sections/main-lavadora/main-lavadora.component';
 import { MainSecadoraComponent } from './secondary-sections/secadora-sections/main-secadora/main-secadora.component';
+import { MainNeveraComponent } from './secondary-sections/nevera-section/main-nevera/main-nevera.component';
+import { NeveraSectionComponent } from './secondary-sections/nevera-section/nevera-section.component';
+
 //For autoscrolling in searchproducts component
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
@@ -65,6 +68,14 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'principal', pathMatch: 'full'},
       {path: 'principal', component: MainSecadoraComponent},
+      // {path: 'categorias'}
+    ]
+  },
+  {
+    path: 'nevera', component: NeveraSectionComponent,
+    children: [
+      {path: '', redirectTo: 'principal', pathMatch: 'full'},
+      {path: 'principal', component: MainNeveraComponent},
       // {path: 'categorias'}
     ]
   },
