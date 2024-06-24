@@ -27,6 +27,12 @@ import { MainLavadoraComponent } from './secondary-sections/lavadora-sections/ma
 import { MainSecadoraComponent } from './secondary-sections/secadora-sections/main-secadora/main-secadora.component';
 import { MainNeveraComponent } from './secondary-sections/nevera-section/main-nevera/main-nevera.component';
 import { NeveraSectionComponent } from './secondary-sections/nevera-section/nevera-section.component';
+import { AireAcondicionadoSectionComponent } from './secondary-sections/aire-acondicionado-section/aire-acondicionado-section.component';
+import { MainAireAcondicionadoComponent } from './secondary-sections/aire-acondicionado-section/main-aire-acondicionado/main-aire-acondicionado.component';
+import { HogarSectionComponent } from './secondary-sections/hogar-section/hogar-section.component';
+import { MainHogarComponent } from './secondary-sections/hogar-section/main-hogar/main-hogar.component';
+import { CommercialRefriComponent } from './secondary-sections/commercial-refri/commercial-refri.component';
+import { MainCommercialRefriComponent } from './secondary-sections/commercial-refri/main-commercial-refri/main-commercial-refri.component';
 
 //For autoscrolling in searchproducts component
 const routerOptions: ExtraOptions = {
@@ -42,6 +48,13 @@ const routes: Routes = [
   { path: 'cart', component: MainCartComponent },
   { path: 'search', component: SearchResultsComponent },
   {
+    path: 'aire-acondicionado', component: AireAcondicionadoSectionComponent,
+    children: [
+      {path: '', redirectTo: 'principal', pathMatch: 'full'},
+      {path: 'principal', component: MainAireAcondicionadoComponent}
+    ]
+  },
+  {
     path: 'herramientas', component: HerramientasSectionComponent,
     children: [
       { path: '', redirectTo: 'principal', pathMatch: 'full' },
@@ -49,11 +62,11 @@ const routes: Routes = [
     ]
   },
   { 
-    path: 'Hogar', component: LightningSectionComponent, 
+    path: 'hogar', component: HogarSectionComponent, 
     children: [
-      // {path: '', redirectTo: 'principal', pathMatch: 'full'},
-      // {path: 'principal', component: LightningSectionComponent},
-      // {path: 'categorias'}
+      {path: '', redirectTo: 'principal', pathMatch: 'full'},
+      {path: 'principal', component: MainHogarComponent},
+    
     ]
   },
   {
@@ -86,6 +99,13 @@ const routes: Routes = [
       { path: 'principal', component: MainAutomotrizComponent },
       { path: 'categorias', component: AutomotrizCategoriesComponent }
 
+    ]
+  },
+  {
+    path: 'refrigeracion-comercial', component: CommercialRefriComponent,
+    children: [
+      {path: '', redirectTo: 'principal', pathMatch: 'full'},
+      {path: 'principal', component: MainCommercialRefriComponent}
     ]
   }
   ,

@@ -26,7 +26,13 @@ import { MainHerramientasComponent } from './herramientas-section/main-herramien
 import { MainLavadoraComponent } from './lavadora-sections/main-lavadora/main-lavadora.component';
 import { MainSecadoraComponent } from './secadora-sections/main-secadora/main-secadora.component';
 import { MainNeveraComponent } from './nevera-section/main-nevera/main-nevera.component';
-import { NeveraSectionComponent } from './nevera-section/nevera-section.component'
+import { NeveraSectionComponent } from './nevera-section/nevera-section.component';
+import { AireAcondicionadoSectionComponent } from './aire-acondicionado-section/aire-acondicionado-section.component';
+import { MainAireAcondicionadoComponent } from './aire-acondicionado-section/main-aire-acondicionado/main-aire-acondicionado.component';
+import { HogarSectionComponent } from './hogar-section/hogar-section.component';
+import { MainHogarComponent } from './hogar-section/main-hogar/main-hogar.component';
+import { CommercialRefriComponent } from './commercial-refri/commercial-refri.component';
+import { MainCommercialRefriComponent } from './commercial-refri/main-commercial-refri/main-commercial-refri.component'
 
 @NgModule({
   declarations: [
@@ -51,7 +57,13 @@ import { NeveraSectionComponent } from './nevera-section/nevera-section.componen
     MainLavadoraComponent,
     MainSecadoraComponent,
     MainNeveraComponent,
-    NeveraSectionComponent
+    NeveraSectionComponent,
+    AireAcondicionadoSectionComponent,
+    MainAireAcondicionadoComponent,
+    HogarSectionComponent,
+    MainHogarComponent,
+    CommercialRefriComponent,
+    MainCommercialRefriComponent
   ],
   imports: [
     CommonModule,
