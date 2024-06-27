@@ -12,6 +12,9 @@ let router = Router()
 router.route('/get-products').get(getProducts)
 
 
+router.route('/filter').get(filterCategory)
+
+
 router.route('/get-herramientas').get(filterTools)
 
 
@@ -29,7 +32,6 @@ router.route('/get-category/:category/:page/:pageName').get(getProductsByCategor
 
 
 
-router.route('/filter').post(filterCategory)
 
 
 

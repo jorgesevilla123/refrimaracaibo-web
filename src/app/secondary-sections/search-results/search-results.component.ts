@@ -15,6 +15,10 @@ import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-ov
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 
 
+
+
+
+
 // this is the implementation of the tree shown in the filters sidenav //////////////////////////////
 interface FoodNode {
   name: string;
@@ -274,13 +278,13 @@ export class SearchResultsComponent implements OnInit {
     this.cartService.addProductsToLoggedUserCart(product)
     this.cartService.updateCount();
     console.log(this.loginService.selectedUser[0].cart)
-    
+
 
     const dialogRef = this.dialog.open(CartOverviewComponent, {
       width: '550px'
     });
-    
-   
+
+
     dialogRef.afterClosed().subscribe(
       () => {
         console.log('cerrado')

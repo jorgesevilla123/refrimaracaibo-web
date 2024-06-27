@@ -121,9 +121,9 @@ export class ProductsService {
 
 
 
-  filterCategories(categories){
-    let api = `${this.API}/filter`
-    return this.http.post<any>(api, categories)
+  filterCategory(category){
+    let api = `${this.API}/filter?q=${category}`
+    return this.http.get<any>(api)
 
   }
 

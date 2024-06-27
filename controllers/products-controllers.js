@@ -186,9 +186,16 @@ function getProductsByCategory(req, res){
 
 
 
-function filterCategory(res, req){
-    let categoryFilters = req.body
-    console.log(categoryFilters)
+function filterCategory(req, res){
+    let category = req.query.q
+    console.log(category)
+    Product.find({categoria: "AUTOMOTRIZ"}, (err, products) => {
+        if(err){console.log(err)}
+        else {
+            res.json({products: products, message: 'Products sended'})
+        }
+    })
+  
 
 }
 
