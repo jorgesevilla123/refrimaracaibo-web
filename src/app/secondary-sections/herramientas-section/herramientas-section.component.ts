@@ -114,37 +114,42 @@ export class HerramientasSectionComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.pageName = 'herramientas'
 
 
 
-    this.isFiltering = true
-    this.matchExist = true
+    // this.pageName = 'herramientas'
+
+
+
+    // this.isFiltering = true
+    // this.matchExist = true
  
 
-    getCategories('Herramientas').pipe(
-      map(val => {return val})
-    ).subscribe(
-      val => {
-        this.categories = val.category_data
-      }
-    )
+    // getCategories('Herramientas').pipe(
+    //   map(val => {return val})
+    // ).subscribe(
+    //   val => {
+    //     this.categories = val.category_data
+    //   }
+    // )
 
     
-    this.route.queryParams.subscribe(
-      val => {
-        this.currentPage = val.page
-        this.getProducts('herramientas', this.currentPage)
-        setTimeout( () => {
-          this.completed = true
+    // this.route.queryParams.subscribe(
+    //   val => {
+    //     this.currentPage = val.page
+    //     this.getProducts('herramientas', this.currentPage)
+    //     setTimeout( () => {
+    //       this.completed = true
 
 
 
-        }, 500)
+    //     }, 500)
         
 
-      }
-    )
+    //   }
+    // )
+
+
 
 
   }

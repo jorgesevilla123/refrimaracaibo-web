@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../../../services/products.service' 
 
 @Component({
   selector: 'app-main-hogar',
@@ -7,9 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainHogarComponent implements OnInit {
 
-  constructor() { }
+  products: any
+
+  constructor(
+    public productService: ProductsService
+  ) { }
 
   ngOnInit(): void {
+    this.getSomeProducts()
   }
+
+
+  route(routeName){
+    console.log('Showing route name')
+
+  }
+
+
+  getSomeProducts(){
+    this.productService.getSomeProducts().subscribe(
+      products => {
+        this.products = products
+      }
+    )
+  }
+
 
 }

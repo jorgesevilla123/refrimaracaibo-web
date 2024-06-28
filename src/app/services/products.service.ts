@@ -74,6 +74,12 @@ export class ProductsService {
     return this.http.get<any>(api)
   }
 
+
+  filterTools(): Observable<any> {
+    let api = `${this.API}/get-herramientas`
+    return this.http.get<any>(api)
+  }
+
   getSomeProducts(): Observable<any> {
     let api = `${this.API}/get-some-products`
     return this.http.get<any>(api).pipe(take(5))
@@ -115,9 +121,9 @@ export class ProductsService {
 
 
 
-  filterCategories(categories){
-    let api = `${this.API}/filter`
-    return this.http.post<any>(api, categories)
+  filterCategory(category){
+    let api = `${this.API}/filter?q=${category}`
+    return this.http.get<any>(api)
 
   }
 

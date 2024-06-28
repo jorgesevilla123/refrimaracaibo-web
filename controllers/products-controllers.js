@@ -1,3 +1,4 @@
+
 const Product = require('../models/product-models')
 
 
@@ -101,6 +102,22 @@ function getSomeProducts(req, res){
 
 
 
+function filterTools(req, res){
+    let categoriaQuery = 'HERRAMIENTAS'
+
+    Product.find({categoria: categoriaQuery}, (products) => {
+    
+        console.log(categoria)
+        res.send('hello sending response')
+
+    })
+
+}
+
+
+
+
+
 
 
 
@@ -169,9 +186,16 @@ function getProductsByCategory(req, res){
 
 
 
-function filterCategory(res, req){
-    let categoryFilters = req.body
-    console.log(categoryFilters)
+function filterCategory(req, res){
+    let category = req.query.q
+    console.log(category)
+    Product.find({categoria: "AUTOMOTRIZ"}, (err, products) => {
+        if(err){console.log(err)}
+        else {
+            res.json({products: products, message: 'Products sended'})
+        }
+    })
+  
 
 }
 
@@ -229,6 +253,6 @@ function increaseInventory(req, res){
 
 
 
-module.exports = {getProducts, searchProducts, decreaseInventory, getProductsByCategory, filterCategory, getSomeProducts}
+module.exports = {getProducts, searchProducts, decreaseInventory, getProductsByCategory, filterCategory, getSomeProducts, filterTools}
 
 
