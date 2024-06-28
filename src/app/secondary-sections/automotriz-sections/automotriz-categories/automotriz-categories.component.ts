@@ -181,17 +181,26 @@ export class AutomotrizCategoriesComponent implements OnInit {
 
   showRoute(){
     this.route.queryParams.subscribe({
-      next: (query) => this.getCategory(query.categoria),
+      next: (query) => this.getCategory(query.categoria, query.page),
       error: (e) => console.log(e),
-      complete: () => console.log('observable completed')
+      complete: () => console.log('observable   ')
     })
   }
 
 
 
-  getCategory(category){
-    this.productsService.filterCategory(category).subscribe({
-      next: (res) => {this.products = res.products}
+  getCategory(category, page){
+    console.log(page)
+    this.productsService.filterCategory(category, page).subscribe({
+      next: (res) => {
+        console.log(this.route.snapshot)
+        this.paginationService.pagerSearch = 'category'
+        this.paginationService.pager = res
+        this.resultsLength = res.pageOfItems.length
+        this.products = res.pageOfItems
+        console.log(res)
+      },
+      complete: () => {this.completed = true}
     })
 
   }

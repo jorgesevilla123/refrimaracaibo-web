@@ -18,7 +18,7 @@ export class MainAutomotrizComponent implements OnInit {
 
   route(category){
 
-    this.router.navigate(['automotriz/categorias'], {queryParams: {categoria: category}})
+    this.router.navigate(['automotriz/categorias'], {queryParams: {categoria: category, page: 1}})
    
 
 

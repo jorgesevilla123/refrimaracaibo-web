@@ -189,13 +189,20 @@ function getProductsByCategory(req, res){
 function filterCategory(req, res){
    
     let query = req.query.q
+    let page = req.query.page
+    let itemsPerPage = 42
+    console.log(page)
     let regex = new RegExp(`${query}`, 'gi')
     console.log(query)
-    Product.find({$and: [{categoria: 'AUTOMOTRIZ', title: regex}]}, (err, products) => {
+    Product.find({$and: [{categoria: 'AUTOMOTRIZ', title: regex}]})
+    .exec((err, products) => {
         if(err){console.log(err)}
         else {
-            console.log(products)
-            res.json({products: products, message: 'Products sended'})
+            let count = products.length
+            let pageToInt = parseInt(page);
+            const pager = paginate(products.length, pageToInt, itemsPerPage);
+            const pageOfItems = products.slice(pager.startIndex, pager.endIndex + 1);
+            res.json({ products: products, current: page, pages: Math.ceil(products.length / itemsPerPage), count: count, pageOfItems, pager})
         }
     })
 }
