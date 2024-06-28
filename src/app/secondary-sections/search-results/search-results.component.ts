@@ -217,17 +217,6 @@ export class SearchResultsComponent implements OnInit {
 
 
 
-
-    getRootCategories().subscribe(
-      categories => {
-
-        this.categories = categories
-        // this.categories = val
-      }
-    )
-
-
-
     this.route.queryParamMap.subscribe(
       ({ params }: any) => {
         this.query = params.q
@@ -242,13 +231,6 @@ export class SearchResultsComponent implements OnInit {
 
 
   }
-
-
-  sup() {
-    console.log('hllo')
-  }
-
-
 
 
 

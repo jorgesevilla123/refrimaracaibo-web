@@ -122,7 +122,8 @@ export class ProductsService {
 
 
   filterCategory(category){
-    let api = `${this.API}/filter?q=${category}`
+    let query = category.toUpperCase()
+    let api = `${this.API}/filter?q=${query}`
     return this.http.get<any>(api)
 
   }
