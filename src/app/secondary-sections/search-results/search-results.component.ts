@@ -242,6 +242,7 @@ export class SearchResultsComponent implements OnInit {
   searchProducts(query, page) {
     this.productsService.searchProducts(query, page).subscribe(
       pager => {
+        this.paginationService.pagerSearch = 'search'
         this.paginationService.pager = pager
         this.resultsLength = pager.pageOfItems.length
         this.products = pager.pageOfItems

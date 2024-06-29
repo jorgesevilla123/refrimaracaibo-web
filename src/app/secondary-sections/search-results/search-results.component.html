@@ -107,12 +107,12 @@
 </mat-drawer-container> -->
 
 
-   <div class="container">
+   <div class="main-content">
       <!-- row -->
       <div class="row gx-10">
          <!-- col -->
 
-         <aside style="margin-top: 40px" class="col-lg-3 col-md-4 mb-6 mb-md-0">
+         <aside style="margin-top: 40px; width: 250px;" class="col-lg-3 col-md-4 mb-6 mb-md-0">
            <h3 style="font-size: 20px;margin-top: 40px; font-family: sans-serif;"><b>Categorias</b></h3>
 
            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
@@ -168,7 +168,7 @@
                      <img style="width: auto; height: 200px;" src="../../../assets/fridge.png" alt="" class="img-fluid rounded">
 
 
-                     <a href="#" style="color: white; margin-top: 20px; width: 100%;" class="btn btn-primary">
+                     <a href="#" style="color: white; margin-top: 20px; width: 100%" class="btn btn-primary">
                         Ver promociones
                         <i class="bi bi-arrow-right-short"></i>
                      </a>
@@ -243,7 +243,7 @@
                <!-- col -->
                <div class="col" *ngFor="let product of products">
                   <!-- card -->
-                  <div class="card card-product">
+                  <div style="width: 230px; margin: 10px;" class="card card-product">
                      <div class="card-body">
                         <!-- badge -->
                         <div class="text-center position-relative">
@@ -253,7 +253,7 @@
                            <a href="shop-single.html">
                               <!-- img -->
                               <img [src]="product.imageMetadata?.path_to_file" alt="product photo"
-                                 class="products-img mb-3 img-fluid">
+                                 class="products-img mx-auto d-block">
                            </a>
                            <!-- action btn -->
                            <!-- <div class="card-product-action">

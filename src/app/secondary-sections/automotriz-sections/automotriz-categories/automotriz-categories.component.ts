@@ -171,7 +171,7 @@ export class AutomotrizCategoriesComponent implements OnInit {
     public loginService: LoginService,
    
 
-  ) { }
+  ) {   this.dataSource.data = TREE_DATA; }
 
   ngOnInit(): void {
    
