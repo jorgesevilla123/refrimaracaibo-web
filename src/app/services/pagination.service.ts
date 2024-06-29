@@ -13,6 +13,7 @@ export class PaginationService {
   query: any
   pageName: any
   currentPage: any
+  parentRouteName: string //name of the parent route coming from the categories components
 
   constructor(
     private productService: ProductsService,
@@ -61,8 +62,13 @@ export class PaginationService {
 
     }
 
-    else if (this.pagerSearch == 'category'){
+    else if (this.pagerSearch == 'categorias'){
       console.log(this.routeState.pathFromRoot)
+      this.productService.filterCategory(this.query, page).subscribe(
+        {next: (products) => {
+          this.router.navigate([`/${this.parentRouteName}/categorias`], {queryParams: {categoria: this.query, page: page}})
+          console.log(products)}}
+      )
       // this.productService.getProductsCategory(this.pageName, page, this.pageName).subscribe(
       //   {
       //     next: (val) => {
