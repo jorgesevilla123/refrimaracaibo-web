@@ -112,46 +112,34 @@
       <div class="row gx-10">
          <!-- col -->
 
-         <aside style="margin-top: 40px; width: 250px;" class="col-lg-3 col-md-4 mb-6 mb-md-0">
-           <h3 style="font-size: 20px;margin-top: 40px; font-family: sans-serif;"><b>Categorias</b></h3>
+         <aside style="margin-top: 100px" class="col-lg-3 col-md-4 mb-6 mb-md-0">
+           <h2 style="color: black; margin-top: 20px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory"
+           aria-expanded="false" aria-controls="collapseExample"> Categorias <i
+           class="bi bi-chevron-down"></i></h2>
 
-           <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-            <!-- This is the tree node template for leaf nodes -->
-            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-            <!-- use a disabled button to provide padding for tree leaf -->
-             <button style="font-family: sans-serif;" mat-icon-button disabled></button>
-                       {{node.name}}
-                     </mat-tree-node>
+           <div class="collapse" id="collapseCategory">
+            <h3>Aire acondicionado</h3>
 
-
-            <!-- This is the tree node template for expandable nodes -->
-             <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-                       <button style="font-family: sans-serif;" mat-icon-button matTreeNodeToggle
-                               [attr.aria-label]="'Toggle ' + node.name">
-                         <mat-icon class="mat-icon-rtl-mirror">
-                           {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                         </mat-icon>
-
-                       </button>
-                       {{node.name}}
-
-                     </mat-tree-node>
-
-                   </mat-tree>
+            </div>
 
 
-                   
-                   <mat-divider style="margin-top: 40px;"></mat-divider>
+                   <mat-divider style="margin-top: 20px;"></mat-divider>
 
 
-                   <h3 style="font-size: 20px;margin-top: 40px; font-family: sans-serif;"><b>Filtrar precio</b></h3>
-                   <mat-checkbox style="margin-top: 20px;width: 100%; font-family: sans-serif; font-size: 15px;">{{0 | currency: 'USD'}} - {{19}}</mat-checkbox>
-                   <mat-checkbox style="margin-top: 20px;width: 100%; font-family: sans-serif; font-size: 15px;">{{20 | currency: 'USD'}} - {{49}}</mat-checkbox>
-                   <mat-checkbox style="margin-top: 20px;width: 100%; font-family: sans-serif; font-size: 15px;">{{50 | currency: 'USD'}} - {{79}}</mat-checkbox>
-                   <mat-checkbox style="margin-top: 20px;width: 100%; font-family: sans-serif; font-size: 15px;">{{80 | currency: 'USD'}}+</mat-checkbox>
-                   
+                   <h2 style="color: black; margin-top: 20px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrice"
+           aria-expanded="false" aria-controls="collapseExample"> Filtrar precio <i
+           class="bi bi-chevron-down"></i></h2>
 
-                   <mat-divider style="margin-top: 40px;"></mat-divider>
+           <div class="collapse" id="collapsePrice">
+            <h3>Aire acondicionado</h3>
+
+            </div>
+
+
+
+
+               
+                   <mat-divider style="margin-top: 20px;"></mat-divider>
 
                    <div style="margin-top: 40px;">
                      <!-- Banner Design -->
@@ -185,18 +173,15 @@
 
 
             <!-- card -->
-            <div style="margin-top: 20px; padding-top: 20px; padding-bottom: 20px; background-color: rgba(30, 143, 255, 0.151);" class="card mb-4 border-0">
-               <!-- card body -->
-               <div  class="card-body p-9">
-                  <h2 id="resultados" style="font-family: sans-serif;" class="mb-0 fs-1">Resultados de busqueda</h2>
-               </div>
+            <div style="margin-top: 20px; padding-top: 5px; padding-bottom: 5px; background-color: rgba(30, 143, 255, 0.151);"
+            class="card mb-4 border-0">
+            <!-- card body -->
+            <div class="card-body p-9">
+                <h2 id="resultados" class="mb-0">{{ resultsLength}} Resultados para busqueda de "{{query}}"</h2>
             </div>
+        </div>
             <!-- list icon -->
             <div class="d-lg-flex justify-content-between align-items-center">
-               <div class="mb-3 mb-lg-0">
-                  <h3 style="margin-left: 10px; margin-top: 20px; font-family: sans-serif;"><b>{{resultsLength}}</b> resultados para la busqueda
-                     para <b>{{query}}</b>: </h3>
-               </div>
 
                <!-- icon -->
                <div class="d-md-flex justify-content-between align-items-center">
@@ -216,15 +201,7 @@
                   </div>
 
                   <div class="d-flex mt-2 mt-lg-0">
-                     <div class="me-2 flex-grow-1">
-                        <!-- select option -->
-                        <select class="form-select">
-                           <option selected="">Mostrar: 50</option>
-                           <option value="10">10</option>
-                           <option value="20">20</option>
-                           <option value="30">30</option>
-                        </select>
-                     </div>
+                  
                      <div>
                         <!-- select option -->
                         <select class="form-select">
@@ -333,6 +310,9 @@
 
 
 
+
+
+   <mat-divider style="margin-top: 20px;"></mat-divider>
 
 
 <footer style="margin-top: 20px" class="footer">

@@ -33,6 +33,7 @@ import { HogarSectionComponent } from './secondary-sections/hogar-section/hogar-
 import { MainHogarComponent } from './secondary-sections/hogar-section/main-hogar/main-hogar.component';
 import { CommercialRefriComponent } from './secondary-sections/commercial-refri/commercial-refri.component';
 import { MainCommercialRefriComponent } from './secondary-sections/commercial-refri/main-commercial-refri/main-commercial-refri.component';
+import { LavadoraCategoriesComponent } from './secondary-sections/lavadora-categories/lavadora-categories.component';
 
 //For autoscrolling in searchproducts component
 const routerOptions: ExtraOptions = {
@@ -74,6 +75,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'principal', pathMatch: 'full' },
       { path: 'principal', component: MainLavadoraComponent},
+      { path: 'categorias', component:  LavadoraCategoriesComponent}
     ]
   },
   {

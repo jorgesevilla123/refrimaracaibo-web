@@ -30,19 +30,16 @@ a {
     --fc-card-subtitle-color: ;
     --fc-card-border-width: 1px;
     --fc-card-border-color: var(--fc-border-color-translucent);
-    --fc-card-border-radius: 0.5rem;
+    --fc-card-border-radius: 0.3rem;
     --fc-card-box-shadow: ;
     --fc-card-inner-border-radius: calc(0.5rem - 1px);
     --fc-card-cap-padding-y: 0.5rem;
     --fc-card-cap-padding-x: 1rem;
-    --fc-card-cap-bg: var(--fc-card-bg);
-    --fc-card-cap-color: ;
-    --fc-card-height: ;
-    --fc-card-color: ;
+
     --fc-card-bg: #fff;
     --fc-card-img-overlay-padding: 1rem;
     --fc-card-group-margin: 1rem;
-    word-wrap: break-word;
+  
     background-clip: border-box;
     background-color: var(--fc-card-bg);
     border: 0.5px solid rgba(0, 0, 0, 0.144);

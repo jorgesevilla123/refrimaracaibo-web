@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-main-lavadora',
@@ -7,14 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainLavadoraComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public router: Router
+
+  ) { }
 
   ngOnInit(): void {
   }
 
 
-  route(routeLink){
-    console.log('you are clicking moderfoke')
+  route(category){
+    this.router.navigate(['lavadora/categorias'], {queryParams: {categoria: category, page: 1}})
   }
 
 

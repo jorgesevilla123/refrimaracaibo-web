@@ -181,7 +181,10 @@ export class AutomotrizCategoriesComponent implements OnInit {
 
   showRoute(){
     this.route.queryParams.subscribe({
-      next: (query) => this.getCategory(query.categoria, query.page),
+      next: (query) => {
+        this.category = query.categoria
+        this.getCategory(query.categoria, query.page
+          )},
       error: (e) => console.log(e),
       complete: () => console.log('observable   ')
     })
@@ -191,7 +194,7 @@ export class AutomotrizCategoriesComponent implements OnInit {
 
   getCategory(category, page){
     console.log(page)
-    this.productsService.filterCategory(category, page).subscribe({
+    this.productsService.filterCategory(category, page, 'AUTOMOTRIZ').subscribe({
       next: (res) => {
         let parentRoute = this.route.parent.snapshot.routeConfig.path
         this.paginationService.parentRouteName = parentRoute
