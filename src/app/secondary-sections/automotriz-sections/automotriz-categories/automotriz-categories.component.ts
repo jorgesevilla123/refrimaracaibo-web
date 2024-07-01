@@ -197,6 +197,7 @@ export class AutomotrizCategoriesComponent implements OnInit {
     this.productsService.filterCategory(category, page, 'AUTOMOTRIZ').subscribe({
       next: (res) => {
         let parentRoute = this.route.parent.snapshot.routeConfig.path
+        this.paginationService.parentCategory = 'AUTOMOTRIZ'
         this.paginationService.parentRouteName = parentRoute
         this.paginationService.query = category
         this.paginationService.pagerSearch = 'categorias'

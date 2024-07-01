@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-main-secadora',
@@ -7,15 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainSecadoraComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
 
-  route(routeDirection){
-    console.log(routeDirection)
 
+  route(category){
+    this.router.navigate(['secadora/categorias'], {queryParams: {categoria: category, page: 1}})
   }
+
 
 }

@@ -33,7 +33,10 @@ import { HogarSectionComponent } from './hogar-section/hogar-section.component';
 import { MainHogarComponent } from './hogar-section/main-hogar/main-hogar.component';
 import { CommercialRefriComponent } from './commercial-refri/commercial-refri.component';
 import { MainCommercialRefriComponent } from './commercial-refri/main-commercial-refri/main-commercial-refri.component';
-import { LavadoraCategoriesComponent } from './lavadora-categories/lavadora-categories.component'
+import { LavadoraCategoriesComponent } from './lavadora-categories/lavadora-categories.component';
+import {SecadoraCategoriesComponent} from '../secondary-sections/secadora-sections/secadora-categories/secadora-categories.component';
+import { NeveraCategoriesComponent } from './nevera-section/nevera-categories/nevera-categories.component';
+import { CommercialRefriCategoriesComponent } from './commercial-refri/commercial-refri-categories/commercial-refri-categories.component'
 
 @NgModule({
   declarations: [
@@ -65,7 +68,10 @@ import { LavadoraCategoriesComponent } from './lavadora-categories/lavadora-cate
     MainHogarComponent,
     CommercialRefriComponent,
     MainCommercialRefriComponent,
-    LavadoraCategoriesComponent
+    LavadoraCategoriesComponent,
+    SecadoraCategoriesComponent,
+    NeveraCategoriesComponent,
+    CommercialRefriCategoriesComponent
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../../services/products.service' 
-
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-main-commercial-refri',
   templateUrl: './main-commercial-refri.component.html',
@@ -12,17 +12,20 @@ export class MainCommercialRefriComponent implements OnInit {
   products: any
 
   constructor(
-    public productService: ProductsService
+    public productService: ProductsService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
     this.getSomeProducts()
   }
 
-  route(routeName){
-    console.log('name')
 
+  route(category){
+    this.router.navigate(['refrigeracion-comercial/categorias'], {queryParams: {categoria: category, page: 1}})
   }
+
+
 
 
   getSomeProducts(){

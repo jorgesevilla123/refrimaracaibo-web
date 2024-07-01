@@ -11,12 +11,13 @@ import { AlertService } from 'src/app/shared/alert.service';
 
 
 @Component({
-  selector: 'app-lavadora-categories',
-  templateUrl: './lavadora-categories.component.html',
-  styleUrls: ['./lavadora-categories.component.scss']
+  selector: 'app-secadora-categories',
+  templateUrl: './secadora-categories.component.html',
+  styleUrls: ['./secadora-categories.component.scss']
 })
-export class LavadoraCategoriesComponent implements OnInit {
+export class SecadoraCategoriesComponent implements OnInit {
 
+  
   category: any
   completed: boolean = false
   query: any
@@ -39,10 +40,9 @@ export class LavadoraCategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.showRoute()
-
   }
 
-
+  
   showRoute(){
     this.route.queryParams.subscribe({
       next: (query) => {
@@ -56,10 +56,10 @@ export class LavadoraCategoriesComponent implements OnInit {
 
   getCategory(category, page){
     console.log(page)
-    this.productsService.filterCategory(category, page, 'LAVADORA').subscribe({
+    this.productsService.filterCategory(category, page, 'SECADORA').subscribe({
       next: (res) => {
         let parentRoute = this.route.parent.snapshot.routeConfig.path
-          this.paginationService.parentCategory = 'LAVADORA'
+          this.paginationService.parentCategory = 'SECADORA'
         this.paginationService.parentRouteName = parentRoute
         this.paginationService.query = category
         this.paginationService.pagerSearch = 'categorias'
@@ -100,7 +100,6 @@ export class LavadoraCategoriesComponent implements OnInit {
     this.cartService.updateCount()
     this.alert.notifySuccess('Producto eliminado del carrito', 800, 'top', 'center');
   }
-
 
 
 
