@@ -36,6 +36,8 @@ import { MainCommercialRefriComponent } from './secondary-sections/commercial-re
 import { LavadoraCategoriesComponent } from './secondary-sections/lavadora-categories/lavadora-categories.component';
 import { SecadoraCategoriesComponent } from './secondary-sections/secadora-sections/secadora-categories/secadora-categories.component';
 import { NeveraCategoriesComponent } from './secondary-sections/nevera-section/nevera-categories/nevera-categories.component';
+import { CommercialRefriCategoriesComponent } from './secondary-sections/commercial-refri/commercial-refri-categories/commercial-refri-categories.component';
+import { HerramientasCategoriesComponent } from './secondary-sections/herramientas-section/herramientas-categories/herramientas-categories.component';
 
 //For autoscrolling in searchproducts component
 const routerOptions: ExtraOptions = {
@@ -61,7 +63,8 @@ const routes: Routes = [
     path: 'herramientas', component: HerramientasSectionComponent,
     children: [
       { path: '', redirectTo: 'principal', pathMatch: 'full' },
-      { path: 'principal', component: MainHerramientasComponent }
+      { path: 'principal', component: MainHerramientasComponent },
+      { path: 'categorias', component: HerramientasCategoriesComponent}
     ]
   },
   { 
@@ -109,7 +112,8 @@ const routes: Routes = [
     path: 'refrigeracion-comercial', component: CommercialRefriComponent,
     children: [
       {path: '', redirectTo: 'principal', pathMatch: 'full'},
-      {path: 'principal', component: MainCommercialRefriComponent}
+      {path: 'principal', component: MainCommercialRefriComponent},
+      {path: 'categorias', component: CommercialRefriCategoriesComponent},
     ]
   }
   ,

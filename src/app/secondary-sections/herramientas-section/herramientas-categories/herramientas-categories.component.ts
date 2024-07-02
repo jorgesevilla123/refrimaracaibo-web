@@ -9,13 +9,12 @@ import { PaginationService } from 'src/app/services/pagination.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { AlertService } from 'src/app/shared/alert.service';
 
-
 @Component({
-  selector: 'app-commercial-refri-categories',
-  templateUrl: './commercial-refri-categories.component.html',
-  styleUrls: ['./commercial-refri-categories.component.scss']
+  selector: 'app-herramientas-categories',
+  templateUrl: './herramientas-categories.component.html',
+  styleUrls: ['./herramientas-categories.component.scss']
 })
-export class CommercialRefriCategoriesComponent implements OnInit {
+export class HerramientasCategoriesComponent implements OnInit {
   category: any
   completed: boolean = false
   query: any
@@ -23,7 +22,6 @@ export class CommercialRefriCategoriesComponent implements OnInit {
   totalItems: any
   currentPage: any = 1
   products: any
-
 
   constructor(
     public route: ActivatedRoute,
@@ -33,14 +31,13 @@ export class CommercialRefriCategoriesComponent implements OnInit {
     public paginationService: PaginationService,
     public dialog: MatDialog,
     public loginService: LoginService,
+   
   ) { }
 
   ngOnInit(): void {
     this.showRoute()
   }
-
   
-
   showRoute(){
     this.route.queryParams.subscribe({
       next: (query) => {
@@ -54,10 +51,10 @@ export class CommercialRefriCategoriesComponent implements OnInit {
 
   getCategory(category, page){
     console.log(page)
-    this.productsService.filterCategory(category, page, 'REFRIGERACION COMERCIAL').subscribe({
+    this.productsService.filterCategory(category, page, 'HERRAMIENTAS').subscribe({
       next: (res) => {
         let parentRoute = this.route.parent.snapshot.routeConfig.path
-          this.paginationService.parentCategory = 'REFRIGERACION COMERCIAL'
+          this.paginationService.parentCategory = 'HERRAMIENTAS'
         this.paginationService.parentRouteName = parentRoute
         this.paginationService.query = category
         this.paginationService.pagerSearch = 'categorias'

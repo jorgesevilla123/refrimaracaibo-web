@@ -36,7 +36,8 @@ import { MainCommercialRefriComponent } from './commercial-refri/main-commercial
 import { LavadoraCategoriesComponent } from './lavadora-categories/lavadora-categories.component';
 import {SecadoraCategoriesComponent} from '../secondary-sections/secadora-sections/secadora-categories/secadora-categories.component';
 import { NeveraCategoriesComponent } from './nevera-section/nevera-categories/nevera-categories.component';
-import { CommercialRefriCategoriesComponent } from './commercial-refri/commercial-refri-categories/commercial-refri-categories.component'
+import { CommercialRefriCategoriesComponent } from './commercial-refri/commercial-refri-categories/commercial-refri-categories.component';
+import { HerramientasCategoriesComponent } from './herramientas-section/herramientas-categories/herramientas-categories.component'
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { CommercialRefriCategoriesComponent } from './commercial-refri/commercia
     LavadoraCategoriesComponent,
     SecadoraCategoriesComponent,
     NeveraCategoriesComponent,
-    CommercialRefriCategoriesComponent
+    CommercialRefriCategoriesComponent,
+    HerramientasCategoriesComponent
   ],
   imports: [
     CommonModule,

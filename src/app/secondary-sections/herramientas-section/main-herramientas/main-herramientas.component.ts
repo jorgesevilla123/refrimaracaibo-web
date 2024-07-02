@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../../services/products.service' 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-herramientas',
@@ -11,7 +12,8 @@ export class MainHerramientasComponent implements OnInit {
   public products: any
 
   constructor(
-    public productService: ProductsService
+    public productService: ProductsService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -19,10 +21,10 @@ export class MainHerramientasComponent implements OnInit {
   }
 
 
-  route(routeName){
-    console.log('showing route')
-
+  route(category){
+    this.router.navigate(['herramientas/categorias'], {queryParams: {categoria: category, page: 1}})
   }
+
 
   
   getSomeProducts(){
