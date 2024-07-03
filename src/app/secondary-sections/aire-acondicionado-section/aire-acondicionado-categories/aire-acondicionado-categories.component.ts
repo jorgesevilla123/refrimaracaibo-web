@@ -9,7 +9,6 @@ import { PaginationService } from 'src/app/services/pagination.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { AlertService } from 'src/app/shared/alert.service';
 
-
 @Component({
   selector: 'app-aire-acondicionado-categories',
   templateUrl: './aire-acondicionado-categories.component.html',
@@ -24,7 +23,6 @@ export class AireAcondicionadoCategoriesComponent implements OnInit {
   currentPage: any = 1
   products: any
 
-
   constructor(
     public route: ActivatedRoute,
     public productsService: ProductsService,
@@ -34,6 +32,7 @@ export class AireAcondicionadoCategoriesComponent implements OnInit {
     public dialog: MatDialog,
     public loginService: LoginService,
    
+
   ) { }
 
   ngOnInit(): void {
@@ -98,6 +97,7 @@ export class AireAcondicionadoCategoriesComponent implements OnInit {
     this.cartService.updateCount()
     this.alert.notifySuccess('Producto eliminado del carrito', 800, 'top', 'center');
   }
+
 
 
 

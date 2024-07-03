@@ -130,9 +130,6 @@ export class ProductsDescriptionComponent implements OnInit, AfterViewInit {
     console.log(this.loginService.selectedUser)
 
     
-  
-
-
 
     this.route.queryParams.subscribe(
       val => {

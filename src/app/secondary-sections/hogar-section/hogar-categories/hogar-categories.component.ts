@@ -24,6 +24,10 @@ export class HogarCategoriesComponent implements OnInit {
   products: any
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 413fc4da0141f68288c89579a17df7cde61c5cd5
   constructor(
     public route: ActivatedRoute,
     public productsService: ProductsService,
@@ -33,14 +37,22 @@ export class HogarCategoriesComponent implements OnInit {
     public dialog: MatDialog,
     public loginService: LoginService,
    
+<<<<<<< HEAD
   ) { }
+=======
+  )
+   { }
+>>>>>>> 413fc4da0141f68288c89579a17df7cde61c5cd5
 
   ngOnInit(): void {
     this.showRoute()
   }
 
   
+<<<<<<< HEAD
 
+=======
+>>>>>>> 413fc4da0141f68288c89579a17df7cde61c5cd5
   showRoute(){
     this.route.queryParams.subscribe({
       next: (query) => {
@@ -103,4 +115,9 @@ export class HogarCategoriesComponent implements OnInit {
 
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 413fc4da0141f68288c89579a17df7cde61c5cd5
 }

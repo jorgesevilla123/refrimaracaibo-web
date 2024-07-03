@@ -38,8 +38,13 @@ import {SecadoraCategoriesComponent} from '../secondary-sections/secadora-sectio
 import { NeveraCategoriesComponent } from './nevera-section/nevera-categories/nevera-categories.component';
 import { CommercialRefriCategoriesComponent } from './commercial-refri/commercial-refri-categories/commercial-refri-categories.component';
 import { HerramientasCategoriesComponent } from './herramientas-section/herramientas-categories/herramientas-categories.component';
+<<<<<<< HEAD
 import { HogarCategoriesComponent } from './hogar-section/hogar-categories/hogar-categories.component';
 import { AireAcondicionadoCategoriesComponent } from './aire-acondicionado-section/aire-acondicionado-categories/aire-acondicionado-categories.component'
+=======
+import { AireAcondicionadoCategoriesComponent } from './aire-acondicionado-section/aire-acondicionado-categories/aire-acondicionado-categories.component';
+import { HogarCategoriesComponent } from './hogar-section/hogar-categories/hogar-categories.component'
+>>>>>>> 413fc4da0141f68288c89579a17df7cde61c5cd5
 
 @NgModule({
   declarations: [
@@ -76,8 +81,13 @@ import { AireAcondicionadoCategoriesComponent } from './aire-acondicionado-secti
     NeveraCategoriesComponent,
     CommercialRefriCategoriesComponent,
     HerramientasCategoriesComponent,
+<<<<<<< HEAD
     HogarCategoriesComponent,
     AireAcondicionadoCategoriesComponent
+=======
+    AireAcondicionadoCategoriesComponent,
+    HogarCategoriesComponent
+>>>>>>> 413fc4da0141f68288c89579a17df7cde61c5cd5
   ],
   imports: [
     CommonModule,
