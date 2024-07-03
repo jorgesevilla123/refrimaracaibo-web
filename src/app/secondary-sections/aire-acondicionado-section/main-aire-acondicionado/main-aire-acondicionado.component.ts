@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../../services/products.service' 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-aire-acondicionado',
@@ -11,7 +12,8 @@ export class MainAireAcondicionadoComponent implements OnInit {
   products: any
 
   constructor(
-    public productService: ProductsService
+    public productService: ProductsService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -19,9 +21,11 @@ export class MainAireAcondicionadoComponent implements OnInit {
   }
 
 
-  route(routeName){
-    console.log('showing route name')
+  route(category){
+    this.router.navigate(['aire-acondicionado/categorias'], {queryParams: {categoria: category, page: 1}})
   }
+
+
 
   getSomeProducts(){
     this.productService.getSomeProducts().subscribe(

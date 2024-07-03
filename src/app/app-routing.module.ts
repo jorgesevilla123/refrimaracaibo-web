@@ -38,6 +38,8 @@ import { SecadoraCategoriesComponent } from './secondary-sections/secadora-secti
 import { NeveraCategoriesComponent } from './secondary-sections/nevera-section/nevera-categories/nevera-categories.component';
 import { CommercialRefriCategoriesComponent } from './secondary-sections/commercial-refri/commercial-refri-categories/commercial-refri-categories.component';
 import { HerramientasCategoriesComponent } from './secondary-sections/herramientas-section/herramientas-categories/herramientas-categories.component';
+import { AireAcondicionadoCategoriesComponent } from './secondary-sections/aire-acondicionado-section/aire-acondicionado-categories/aire-acondicionado-categories.component';
+import { HogarCategoriesComponent } from './secondary-sections/hogar-section/hogar-categories/hogar-categories.component';
 
 //For autoscrolling in searchproducts component
 const routerOptions: ExtraOptions = {
@@ -56,7 +58,9 @@ const routes: Routes = [
     path: 'aire-acondicionado', component: AireAcondicionadoSectionComponent,
     children: [
       {path: '', redirectTo: 'principal', pathMatch: 'full'},
-      {path: 'principal', component: MainAireAcondicionadoComponent}
+      {path: 'principal', component: MainAireAcondicionadoComponent},
+      {path: 'categorias', component: AireAcondicionadoCategoriesComponent},
+
     ]
   },
   {
@@ -72,6 +76,7 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'principal', pathMatch: 'full'},
       {path: 'principal', component: MainHogarComponent},
+      {path: 'categorias', component: HogarCategoriesComponent},
     
     ]
   },
