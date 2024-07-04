@@ -1,8 +1,13 @@
 
 .container{
-    margin-right: 20px;
-    margin-left: 20px;
-    max-width: 95%;
+  --fc-gutter-x: 2rem;
+  --fc-gutter-y: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: calc(var(--fc-gutter-x)*.5);
+  padding-right: calc(var(--fc-gutter-x)*.5);
+  width: 100%
+
 }
 
 

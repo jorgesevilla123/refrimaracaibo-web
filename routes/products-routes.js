@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { getProducts, searchProducts, getProductsByCategory, filterCategory, getSomeProducts, filterTools} =  require('../controllers/products-controllers')
+const { getProducts, searchProducts, getProductsByCategory, filterCategory, getSomeProducts, filterTools, getOneProduct} =  require('../controllers/products-controllers')
 
 let router = Router()
 
@@ -10,6 +10,9 @@ let router = Router()
 
 
 router.route('/get-products').get(getProducts)
+
+
+router.route('/get-one-product').get(getOneProduct)
 
 
 router.route('/filter').get(filterCategory)

@@ -140,7 +140,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
-  { path: 'product-details/:id', component: ProductsDescriptionComponent },
+  { path: 'product-details', component: ProductsDescriptionComponent },
 
 ];
 

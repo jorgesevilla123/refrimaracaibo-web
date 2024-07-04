@@ -29,33 +29,7 @@ export class ProductsDescriptionComponent implements OnInit, AfterViewInit {
   private isNearBottom = true
   product: any;
   currentRate = 5;
-  quantities = [
-    {name: 'cantidad', value: 1},
-    {name: 'cantidad', value: 2},
-    {name: 'cantidad', value: 3},
-    {name: 'cantidad', value: 4},
-    {name: 'cantidad', value: 5},
-    {name: 'cantidad', value: 6},
-    {name: 'cantidad', value: 7},
-    {name: 'cantidad', value: 8},
-    {name: 'cantidad', value: 9},
-    {name: 'cantidad', value: 10},
-    {name: 'cantidad', value: 11},
-    {name: 'cantidad', value: 12},
-    {name: 'cantidad', value: 13},
-    {name: 'cantidad', value: 14},
-    {name: 'cantidad', value: 15},
-    {name: 'cantidad', value: 16},
-    {name: 'cantidad', value: 17},
-    {name: 'cantidad', value: 18},
-    {name: 'cantidad', value: 19},
-    {name: 'cantidad', value: 20},
-    {name: 'cantidad', value: 21},
-    {name: 'cantidad', value: 22},
-    {name: 'cantidad', value: 23},
-    {name: 'cantidad', value: 24},
-    {name: 'cantidad', value: 25},
-  ];
+
   selectedQuantity: any
   price: number = 19
   inCart: any

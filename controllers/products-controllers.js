@@ -84,6 +84,19 @@ function getProducts(req, res){
     })
 }
 
+function getOneProduct(req, res){
+    let id = req.query.id
+    Product.find({_id: id},).exec(
+        (err, product) => {
+            if(err) {console.log(err)}
+            else {
+                console.log(product)
+
+            }
+        }
+    )
+}
+
 
 
 function getSomeProducts(req, res){
@@ -254,6 +267,6 @@ function increaseInventory(req, res){
 
 
 
-module.exports = {getProducts, searchProducts, decreaseInventory, getProductsByCategory, filterCategory, getSomeProducts, filterTools}
+module.exports = {getProducts, searchProducts, decreaseInventory, getProductsByCategory, filterCategory, getSomeProducts, filterTools, getOneProduct}
 
 
