@@ -43,7 +43,7 @@ export class LoginService {
 
   users = [
     {
-      name: 'Jorge Sevilla', email: 'jsdelduca@gmail.com', password: 'Jorge2784', password2: 'Jorge2784', shipping_addresses: [], cart: [],
+      name: 'Jorge Sevilla', email: 'jsdelduca@gmail.com', password: 'jorge2784', password2: 'Jorge2784', shipping_addresses: [], cart: [],
 
     },
     {
