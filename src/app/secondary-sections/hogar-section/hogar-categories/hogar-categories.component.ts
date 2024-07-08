@@ -52,6 +52,8 @@ export class HogarCategoriesComponent implements OnInit {
     })
   }
 
+  
+
   getCategory(category, page){
     console.log(page)
     this.productsService.filterCategory(category, page, 'HOGAR').subscribe({

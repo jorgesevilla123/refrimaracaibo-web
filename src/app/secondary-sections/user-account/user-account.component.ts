@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { LoginService } from '../../services/login.service'
 import { Router } from '@angular/router'
 import { CartService } from 'src/app/services/cart.service';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { UpdateModalComponent } from '../../shared/update-modal/update-modal.component'
+
 
 
 
@@ -16,6 +17,7 @@ import { UpdateModalComponent } from '../../shared/update-modal/update-modal.com
 })
 export class UserAccountComponent implements OnInit {
 
+
   constructor(
     public loginService: LoginService,
     public router: Router,
@@ -24,6 +26,7 @@ export class UserAccountComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  
   }
 
 

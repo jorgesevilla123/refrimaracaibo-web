@@ -5,7 +5,7 @@ import { AlertService } from '../../shared/alert.service'
 import { LoginService } from '../../services/login.service'
 import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-overview.component'
 import { WebsocketService } from '../../services/websocket.service'
-
+import { ProductsService } from '../../services/products.service'
 
 
 
@@ -15,7 +15,7 @@ import { WebsocketService } from '../../services/websocket.service'
   templateUrl: './products-description.component.html',
   styleUrls: ['./products-description.component.scss']
 })
-export class ProductsDescriptionComponent implements OnInit, AfterViewInit {
+export class ProductsDescriptionComponent implements OnInit{
   @ViewChild(CartOverviewComponent) cartDrawer: CartOverviewComponent
   @ViewChild('scrollFrame', {static: false}) scrollFrame: ElementRef;
   @ViewChild('chatForm') chatForm: ElementRef;
@@ -44,55 +44,56 @@ export class ProductsDescriptionComponent implements OnInit, AfterViewInit {
     public cartService: CartService,
     public  alert: AlertService,
     public loginService: LoginService,
-    public websocket: WebsocketService
+    public websocket: WebsocketService,
+    public productService: ProductsService
 
   ) { }
 
 
 
-  ngAfterViewInit(): void {
+  // ngAfterViewInit(): void {
    
  
-    this.messages.changes.subscribe( () => {
-      this.scrollContainer = this.scrollFrame.nativeElement
+  //   this.messages.changes.subscribe( () => {
+  //     this.scrollContainer = this.scrollFrame.nativeElement
      
      
-      console.log('A message was sent')
-      this.onMessagesChange()})
-  }
+  //     console.log('A message was sent')
+  //     this.onMessagesChange()})
+  // }
 
 
-  private onMessagesChange(): void {
-    if(this.isNearBottom){
-      this.scrollToBottom()
+  // private onMessagesChange(): void {
+  //   if(this.isNearBottom){
+  //     this.scrollToBottom()
 
-    }
-  }
+  //   }
+  // }
 
-  private scrollToBottom(): void {
-    this.scrollContainer.scroll({
-      top: this.scrollContainer.scrollHeight,
-      left: 0,
-      behavior: 'smooth'
-    });
-  }
-
-
-
-  private isUserNearBottom(): boolean {
-    const threshold = 150
-    const position = this.scrollContainer.scrollTop + this.scrollContainer.offsetHeight;
-    const height = this.scrollContainer.scrollHeight;
-    console.log('position', position)
-    console.log('height', height)
-    return position > height - threshold
-  }
+  // private scrollToBottom(): void {
+  //   this.scrollContainer.scroll({
+  //     top: this.scrollContainer.scrollHeight,
+  //     left: 0,
+  //     behavior: 'smooth'
+  //   });
+  // }
 
 
-  scrolled(event: any): void {
-    console.log('scrolled')
-    this.isNearBottom = this.isUserNearBottom()
-  }
+
+  // private isUserNearBottom(): boolean {
+  //   const threshold = 150
+  //   const position = this.scrollContainer.scrollTop + this.scrollContainer.offsetHeight;
+  //   const height = this.scrollContainer.scrollHeight;
+  //   console.log('position', position)
+  //   console.log('height', height)
+  //   return position > height - threshold
+  // }
+
+
+  // scrolled(event: any): void {
+  //   console.log('scrolled')
+  //   this.isNearBottom = this.isUserNearBottom()
+  // }
 
 
 
@@ -101,18 +102,23 @@ export class ProductsDescriptionComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-    console.log(this.loginService.selectedUser)
+    this.getParams()
+  }
 
-    
 
-    this.route.queryParams.subscribe(
-      val => {
-        let product = JSON.parse(val.product)
-       this.product = product
-       console.log('passsed here')
-       this.product.hasOwnProperty('quantity') ? this.selectedQuantity = this.product.quantity : this.selectedQuantity = 1
-      }
-    )
+  getParams(){
+    this.route.queryParams.subscribe({
+      next: (query) => {this.getOneProduct(query.id)}
+    })
+  }
+
+
+  getOneProduct(id){
+    this.productService.getOneProduct(id).subscribe({
+      next: (res) => {this.product = res.product[0]},
+      error: (err) => {console.log(err)},
+      complete: () => {console.log('observable completed')}
+    })
 
   }
 
