@@ -90,7 +90,7 @@ function getOneProduct(req, res){
         (err, product) => {
             if(err) {console.log(err)}
             else {
-                console.log(product)
+                res.json({product})
 
             }
         }

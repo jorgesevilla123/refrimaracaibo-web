@@ -47,7 +47,7 @@ export class ProductsService {
 
   getOneProduct(id): Observable<any> {
 
-    let api = `${this.API}/get-one-product?${id}`
+    let api = `${this.API}/get-one-product?id=${id}`
     return this.http.get<any>(api)
   }
 

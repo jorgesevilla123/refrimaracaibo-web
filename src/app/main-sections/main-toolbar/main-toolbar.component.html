@@ -138,7 +138,7 @@
             {{cartService.count}}
             <span class="visually-hidden">unread messages</span>
           </span></button>
-        <button style="width: 70px; height: 70px;" mat-icon-button routerLink="/dashboard"><mat-icon
+        <button style="width: 70px; height: 70px;" mat-icon-button [routerLink]="['/dashboard/pedidos']" [queryParams]="{section: 'orders'}"><mat-icon
             style="color: dodgerblue; width: auto; height: auto; font-size: 30px;">account_circle</mat-icon></button>
 
       </ng-template>

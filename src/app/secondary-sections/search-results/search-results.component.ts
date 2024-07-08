@@ -121,38 +121,6 @@ interface ExampleFlatNode {
 export class SearchResultsComponent implements OnInit {
 
 
-  //this functions are part of the tree implementation
-
-  private _transformer = (node: FoodNode, level: number) => {
-    return {
-      expandable: !!node.children && node.children.length > 0,
-      name: node.name,
-      level: level,
-    };
-  };
-
-
-
-  treeControl = new FlatTreeControl<ExampleFlatNode>(
-    node => node.level,
-    node => node.expandable,
-  );
-
-  treeFlattener = new MatTreeFlattener(
-    this._transformer,
-    node => node.level,
-    node => node.expandable,
-    node => node.children,
-  );
-
-  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-
-
-
-
-  ///////////////////////////////////// 
-
-
 
   @ViewChild(CartOverviewComponent) cartDrawer: CartOverviewComponent
   @ViewChild(PaginationComponent) paginate: PaginationComponent
@@ -199,22 +167,14 @@ export class SearchResultsComponent implements OnInit {
     public loginService: LoginService
 
   ) {
-    this.dataSource.data = TREE_DATA;
+  
   }
 
-  ///////////////////////////// this function is also part of the tree
-  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
-
-
-
-
+ 
 
 
 
   ngOnInit(): void {
-
-
-
 
 
     this.route.queryParamMap.subscribe(
@@ -226,10 +186,12 @@ export class SearchResultsComponent implements OnInit {
     )
 
 
+  }
 
 
-
-
+  productDescription(id){
+    console.log(id)
+    this.router.navigate(['/product-details'], {queryParams: {id: id}})
   }
 
 
@@ -252,7 +214,6 @@ export class SearchResultsComponent implements OnInit {
       }
     )
   }
-
 
 
 

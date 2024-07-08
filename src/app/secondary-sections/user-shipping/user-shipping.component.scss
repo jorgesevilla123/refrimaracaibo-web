@@ -1,4 +1,13 @@
 
+
+.container{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+
+
 @mixin doublegrid-template{
     max-height: 160px;
     overflow-y: scroll;

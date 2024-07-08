@@ -127,12 +127,12 @@ const routes: Routes = [
   {
     path: 'dashboard', component: UserDashboardComponent,
     children: [
-      { path: '', redirectTo: 'account', pathMatch: 'full' },
-      { path: 'account', component: UserAccountComponent },
+      { path: '', redirectTo: 'pedidos', pathMatch: 'full' },
+      { path: 'pedidos', component: UserAccountComponent },
       { path: 'purchases', component: UserPurchasesComponent },
-      { path: 'cart', component: UsersCartComponent },
+      { path: 'notificaciones', component: UsersCartComponent },
       { path: 'shipping', component: UserShippingComponent },
-      { path: 'settings', component: UserSettingsComponent },
+      { path: 'configuracion', component: UserSettingsComponent },
     ],
     canActivate: [LoginGuardGuard]
 
