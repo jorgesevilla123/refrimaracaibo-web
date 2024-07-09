@@ -8,7 +8,7 @@
 
 
 
-<section>
+<section style="margin-top: 20px;">
     <div class="container">
        <!-- row -->
        <div class="row">
@@ -16,8 +16,8 @@
              <!-- card -->
              <div class="card py-1 border-0 mb-8">
                 <div>
-                   <h1 class="fw-bold">Shop Cart</h1>
-                   <p class="mb-0">Shopping in 382480</p>
+                   <h1 class="fw-bold">Carrito de compras</h1>
+                   <p class="mb-0">Comprando en <b>El milagro</b></p>
                 </div>
              </div>
           </div>
@@ -27,9 +27,9 @@
           <div class="col-lg-8 col-md-7">
              <div class="py-3">
                 <!-- alert -->
-                <div class="alert alert-danger p-2" role="alert">
-                   You’ve got FREE delivery. Start
-                   <a href="#!" class="alert-link">checkout now!</a>
+                <div class="alert alert-success p-2" role="alert">
+                   Tienes delivery gratis!
+                   <a href="#!" class="alert-link">compra ahora!</a>
                 </div>
                 <ul class="list-group list-group-flush">
                    <!-- list group -->
@@ -38,7 +38,7 @@
                       <div class="row align-items-center">
                          <div class="col-6 col-md-6 col-lg-7">
                             <div class="d-flex">
-                               <img src="../assets/images/products/product-img-1.jpg" alt="Ecommerce" class="icon-shape icon-xxl">
+                               <img src="../../../assets/TRANSMISION HAIER MOD NUEVO-Photoroom.jpg" alt="Ecommerce" class="icon-shape icon-xxl">
                                <div class="ms-3">
                                   <!-- title -->
                                   <a href="../pages/shop-single.html" class="text-inherit">
@@ -68,7 +68,7 @@
                             <!-- input -->
                             <div class="input-group input-spinner">
                                <input type="button" value="-" class="button-minus btn btn-sm" data-field="quantity">
-                               <input type="number" step="1" max="10" value="1" name="quantity" class="quantity-field form-control-sm form-input">
+                               <input style="color: black;" type="number" step="1" max="10" value="1" name="quantity" class="quantity-field form-control-sm form-input">
                                <input type="button" value="+" class="button-plus btn btn-sm" data-field="quantity">
                             </div>
                          </div>
@@ -84,7 +84,7 @@
                       <div class="row align-items-center">
                          <div class="col-6 col-md-6 col-lg-7">
                             <div class="d-flex">
-                               <img src="../assets/images/products/product-img-2.jpg" alt="Ecommerce" class="icon-shape icon-xxl">
+                               <img src="../../../assets/TUERCA HIBRIDA ABIERTA-Photoroom.jpg" alt="Ecommerce" class="icon-shape icon-xxl">
                                <div class="ms-3">
                                   <a href="../pages/shop-single.html" class="text-inherit">
                                      <h6 class="mb-0">NutriChoice Digestive</h6>
@@ -131,7 +131,7 @@
                       <div class="row align-items-center">
                          <div class="col-6 col-md-6 col-lg-7">
                             <div class="d-flex">
-                               <img src="../assets/images/products/product-img-3.jpg" alt="Ecommerce" class="icon-shape icon-xxl">
+                               <img src="../../../assets/3352287-Photoroom (1).jpg" alt="Ecommerce" class="icon-shape icon-xxl">
                                <div class="ms-3">
                                   <!-- title -->
                                   <a href="../pages/shop-single.html" class="text-inherit">
@@ -179,7 +179,7 @@
                       <div class="row align-items-center">
                          <div class="col-6 col-md-6 col-lg-7">
                             <div class="d-flex">
-                               <img src="../assets/images/products/product-img-4.jpg" alt="Ecommerce" class="icon-shape icon-xxl">
+                               <img src="../../../assets/TRANSMISION HAIER MOD NUEVO-Photoroom.jpg" alt="Ecommerce" class="icon-shape icon-xxl">
                                <div class="ms-3">
                                   <!-- title -->
                                   <!-- title -->
@@ -228,7 +228,7 @@
                       <div class="row align-items-center">
                          <div class="col-6 col-md-6 col-lg-7">
                             <div class="d-flex">
-                               <img src="../assets/images/products/product-img-5.jpg" alt="Ecommerce" class="icon-shape icon-xxl">
+                               <img src="../../../assets/TRANSMISION HAIER MOD NUEVO-Photoroom.jpg" alt="Ecommerce" class="icon-shape icon-xxl">
                                <div class="ms-3">
                                   <!-- title -->
                                   <a href="../pages/shop-single.html" class="text-inherit">
@@ -315,8 +315,8 @@
                    </div>
                    <div class="d-grid mb-1 mt-4">
                       <!-- btn -->
-                      <button class="btn btn-primary btn-lg d-flex justify-content-between align-items-center" type="submit">
-                         Go to Checkout
+                      <button [routerLink]="['/pago']" class="btn btn-primary btn-lg d-flex justify-content-between align-items-center" type="submit">
+                         Ir a pago
                          <span class="fw-bold">$67.00</span>
                       </button>
                    </div>
@@ -474,195 +474,6 @@
 
 
  -->
-
-
-
-
-
-
-
-
-    <div class="recommendations-grid-container">
-
-        <div class="recommendations-section">
-
-
-
-
-
-            <h1 style="margin-top: 20px; margin-left: 20px;">Productos que te podrian interesar</h1>
-
-            <ngb-carousel [interval]="3000">
-
-                <ng-template ngbSlide>
-                    <div style="display: flex; margin-left: 30px; margin-right: 30px; justify-content: center;">
-
-
-
-                        <div class="card-2">
-                            <div class="image">
-                                <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
-                            </div>
-
-                            <div class="heading"> Bombillo de 15W </div>
-                            <div class="author">{{200 | currency: 'USD'}}</div>
-
-                        </div>
-
-
-
-                        <div class="card-2">
-                            <div class="image">
-                                <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
-                            </div>
-
-                            <div class="heading"> Bombillo de 15W</div>
-                                <div class="author">{{200 | currency: 'USD'}}</div>
-                            
-                        </div>
-
-
-
-                        <div class="card-2">
-                            <div class="image">
-                                <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
-                            </div>
-
-                            <div class="heading"> Bombillo de 15W</div>
-                                <div class="author">{{200 | currency: 'USD'}}</div>
-                            
-                        </div>
-
-                        <div class="card-2">
-                            <div class="image">
-                                <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
-                            </div>
-
-                            <div class="heading"> Bombillo de 15W</div>
-                                <div class="author">{{200 | currency: 'USD'}}</div>
-                          
-                        </div>
-
-
-
-                        <div class="card-2">
-                            <div class="image">
-                                <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
-                            </div>
-
-                            <div class="heading"> Bombillo de 15W</div>
-                                <div class="author">{{200 | currency: 'USD'}}</div>
-                          
-                        </div>
-
-
-
-
-
-                    </div>
-
-
-
-                </ng-template>
-                <ng-template ngbSlide>
-                    <div style="display: flex; margin-left: 30px; margin-right: 30px; justify-content: center;">
-
-
-
-                        <div class="card-2">
-                            <div class="image">
-                                <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
-                            </div>
-
-                            <div class="heading"> Bombillo de 15W</div>
-                                <div class="author">{{200 | currency: 'USD'}}</div>
-                            
-                        </div>
-
-
-
-                        <div class="card-2">
-                            <div class="image">
-                                <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
-                            </div>
-
-                            <div class="heading"> Bombillo de 15W</div>
-                                <div class="author">{{200 | currency: 'USD'}}</div>
-                            
-                        </div>
-
-
-
-                        <div class="card-2">
-                            <div class="image">
-                                <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
-                            </div>
-
-                            <div class="heading"> Bombillo de 15W</div>
-                                <div class="author">{{200 | currency: 'USD'}}</div>
-                            
-                        </div>
-
-                        <div class="card-2">
-                            <div class="image">
-                                <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
-                            </div>
-
-                            <div class="heading"> Bombillo de 15W</div>
-                                <div class="author">{{200 | currency: 'USD'}}</div>
-                            
-                        </div>
-
-
-
-                        <div class="card-2">
-                            <div class="image">
-                                <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
-                            </div>
-
-                            <div class="heading"> Bombillo de 15W</div>
-                                <div class="author">{{200 | currency: 'USD'}}</div>
-                            
-                        </div>
-
-
-
-
-
-                    </div>
-
-                </ng-template>
-            </ngb-carousel>
-
-
-
-
-
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
-
-
-
-
-
-
-
-
-
 
 
 

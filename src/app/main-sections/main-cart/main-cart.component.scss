@@ -1,4 +1,41 @@
- .card-content {
+
+.icon-shape {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle
+}
+
+.icon-xxl {
+  height: 4rem;
+  line-height: 4rem;
+  width: 4rem;
+}
+
+
+
+
+.input-spinner .form-input {
+  background: 0 0;
+  height: 100%;
+  min-height: 2rem;
+  text-align: center;
+  width: 80px !important;
+  border-color: rgba(0, 0, 0, 0.237);
+  border-width: 0.5px;
+  
+}
+
+.form-control-sm {
+  border-radius: .25rem;
+  font-size: .765625rem;
+  min-height: calc(1.6em + .5rem + 2px);
+  padding: .25rem .5rem;
+}
+
+
+.card-content {
      display: grid;
      grid-template-columns: repeat(3, 1fr);
      place-items: center;
