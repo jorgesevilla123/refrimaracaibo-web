@@ -7,7 +7,7 @@
              <div>
                 <div class="mb-8">
                    <!-- text -->
-                   <h1 class="fw-bold mb-0">Checkout</h1>
+                   <h1 class="fw-bold mb-0">Pago</h1>
                    <p class="mb-0">
                       Already have an account? Click here to
                       <a href="#!">Sign in</a>
@@ -19,20 +19,20 @@
        </div>
        <div>
           <!-- row -->
-          <div class="row">
+          <div style="margin-top: 40px;" class="row">
              <div class="col-xl-7 col-lg-6 col-md-12">
                 <!-- accordion -->
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                    <!-- accordion item -->
-                   <div class="accordion-item py-4">
+                   <div class="accordion-item">
                       <div class="d-flex justify-content-between align-items-center">
                          <!-- heading one -->
-                         <a href="#" class="fs-5 text-inherit collapsed h4" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
-                            <i class="feather-icon icon-map-pin me-2 text-muted"></i>
-                            Add delivery address
-                         </a>
+                         <button style="font-weight: 500;" class="accordion-button fs-6 text-inherit collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                           <i style="margin-right: 10px;" class="bi bi-geo-alt"></i>
+                            Agregar direccion de envio
+                         </button>
                          <!-- btn -->
-                         <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addAddressModal">Add a new address</a>
+                         <button class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addAddressModal">Agregar direccion</button>
                          <!-- collapse -->
                       </div>
                       <div id="flush-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
@@ -85,11 +85,11 @@
                       </div>
                    </div>
                    <!-- accordion item -->
-                   <div class="accordion-item py-4">
-                      <a href="#" class="text-inherit collapsed h5" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                         <i class="feather-icon icon-clock me-2 text-muted"></i>
-                         Delivery time
-                      </a>
+                   <div class="accordion-item">
+                      <button style="font-weight: 500;" class="accordion-button fs-6 text-inherit collapsed" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        <i style="margin-right: 10px;" class="bi bi-calendar-check"></i>
+                         Programar delivery
+                      </button>
                       <!-- collapse -->
                       <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                          <!-- nav -->
@@ -871,12 +871,12 @@
                       </div>
                    </div>
                    <!-- accordion item -->
-                   <div class="accordion-item py-4">
-                      <a href="#" class="text-inherit h5" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                         <i class="feather-icon icon-shopping-bag me-2 text-muted"></i>
-                         Delivery instructions
+                   <div class="accordion-item">
+                      <button style="font-weight: 500;" class="accordion-button fs-6 text-inherit collapsed" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        <i style="margin-right: 10px;" class="bi bi-card-checklist"></i>
+                         Instrucciones de envio
                          <!-- collapse -->
-                      </a>
+                      </button>
                       <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                          <div class="mt-5">
                             <label for="DeliveryInstructions" class="form-label sr-only">Delivery instructions</label>
@@ -894,12 +894,12 @@
                       </div>
                    </div>
                    <!-- accordion item -->
-                   <div class="accordion-item py-4">
-                      <a href="#" class="text-inherit h5" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                         <i class="feather-icon icon-credit-card me-2 text-muted"></i>
-                         Payment Method
+                   <div class="accordion-item">
+                      <button style="font-weight: 500;" class="accordion-button fs-6 text-inherit collapsed" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        <i style="margin-right: 10px;" class="bi bi-credit-card"></i>
+                         Metodo de pago
                          <!-- collapse -->
-                      </a>
+                      </button>
                       <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                          <div class="mt-5">
                             <div>
@@ -1022,13 +1022,13 @@
              <div class="col-md-12 offset-xl-1 col-xl-4 col-lg-6">
                 <div class="mt-4 mt-lg-0">
                    <div class="card shadow-sm">
-                      <h5 class="px-6 py-4 bg-transparent mb-0">Order Details</h5>
+                      <h4 style="margin-left: 20px; font-weight: 500; margin-top: 20px;" class="fs-5">Detalles de compra</h4>
                       <ul class="list-group list-group-flush">
                          <!-- list group item -->
                          <li class="list-group-item px-4 py-3">
                             <div class="row align-items-center">
                                <div class="col-2 col-md-2">
-                                  <img src="../assets/images/products/product-img-1.jpg" alt="Ecommerce" class="img-fluid">
+                                  <img src="../../../assets/CITY RUN TR-Photoroom (1).png" alt="Ecommerce" class="img-fluid">
                                </div>
                                <div class="col-5 col-md-5">
                                   <h6 class="mb-0">Haldiram's Sev Bhujia</h6>
@@ -1046,7 +1046,7 @@
                          <li class="list-group-item px-4 py-3">
                             <div class="row align-items-center">
                                <div class="col-2 col-md-2">
-                                  <img src="../assets/images/products/product-img-2.jpg" alt="Ecommerce" class="img-fluid">
+                                  <img src="../../../assets/TUERCA HIBRIDA ABIERTA-Photoroom.jpg" alt="Ecommerce" class="img-fluid">
                                </div>
                                <div class="col-5 col-md-5">
                                   <h6 class="mb-0">NutriChoice Digestive</h6>
@@ -1065,7 +1065,7 @@
                          <li class="list-group-item px-4 py-3">
                             <div class="row align-items-center">
                                <div class="col-2 col-md-2">
-                                  <img src="../assets/images/products/product-img-3.jpg" alt="Ecommerce" class="img-fluid">
+                                  <img src="../../../assets/STANLEY 1-Photoroom.png" alt="Ecommerce" class="img-fluid">
                                </div>
                                <div class="col-5 col-md-5">
                                   <h6 class="mb-0">Cadbury 5 Star Chocolate</h6>
@@ -1084,7 +1084,7 @@
                          <li class="list-group-item px-4 py-3">
                             <div class="row align-items-center">
                                <div class="col-2 col-md-2">
-                                  <img src="../assets/images/products/product-img-4.jpg" alt="Ecommerce" class="img-fluid">
+                                  <img src="../../../assets/CITY RUN TR-Photoroom (1).png" alt="Ecommerce" class="img-fluid">
                                </div>
                                <div class="col-5 col-md-5">
                                   <h6 class="mb-0">Onion Flavour Potato</h6>
