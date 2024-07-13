@@ -1,49 +1,75 @@
 
 
 
-
-
-<div class="user-shipping-container">
-
-
-    <div *ngIf="shippingService.haveShipping(); then shippingAdresses else noShipping"></div>
-
-    <ng-template #shippingAdresses>
-        <button class="add-button" mat-stroked-button (click)="addShipping()" [mat-dialog-close]="true">Agregar direccion <mat-icon>add</mat-icon></button>
-
-        <div class="shipping-grid">
-            <div class="addresses" *ngFor="let shipping of loginService.selectedUser[0].shipping_addresses">
-               <mat-card class="shipping-card">
-                <div style="display: flex; justify-content: baseline;" mat-card-title>
-                    <h2>{{shipping.descripcion }}</h2>
-                    <button style="margin-left: auto; color: red;" mat-icon-button (click)="deleteShippingAddress(shipping.descripcion)"><mat-icon>delete</mat-icon></button>
+<div class="container py-6 p-md-6 p-lg-10">
+    <div style="margin-bottom: 40px;" class="d-flex justify-content-between mb-6">
+       <!-- heading -->
+       <h2 class="mb-0 fs-2">Direcciones</h2>
+       <!-- button -->
+       <a href="#" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addAddressModal">Agregar nueva direccion</a>
+    </div>
+    <div class="row">
+       <!-- col -->
+       <div class="col-xl-5 col-lg-6 col-xxl-4 col-12 mb-4">
+          <!-- form -->
+          <div class="card">
+             <div class="card-body p-6">
+                <div class="form-check mb-4">
+                   <input class="form-check-input" type="radio" name="flexRadioDefault" id="homeRadio" checked="">
+                   <label class="form-check-label text-dark fw-semibold" for="homeRadio">Casa</label>
                 </div>
+                <!-- address -->
+                <p class="mb-6">
+                   Jitu Chauhan
+                   <br>
 
-                <div mat-card-actions>
-                    <button mat-stroked-button (click)="openShippingUpdateDialog(shipping)">Actualizar <mat-icon>edit</mat-icon></button>
-                   
+                   4450 North Avenue Oakland,
+                   <br>
 
+                   Nebraska, United States,
+                   <br>
+
+                   402-776-1106
+                </p>
+                <!-- btn -->
+                <a href="#" class="btn btn-dark btn-sm">Direccion predeterminada</a>
+                <div class="mt-4">
+                   <a href="#" class="text-inherit">Editar</a>
+                   <a href="#" class="text-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</a>
                 </div>
-               </mat-card>
+             </div>
+          </div>
+       </div>
+       <div class="col-xk-5 col-lg-6 col-xxl-4 col-12 mb-4">
+          <!-- input -->
+          <div class="card">
+             <div class="card-body p-6">
+                <div class="form-check mb-4">
+                   <input class="form-check-input" type="radio" name="flexRadioDefault" id="officeRadio">
+                   <label class="form-check-label text-dark fw-semibold" for="officeRadio">Oficina</label>
+                </div>
+                <!-- nav item -->
+                <p class="mb-6">
+                   Nitu Chauhan
+                   <br>
 
-            </div>
-        </div>
+                   3853 Coal Road
+                   <br>
 
-    </ng-template>
+                   Tannersville, Pennsylvania, 18372, United States
+                   <br>
 
-
-
-    <ng-template #noShipping>
-        
-    <h2 style="font-weight: 300;">No tienes direcciones de envio agregadas</h2>
-    <button class="add-ship-button" mat-stroked-button (click)="addShipping()" [mat-dialog-close]="true">Agregar direccion <mat-icon>add</mat-icon></button>
-
-
-    </ng-template>
-
-
-
-
-
-</div>
-
+                   402-776-1106
+                </p>
+                <!-- link -->
+                <a href="#" class="link-primary">Seleccionar como predeterminada</a>
+                <div class="mt-4">
+                   <a href="#" class="text-inherit">Editar</a>
+                   <!-- btn -->
+                   <a href="#" class="text-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</a>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
