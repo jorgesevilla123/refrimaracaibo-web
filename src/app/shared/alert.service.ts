@@ -37,7 +37,7 @@ export class AlertService {
     snackConfig.duration = duration;
     snackConfig.horizontalPosition = this.horizontalPosition;
     snackConfig.verticalPosition = this.verticalPosition;
-    snackConfig.panelClass = ['warn-class'];
+    snackConfig.panelClass = ['web-warn'];
     this.snackBar.open(message, '', snackConfig);
 
   }

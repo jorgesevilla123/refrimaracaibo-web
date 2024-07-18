@@ -45,7 +45,10 @@ export class MainCartComponent implements OnInit {
   ngOnInit(): void {
     this.sessionService.getProfile().subscribe(
       {
-        next: (profile) => { this.loginService.selectedUser.push(profile.parsedProfile) },
+        next: (profile) => { 
+          console.log(profile)
+          this.loginService.selectedUser.push(profile.parsedProfile) 
+        },
         error: (err) => { },
         complete: () => { console.log('updating count'), this.getCartProducts(), this.total = this.cartService.calculateTotal() }
       }
@@ -58,6 +61,12 @@ export class MainCartComponent implements OnInit {
 
   isLoggedIn() {
 
+  }
+
+
+
+  valueChange(event){
+    console.log(event)
   }
 
 

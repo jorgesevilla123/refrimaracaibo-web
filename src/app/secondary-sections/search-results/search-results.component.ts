@@ -199,6 +199,10 @@ export class SearchResultsComponent implements OnInit {
 
 
 
+
+
+
+
   //here we handle searching and creating pager setting the data to pagination service
 
   searchProducts(query, page) {
@@ -218,22 +222,40 @@ export class SearchResultsComponent implements OnInit {
 
 
   addToCart(product) {
+
+    if(this.loginService.selectedUser[0].cart.some(cartProducts => cartProducts._id == product._id)){
+      console.log('product in cart')
+      this.alert.notifyWarn('Ya tienes este producto en carrito', 2000, 'top', 'center')
+    }
+    else {
+      
+    
     product.quantity = 1
-    this.cartService.addProductsToLoggedUserCart(product)
-    this.cartService.updateCount();
-    console.log(this.loginService.selectedUser[0].cart)
+    this.cartService.addProductsToLoggedUserCart(product).subscribe(
+      {
+        next: (value) => {
+          console.log(value)
+        },
+        complete: () => {
+          this.cartService.updateCount();
+          console.log(this.loginService.selectedUser[0].cart)
+          const dialogRef = this.dialog.open(CartOverviewComponent, {
+            width: '550px'
+          });
+          dialogRef.afterClosed().subscribe(
+            () => {
+              console.log('cerrado')
+            }
+          )
 
-
-    const dialogRef = this.dialog.open(CartOverviewComponent, {
-      width: '550px'
-    });
-
-
-    dialogRef.afterClosed().subscribe(
-      () => {
-        console.log('cerrado')
+        }
       }
     )
+
+    }
+
+   
+  
   }
 
 
@@ -245,124 +267,6 @@ export class SearchResultsComponent implements OnInit {
     this.cartService.updateCount()
     this.alert.notifySuccess('Producto eliminado del carrito', 800, 'top', 'center');
   }
-
-
-  optionHandler(value: MatOptionSelectionChange) {
-    console.log(this.categoryValues)
-
-    if (value.source.selected === false) {
-      let index = this.categoryValues.indexOf(value.source.value.id)
-      // prevents that the remove function is executed again when the onChangeSelection function triggers on filter deselection
-      if (index === -1) {
-        return
-      }
-      else {
-        //removes the product filter
-        this.remove({ id: value.source.value.id, name: value.source.value.label_value, mat_select: value })
-      }
-
-    }
-
-    else {
-
-
-      this.categoryChips.push({ id: value.source.value.id, name: value.source.value.label_value, mat_select: value })
-      let label_value = value.source.value.id
-      this.categoryValues.push(label_value)
-
-
-
-      this.filter()
-      this.isFiltering = true
-      this.matchExist = true
-
-
-    }
-
-
-
-
-
-    // if(value.length === 0){
-    //   const reg = new RegExp('', 'gi');
-    //   let matchedSection = this.sections_template.filter(
-    //     ({ capacity }) => capacity.match(reg)
-    //   )
-    //   this.sectionsToRender = this.sections_template
-    // }
-    // else {
-
-
-    //   let string = value.join('|')
-    //   console.log(string)
-    //   const reg = new RegExp(string, 'gi');
-    //   let matchedSection = this.sections_template.filter(
-    //     ({ capacity }) => capacity.match(reg)
-    //   )
-    //   console.log(matchedSection)
-
-    //   this.sectionsToRender = matchedSection
-
-    // }
-
-  }
-
-  remove(category) {
-
-    let index = this.categoryChips.indexOf(category)
-
-    this.categoryChips.splice(index, 1)
-
-    let categoryIndex = this.categoryValues.indexOf(category.id)
-
-    this.categoryValues.splice(categoryIndex, 1)
-
-
-    category.mat_select.source.deselect()
-
-
-    if (this.categoryValues.length > 0) {
-
-      this.filter()
-
-    }
-    else {
-      this.isFiltering = true
-      this.matchExist = true
-      this.products = this.products
-
-    }
-
-
-  }
-
-
-
-
-  filter() {
-    let filterValues = new Set(this.categoryValues)
-    console.log(filterValues)
-
-
-    // let matched = this.sections_template.filter(value =>
-    //   value.category_id.some(n => filterValues.has(n))
-    // )
-
-    // if (matched.length === 0) {
-    //   this.isFiltering = true
-    //   this.matchExist = false
-    // }
-
-    // else {
-
-    //   this.products = matched
-    //   this.isFiltering = true
-    //   this.matchExist = true
-    // }
-  }
-
-
-
 
 
 
