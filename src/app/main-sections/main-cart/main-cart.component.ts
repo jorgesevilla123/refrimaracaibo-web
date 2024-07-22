@@ -65,10 +65,6 @@ export class MainCartComponent implements OnInit {
 
 
 
-  valueChange(event){
-    console.log(event)
-  }
-
 
 
   increaseQuantity(product) {

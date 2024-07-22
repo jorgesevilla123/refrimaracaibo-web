@@ -61,7 +61,7 @@
                             <!-- input -->
                             <div class="input-group input-spinner">
                                <input [disabled]="product.quantity == 1" type="button" value="-" class="button-minus btn btn-sm btn-primary" data-field="quantity" (click)="decreaseQuantity(product)">
-                               <input style="color: black;" type="number" step="1" min="1" max="10" [value]="product.quantity" name="quantity" class="quantity-field form-control-sm form-input" (change)="valueChange($event)">
+                               <input style="color: black;" type="number" step="1" min="1" max="10" [value]="product.quantity" name="quantity" class="quantity-field form-control-sm form-input" >
                                <input type="button" value="+" class="button-plus btn btn-sm btn-primary" data-field="quantity" (click)="increaseQuantity(product)">
                             </div>
                          </div>

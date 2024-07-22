@@ -5,7 +5,7 @@ import { LoginService } from '../../services/login.service'
 import { ShippingModalComponent } from '../../secondary-sections/shipping-modal/shipping-modal.component'
 import { ShippingService } from '../../services/shipping.service'
 import { OrderStatusModalComponent } from '../../shared/order-status-modal/order-status-modal.component'
-
+import { CartService } from '../../services/cart.service'
 interface Food {
   value: string;
   viewValue: string;
@@ -37,6 +37,7 @@ export class BillingComponent implements OnInit {
   selectedPayment
   paymentProcessed:any = 'waitingCode'
   paymentMethod: any = ''
+  total: any
 
 
   shippingMethods: any = [
@@ -71,6 +72,7 @@ export class BillingComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     public loginService: LoginService,
+    public cartService: CartService,
     public dialog: MatDialog,
     public shippingService: ShippingService
     ) {}
@@ -80,7 +82,16 @@ export class BillingComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginService.sessionChecker()
+    
+    this.total = this.getCartTotal()
   } 
+
+
+
+  getCartTotal(){
+    return this.cartService.calculateTotal()
+
+  }
 
 
 
