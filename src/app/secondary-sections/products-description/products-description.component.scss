@@ -11,6 +11,60 @@
 }
 
 
+
+
+///////////////////////////////////// styles for the quantity field
+
+.icon-shape {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle
+}
+
+.icon-xxl {
+  height: 4rem;
+  line-height: 4rem;
+  width: 4rem;
+}
+
+
+
+
+
+.quantity-field, input[type=number]::-webkit-inner-spin-button, 
+.quantity-field, input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+
+.input-spinner .form-input {
+  background: 0 0;
+  height: 100%;
+  min-height: 2rem;
+  text-align: center;
+  width: 50px !important;
+  height: 50px;
+  font-size: 15px;
+  font-weight: 500;
+  border-color: rgba(0, 0, 0, 0.237);
+  border-width: 0.5px;
+  
+}
+
+.form-control-sm {
+  border-radius: .25rem;
+  font-size: .765625rem;
+  min-height: calc(1.6em + .5rem + 2px);
+  padding: .25rem .5rem;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 .grid{
     display: grid;
     grid-template-columns: 3fr 1fr;

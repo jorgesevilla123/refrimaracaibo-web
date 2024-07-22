@@ -78,13 +78,13 @@ export class MainCartComponent implements OnInit {
     this.cartService.updateQuantity().subscribe(
       val => {
         console.log(val)
-
         product.selected ? this.total = this.cartService.IncreaseTotal() : this.total
 
       }
     )
-
   }
+
+  
 
   decreaseQuantity(product) {
     let quantity = Number(product.quantity - 1)
@@ -96,11 +96,14 @@ export class MainCartComponent implements OnInit {
         product.selected ? this.total = this.cartService.decreaseTotal() : this.total
       }
     )
-
-
-
-
   }
+
+
+
+
+
+
+
 
   selectProduct(checkbox, product) {
     if (product.selected) {
