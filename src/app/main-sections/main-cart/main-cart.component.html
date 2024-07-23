@@ -43,9 +43,7 @@
                                <img [src]="product.imageMetadata.path_to_file" alt="Ecommerce" class="icon-shape icon-xxl">
                                <div class="ms-3">
                                   <!-- title -->
-                                  <a href="../pages/shop-single.html" class="text-inherit">
-                                     <h6 class="mb-0">{{product.title}}</h6>
-                                  </a>
+                                    <button class="btn text-truncate product-description" style="font-size: 12px; width: 200px;" (click)="productDescription(product._id)">{{product.title}}</button>
                                   <span><small class="text-muted">{{product.modelo}}</small></span>
                                   <!-- text -->
                                   <div class="mt-2 small lh-1">
@@ -67,7 +65,7 @@
                          </div>
                          <!-- price -->
                          <div class="col-2 text-lg-end text-start text-md-end col-md-2">
-                            <span class="fw-bold">{{product.precio | currency: 'USD'}}</span>
+                            <span class="fw-bold">{{product.precio*product.quantity | currency: 'USD'}}</span>
                          </div>
                       </div>
                    </li>

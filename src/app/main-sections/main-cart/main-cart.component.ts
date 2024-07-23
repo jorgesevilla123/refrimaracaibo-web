@@ -95,95 +95,17 @@ export class MainCartComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-  selectProduct(checkbox, product) {
-    if (product.selected) {
-      console.log(product)
-      product.selected = false
-      this.selectionUpdate(this.loginService.selectedUser[0]).subscribe(
-        cart => {
-          if (cart.updated) {
-            this.allDeselected()
-            this.total = this.cartService.calculateTotal()
-          }
-        }
-      )
-    }
-    else {
-      product.selected = true
-      console.log(product)
-      this.selectionUpdate(this.loginService.selectedUser[0]).subscribe(
-        cart => {
-          if (cart.updated) {
-            this.allDeselected()
-            this.total = this.cartService.calculateTotal()
-          }
-        }
-      )
-    }
-    // else {
-    //   this.loginService.selectedUser[0].selectedCart.push(product)
-    //   console.log(this.loginService.selectedUser[0].selectedCart)
-    // }
-
-
-
+  
+  productDescription(id){
+    console.log(id)
+    this.router.navigate(['/product-details'], {queryParams: {id: id}})
   }
 
 
 
-  allDeselected() {
-    let allDeselected = this.cartProducts.every(product => { return product.selected === false })
-    this.deselected = allDeselected
-    console.log(allDeselected)
-  }
 
 
-  toggleAll(event: MatCheckboxChange) {
-    if (event.checked) {
-      console.log('checked')
-      console.log('products not checked')
-      this.cartProducts.forEach(product => {
-        if (!product.selected) {
-          product.selected = true
-        }
-      })
-      this.selectionUpdate(this.loginService.selectedUser[0]).subscribe(
-        cart => {
-          if (cart.updated) {
-            this.allDeselected()
-            this.total = this.cartService.calculateTotal()
-          }
-        }
-      )
 
-    }
-    else {
-      console.log('products checked')
-      this.cartProducts.filter(product => { product.selected === true })
-      this.cartProducts.forEach(product => {
-        if (product.selected) {
-          product.selected = false
-        }
-      })
-
-      this.selectionUpdate(this.loginService.selectedUser[0]).subscribe(
-        cart => {
-          if (cart.updated) {
-            this.allDeselected()
-            this.total = this.cartService.calculateTotal()
-          }
-        }
-      )
-    }
-
-
-  }
 
 
 

@@ -83,101 +83,17 @@ export class BillingComponent implements OnInit {
   ngOnInit(): void {
     this.loginService.sessionChecker()
     
-    this.total = this.getCartTotal()
+  
   } 
 
 
 
-  getCartTotal(){
-    return this.cartService.calculateTotal()
-
-  }
 
 
 
-  selectAddress(radio, shipping){
-    console.log(radio, shipping)
-    radio.checked ? (this.selectedAddress = shipping) : (radio.checked = true, this.selectedAddress = shipping)
-    
-  }
+ 
 
 
 
-  openCart(){
-    console.log('hello')
-
-  }
-
-
-  openDialog(){
-    let dialogConfig = new MatDialogConfig()
-    dialogConfig.width = '25%'
-    dialogConfig.data = {update: false}
-    let dialogRef = this.dialog.open(ShippingModalComponent, dialogConfig)
-    dialogRef.afterClosed().subscribe(
-      val => {
-        console.log(val)
-          this.loginService.shippingAddressForm.reset()
-        
-      }
-    )
-  }
-
-
-
-  selectShipping(radio, payment){
-  
-    radio.checked ? (this.paymentMethod = payment) : (radio.checked = true, this.paymentMethod = payment)
-    console.log(this.paymentMethod)
-
-  }
-
-  
-
-
-  paymentMethodSelected(event){
-    this.selectedPayment = event.value
-    
-
-  }
-
-
-  validate(){
-    this.paymentProcessed = 'processing'
-    this.validated()
-  }
-
-
-
-  validated(){
-    setTimeout(() => {
-      this.paymentProcessed = 'processed'
-    }, 4000)
-  }
-
-
-  openShippingUpdateDialog(address){
-    this.loginService.selectedUser[0]
-    let dialogConfig = new MatDialogConfig
-    dialogConfig.data = {update: true, address}
-    this.loginService.populateForm(address)
-    this.dialog.open(ShippingModalComponent, dialogConfig)
-    
-  }
-
-
-
-
-
-  openOrderStatusModal(paymentMethod){
-    let dialogConfig = new MatDialogConfig
-    dialogConfig.data = { method: paymentMethod }
-    dialogConfig.width = '400px'
-    dialogConfig.height = '200px'
-
-    this.dialog.open(OrderStatusModalComponent, dialogConfig)
-  }
-
-  
 
 }
