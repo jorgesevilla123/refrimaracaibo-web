@@ -36,29 +36,44 @@
                         <!-- btn -->
                         <button style="width: 200px;" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal"
                            data-bs-target="#addAddressModal">Agregar direccion <i width="32" height="32"
-                              class="bi bi-plus-lg"></i></button> 
+                              class="bi bi-plus-lg"></i></button>
 
-                        <!-- Modal -->
+
+                        <!-- MODAL -->
                         <div class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                            aria-hidden="true">
                            <div class="modal-dialog">
                               <div class="modal-content">
                                  <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva direccion de envio</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                        aria-label="Close"></button>
                                  </div>
                                  <div class="modal-body">
-                                    ...
+                                    <form [formGroup]="loginService.shippingAddressForm">
+                                       <div>
+                                          <label for="exampleFormControlInput1" class="form-label">Nombre de direccion</label>
+                                          <input type="text" class="form-control"
+                                             placeholder="Nombre de direccion. Ej casa, trabajo" aria-label="Username"
+                                             formControlName="nombre">
+
+
+                                       </div>
+
+
+
+                                    </form>
+
                                  </div>
                                  <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
-                                       data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                       data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-success">Agregar direccion de envio</button>
                                  </div>
                               </div>
                            </div>
                         </div>
+
 
 
                         <!-- collapse -->
