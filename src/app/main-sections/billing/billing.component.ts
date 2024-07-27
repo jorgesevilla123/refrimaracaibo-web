@@ -87,6 +87,18 @@ export class BillingComponent implements OnInit {
   } 
 
 
+  submitForm(){
+    let name = this.loginService.shippingAddressForm.value.nombre
+    let direccion = this.loginService.shippingAddressForm.value.direccion
+    let casa = this.loginService.shippingAddressForm.value.casa_apartamento
+    let infoExtra = this.loginService.shippingAddressForm.value.info_adicional
+    console.log(name)
+    console.log(direccion)
+    console.log(casa)
+    console.log(infoExtra)
+  }
+
+
 
 
 
