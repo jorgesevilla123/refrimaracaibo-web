@@ -193,7 +193,14 @@ function createUser(req, res) {
 
 
 
-function addToCart(req, res) {
+
+
+
+
+
+function addToCart(req, res){
+    
+    console.log('login profile')
     let {user, product} = req.body
     console.log(product)
 
@@ -202,6 +209,7 @@ function addToCart(req, res) {
     redisClient.get('profile').then(
         profile => {
             if (profile) {
+                console.log('profile ')
                 let profile_data = JSON.parse(profile)
                 profile_data.cart.push(product)
                 console.log(profile_data)

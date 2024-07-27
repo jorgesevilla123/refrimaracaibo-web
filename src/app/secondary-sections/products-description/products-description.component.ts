@@ -20,22 +20,24 @@ export class ProductsDescriptionComponent implements OnInit{
   @ViewChild('scrollFrame', {static: false}) scrollFrame: ElementRef;
   @ViewChild('chatForm') chatForm: ElementRef;
   @ViewChildren('message') messages: QueryList<any>;
+
+
+
+  formQuantity: number = 1
   
 
 
 
-
-  private scrollContainer: any
-  private isNearBottom = true
+  loaded: boolean = false
   product: any;
   currentRate = 5;
 
   selectedQuantity: any
   price: number = 19
-  inCart: any
+  inCart: boolean
   openMessage = false
   container: HTMLElement
-
+ 
 
 
 
@@ -96,13 +98,32 @@ export class ProductsDescriptionComponent implements OnInit{
   // }
 
 
+  increaseFormQuantity(){
+    this.formQuantity += 1
+  }
+
+
+  decreaseFormQuantity(){
+    this.formQuantity -= 1
+  }
+
+
 
 
 
 
 
   ngOnInit(): void {
+
     this.getParams()
+    console.log(this.product)
+  }
+
+
+
+  checkCart(product){
+    return this.loginService.selectedUser[0].cart.some( cartProduct => cartProduct._id == product._id)
+
   }
 
 
@@ -115,12 +136,58 @@ export class ProductsDescriptionComponent implements OnInit{
 
   getOneProduct(id){
     this.productService.getOneProduct(id).subscribe({
-      next: (res) => {this.product = res.product[0]},
+      next: (res) => {
+        console.log(res.product[0])
+        this.inCart = this.checkCart(res.product[0])
+        console.log(this.inCart)
+        if(this.inCart){
+          let productCart = this.loginService.selectedUser[0].cart.filter(product => product._id == id)
+          this.product = productCart[0]
+          console.log(this.product)
+
+        }
+        else {
+          this.product = res.product[0]
+          console.log(this.product)
+      
+        }
+    
+        
+      },
       error: (err) => {console.log(err)},
-      complete: () => {console.log('observable completed')}
+      complete: () => {setTimeout(() => {this.loaded = true}, 2000)}
     })
 
   }
+
+  increaseQuantity(product) {
+    let quantity = Number(product.quantity + 1)
+    let index = this.loginService.selectedUser[0].cart.findIndex(val => val.title === product.title)
+    this.loginService.selectedUser[0].cart[index].quantity = quantity
+    this.cartService.updateQuantity().subscribe(
+      val => {
+        console.log(val)
+        // product.selected ? this.total = this.cartService.IncreaseTotal() : this.total
+
+      }
+    )
+  }
+
+
+  
+  decreaseQuantity(product) {
+    let quantity = Number(product.quantity - 1)
+    let index = this.loginService.selectedUser[0].cart.findIndex(val => val.title === product.title)
+    this.loginService.selectedUser[0].cart[index].quantity = quantity
+    this.cartService.updateQuantity().subscribe(
+      val => {
+        console.log(val)
+        // product.selected ? this.total = this.cartService.decreaseTotal() : this.total
+      }
+    )
+  }
+
+
 
 
 
@@ -151,9 +218,6 @@ export class ProductsDescriptionComponent implements OnInit{
     this.websocket.sendMessage(message)
     this.chatForm.nativeElement.reset()
   
-  
-    
-
   
 
 
@@ -194,19 +258,17 @@ export class ProductsDescriptionComponent implements OnInit{
 
 
   addToCart(quantity){
-    let productExists = this.loginService.selectedUser[0].cart.some(productFound => productFound.title === this.product.title)
-    if(productExists){
-      console.log("incart")
-      this.alert.notifySuccess('Ya agregaste este producto al carrito', 2000, 'top', 'center') 
-    }
-    else{
+    console.log('this is the quantity: ', quantity)
+ 
       this.product.quantity = quantity
+      this.inCart = true
     
       if(this.loginService.selectedUser.length === 0){
         console.log('user sekected for adding products')
         this.cartService.addProductsNotLoggedUserCart(this.product)
       }
       else {
+        console.log('adding product')
         this.cartService.addProductsToLoggedUserCart(this.product).subscribe(
           val => {
             console.log(val)
@@ -216,7 +278,7 @@ export class ProductsDescriptionComponent implements OnInit{
       this.cartService.updateCount();
       this.cartDrawer.open()
 
-    }
+
 
   }
 

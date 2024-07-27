@@ -225,7 +225,7 @@
                         <!-- badge -->
                         <div class="text-center position-relative">
                            <div class="position-absolute top-0 start-0">
-                              <span class="badge bg-success">Disponible</span>
+                              <span class="badge bg-success">{{product.cantidad}} Disponible</span>
                            </div>
                            <a href="shop-single.html">
                               <!-- img -->
@@ -250,9 +250,8 @@
                         <div class="text-small mb-1">
                            <a href="#!" class="text-decoration-none text-muted"><small style="font-family: sans-serif;">{{product.categoria}}</small></a>
                         </div>
-                        <h2 class="h6" style="font-size: 13px"><a style="font-family: sans-serif;" 
-                              class="text-inherit text-decoration-none" (click)="productDescription(product._id)">{{product.title}}</a></h2>
-                              <h2 class="h6" style="font-size: 13px"><a style="font-family: sans-serif;" href="#"
+                        <button style="font-size: 12px; text-align:start;" class="btn btn-sm product-description" (click)="productDescription(product._id)">{{product.title}}</button>
+                              <h2 class="h6" style="font-size: 13px"><a style="font-family: sans-serif;"
                                  class="text-inherit text-decoration-none">{{product.modelo}}</a></h2>
                         <!-- <div> -->
                            <!-- rating -->
@@ -273,7 +272,8 @@
                            </div>
                            <!-- btn -->
                            <div>
-                              <button style="font-size: 12px; font-family: sans-serif;" type="button" class="btn btn-success" (click)="addToCart(product)">Agregar <i
+                          
+                              <button style="font-size: 12px; font-family: sans-serif;" type="button" class="btn btn-primary" (click)="addToCart(product)">Agregar <i
                                     class="bi bi-bag-plus"></i></button>
                            </div>
                         </div>

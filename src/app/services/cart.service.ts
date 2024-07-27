@@ -37,7 +37,9 @@ export class CartService {
     console.log(this.loginService.selectedUser)
     product.selected = true 
       this.loginService.selectedUser[0].cart.push(product)
+      console.log(this.loginService.selectedUser[0].cart)
       console.log(this.loginService.selectedUser[0])
+      console.log('sending request to server')
       return this.http.post(`${this.uri}/add-to-cart`, {user: this.loginService.selectedUser[0], product: product})
     
     // this.loginService.selectedUser.length === 0 ? this.cartProducts.push(product) : this.loginService.selectedUser[0].cart.push(product) 

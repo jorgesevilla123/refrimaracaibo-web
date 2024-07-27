@@ -31,9 +31,8 @@ export class LoginService {
 
 
   shippingAddressForm = new FormGroup({
-    descripcion: new FormControl(''),
-    avenida: new FormControl(''),
-    calle: new FormControl(''),
+    nombre: new FormControl(''),
+    direccion: new FormControl(''),
     casa_apartamento: new FormControl(''),
     info_adicional: new FormControl('')
   })
@@ -205,9 +204,8 @@ export class LoginService {
 
   populateForm(address) {
     this.shippingAddressForm.patchValue({
-      descripcion: address.descripcion,
-      avenida: address.avenida,
-      calle: address.calle,
+      nombre: address.nombre,
+      direccion: address.direccion,
       casa_apartamento: address.casa_apartamento,
       info_adicional: address.info_adicional
 
