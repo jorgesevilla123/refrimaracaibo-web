@@ -404,7 +404,7 @@ function handleShippingAddresses(req, res){
 
     redisClient.set('profile', profileString).then(
         result => {
-            console.log('shipping address added')
+            res.json('Shipping added succesfully')
         }
     ).catch(
         err => {

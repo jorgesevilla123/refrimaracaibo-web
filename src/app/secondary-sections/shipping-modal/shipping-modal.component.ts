@@ -53,13 +53,13 @@ export class ShippingModalComponent implements OnInit {
       )
     }
     else {
-      this.loginService.addShipping().subscribe(
-        val => {
-          console.log('Shipping added')
-          this.dialogRef.close({added: true})
+      // this.loginService.addShipping().subscribe(
+      //   val => {
+      //     console.log('Shipping added')
+      //     this.dialogRef.close({added: true})
   
-        }
-      )
+      //   }
+      // )
 
     }
    

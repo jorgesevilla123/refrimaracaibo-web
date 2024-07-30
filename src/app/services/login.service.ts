@@ -34,7 +34,8 @@ export class LoginService {
     nombre: new FormControl(''),
     direccion: new FormControl(''),
     casa_apartamento: new FormControl(''),
-    info_adicional: new FormControl('')
+    info_adicional: new FormControl(''),
+    isDefault: new FormControl()
   })
 
 
@@ -102,21 +103,25 @@ export class LoginService {
 
   addShipping() {
     //add validation
-    let descripcion = this.shippingAddressForm.get('descripcion').value
-    let avenida = this.shippingAddressForm.get('avenida').value
-    let calle = this.shippingAddressForm.get('calle').value
-    let casa_apartamento = this.shippingAddressForm.get('casa_apartamento').value
-    let info_adicional = this.shippingAddressForm.get('info_adicional').value
-    console.log(avenida, calle, casa_apartamento, info_adicional)
-    let shipping = {
-      descripcion: descripcion,
-      avenida: avenida,
-      calle: calle,
-      casa_apartamento,
-      info_adicional
+    let name = this.shippingAddressForm.value.nombre
+    let direccion = this.shippingAddressForm.value.direccion
+    let casa = this.shippingAddressForm.value.casa_apartamento
+    let infoExtra = this.shippingAddressForm.value.info_adicional
+    let isDefault = this.shippingAddressForm.value.isDefault
+    if(isDefault == null){
+      isDefault = false
     }
-
+    console.log(isDefault)
+    console.log(name, direccion, casa, infoExtra)
+    let shipping = {
+      name: name,
+      direccion: direccion,
+      casa: casa,
+      infoExtra: infoExtra,
+      isDefault: isDefault
+    }
     this.selectedUser[0].shipping_addresses.push(shipping)
+    this.shippingAddressForm.reset()
     return this.http.post(`${this.uri}/update-shipping`, this.selectedUser[0])
   }
 
@@ -129,8 +134,6 @@ export class LoginService {
     let calle = this.shippingAddressForm.get('calle').value
     let casa_apartamento = this.shippingAddressForm.get('casa_apartamento').value
     let info_adicional = this.shippingAddressForm.get('info_adicional').value
-
-
     let addressExists = this.selectedUser[0].shipping_addresses.some( userAddress => userAddress.descripcion === descripcion)
 
     if(addressExists){
@@ -146,19 +149,11 @@ export class LoginService {
       this.selectedUser[0].shipping_addresses[index].casa_apartamento = casa_apartamento
       this.selectedUser[0].shipping_addresses[index].info_adicional = info_adicional
       
-      
-      
-  
-  
       return this.http.post(`${this.uri}/update-shipping`, this.selectedUser[0])
   
 
     }
 
-    
-  
-
-   
   }
 
 
@@ -173,9 +168,8 @@ export class LoginService {
 
 
   deleteShippingAddress(user) {
-    console.log(user)
-
-    return this.http.post(`${this.uri}/update-shipping`, user)
+    console.log(user.shipping_addresses)
+    return this.http.post(`${this.uri}/remove-from-cart`, user)
   }
 
 
