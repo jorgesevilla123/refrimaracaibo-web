@@ -27,6 +27,18 @@ export class UserShippingComponent implements OnInit {
   }
 
 
+  resetForm(){
+    this.loginService.shippingAddressForm.reset()
+  }
+
+
+
+  populateAddress(address){
+    this.loginService.populateForm(address)
+
+  }
+
+
 
   addShipping(){
     let dialogConfig = new MatDialogConfig()

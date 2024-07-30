@@ -31,10 +31,10 @@ export class LoginService {
 
 
   shippingAddressForm = new FormGroup({
-    nombre: new FormControl(''),
+    name: new FormControl(''),
     direccion: new FormControl(''),
-    casa_apartamento: new FormControl(''),
-    info_adicional: new FormControl(''),
+    casa: new FormControl(''),
+    infoExtra: new FormControl(''),
     isDefault: new FormControl()
   })
 
@@ -103,10 +103,10 @@ export class LoginService {
 
   addShipping() {
     //add validation
-    let name = this.shippingAddressForm.value.nombre
+    let name = this.shippingAddressForm.value.name
     let direccion = this.shippingAddressForm.value.direccion
-    let casa = this.shippingAddressForm.value.casa_apartamento
-    let infoExtra = this.shippingAddressForm.value.info_adicional
+    let casa = this.shippingAddressForm.value.casa
+    let infoExtra = this.shippingAddressForm.value.infoExtra
     let isDefault = this.shippingAddressForm.value.isDefault
     if(isDefault == null){
       isDefault = false
@@ -198,11 +198,11 @@ export class LoginService {
 
   populateForm(address) {
     this.shippingAddressForm.patchValue({
-      nombre: address.nombre,
+      name: address.name,
       direccion: address.direccion,
-      casa_apartamento: address.casa_apartamento,
-      info_adicional: address.info_adicional
-
+      casa: address.casa,
+      infoExtra: address.infoExtra,
+      isDefault: address.isDefault
     })
 
   }

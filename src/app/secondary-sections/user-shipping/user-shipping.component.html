@@ -3,7 +3,7 @@
       <!-- heading -->
       <h2 class="mb-0 fs-2">Direcciones</h2>
       <!-- button -->
-      <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addAddressModal">Agregar nueva
+      <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addAddressModal" (click)="resetForm()">Agregar nueva
          direccion <i class="bi bi-plus-lg"></i></button>
 
 
@@ -24,7 +24,7 @@
                         <label for="exampleFormControlInput1" class="form-label">Nombre de direccion</label>
                         <input style="border-color: black;" type="text" class="form-control"
                            placeholder="Nombre de direccion. Ej casa, trabajo" aria-label="Username"
-                           formControlName="nombre">
+                           formControlName="name">
                      </div>
 
                      <div style="margin-left: 20px; margin-right: 20px; margin-top: 10px;">
@@ -38,14 +38,14 @@
                         <label for="exampleFormControlInput1" class="form-label">Casa o apartamento</label>
                         <input style="border-color: black;" type="text" class="form-control"
                            placeholder="Ej. edif Olas, villas paraiso" aria-label="Username"
-                           formControlName="casa_apartamento">
+                           formControlName="casa">
                      </div>
 
                      <div style="margin-left: 20px; margin-right: 20px; margin-top: 10px;">
                         <label for="exampleFormControlInput1" class="form-label">Info adicional</label>
                         <textarea style="border-color: black;" type="" class="form-control"
                            placeholder="Agrega informacion extra por aqui si es necesario" aria-label="Username"
-                           formControlName="info_adicional"></textarea>
+                           formControlName="infoExtra"></textarea>
                      </div>
 
                      <div style="margin-left: 20px; margin-top: 20px;" class="form-check">
@@ -103,12 +103,12 @@
                </p>
                <!-- btn -->
                <div *ngIf="address.isDefault; then defaultAddress else notDefault"></div>
-               <ng-template #defaultAddress><span class="text-primary">Direccion principal</span></ng-template>
-               <ng-template #notDefault><button class="btn btn-sm">Seleccionar como direccion principal</button>
+               <ng-template #defaultAddress><span class="text-primary">Direccion principal <i class="bi bi-pin"></i></span></ng-template>
+               <ng-template #notDefault><button class="btn btn-outline-dark btn-sm">Seleccionar como direccion principal</button>
                </ng-template>
 
                <div class="mt-4">
-                  <button style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#editAddressModal" class="btn btn-outline-primary btn-sm">Editar <i
+                  <button style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#editAddressModal" class="btn btn-outline-primary btn-sm" (click)="populateAddress(address)">Editar <i
                         class="bi bi-pen"></i></button>
                   <button class="btn btn-outline-danger btn-sm" (click)="deleteShippingAddress(address.name)">Eliminar
                      <i class="bi bi-trash2"></i></button>
@@ -138,7 +138,7 @@ aria-hidden="true">
                <label for="exampleFormControlInput1" class="form-label">Nombre de direccion</label>
                <input style="border-color: black;" type="text" class="form-control"
                   placeholder="Nombre de direccion. Ej casa, trabajo" aria-label="Username"
-                  formControlName="nombre">
+                  formControlName="name">
             </div>
 
             <div style="margin-left: 20px; margin-right: 20px; margin-top: 10px;">
@@ -152,18 +152,18 @@ aria-hidden="true">
                <label for="exampleFormControlInput1" class="form-label">Casa o apartamento</label>
                <input style="border-color: black;" type="text" class="form-control"
                   placeholder="Ej. edif Olas, villas paraiso" aria-label="Username"
-                  formControlName="casa_apartamento">
+                  formControlName="casa">
             </div>
 
             <div style="margin-left: 20px; margin-right: 20px; margin-top: 10px;">
                <label for="exampleFormControlInput1" class="form-label">Info adicional</label>
                <textarea style="border-color: black;" type="" class="form-control"
                   placeholder="Agrega informacion extra por aqui si es necesario" aria-label="Username"
-                  formControlName="info_adicional"></textarea>
+                  formControlName="infoExtra"></textarea>
             </div>
 
             <div style="margin-left: 20px; margin-top: 20px;" class="form-check">
-               <input formControlName="isDefault" style="border-color: black;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+               <input formControlName="isDefault" style="border-color: black;" class="form-check-input" type="checkbox" [checked]="loginService.shippingAddressForm.value.isDefault" id="flexCheckDefault">
                <label class="form-check-label" for="flexCheckDefault">
                  Marcar como direccion principal
                </label>
