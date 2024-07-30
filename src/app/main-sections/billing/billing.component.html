@@ -81,7 +81,7 @@
                                        </div>
 
                                        <div style="margin-left: 20px; margin-top: 20px;" class="form-check">
-                                          <input style="border-color: black;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                          <input formControlName="isDefault" style="border-color: black;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                           <label class="form-check-label" for="flexCheckDefault">
                                             Marcar como direccion principal
                                           </label>
@@ -115,42 +115,25 @@
                                     <div class="form-check mb-4">
                                        <input style="border-color: black;" class="form-check-input" type="radio" name="flexRadioDefault"
                                           id="homeRadio" checked="">
-                                       <label class="form-check-label text-dark" for="homeRadio">{{address.descripcion}}</label>
+                                       <label class="form-check-label text-dark" for="homeRadio">{{address.name}}</label>
                                     </div>
                                     <!-- address -->
                                     <address>
-                                       <strong>{{address.avenida}}</strong>
                                        <br>
 
-                                       {{address.calle}}
+                                       {{address.direccion}}
                                        <br>
 
-                                       {{address.casa_apartamento}}
-                                       <br>
-
-                                       <abbr title="Phone">P: 402-776-1106</abbr>
-                                    </address>
-                                    <span class="text-danger">Default address</span>
-                                 </div>
-                              </div>
-                              <div class="col-xl-6 col-lg-12 col-md-6 col-12 mb-4">
-                                 <!-- input -->
-                                 <div class="card card-body p-6">
-                                    <div class="form-check mb-4">
-                                       <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                          id="officeRadio">
-                                       <label class="form-check-label text-dark" for="officeRadio">Office</label>
-                                    </div>
-                                    <address>
-                                       <strong>Nitu Chauhan</strong>
-                                       <br>
-                                       3853 Coal Road,
-                                       <br>
-                                       Tannersville, Pennsylvania, 18372, USA,
+                                       {{address.casa}}
                                        <br>
 
                                        <abbr title="Phone">P: 402-776-1106</abbr>
                                     </address>
+                                    <div *ngIf="address.isDefault; then defaultAddress else notDefault"></div>
+                                    <ng-template #defaultAddress><span class="text-primary">Direccion principal</span></ng-template>
+                                    <ng-template #notDefault><button class="btn btn-sm">Seleccionar como direccion principal</button> </ng-template>
+
+                                    
                                  </div>
                               </div>
                            </div>

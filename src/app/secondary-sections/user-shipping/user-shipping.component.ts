@@ -74,6 +74,20 @@ export class UserShippingComponent implements OnInit {
     
   }
 
+
+
+  
+  submitForm(){
+    this.loginService.addShipping().subscribe({
+      next: () => {console.log('Shipping adding in process')},
+      complete: () => { console.log('Shipping added')}
+    }
+    )
+ 
+
+  }
+
+
   
 
 

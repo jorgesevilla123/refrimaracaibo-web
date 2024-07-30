@@ -1,75 +1,184 @@
-
-
-
 <div class="container py-6 p-md-6 p-lg-10">
-    <div style="margin-bottom: 40px;" class="d-flex justify-content-between mb-6">
-       <!-- heading -->
-       <h2 class="mb-0 fs-2">Direcciones</h2>
-       <!-- button -->
-       <a href="#" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addAddressModal">Agregar nueva direccion</a>
-    </div>
-    <div class="row">
-       <!-- col -->
-       <div class="col-xl-5 col-lg-6 col-xxl-4 col-12 mb-4">
-          <!-- form -->
-          <div class="card">
-             <div class="card-body p-6">
-                <div class="form-check mb-4">
-                   <input class="form-check-input" type="radio" name="flexRadioDefault" id="homeRadio" checked="">
-                   <label class="form-check-label text-dark fw-semibold" for="homeRadio">Casa</label>
-                </div>
-                <!-- address -->
-                <p class="mb-6">
-                   Jitu Chauhan
-                   <br>
+   <div style="margin-bottom: 40px;" class="d-flex justify-content-between mb-6">
+      <!-- heading -->
+      <h2 class="mb-0 fs-2">Direcciones</h2>
+      <!-- button -->
+      <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addAddressModal">Agregar nueva
+         direccion <i class="bi bi-plus-lg"></i></button>
 
-                   4450 North Avenue Oakland,
-                   <br>
 
-                   Nebraska, United States,
-                   <br>
 
-                   402-776-1106
-                </p>
-                <!-- btn -->
-                <a href="#" class="btn btn-dark btn-sm">Direccion predeterminada</a>
-                <div class="mt-4">
-                   <a href="#" class="text-inherit">Editar</a>
-                   <a href="#" class="text-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</a>
-                </div>
+         <div class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h1 class="modal-title fs-4" id="exampleModalLabel">Nueva direccion de envio</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                     aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                  <form [formGroup]="loginService.shippingAddressForm" (submit)="submitForm()">
+
+                     <div style="margin-left: 20px; margin-right: 20px;">
+                        <label for="exampleFormControlInput1" class="form-label">Nombre de direccion</label>
+                        <input style="border-color: black;" type="text" class="form-control"
+                           placeholder="Nombre de direccion. Ej casa, trabajo" aria-label="Username"
+                           formControlName="nombre">
+                     </div>
+
+                     <div style="margin-left: 20px; margin-right: 20px; margin-top: 10px;">
+                        <label for="exampleFormControlInput1" class="form-label">Direccion</label>
+                        <input style="border-color: black;" type="text" class="form-control"
+                           placeholder="direccion detallada. Ej Av 40 con calle 12" aria-label="Username"
+                           formControlName="direccion">
+                     </div>
+
+                     <div style="margin-left: 20px; margin-right: 20px; margin-top: 10px;">
+                        <label for="exampleFormControlInput1" class="form-label">Casa o apartamento</label>
+                        <input style="border-color: black;" type="text" class="form-control"
+                           placeholder="Ej. edif Olas, villas paraiso" aria-label="Username"
+                           formControlName="casa_apartamento">
+                     </div>
+
+                     <div style="margin-left: 20px; margin-right: 20px; margin-top: 10px;">
+                        <label for="exampleFormControlInput1" class="form-label">Info adicional</label>
+                        <textarea style="border-color: black;" type="" class="form-control"
+                           placeholder="Agrega informacion extra por aqui si es necesario" aria-label="Username"
+                           formControlName="info_adicional"></textarea>
+                     </div>
+
+                     <div style="margin-left: 20px; margin-top: 20px;" class="form-check">
+                        <input formControlName="isDefault" style="border-color: black;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Marcar como direccion principal
+                        </label>
+                      </div>
+
+
+
+                  </form>
+
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark"
+                     data-bs-dismiss="modal">Cerrar</button>
+                  <button data-bs-dismiss="modal" type="submit" class="btn btn-primary" (click)="submitForm()">Agregar direccion de envio</button>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+   </div>
+   <div *ngIf=""></div>
+   <div class="row">
+      <!-- col -->
+      <div *ngFor="let address of loginService.selectedUser[0].shipping_addresses"
+         class="col-xl-5 col-lg-6 col-xxl-4 col-12 mb-4">
+         <!-- form -->
+         <div class="card">
+            <div class="card-body p-6">
+               <div class="form-check mb-4">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="homeRadio" checked="">
+                  <label class="form-check-label text-dark fw-semibold" for="homeRadio">{{address.name}}</label>
+               </div>
+               <!-- address -->
+               <p class="mb-6">
+                  {{address.direccion}}
+                  <br>
+
+                  {{address.casa}}
+                  <br>
+
+                  402-776-1106
+               </p>
+               <!-- btn -->
+               <div *ngIf="address.isDefault; then defaultAddress else notDefault"></div>
+               <ng-template #defaultAddress><span class="text-primary">Direccion principal</span></ng-template>
+               <ng-template #notDefault><button class="btn btn-sm">Seleccionar como direccion principal</button>
+               </ng-template>
+
+               <div class="mt-4">
+                  <button style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#editAddressModal" class="btn btn-outline-primary btn-sm">Editar <i
+                        class="bi bi-pen"></i></button>
+                  <button class="btn btn-outline-danger btn-sm" (click)="deleteShippingAddress(address.name)">Eliminar
+                     <i class="bi bi-trash2"></i></button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+
+<div class="modal fade" id="editAddressModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog">
+   <div class="modal-content">
+      <div class="modal-header">
+         <h1 class="modal-title fs-4" id="exampleModalLabel">Nueva direccion de envio</h1>
+         <button type="button" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <form [formGroup]="loginService.shippingAddressForm" (submit)="submitForm()">
+
+            <div style="margin-left: 20px; margin-right: 20px;">
+               <label for="exampleFormControlInput1" class="form-label">Nombre de direccion</label>
+               <input style="border-color: black;" type="text" class="form-control"
+                  placeholder="Nombre de direccion. Ej casa, trabajo" aria-label="Username"
+                  formControlName="nombre">
+            </div>
+
+            <div style="margin-left: 20px; margin-right: 20px; margin-top: 10px;">
+               <label for="exampleFormControlInput1" class="form-label">Direccion</label>
+               <input style="border-color: black;" type="text" class="form-control"
+                  placeholder="direccion detallada. Ej Av 40 con calle 12" aria-label="Username"
+                  formControlName="direccion">
+            </div>
+
+            <div style="margin-left: 20px; margin-right: 20px; margin-top: 10px;">
+               <label for="exampleFormControlInput1" class="form-label">Casa o apartamento</label>
+               <input style="border-color: black;" type="text" class="form-control"
+                  placeholder="Ej. edif Olas, villas paraiso" aria-label="Username"
+                  formControlName="casa_apartamento">
+            </div>
+
+            <div style="margin-left: 20px; margin-right: 20px; margin-top: 10px;">
+               <label for="exampleFormControlInput1" class="form-label">Info adicional</label>
+               <textarea style="border-color: black;" type="" class="form-control"
+                  placeholder="Agrega informacion extra por aqui si es necesario" aria-label="Username"
+                  formControlName="info_adicional"></textarea>
+            </div>
+
+            <div style="margin-left: 20px; margin-top: 20px;" class="form-check">
+               <input formControlName="isDefault" style="border-color: black;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+               <label class="form-check-label" for="flexCheckDefault">
+                 Marcar como direccion principal
+               </label>
              </div>
-          </div>
-       </div>
-       <div class="col-xk-5 col-lg-6 col-xxl-4 col-12 mb-4">
-          <!-- input -->
-          <div class="card">
-             <div class="card-body p-6">
-                <div class="form-check mb-4">
-                   <input class="form-check-input" type="radio" name="flexRadioDefault" id="officeRadio">
-                   <label class="form-check-label text-dark fw-semibold" for="officeRadio">Oficina</label>
-                </div>
-                <!-- nav item -->
-                <p class="mb-6">
-                   Nitu Chauhan
-                   <br>
 
-                   3853 Coal Road
-                   <br>
 
-                   Tannersville, Pennsylvania, 18372, United States
-                   <br>
 
-                   402-776-1106
-                </p>
-                <!-- link -->
-                <a href="#" class="link-primary">Seleccionar como predeterminada</a>
-                <div class="mt-4">
-                   <a href="#" class="text-inherit">Editar</a>
-                   <!-- btn -->
-                   <a href="#" class="text-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</a>
-                </div>
-             </div>
-          </div>
-       </div>
-    </div>
- </div>
+         </form>
+
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-outline-dark"
+            data-bs-dismiss="modal">Cerrar</button>
+         <button data-bs-dismiss="modal" type="submit" class="btn btn-primary" (click)="submitForm()">Agregar direccion de envio</button>
+      </div>
+   </div>
+</div>
+</div>
