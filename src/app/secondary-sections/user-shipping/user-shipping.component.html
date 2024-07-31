@@ -48,15 +48,6 @@
                            formControlName="infoExtra"></textarea>
                      </div>
 
-                     <div style="margin-left: 20px; margin-top: 20px;" class="form-check">
-                        <input formControlName="isDefault" style="border-color: black;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                          Marcar como direccion principal
-                        </label>
-                      </div>
-
-
-
                   </form>
 
                </div>
@@ -104,7 +95,7 @@
                <!-- btn -->
                <div *ngIf="address.isDefault; then defaultAddress else notDefault"></div>
                <ng-template #defaultAddress><span class="text-primary">Direccion principal <i class="bi bi-pin"></i></span></ng-template>
-               <ng-template #notDefault><button class="btn btn-outline-dark btn-sm">Seleccionar como direccion principal</button>
+               <ng-template #notDefault><button class="btn btn-outline-dark btn-sm" (click)="loginService.selectDefaultAddress()">Seleccionar como direccion principal</button>
                </ng-template>
 
                <div class="mt-4">

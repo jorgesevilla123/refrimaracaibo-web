@@ -126,6 +126,10 @@ export class LoginService {
   }
 
 
+changeDefaultAddress(){
+
+}
+
 
 
   updateShippingAddress(address) {
@@ -153,6 +157,15 @@ export class LoginService {
   
 
     }
+
+  }
+
+
+
+
+  selectDefaultAddress(){
+    let index = this.selectedUser[0].shipping_addresses.findIndex( address => address.isDefault)
+    console.log(this.selectedUser[0].shipping_addresses[index])
 
   }
 
