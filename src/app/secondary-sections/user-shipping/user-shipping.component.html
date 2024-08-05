@@ -95,13 +95,13 @@
                <!-- btn -->
                <div *ngIf="address.isDefault; then defaultAddress else notDefault"></div>
                <ng-template #defaultAddress><span class="text-primary">Direccion principal <i class="bi bi-pin"></i></span></ng-template>
-               <ng-template #notDefault><button class="btn btn-outline-dark btn-sm" (click)="loginService.selectDefaultAddress()">Seleccionar como direccion principal</button>
+               <ng-template #notDefault><button class="btn btn-outline-dark btn-sm" (click)="openSetDefaultAddressModal(address)">Seleccionar como direccion principal</button>
                </ng-template>
 
                <div class="mt-4">
                   <button style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#editAddressModal" class="btn btn-outline-primary btn-sm" (click)="populateAddress(address)">Editar <i
                         class="bi bi-pen"></i></button>
-                  <button class="btn btn-outline-danger btn-sm" (click)="deleteShippingAddress(address.name)">Eliminar
+                  <button class="btn btn-outline-danger btn-sm" (click)="openDeleteAddressModal(address)">Eliminar
                      <i class="bi bi-trash2"></i></button>
                </div>
             </div>

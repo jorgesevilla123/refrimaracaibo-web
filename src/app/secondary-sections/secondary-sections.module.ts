@@ -41,6 +41,9 @@ import { HerramientasCategoriesComponent } from './herramientas-section/herramie
 import { AireAcondicionadoCategoriesComponent } from './aire-acondicionado-section/aire-acondicionado-categories/aire-acondicionado-categories.component';
 import { HogarCategoriesComponent } from './hogar-section/hogar-categories/hogar-categories.component'
 
+
+
+
 @NgModule({
   declarations: [
     LightningSectionComponent,
@@ -77,7 +80,8 @@ import { HogarCategoriesComponent } from './hogar-section/hogar-categories/hogar
     CommercialRefriCategoriesComponent,
     HerramientasCategoriesComponent,
     AireAcondicionadoCategoriesComponent,
-    HogarCategoriesComponent
+    HogarCategoriesComponent,
+
   ],
   imports: [
     CommonModule,

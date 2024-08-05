@@ -163,10 +163,27 @@ changeDefaultAddress(){
 
 
 
-  selectDefaultAddress(){
+  selectDefaultAddress(addressSelected){
     let index = this.selectedUser[0].shipping_addresses.findIndex( address => address.isDefault)
-    console.log(this.selectedUser[0].shipping_addresses[index])
+    if(index == -1){
+      console.log(index)
+      console.log('not default')
+      let newdefaultAddressIndex = this.selectedUser[0].shipping_addresses.findIndex( address =>  address.name == addressSelected.name)
+    this.selectedUser[0].shipping_addresses[newdefaultAddressIndex].isDefault = true
+    return this.http.post(`${this.uri}/update-shipping`, this.selectedUser[0])
+    
 
+    }
+    else {
+      this.selectedUser[0].shipping_addresses[index].isDefault = false
+      let newdefaultAddressIndex = this.selectedUser[0].shipping_addresses.findIndex( address =>  address.name == addressSelected.name)
+    this.selectedUser[0].shipping_addresses[newdefaultAddressIndex].isDefault = true
+    return this.http.post(`${this.uri}/update-shipping`, this.selectedUser[0])
+    
+
+      
+    }
+   
   }
 
 

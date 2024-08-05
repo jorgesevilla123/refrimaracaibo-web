@@ -1,0 +1,10 @@
+
+
+<div class="modal-body">
+    <h2 style="margin-left: 20px; margin-right: 20px; margin-top: 20px;" class="fs-5">{{text}}</h2>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('canceled')">Cancelar <i class="bi bi-x"></i></button>
+    <button type="button" class="btn btn-outline-primary" (click)="activeModal.close('accepted')">Aceptar <i class="bi bi-check-lg"></i></button>
+</div>

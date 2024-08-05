@@ -14,7 +14,8 @@ import { SecondarySectionsModule } from './secondary-sections/secondary-sections
 import { MainToolbarComponent } from './main-sections/main-toolbar/main-toolbar.component';
 import { UpdateModalComponent } from './shared/update-modal/update-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { OrderStatusModalComponent } from './shared/order-status-modal/order-status-modal.component'
+import { OrderStatusModalComponent } from './shared/order-status-modal/order-status-modal.component';
+import { ConfirmationModalComponent } from './shared/confirmation-modal/confirmation-modal.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { OrderStatusModalComponent } from './shared/order-status-modal/order-sta
     HomeComponent,
     MainToolbarComponent,
     UpdateModalComponent,
-    OrderStatusModalComponent
+    OrderStatusModalComponent,
+    ConfirmationModalComponent
 
   ],
   imports: [
