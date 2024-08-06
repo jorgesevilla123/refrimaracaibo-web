@@ -126,32 +126,26 @@ export class LoginService {
   }
 
 
-changeDefaultAddress(){
-
-}
-
 
 
   updateShippingAddress(address) {
-    let descripcion = this.shippingAddressForm.get('descripcion').value
-    let avenida = this.shippingAddressForm.get('avenida').value
-    let calle = this.shippingAddressForm.get('calle').value
-    let casa_apartamento = this.shippingAddressForm.get('casa_apartamento').value
-    let info_adicional = this.shippingAddressForm.get('info_adicional').value
-    let addressExists = this.selectedUser[0].shipping_addresses.some( userAddress => userAddress.descripcion === descripcion)
+    console.log(address)
+    let name = this.shippingAddressForm.get('name').value
+    let direccion = this.shippingAddressForm.get('direccion').value
+    let casa = this.shippingAddressForm.get('casa').value
+    let infoExtra = this.shippingAddressForm.get('infoExtra').value
+    let addressExists = this.selectedUser[0].shipping_addresses.some( userAddress => userAddress.name === name)
 
     if(addressExists){
       return from([{found: false}])
-   
-
     }
     else {
-      let index = this.selectedUser[0].shipping_addresses.findIndex( userAddress => userAddress.descripcion === address.descripcion)
-      this.selectedUser[0].shipping_addresses[index].descripcion = descripcion
-      this.selectedUser[0].shipping_addresses[index].avenida = avenida
-      this.selectedUser[0].shipping_addresses[index].calle = calle
-      this.selectedUser[0].shipping_addresses[index].casa_apartamento = casa_apartamento
-      this.selectedUser[0].shipping_addresses[index].info_adicional = info_adicional
+      let index = this.selectedUser[0].shipping_addresses.findIndex( userAddress => userAddress.name === address.name)
+      console.log(index)
+      this.selectedUser[0].shipping_addresses[index].name = name
+      this.selectedUser[0].shipping_addresses[index].direccion = direccion
+      this.selectedUser[0].shipping_addresses[index].casa = casa
+      this.selectedUser[0].shipping_addresses[index].infoExtra = infoExtra
       
       return this.http.post(`${this.uri}/update-shipping`, this.selectedUser[0])
   

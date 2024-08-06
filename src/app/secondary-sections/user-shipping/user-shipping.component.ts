@@ -15,6 +15,10 @@ import { ConfirmationModalComponent } from '../../shared/confirmation-modal/conf
 })
 export class UserShippingComponent implements OnInit {
 
+
+
+  currentAddress: any
+
   constructor(
     public dialog: MatDialog,
     public loginService: LoginService,
@@ -83,6 +87,7 @@ export class UserShippingComponent implements OnInit {
 
   populateAddress(address){
     this.loginService.populateForm(address)
+    this.currentAddress = address
 
   }
 
@@ -95,8 +100,10 @@ export class UserShippingComponent implements OnInit {
         }
       }
     )
-
   }
+
+
+
 
 
   //THIS MODAL IS MADE USING ANGULAR MATERIAL MODAL (DIALOG)
@@ -127,22 +134,16 @@ export class UserShippingComponent implements OnInit {
   }
 
 
-  updateShippingAddress(address){
-    let index = this.loginService.selectedUser[0].findIndex( userAddress => userAddress.descripcion === address.descripcion)
-    this.loginService.selectedUser[0].shipping_addresses[index]
+  updateShippingAddress(){
+
+    this.loginService.updateShippingAddress(this.currentAddress).subscribe(
+      {
+        next: (value) => {console.log('address updated', value)}
+      }
+    )
+    // let index = this.loginService.selectedUser[0].findIndex( userAddress => userAddress.descripcion === address.descripcion)
+    // this.loginService.selectedUser[0].shipping_addresses[index]
   }
-
-
-  openShippingUpdateDialog(address){
-    this.loginService.selectedUser[0]
-    let dialogConfig = new MatDialogConfig
-    dialogConfig.data = {update: true, address}
-    this.loginService.populateForm(address)
-    this.dialog.open(ShippingModalComponent, dialogConfig)
-    
-  }
-
-
 
   
   submitForm(){
@@ -151,8 +152,6 @@ export class UserShippingComponent implements OnInit {
       complete: () => { console.log('Shipping added')}
     }
     )
- 
-
   }
 
 

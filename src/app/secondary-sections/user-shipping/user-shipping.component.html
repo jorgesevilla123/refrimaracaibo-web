@@ -153,13 +153,7 @@ aria-hidden="true">
                   formControlName="infoExtra"></textarea>
             </div>
 
-            <div style="margin-left: 20px; margin-top: 20px;" class="form-check">
-               <input formControlName="isDefault" style="border-color: black;" class="form-check-input" type="checkbox" [checked]="loginService.shippingAddressForm.value.isDefault" id="flexCheckDefault">
-               <label class="form-check-label" for="flexCheckDefault">
-                 Marcar como direccion principal
-               </label>
-             </div>
-
+        
 
 
          </form>
@@ -168,7 +162,7 @@ aria-hidden="true">
       <div class="modal-footer">
          <button type="button" class="btn btn-outline-dark"
             data-bs-dismiss="modal">Cerrar</button>
-         <button data-bs-dismiss="modal" type="submit" class="btn btn-primary" (click)="submitForm()">Agregar direccion de envio</button>
+         <button data-bs-dismiss="modal" type="submit" class="btn btn-primary" (click)="updateShippingAddress()">Agregar direccion de envio</button>
       </div>
    </div>
 </div>
