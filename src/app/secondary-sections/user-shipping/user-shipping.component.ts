@@ -28,6 +28,8 @@ export class UserShippingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    console.log(this.loginService.selectedUser[0])
     
   }
 
