@@ -134,12 +134,8 @@ export class LoginService {
     let direccion = this.shippingAddressForm.get('direccion').value
     let casa = this.shippingAddressForm.get('casa').value
     let infoExtra = this.shippingAddressForm.get('infoExtra').value
-    let addressExists = this.selectedUser[0].shipping_addresses.some( userAddress => userAddress.name === name)
 
-    if(addressExists){
-      return from([{found: false}])
-    }
-    else {
+ 
       let index = this.selectedUser[0].shipping_addresses.findIndex( userAddress => userAddress.name === address.name)
       console.log(index)
       this.selectedUser[0].shipping_addresses[index].name = name
@@ -147,10 +143,13 @@ export class LoginService {
       this.selectedUser[0].shipping_addresses[index].casa = casa
       this.selectedUser[0].shipping_addresses[index].infoExtra = infoExtra
       
+
+      console.log(this.selectedUser[0])
+      
       return this.http.post(`${this.uri}/update-shipping`, this.selectedUser[0])
   
 
-    }
+ 
 
   }
 
