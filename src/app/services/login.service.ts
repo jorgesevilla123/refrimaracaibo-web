@@ -39,6 +39,22 @@ export class LoginService {
   })
 
 
+  accountDetailsForm = new FormGroup({
+    name: new FormControl(''),
+    email: new FormControl(''),
+    contact_number: new FormControl('')
+  })
+  
+
+  populateAccountDetailsForm(){
+    this.accountDetailsForm.patchValue({
+      name: this.selectedUser[0].name,
+      email: this.selectedUser[0].email,
+      contact_number: this.selectedUser[0].contact_phone
+    })
+  }
+
+
   logged
 
   users = [

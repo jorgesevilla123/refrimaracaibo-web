@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../../services/login.service'
 
 @Component({
   selector: 'app-user-settings',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserSettingsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public loginService: LoginService
+  ) { }
 
   ngOnInit(): void {
+    this.loginService.populateAccountDetailsForm()
+    console.log(this.loginService.selectedUser[0])
+
+  }
+
+
+
+
+  updateAccountDetails(){
+    
   }
 
 }
