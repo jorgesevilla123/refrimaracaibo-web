@@ -399,6 +399,7 @@ function productSelection(req, res){
 function handleShippingAddresses(req, res){
 
     let userProfile = req.body
+    console.log(userProfile)
     let profileString = JSON.stringify(userProfile)
 
 

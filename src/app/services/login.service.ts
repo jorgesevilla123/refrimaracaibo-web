@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartService } from '../services/cart.service'
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subscription, from } from 'rxjs';
@@ -40,13 +40,19 @@ export class LoginService {
 
 
   accountDetailsForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    contact_number: new FormControl('')
+    name: new FormControl('', [
+      Validators.required
+    ]),
+    email: new FormControl('', [
+      Validators.required
+    ]),
+    contact_number: new FormControl('', [
+      Validators.required
+    ])
   })
-  
 
-  populateAccountDetailsForm(){
+
+  populateAccountDetailsForm() {
     this.accountDetailsForm.patchValue({
       name: this.selectedUser[0].name,
       email: this.selectedUser[0].email,
@@ -124,7 +130,7 @@ export class LoginService {
     let casa = this.shippingAddressForm.value.casa
     let infoExtra = this.shippingAddressForm.value.infoExtra
     let isDefault = this.shippingAddressForm.value.isDefault
-    if(isDefault == null){
+    if (isDefault == null) {
       isDefault = false
     }
     console.log(isDefault)
@@ -142,6 +148,17 @@ export class LoginService {
   }
 
 
+  updateAccountDetails(){
+    let name = this.accountDetailsForm.value.name
+    let email = this.accountDetailsForm.value.email
+    let contact_number = this.accountDetailsForm.value.contact_number
+    this.selectedUser[0].name = name
+    this.selectedUser[0].email = email
+    this.selectedUser[0].contact_phone = contact_number
+    return this.http.post(`${this.uri}/update-shipping`, this.selectedUser[0])
+  }
+
+
 
 
   updateShippingAddress(address) {
@@ -150,49 +167,41 @@ export class LoginService {
     let direccion = this.shippingAddressForm.get('direccion').value
     let casa = this.shippingAddressForm.get('casa').value
     let infoExtra = this.shippingAddressForm.get('infoExtra').value
-
- 
-      let index = this.selectedUser[0].shipping_addresses.findIndex( userAddress => userAddress.name === address.name)
-      console.log(index)
-      this.selectedUser[0].shipping_addresses[index].name = name
-      this.selectedUser[0].shipping_addresses[index].direccion = direccion
-      this.selectedUser[0].shipping_addresses[index].casa = casa
-      this.selectedUser[0].shipping_addresses[index].infoExtra = infoExtra
-      
-
-      console.log(this.selectedUser[0])
-      
-      return this.http.post(`${this.uri}/update-shipping`, this.selectedUser[0])
-  
-
- 
+    let index = this.selectedUser[0].shipping_addresses.findIndex(userAddress => userAddress.name === address.name)
+    console.log(index)
+    this.selectedUser[0].shipping_addresses[index].name = name
+    this.selectedUser[0].shipping_addresses[index].direccion = direccion
+    this.selectedUser[0].shipping_addresses[index].casa = casa
+    this.selectedUser[0].shipping_addresses[index].infoExtra = infoExtra
+    console.log(this.selectedUser[0])
+    return this.http.post(`${this.uri}/update-shipping`, this.selectedUser[0])
 
   }
 
 
 
 
-  selectDefaultAddress(addressSelected){
-    let index = this.selectedUser[0].shipping_addresses.findIndex( address => address.isDefault)
-    if(index == -1){
+  selectDefaultAddress(addressSelected) {
+    let index = this.selectedUser[0].shipping_addresses.findIndex(address => address.isDefault)
+    if (index == -1) {
       console.log(index)
       console.log('not default')
-      let newdefaultAddressIndex = this.selectedUser[0].shipping_addresses.findIndex( address =>  address.name == addressSelected.name)
-    this.selectedUser[0].shipping_addresses[newdefaultAddressIndex].isDefault = true
-    return this.http.post(`${this.uri}/update-shipping`, this.selectedUser[0])
-    
+      let newdefaultAddressIndex = this.selectedUser[0].shipping_addresses.findIndex(address => address.name == addressSelected.name)
+      this.selectedUser[0].shipping_addresses[newdefaultAddressIndex].isDefault = true
+      return this.http.post(`${this.uri}/update-shipping`, this.selectedUser[0])
+
 
     }
     else {
       this.selectedUser[0].shipping_addresses[index].isDefault = false
-      let newdefaultAddressIndex = this.selectedUser[0].shipping_addresses.findIndex( address =>  address.name == addressSelected.name)
-    this.selectedUser[0].shipping_addresses[newdefaultAddressIndex].isDefault = true
-    return this.http.post(`${this.uri}/update-shipping`, this.selectedUser[0])
-    
+      let newdefaultAddressIndex = this.selectedUser[0].shipping_addresses.findIndex(address => address.name == addressSelected.name)
+      this.selectedUser[0].shipping_addresses[newdefaultAddressIndex].isDefault = true
+      return this.http.post(`${this.uri}/update-shipping`, this.selectedUser[0])
 
-      
+
+
     }
-   
+
   }
 
 

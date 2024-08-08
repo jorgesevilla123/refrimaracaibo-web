@@ -57,7 +57,7 @@ sessionRouter.route('/login').post(login)
 sessionRouter.route('/logout').delete(logout)
 
 
-
+sessionRouter.route('/update-account-details').post()
 
 
 sessionRouter.route('/update-shipping').post(handleShippingAddresses)
