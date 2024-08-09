@@ -40,6 +40,9 @@ import { CommercialRefriCategoriesComponent } from './secondary-sections/commerc
 import { HerramientasCategoriesComponent } from './secondary-sections/herramientas-section/herramientas-categories/herramientas-categories.component';
 import { AireAcondicionadoCategoriesComponent } from './secondary-sections/aire-acondicionado-section/aire-acondicionado-categories/aire-acondicionado-categories.component';
 import { HogarCategoriesComponent } from './secondary-sections/hogar-section/hogar-categories/hogar-categories.component';
+import { OrderDetailsComponent } from './secondary-sections/user-account/order-details/order-details.component'
+
+
 
 //For autoscrolling in searchproducts component
 const routerOptions: ExtraOptions = {
@@ -128,7 +131,11 @@ const routes: Routes = [
     path: 'dashboard', component: UserDashboardComponent,
     children: [
       { path: '', redirectTo: 'pedidos', pathMatch: 'full' },
-      { path: 'pedidos', component: UserAccountComponent },
+      { path: 'pedidos', component: UserAccountComponent},
+        
+      {path: 'detalles-pedido', component: OrderDetailsComponent},
+
+
       { path: 'purchases', component: UserPurchasesComponent },
       { path: 'notificaciones', component: UsersCartComponent },
       { path: 'shipping', component: UserShippingComponent },

@@ -39,7 +39,8 @@ import { NeveraCategoriesComponent } from './nevera-section/nevera-categories/ne
 import { CommercialRefriCategoriesComponent } from './commercial-refri/commercial-refri-categories/commercial-refri-categories.component';
 import { HerramientasCategoriesComponent } from './herramientas-section/herramientas-categories/herramientas-categories.component';
 import { AireAcondicionadoCategoriesComponent } from './aire-acondicionado-section/aire-acondicionado-categories/aire-acondicionado-categories.component';
-import { HogarCategoriesComponent } from './hogar-section/hogar-categories/hogar-categories.component'
+import { HogarCategoriesComponent } from './hogar-section/hogar-categories/hogar-categories.component';
+import { OrderDetailsComponent } from './user-account/order-details/order-details.component'
 
 
 
@@ -81,6 +82,7 @@ import { HogarCategoriesComponent } from './hogar-section/hogar-categories/hogar
     HerramientasCategoriesComponent,
     AireAcondicionadoCategoriesComponent,
     HogarCategoriesComponent,
+    OrderDetailsComponent,
 
   ],
   imports: [
