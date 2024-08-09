@@ -22,6 +22,14 @@ export class ShippingService {
 
 
 
+  submitOrder(){
+    this.loginService.selectedUser[0].orders = []      
+  }
+
+
+
+
+
 
   
 

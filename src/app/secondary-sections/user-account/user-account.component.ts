@@ -35,14 +35,9 @@ export class UserAccountComponent implements OnInit {
 
     if(this.loginService.setLogout()){
       console.log('logged')
-
       this.cartService.updateCount()
-
       this.router.navigate(['/home'])
-
     }
-  
-
   }
 
 

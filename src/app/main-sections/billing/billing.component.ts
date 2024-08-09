@@ -87,6 +87,13 @@ export class BillingComponent implements OnInit {
   } 
 
 
+
+  submitOrder(){
+    this.shippingService.submitOrder()
+    console.log(this.loginService.selectedUser[0])
+  }
+
+
   submitForm(){
     this.loginService.addShipping().subscribe({
       next: () => {console.log('Shipping adding in process')},

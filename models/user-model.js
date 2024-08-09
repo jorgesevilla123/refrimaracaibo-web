@@ -10,6 +10,7 @@ const userSchema = new Schema({
     password: String,
     shipping_addresses: Array,
     cart: Array,
+    orders: Array
 
 })
 
