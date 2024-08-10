@@ -23,7 +23,48 @@ export class ShippingService {
 
 
   submitOrder(){
-    this.loginService.selectedUser[0].orders = []      
+   
+    if(this.loginService.selectedUser[0].orders.length == 0){
+      this.loginService.selectedUser[0].orders = []    
+      let orderObject = {
+        order_number: 1246,
+        date: Date.now(),
+        products: this.loginService.selectedUser[0].cart,
+        state: 'pending',
+        items: this.loginService.selectedUser[0].cart.length,
+        total: 200
+      }
+  
+      this.loginService.selectedUser[0].orders.push(orderObject);
+     return this.http.post(`${this.API}/update-shipping`, this.loginService.selectedUser[0])
+
+    }
+    else {
+      console.log('passed here')
+      let orderObject = {
+        order_number: 1246,
+        date: Date.now(),
+        products: this.loginService.selectedUser[0].cart,
+        state: 'pending',
+        items: this.loginService.selectedUser[0].cart.length,
+        total: 200
+      }
+  
+      this.loginService.selectedUser[0].orders.push(orderObject);
+     return this.http.post(`${this.API}/update-shipping`, this.loginService.selectedUser[0])
+      
+
+    }
+
+   
+   
+  }
+
+
+
+  //this function 
+  addOrder(){
+
   }
 
 
