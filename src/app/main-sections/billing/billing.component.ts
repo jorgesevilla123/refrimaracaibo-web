@@ -89,13 +89,14 @@ export class BillingComponent implements OnInit {
 
 
   submitOrder(){
-    this.shippingService.submitOrder()
-    console.log(this.loginService.selectedUser[0])
-    // this.shippingService.submitOrder().subscribe(
-    //   {
-    //     next: (value) => { this.loginService.selectedUser[0].cart.splice(0, this.loginService.selectedUser[0].cart.length);}
-    //   }
-    // )
+    this.shippingService.submitOrder().subscribe(
+      {
+        next: (value) => { 
+          this.loginService.selectedUser[0].cart.splice(0, this.loginService.selectedUser[0].cart.length);
+          console.log(this.loginService.selectedUser[0])
+        }
+      }
+    )
   }
 
 

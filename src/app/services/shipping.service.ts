@@ -23,34 +23,42 @@ export class ShippingService {
 
 
   submitOrder(){
+    let hasOrders = 'orders' in this.loginService.selectedUser[0]
+    console.log(hasOrders)
    
-    if(this.loginService.selectedUser[0].orders.length == 0){
+    if(!hasOrders){
       this.loginService.selectedUser[0].orders = []    
       let orderObject = {
         order_number: 1246,
         date: Date.now(),
-        products: this.loginService.selectedUser[0].cart,
+        products: [...this.loginService.selectedUser[0].cart],
         state: 'pending',
         items: this.loginService.selectedUser[0].cart.length,
         total: 200
       }
   
       this.loginService.selectedUser[0].orders.push(orderObject);
+      this.loginService.selectedUser[0].cart.splice(0, this.loginService.selectedUser[0].cart.length);
+      console.log( this.loginService.selectedUser[0])
      return this.http.post(`${this.API}/update-shipping`, this.loginService.selectedUser[0])
 
     }
     else {
+      let products = this.loginService.selectedUser[0].cart
+      console.log(products)
       console.log('passed here')
       let orderObject = {
         order_number: 1246,
         date: Date.now(),
-        products: this.loginService.selectedUser[0].cart,
+        products_cart: [...products],
         state: 'pending',
         items: this.loginService.selectedUser[0].cart.length,
         total: 200
       }
+      console.log(orderObject)
   
       this.loginService.selectedUser[0].orders.push(orderObject);
+      console.log( this.loginService.selectedUser[0])
      return this.http.post(`${this.API}/update-shipping`, this.loginService.selectedUser[0])
       
 
