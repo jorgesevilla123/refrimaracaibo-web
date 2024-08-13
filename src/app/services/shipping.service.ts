@@ -50,7 +50,7 @@ export class ShippingService {
       let orderObject = {
         order_number: 1246,
         date: Date.now(),
-        products_cart: [...products],
+        products_cart: products,
         state: 'pending',
         items: this.loginService.selectedUser[0].cart.length,
         total: 200
