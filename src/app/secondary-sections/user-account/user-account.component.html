@@ -30,86 +30,17 @@
                       <a href="#" class="text-inherit">{{order.order_number}}</a>
                    </td>
                    <td class="align-middle border-top-0">{{order.date}}</td>
-                   <td class="align-middle border-top-0">1</td>
+                   <td class="align-middle border-top-0">{{order.items}}</td>
                    <td class="align-middle border-top-0">
-                      <span class="badge bg-warning">Processing</span>
+                      <span class="badge bg-warning">{{order.state}}</span>
                    </td>
-                   <td class="align-middle border-top-0">$15.00</td>
+                   <td class="align-middle border-top-0">{{order.total}}</td>
                    <td class="text-muted align-middle border-top-0">
                       <button class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View">Detalle de orden <i class="bi bi-clipboard2-fill"></i></button>
                    </td>
                 </tr>
-                <tr>
-                   <td class="align-middle border-top-0">
-                      <a href="#" class="text-inherit">#14658</a>
-                   </td>
-                   <td class="align-middle border-top-0">July 9, 2023</td>
-                   <td class="align-middle border-top-0">2</td>
-                   <td class="align-middle border-top-0">
-                      <span class="badge bg-success">Completed</span>
-                   </td>
-                   <td class="align-middle border-top-0">$45.00</td>
-                   <td class="text-muted align-middle border-top-0">
-                     <button class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View">Detalle de orden <i class="bi bi-clipboard2-fill"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                   <td class="align-middle border-top-0">
-                      <a href="#" class="text-inherit">#13778</a>
-                   </td>
-                   <td class="align-middle border-top-0">Oct 03, 2023</td>
-                   <td class="align-middle border-top-0">4</td>
-                   <td class="align-middle border-top-0">
-                      <span class="badge bg-success">Completed</span>
-                   </td>
-                   <td class="align-middle border-top-0">$99.00</td>
-                   <td class="text-muted align-middle border-top-0">
-                     <button class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View" [routerLink]="['/dashboard/detalles-pedido']" [queryParams]="{section: 'orders'}">Detalle de orden <i class="bi bi-clipboard2-fill"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                   <td class="align-middle border-top-0">
-                      <a href="#" class="text-inherit">#13746</a>
-                   </td>
-                   <td class="align-middle border-top-0">March 5, 2023</td>
-                   <td class="align-middle border-top-0">1</td>
-                   <td class="align-middle border-top-0">
-                      <span class="badge bg-success">Completed</span>
-                   </td>
-                   <td class="align-middle border-top-0">$12.00</td>
-                   <td class="text-muted align-middle border-top-0">
-                     <button class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View">Detalle de orden <i class="bi bi-clipboard2-fill"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                
-                   <td class="align-middle border-top-0">
-                      <a href="#" class="text-inherit">#13566</a>
-                   </td>
-                   <td class="align-middle border-top-0">July 9, 2023</td>
-                   <td class="align-middle border-top-0">2</td>
-                   <td class="align-middle border-top-0">
-                      <span class="badge bg-danger">Cancel</span>
-                   </td>
-                   <td class="align-middle border-top-0">$6.00</td>
-                   <td class="text-muted align-middle border-top-0">
-                     <button class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View">Detalle de orden <i class="bi bi-clipboard2-fill"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                   <td class="align-middle border-top-0">
-                      <a href="#" class="text-inherit">#12094</a>
-                   </td>
-                   <td class="align-middle border-top-0">Oct 03, 2023</td>
-                   <td class="align-middle border-top-0">4</td>
-                   <td class="align-middle border-top-0">
-                      <span class="badge bg-success">Completed</span>
-                   </td>
-                   <td class="align-middle border-top-0">$18.00</td>
-                   <td class="text-muted align-middle border-top-0">
-                     <button class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View">Detalle de orden <i class="bi bi-clipboard2-fill"></i></button>
-                  </td>
-                </tr>
+
+              
              </tbody>
           </table>
        </div>
