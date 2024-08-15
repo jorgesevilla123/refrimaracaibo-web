@@ -41,6 +41,4 @@ export class OrderDetailsComponent implements OnInit {
     console.log(this.order)
 
   }
-
-
 }
