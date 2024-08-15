@@ -31,6 +31,13 @@ export class UserAccountComponent implements OnInit {
 
 
 
+
+  orderDetails(order_id){
+    this.router.navigate(['/dashboard/detalles-pedido'], {queryParams: {section: 'orders', order: order_id}})
+  }
+
+
+
   logout(){
 
     if(this.loginService.setLogout()){

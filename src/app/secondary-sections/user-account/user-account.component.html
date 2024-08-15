@@ -27,21 +27,21 @@
                       <a href="#"><img src="../assets/images/products/product-img-1.jpg" alt="Ecommerce" class="icon-shape icon-xl"></a>
                    </td> -->
                    <td class="align-middle border-top-0">
-                      <a href="#" class="text-inherit">{{order.order_number}}</a>
+                      <a href="#" class="text-inherit">{{order.order_id}}</a>
                    </td>
-                   <td class="align-middle border-top-0">{{order.date}}</td>
+                   <td class="align-middle border-top-0">{{order.date | date: 'short'}}</td>
                    <td class="align-middle border-top-0">{{order.items}}</td>
                    <td class="align-middle border-top-0">
-                      <span class="badge bg-warning">{{order.state}}</span>
+                      <span class="badge bg-warning">{{order.status}}</span>
                    </td>
                    <td class="align-middle border-top-0">{{order.total}}</td>
                    <td class="text-muted align-middle border-top-0">
-                      <button class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View">Detalle de orden <i class="bi bi-clipboard2-fill"></i></button>
+                      <button class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View" (click)="orderDetails(order.order_id)">Detalle de orden <i class="bi bi-clipboard2-fill"></i></button>
                    </td>
                 </tr>
 
               
-             </tbody>
+             </tbody >
           </table>
        </div>
     </div>

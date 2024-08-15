@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {LoginService} from '../services/login.service'
 import { HttpClient } from '@angular/common/http';
+import { CartService } from '../services/cart.service'
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class ShippingService {
 
   constructor(
     public loginService: LoginService,
+    public cartService: CartService,
     private http: HttpClient
   ) { }
 
@@ -44,21 +46,24 @@ export class ShippingService {
 
     }
     else {
+      let idGenerator = Math.round(Math.random()*1000)
       let products = this.loginService.selectedUser[0].cart
       console.log(products)
       console.log('passed here')
       let orderObject = {
-        order_number: 1246,
+        order_id: idGenerator,
         date: Date.now(),
         products_cart: products,
-        state: 'pending',
+        status: 'pending',
         items: this.loginService.selectedUser[0].cart.length,
-        total: 200
+        total: this.cartService.total,
       }
       console.log(orderObject)
   
       this.loginService.selectedUser[0].orders.push(orderObject);
-      console.log( this.loginService.selectedUser[0])
+     
+  
+
      return this.http.post(`${this.API}/update-shipping`, this.loginService.selectedUser[0])
       
 
