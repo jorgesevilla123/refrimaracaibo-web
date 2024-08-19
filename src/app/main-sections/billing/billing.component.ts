@@ -6,6 +6,8 @@ import { ShippingModalComponent } from '../../secondary-sections/shipping-modal/
 import { ShippingService } from '../../services/shipping.service'
 import { OrderStatusModalComponent } from '../../shared/order-status-modal/order-status-modal.component'
 import { CartService } from '../../services/cart.service'
+import { ConfirmationModalComponent } from 'src/app/shared/confirmation-modal/confirmation-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 interface Food {
   value: string;
   viewValue: string;
@@ -74,7 +76,8 @@ export class BillingComponent implements OnInit {
     public loginService: LoginService,
     public cartService: CartService,
     public dialog: MatDialog,
-    public shippingService: ShippingService
+    public shippingService: ShippingService,
+    public modalService : NgbModal
     ) {}
 
  
@@ -87,12 +90,35 @@ export class BillingComponent implements OnInit {
   } 
 
 
+  openOrderSubmitModal(){
+    const modalRef = this.modalService.open(ConfirmationModalComponent, {centered: true})
+    modalRef.componentInstance.text = 'Quieres realizar la compra?'
+    modalRef.closed.subscribe({
+     next: (result) => {
+       if(result == 'accepted'){
+         this.submitOrder()
+       }
+       else {
+         return 
+       }
+     },
+     error: (err) => {console.log('There was an error opening the modal')}
+   })
+
+  }
+
+
+
+
+
 
   submitOrder(){
     this.shippingService.submitOrder().subscribe(
       {
         next: (value) => { 
-          console.log(this.loginService.selectedUser[0])
+          this.cartService.updateCount()
+          this.cartService.updateQuantity()
+          this.cartService.total = 0
         }
       }
     )
