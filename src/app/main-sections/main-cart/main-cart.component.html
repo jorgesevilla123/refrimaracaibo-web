@@ -35,7 +35,10 @@
 
                 <div *ngIf="loginService.selectedUser[0].cart.length == 0; then noProducts else yesProducts"></div>
 
-                <ng-template #noProducts></ng-template>
+                <ng-template #noProducts>
+
+                  <h2>No tienes productos en el carrito <i class="bi bi-emoji-frown"></i></h2>
+                </ng-template>
                 <ng-template #yesProducts>
                   
                 <div style="height: 400px; overflow-y: auto;" class="products-container">

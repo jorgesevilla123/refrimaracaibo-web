@@ -1137,13 +1137,41 @@
                                        <!-- content -->
                                        <div class="ms-6">
                                           <div style="margin-left: 10px; margin-top: 10px;" class="form-check mb-4">
-                                             <input style="border-color: black;" class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="homeRadio" checked="">
+                                             <input  aria-expanded="false" aria-controls="collapseExample" style="border-color: black;" class="form-check-input" type="radio" name="flexRadioDefault"
+                                                id="homeRadio" checked="true" (click)="setPayMethod('zelle')">
                                              <h3 class="h3">Zelle  <i class="bi bi-currency-dollar"></i></h3>
                                           </div>
                                        </div>
                                     </div>
                                  </div>
+
+                                 <h3>Hola</h3>
+
+                                 <div [ngSwitch]="paymentMethod">
+                                    <p *ngSwitchCase="'efectivo'">
+                                       pago con efectivo
+
+                                    </p>
+                                    <p *ngSwitchCase="'zelle'">
+                                       pago con zelle
+
+                                    </p>
+
+                                    <p *ngSwitchCase="'pago movil'">
+                                       Pago con pago movil
+
+                                    </p>
+
+                                    <p *ngSwitchDefault>
+                                       Nop hay metodo de pago
+
+                                    </p>
+
+
+                                 </div>
+
+
+
                               </div>
 
                             

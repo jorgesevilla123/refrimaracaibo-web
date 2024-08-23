@@ -20,6 +20,7 @@ interface Car {
 
 
 
+
 @Component({
   selector: 'app-billing',
   templateUrl: './billing.component.html',
@@ -36,9 +37,11 @@ export class BillingComponent implements OnInit {
   selectedCar: string;
   selectedState: String
   selectedAddress: any
-  selectedPayment
+  selectedPayment: any = 'Efectivo'
+
+
   paymentProcessed:any = 'waitingCode'
-  paymentMethod: any = ''
+  paymentMethod: any = 'zelle'
   total: any
 
 
@@ -134,7 +137,12 @@ export class BillingComponent implements OnInit {
  
 
   }
+  
 
+  setPayMethod(method){
+    
+
+  }
 
 
 
