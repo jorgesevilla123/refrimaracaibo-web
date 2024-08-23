@@ -1148,10 +1148,10 @@
                                  <h3>Hola</h3>
 
                                  <div [ngSwitch]="paymentMethod">
-                                    <p *ngSwitchCase="'efectivo'">
+                                    <div *ngSwitchCase="'efectivo'">
                                        pago con efectivo
 
-                                    </p>
+                                    </>
                                     <p *ngSwitchCase="'zelle'">
                                        pago con zelle
 
