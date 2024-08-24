@@ -41,7 +41,7 @@ export class BillingComponent implements OnInit {
 
 
   paymentProcessed:any = 'waitingCode'
-  paymentMethod: any = 'zelle'
+  paymentMethod: any = 'efectivo'
   total: any
 
 
@@ -56,20 +56,12 @@ export class BillingComponent implements OnInit {
 
 
 
-
   foods: Food[] = [
     {value: 'Zelle', viewValue: 'Zelle'},
     {value: 'Pago movil', viewValue: 'Pago movil'},
     {value: 'Transferencia', viewValue: 'Transferencia'},
     {value: 'Efectivo en divisas', viewValue: 'Efectivo en divisas'},
   ];
-
-  states = [
-    {value: 'Zulia', viewValue: 'Zulia'},
-    {value: 'Falcon', viewValue: 'Falcon'},
-    {value: 'Aragua', viewValue: 'Aragua'},
-  ];
-
 
 
   
@@ -116,7 +108,7 @@ export class BillingComponent implements OnInit {
 
 
   submitOrder(){
-    this.shippingService.submitOrder().subscribe(
+    this.shippingService.submitOrder(this.paymentMethod).subscribe(
       {
         next: (value) => { 
           this.cartService.updateCount()
@@ -140,6 +132,7 @@ export class BillingComponent implements OnInit {
   
 
   setPayMethod(method){
+    this.paymentMethod = method
     
 
   }

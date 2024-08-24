@@ -1102,7 +1102,7 @@
                         data-bs-parent="#accordionFlushExample">
                         <div class="mt-5">
                            <div>
-                              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 g-lg-4">
+                              <div [ngSwitch]="paymentMethod" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 g-lg-4">
                                  <!-- col -->
                
                                  <div class="col">
@@ -1112,7 +1112,7 @@
                                        <div class="ms-6">
                                           <div style="margin-left: 10px; margin-top: 10px;" class="form-check mb-4">
                                              <input style="border-color: black;" class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="homeRadio" checked="">
+                                                id="homeRadio" [checked]="paymentMethod === 'efectivo'" (click)="setPayMethod('efectivo')">
                                              <h3 class="h3">Efectivo  <i style="font-size: 20px;" class="bi bi-cash"></i></h3>
                                           </div>
                                        </div>
@@ -1125,7 +1125,7 @@
                                        <div class="ms-6">
                                           <div style="margin-left: 10px; margin-top: 10px;" class="form-check mb-4">
                                              <input style="border-color: black;" class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="homeRadio" checked="">
+                                                id="homeRadio" (click)="setPayMethod('pago movil')">
                                              <h3 class="h3">Pago movil  <i class="bi bi-phone"></i></h3>
                                           </div>
                                        </div>
@@ -1138,38 +1138,36 @@
                                        <div class="ms-6">
                                           <div style="margin-left: 10px; margin-top: 10px;" class="form-check mb-4">
                                              <input  aria-expanded="false" aria-controls="collapseExample" style="border-color: black;" class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="homeRadio" checked="true" (click)="setPayMethod('zelle')">
+                                                id="homeRadio" (click)="setPayMethod('zelle')">
                                              <h3 class="h3">Zelle  <i class="bi bi-currency-dollar"></i></h3>
                                           </div>
                                        </div>
                                     </div>
                                  </div>
 
-                                 <h3>Hola</h3>
-
-                                 <div [ngSwitch]="paymentMethod">
+                  
+                               
                                     <div *ngSwitchCase="'efectivo'">
-                                       pago con efectivo
+                                       <h2>Codigo para pagos en efectivo</h2>
 
-                                    </>
-                                    <p *ngSwitchCase="'zelle'">
-                                       pago con zelle
+                                    </div>
+                                    <div *ngSwitchCase="'zelle'">
+                                       <h2>Codigo para pagos en zelle</h2>
 
-                                    </p>
+                                    </div>
 
-                                    <p *ngSwitchCase="'pago movil'">
-                                       Pago con pago movil
+                                    <div *ngSwitchCase="'pago movil'">
+                                       <h2>Codigos para pago movil</h2>
 
-                                    </p>
+                                    </div>
 
-                                    <p *ngSwitchDefault>
+                                    <div *ngSwitchDefault>
                                        Nop hay metodo de pago
 
-                                    </p>
+                                    </div>
 
 
-                                 </div>
-
+                             
 
 
                               </div>
