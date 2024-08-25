@@ -61,7 +61,8 @@ export class ShippingService {
       console.log(orderObject)
   
       this.loginService.selectedUser[0].orders.push(orderObject);
-     
+      this.loginService.selectedUser[0].cart = []
+
   
 
      return this.http.post(`${this.API}/update-shipping`, this.loginService.selectedUser[0])
