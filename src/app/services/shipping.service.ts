@@ -24,7 +24,7 @@ export class ShippingService {
 
 
 
-  submitOrder(){
+  submitOrder(paymethod){
     let hasOrders = 'orders' in this.loginService.selectedUser[0]
     console.log(hasOrders)
    
@@ -52,6 +52,7 @@ export class ShippingService {
       console.log('passed here')
       let orderObject = {
         order_id: idGenerator,
+        pay_method: paymethod,
         date: Date.now(),
         products_cart: products,
         status: 'pending',
@@ -62,6 +63,8 @@ export class ShippingService {
   
       this.loginService.selectedUser[0].orders.push(orderObject);
       this.loginService.selectedUser[0].cart = []
+      console.log(this.loginService.selectedUser[0])
+     
 
   
 

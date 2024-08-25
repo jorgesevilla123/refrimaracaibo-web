@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { LoginService } from '../../../services/login.service'
+import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-order-details',
   templateUrl: './order-details.component.html',
@@ -12,7 +13,8 @@ export class OrderDetailsComponent implements OnInit {
 
   constructor(
     public router: ActivatedRoute,
-    public loginService: LoginService
+    public loginService: LoginService,
+    public cartService: CartService
   ) { }
 
   ngOnInit(): void {
@@ -27,7 +29,6 @@ export class OrderDetailsComponent implements OnInit {
     return this.router.queryParams.subscribe(
       {
         next: query => {
-          console.log(query.order)
           this.getOrder(query.order)
         }
       }

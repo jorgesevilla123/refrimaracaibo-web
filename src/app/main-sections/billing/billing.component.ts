@@ -6,8 +6,8 @@ import { ShippingModalComponent } from '../../secondary-sections/shipping-modal/
 import { ShippingService } from '../../services/shipping.service'
 import { OrderStatusModalComponent } from '../../shared/order-status-modal/order-status-modal.component'
 import { CartService } from '../../services/cart.service'
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from 'src/app/shared/confirmation-modal/confirmation-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 interface Food {
   value: string;
   viewValue: string;
@@ -17,6 +17,7 @@ interface Car {
   value: string;
   viewValue: string;
 }
+
 
 
 
@@ -36,9 +37,11 @@ export class BillingComponent implements OnInit {
   selectedCar: string;
   selectedState: String
   selectedAddress: any
-  selectedPayment
+  selectedPayment: any = 'Efectivo'
+
+
   paymentProcessed:any = 'waitingCode'
-  paymentMethod: any = ''
+  paymentMethod: any = 'efectivo'
   total: any
 
 
@@ -53,20 +56,12 @@ export class BillingComponent implements OnInit {
 
 
 
-
   foods: Food[] = [
     {value: 'Zelle', viewValue: 'Zelle'},
     {value: 'Pago movil', viewValue: 'Pago movil'},
     {value: 'Transferencia', viewValue: 'Transferencia'},
     {value: 'Efectivo en divisas', viewValue: 'Efectivo en divisas'},
   ];
-
-  states = [
-    {value: 'Zulia', viewValue: 'Zulia'},
-    {value: 'Falcon', viewValue: 'Falcon'},
-    {value: 'Aragua', viewValue: 'Aragua'},
-  ];
-
 
 
   
@@ -77,7 +72,7 @@ export class BillingComponent implements OnInit {
     public cartService: CartService,
     public dialog: MatDialog,
     public shippingService: ShippingService,
-    public modalService: NgbModal
+    public modalService : NgbModal
     ) {}
 
  
@@ -90,20 +85,20 @@ export class BillingComponent implements OnInit {
   } 
 
 
-  openSubmitOrderModal(){
+  openOrderSubmitModal(){
     const modalRef = this.modalService.open(ConfirmationModalComponent, {centered: true})
-     modalRef.componentInstance.text = 'Estas seguro que quieres eliminar esta direccion?'
-     modalRef.closed.subscribe({
-      next: (result) => {
-        if(result == 'accepted'){
-          this.submitOrder()
-        }
-        else {
-          return 
-        }
-      },
-      error: (err) => {console.log('There was an error opening the modal')}
-    })
+    modalRef.componentInstance.text = 'Quieres realizar la compra?'
+    modalRef.closed.subscribe({
+     next: (result) => {
+       if(result == 'accepted'){
+         this.submitOrder()
+       }
+       else {
+         return 
+       }
+     },
+     error: (err) => {console.log('There was an error opening the modal')}
+   })
 
   }
 
@@ -112,12 +107,12 @@ export class BillingComponent implements OnInit {
 
 
 
-
   submitOrder(){
-    this.shippingService.submitOrder().subscribe(
+    this.shippingService.submitOrder(this.paymentMethod).subscribe(
       {
         next: (value) => { 
           this.cartService.updateCount()
+          this.cartService.updateQuantity()
           this.cartService.total = 0
         }
       }
@@ -134,7 +129,13 @@ export class BillingComponent implements OnInit {
  
 
   }
+  
 
+  setPayMethod(method){
+    this.paymentMethod = method
+    
+
+  }
 
 
 

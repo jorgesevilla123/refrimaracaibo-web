@@ -1102,123 +1102,77 @@
                         data-bs-parent="#accordionFlushExample">
                         <div class="mt-5">
                            <div>
-                              <div class="card card-bordered shadow-none mb-2">
-                                 <!-- card body -->
-                                 <div class="card-body p-6">
-                                    <div class="d-flex">
-                                       <div class="form-check">
-                                          <!-- checkbox -->
-                                          <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                             id="paypal">
-                                          <label class="form-check-label ms-2" for="paypal"></label>
-                                       </div>
-                                       <div>
-                                          <!-- title -->
-                                          <h5 class="mb-1 h6">Payment with Paypal</h5>
-                                          <p class="mb-0 small">You will be redirected to PayPal website to complete
-                                             your purchase securely.</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <!-- card -->
-                              <div class="card card-bordered shadow-none mb-2">
-                                 <!-- card body -->
-                                 <div class="card-body p-6">
-                                    <div class="d-flex mb-4">
-                                       <div class="form-check">
-                                          <!-- input -->
-                                          <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                             id="creditdebitcard">
-                                          <label class="form-check-label ms-2" for="creditdebitcard"></label>
-                                       </div>
-                                       <div>
-                                          <h5 class="mb-1 h6">Credit / Debit Card</h5>
-                                          <p class="mb-0 small">Safe money transfer using your bank accou k account. We
-                                             support Mastercard tercard, Visa, Discover and Stripe.</p>
-                                       </div>
-                                    </div>
-                                    <div class="row g-2">
-                                       <div class="col-12">
-                                          <!-- input -->
-                                          <div class="mb-3">
-                                             <label for="card-mask" class="form-label">Card Number</label>
-                                             <input type="text" class="form-control" id="card-mask"
-                                                placeholder="xxxx-xxxx-xxxx-xxxx" required="">
-                                          </div>
-                                       </div>
-                                       <div class="col-md-6 col-12">
-                                          <!-- input -->
-                                          <div class="mb-3 mb-lg-0">
-                                             <label class="form-label" for="nameoncard">Name on card</label>
-                                             <input type="text" class="form-control" placeholder="Enter name"
-                                                id="nameoncard">
-                                          </div>
-                                       </div>
-                                       <div class="col-md-3 col-12">
-                                          <!-- input -->
-                                          <div class="mb-3 mb-lg-0 position-relative">
-                                             <label class="form-label" for="expirydate">Expiry date</label>
-                                             <input type="text" class="form-control" id="expirydate"
-                                                placeholder="MM/YY">
-                                          </div>
-                                       </div>
-                                       <div class="col-md-3 col-12">
-                                          <!-- input -->
-                                          <div class="mb-3 mb-lg-0">
-                                             <label for="digit-mask" class="form-label">
-                                                CVV Code
-                                                <i class="fe fe-help-circle ms-1" data-bs-toggle="tooltip"
-                                                   data-placement="top"
-                                                   aria-label="A 3 - digit number, typically printed on the back of a card."
-                                                   data-bs-original-title="A 3 - digit number, typically printed on the back of a card."></i>
-                                             </label>
-                                             <input type="password" class="form-control" name="digit-mask"
-                                                id="digit-mask" placeholder="xxx" maxlength="3" inputmode="numeric"
-                                                required="">
+                              <div [ngSwitch]="paymentMethod" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 g-lg-4">
+                                 <!-- col -->
+               
+                                 <div class="col">
+                                    <!-- card -->
+                                    <div class="card flex-row p-8 card-product">
+                                       <!-- content -->
+                                       <div class="ms-6">
+                                          <div style="margin-left: 10px; margin-top: 10px;" class="form-check mb-4">
+                                             <input style="border-color: black;" class="form-check-input" type="radio" name="flexRadioDefault"
+                                                id="homeRadio" [checked]="paymentMethod === 'efectivo'" (click)="setPayMethod('efectivo')">
+                                             <h3 class="h3">Efectivo  <i style="font-size: 20px;" class="bi bi-cash"></i></h3>
                                           </div>
                                        </div>
                                     </div>
                                  </div>
-                              </div>
-                              <!-- card -->
-                              <div class="card card-bordered shadow-none mb-2">
-                                 <!-- card body -->
-                                 <div class="card-body p-6">
-                                    <!-- check input -->
-                                    <div class="d-flex">
-                                       <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                             id="payoneer">
-                                          <label class="form-check-label ms-2" for="payoneer"></label>
-                                       </div>
-                                       <div>
-                                          <!-- title -->
-                                          <h5 class="mb-1 h6">Pay with Payoneer</h5>
-                                          <p class="mb-0 small">You will be redirected to Payoneer website to complete
-                                             your purchase securely.</p>
+                                 <div class="col">
+                                    <!-- card -->
+                                    <div class="card flex-row p-8 card-product">
+                                       <!-- content -->
+                                       <div class="ms-6">
+                                          <div style="margin-left: 10px; margin-top: 10px;" class="form-check mb-4">
+                                             <input style="border-color: black;" class="form-check-input" type="radio" name="flexRadioDefault"
+                                                id="homeRadio" (click)="setPayMethod('pago movil')">
+                                             <h3 class="h3">Pago movil  <i class="bi bi-phone"></i></h3>
+                                          </div>
                                        </div>
                                     </div>
                                  </div>
-                              </div>
-                              <!-- card -->
-                              <div class="card card-bordered shadow-none">
-                                 <div class="card-body p-6">
-                                    <!-- check input -->
-                                    <div class="d-flex">
-                                       <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                             id="cashonDelivery">
-                                          <label class="form-check-label ms-2" for="cashonDelivery"></label>
-                                       </div>
-                                       <div>
-                                          <!-- title -->
-                                          <h5 class="mb-1 h6">Cash on Delivery</h5>
-                                          <p class="mb-0 small">Pay with cash when your order is delivered.</p>
+                                 <div class="col">
+                                    <!-- card -->
+                                    <div class="card flex-row p-8 card-product">
+                                       <!-- content -->
+                                       <div class="ms-6">
+                                          <div style="margin-left: 10px; margin-top: 10px;" class="form-check mb-4">
+                                             <input  aria-expanded="false" aria-controls="collapseExample" style="border-color: black;" class="form-check-input" type="radio" name="flexRadioDefault"
+                                                id="homeRadio" (click)="setPayMethod('zelle')">
+                                             <h3 class="h3">Zelle  <i class="bi bi-currency-dollar"></i></h3>
+                                          </div>
                                        </div>
                                     </div>
                                  </div>
+
+                  
+                               
+                                    <div *ngSwitchCase="'efectivo'">
+                                       <h2>Codigo para pagos en efectivo</h2>
+
+                                    </div>
+                                    <div *ngSwitchCase="'zelle'">
+                                       <h2>Codigo para pagos en zelle</h2>
+
+                                    </div>
+
+                                    <div *ngSwitchCase="'pago movil'">
+                                       <h2>Codigos para pago movil</h2>
+
+                                    </div>
+
+                                    <div *ngSwitchDefault>
+                                       Nop hay metodo de pago
+
+                                    </div>
+
+
+                             
+
+
                               </div>
+
+                            
                               <!-- Button -->
                               <div style="margin-bottom: 20px;" class="mt-5 d-flex justify-content-end">
                                  <a href="#" class="btn btn-outline-gray-400 text-muted" data-bs-toggle="collapse"
@@ -1226,7 +1180,7 @@
                                     aria-controls="flush-collapseThree">
                                     Previo
                                  </a>
-                                 <button class="btn btn-primary ms-2" (click)="submitOrder()">Realizar orden</button>
+                                 <button class="btn btn-primary ms-2" (click)="openOrderSubmitModal()">Realizar orden</button>
                               </div>
                            </div>
                         </div>
