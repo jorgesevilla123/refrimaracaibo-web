@@ -3,9 +3,9 @@
        <!-- heading -->
        <h2 class="mb-5 fs-2">Tus pedidos</h2>
 
-       <div class="table-responsive-xxl border-0">
+       <div style="height: 300px; overflow-y: auto;" class="table-responsive-xxl border-0">
           <!-- Table -->
-          <table class="table mb-0 text-nowrap table-centered">
+          <table class="table mb-0 text-nowrap table-centered" >
              <!-- Table Head -->
              <thead class="bg-light">
                 <tr>
@@ -22,7 +22,8 @@
              </thead>
              <tbody>
                 <!-- Table body -->
-                <tr *ngFor="let order of loginService.selectedUser[0].orders">
+                
+                <tr *ngFor="let order of loginService.selectedUser[0].orders" >
                    <!-- <td class="align-middle border-top-0 w-0">
                       <a href="#"><img src="../assets/images/products/product-img-1.jpg" alt="Ecommerce" class="icon-shape icon-xl"></a>
                    </td> -->
@@ -39,6 +40,7 @@
                       <button class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View" (click)="orderDetails(order.order_id)">Detalle de orden <i class="bi bi-clipboard2-fill"></i></button>
                    </td>
                 </tr>
+                
 
               
              </tbody >
