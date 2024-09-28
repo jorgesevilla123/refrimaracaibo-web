@@ -39,6 +39,9 @@ export class LoginService {
   })
 
 
+  
+
+
   accountDetailsForm = new FormGroup({
     name: new FormControl('', [
       Validators.required
@@ -50,6 +53,9 @@ export class LoginService {
       Validators.required
     ])
   })
+
+
+
 
 
   populateAccountDetailsForm() {
