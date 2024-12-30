@@ -70,7 +70,7 @@ export class CartOverviewComponent implements OnInit {
     this.cartService.updateQuantity().subscribe(
       val => {
         console.log(val)
-        this.total = this.cartService.IncreaseTotal()
+        this.total = this.cartService.updateTotal()
     
 
       }
@@ -86,7 +86,7 @@ export class CartOverviewComponent implements OnInit {
     this.cartService.updateQuantity().subscribe(
       val => {
         console.log(val)
-        this.total = this.cartService.decreaseTotal()
+        this.total = this.cartService.updateTotal()
 
       }
     )

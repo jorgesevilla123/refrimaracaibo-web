@@ -131,7 +131,7 @@
                            <!-- btn -->
                       <button [routerLink]="['/pago']" class="btn btn-primary btn-lg d-flex justify-content-between align-items-center" type="submit">
                         Ir a pago
-                        <span class="fw-bold">{{total | currency}}</span>
+                        <span class="fw-bold">{{cartService.total| currency}}</span>
                      </button>
                      </ng-template>
 

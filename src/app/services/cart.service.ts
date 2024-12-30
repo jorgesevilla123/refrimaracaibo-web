@@ -137,7 +137,7 @@ export class CartService {
 
 
 
-  IncreaseTotal() {
+  updateTotal() {
     this.total = 0
 
     let productsSelected = this.loginService.selectedUser[0].cart.filter( product => product.selected)
@@ -155,30 +155,6 @@ export class CartService {
   }
 
 
-
-
-  decreaseTotal() {
-    this.total = 0
-    let productsSelected = this.loginService.selectedUser[0].cart.filter( product => product.selected)
-
-    this.loginService.selectedUser[0].cart.forEach(
-      product => {
-
-        this.total -= (product.quantity * product.precio)
-
-
-      }
-    )
-
-    return this.total * -1
-  }
-
-
-
-
-  updateSelectedProducts(products){
-    return this.http.post(`${this.uri}/product-selection`, products)
-  }
 
 
 

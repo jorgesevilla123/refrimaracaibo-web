@@ -114,6 +114,7 @@ export class BillingComponent implements OnInit {
           this.cartService.updateCount()
           this.cartService.updateQuantity()
           this.cartService.total = 0
+          
         }
       }
     )

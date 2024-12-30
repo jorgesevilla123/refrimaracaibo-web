@@ -119,6 +119,7 @@ function createUser(req, res) {
         }
         else {
             if(result?.password === password){
+                console.log('logged')
                 let user = {
                     name: result.name,
                     email: result.email,
@@ -394,31 +395,38 @@ function productSelection(req, res){
 
 
 
+/* this functions only updates user profile in the redis cache 
+it does not handle shipping addresses, it can be used for updating user profile cache
 
 
-function handleShippingAddresses(req, res){
 
+*/
+
+function handleShippingAddresses(req, res){   
     let userProfile = req.body
     console.log(userProfile)
     let profileString = JSON.stringify(userProfile)
-
-
     redisClient.set('profile', profileString).then(
         result => {
-            res.json('Shipping added succesfully')
+            if('OK'){
+                console.log('order processed')
+                res.json('Profile updated succesfully')
+            }
+            else {
+                console.log('error in redis')
+
+            }
         }
     ).catch(
         err => {
             console.log('Error adding shipping address')
         }
     )
+}
 
 
-  
-
-
-
-
+function sendOrderToProcess(req, res){
+    let userProfile = req.body
 
 }
 
@@ -447,4 +455,4 @@ function saveCartToDb(user){
 
 module.exports = { getSession, sessionChecker, createUser,
  addToCart, removeFromCart, updateQuantities, 
- productSelection, login, logout, handleShippingAddresses }
+ productSelection, login, logout, handleShippingAddresses, redisClient }

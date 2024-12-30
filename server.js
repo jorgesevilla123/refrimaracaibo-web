@@ -6,7 +6,9 @@ const dotenv = require('dotenv')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const productsRoutes = require('./routes/products-routes');
-const sessionRoutes = require('./routes/session-routes')
+const sessionRoutes = require('./routes/session-routes');
+const orderRoutes = require('./routes/orders-routes');
+
 const RedisStore = require('connect-redis').default
 const { createClient } = require('redis')
 const { WebSocketServer, WebSocket } = require('ws')
@@ -66,6 +68,9 @@ app.use(express.static(__dirname + '/dist/refri-web'))
 app.use('/api/products', productsRoutes);
 
 app.use('/api/sessions', sessionRoutes);
+
+
+app.use('/api/orders', orderRoutes);
 
 
 

@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { CartService } from 'src/app/services/cart.service';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { UpdateModalComponent } from '../../shared/update-modal/update-modal.component'
+import { ShippingService } from 'src/app/services/shipping.service';
 
 
 
@@ -22,11 +23,26 @@ export class UserAccountComponent implements OnInit {
     public loginService: LoginService,
     public router: Router,
     public cartService: CartService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public shippingService: ShippingService
   ) { }
 
   ngOnInit(): void {
   
+  }
+
+
+  
+  removeOrder(clientOrder){
+    let index = this.loginService.selectedUser[0].orders.findIndex( (order) => order.order_id ===  clientOrder.order_id)
+    this.loginService.selectedUser[0].orders.splice(index, 1)
+    this.shippingService.updateUserProfile().subscribe(
+      {
+        next: value => {
+          console.log('order removed')
+        }
+      }
+    )
   }
 
 

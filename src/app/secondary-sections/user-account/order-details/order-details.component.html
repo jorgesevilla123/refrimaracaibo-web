@@ -2,8 +2,16 @@
     <div class="py-6 p-md-6 p-lg-10">
        <!-- heading -->
        <h2 class="mb-6">Detalles de orden #{{order.order_id}}</h2>
+     
+       <div class="d-flex flex-row mb-3 justify-content-between">
+         <h3 class="p-2">Metodo de pago: {{order.pay_method}}</h3>
+         <h3 class="p-2">Estado: <button style="background-color: rgb(31, 198, 31);" class="btn btn-lg">{{order.status}}</button></h3>
+         
+
+       </div>
+      
  
-       <div class="table-responsive-xxl border-0">
+       <div style="height: 400px; overflow-y: auto;" class="table-responsive-xxl border-0">
           <!-- Table -->
           <table class="table mb-0 text-nowrap table-centered">
              <!-- Table Head -->
@@ -19,7 +27,7 @@
              </thead>
              <tbody>
                 <!-- Table body -->
-                <tr *ngFor="let product of order.products_cart">
+                <tr  *ngFor="let product of order.products_cart" >
                    <td class="align-middle border-top-0 w-0">
                       <a href="#"><img style="width: auto; height: 50px;" [src]="product.imageMetadata.path_to_file" alt="Ecommerce" class="icon-shape icon-xl"></a>
                    </td>

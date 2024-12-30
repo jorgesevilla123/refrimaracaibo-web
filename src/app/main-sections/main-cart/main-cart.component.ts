@@ -74,7 +74,7 @@ export class MainCartComponent implements OnInit {
     this.cartService.updateQuantity().subscribe(
       val => {
         console.log(val)
-        product.selected ? this.total = this.cartService.IncreaseTotal() : this.total
+        product.selected ? this.total = this.cartService.updateTotal() : this.total
 
       }
     )
@@ -83,13 +83,14 @@ export class MainCartComponent implements OnInit {
   
 
   decreaseQuantity(product) {
-    let quantity = Number(product.quantity - 1)
+    let quantity = Number(product.quantity)
+    quantity--
     let index = this.loginService.selectedUser[0].cart.findIndex(val => val.title === product.title)
     this.loginService.selectedUser[0].cart[index].quantity = quantity
+    this.cartService.updateTotal()
     this.cartService.updateQuantity().subscribe(
       val => {
-        console.log(val)
-        product.selected ? this.total = this.cartService.decreaseTotal() : this.total
+      
       }
     )
   }
@@ -148,12 +149,6 @@ export class MainCartComponent implements OnInit {
 
   }
 
-
-
-
-  selectionUpdate(products): Observable<any> {
-    return this.cartService.updateSelectedProducts(products)
-  }
 
 
 
