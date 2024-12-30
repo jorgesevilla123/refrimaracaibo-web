@@ -8,7 +8,8 @@ import { CartService } from '../services/cart.service'
 })
 export class ShippingService {
 
-  API: string = 'http://localhost:4300/api/sessions'
+  API: string = 'http://localhost:4300/api/sessions';
+  ORDER_API: string = 'http://localhost:4300/api/orders';
 
 
 
@@ -28,6 +29,8 @@ export class ShippingService {
     let hasOrders = 'orders' in this.loginService.selectedUser[0]
     console.log(hasOrders)
    
+
+      // if the user doesnt have previous orders this code executes
     if(!hasOrders){
       this.loginService.selectedUser[0].orders = []    
       let orderObject = {
@@ -45,6 +48,9 @@ export class ShippingService {
      return this.http.post(`${this.API}/update-shipping`, this.loginService.selectedUser[0])
 
     }
+
+
+    // if the user already have orders this code executes and creates order
     else {
       let idGenerator = Math.round(Math.random()*1000)
       let products = this.loginService.selectedUser[0].cart
@@ -55,7 +61,7 @@ export class ShippingService {
         pay_method: paymethod,
         date: Date.now(),
         products_cart: products,
-        status: 'pending',
+        status: 'en proceso',
         items: this.loginService.selectedUser[0].cart.length,
         total: this.cartService.total,
       }
@@ -64,17 +70,21 @@ export class ShippingService {
       this.loginService.selectedUser[0].orders.push(orderObject);
       this.loginService.selectedUser[0].cart = []
       console.log(this.loginService.selectedUser[0])
-     
 
-  
 
-     return this.http.post(`${this.API}/update-shipping`, this.loginService.selectedUser[0])
+     return this.http.post(`${this.ORDER_API}/submit-order`, this.loginService.selectedUser[0])
       
 
     }
 
    
    
+  }
+
+
+  updateUserProfile(){
+    return this.http.post(`${this.API}/update-shipping`, this.loginService.selectedUser[0])
+
   }
 
 

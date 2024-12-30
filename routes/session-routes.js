@@ -63,4 +63,7 @@ sessionRouter.route('/update-account-details').post()
 sessionRouter.route('/update-shipping').post(handleShippingAddresses)
 
 
+sessionRouter.route('/submit-order').post()
+
+
 module.exports = sessionRouter
