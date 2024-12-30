@@ -11,7 +11,7 @@ function updateProfileCache(profile){
     redisClient.set('profile', profileString).then(
         result => {
             if(result === 'OK'){
-                console.log('order processed')
+                console.log('Profile updated in cache')
             }
             else {
                 console.log('error in redis')
@@ -28,8 +28,14 @@ function updateProfileCache(profile){
 
 function submitOrderToProcess(req, res){
     let userProfile = req.body
+   
+
+    const { shipping_address, name, email, contact_phone, } = req.body
+    console.log(shipping_address, name, email, contact_phone)
+    delete userProfile.shipping_address
+    console.log(userProfile);
     updateProfileCache(userProfile)
-    console.log(userProfile)
+ 
 
 
 }

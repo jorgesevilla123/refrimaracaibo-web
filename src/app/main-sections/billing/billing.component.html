@@ -106,8 +106,8 @@
                                  <!-- form -->
                                  <div class="card card-body p-6">
                                     <div class="form-check mb-4">
-                                       <input style="border-color: black;" class="form-check-input" type="radio" name="flexRadioDefault"
-                                          id="homeRadio" checked="">
+                                       <input #checkInput style="border-color: black;" class="form-check-input" type="radio" name="flexRadioDefault"
+                                          id="homeRadio" checked="" (change)="selectAdress(checkInput.value, address)">
                                        <label class="form-check-label text-dark" for="homeRadio">{{address.name}}</label>
                                     </div>
                                     <!-- address -->

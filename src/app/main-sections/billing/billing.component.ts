@@ -91,6 +91,7 @@ export class BillingComponent implements OnInit {
     modalRef.closed.subscribe({
      next: (result) => {
        if(result == 'accepted'){
+        console.log('the sale is accepted')
          this.submitOrder()
        }
        else {
@@ -111,6 +112,7 @@ export class BillingComponent implements OnInit {
     this.shippingService.submitOrder(this.paymentMethod).subscribe(
       {
         next: (value) => { 
+          console.log(this.loginService.selectedUser[0])
           this.cartService.updateCount()
           this.cartService.updateQuantity()
           this.cartService.total = 0
@@ -135,6 +137,16 @@ export class BillingComponent implements OnInit {
   setPayMethod(method){
     this.paymentMethod = method
     
+
+  }
+
+  selectAdress(event, address){
+    if(event === 'on'){
+      console.log(address)
+      this.loginService.selectedUser[0].shipping_address = address
+    }
+   
+
 
   }
 

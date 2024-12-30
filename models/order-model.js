@@ -6,14 +6,16 @@ const { Schema, model, SchemaTypes} = require('mongoose');
 
 const OrderSchema = new Schema({
     shipping_address: {
-        avenida: String,
-        calle: String,
-        casa_apartamento: String,
-        punto_referencia: String,
-        info_adicional: String
+        direccion: String,
+        casa: String,
+        infoExtra: String,
     },
     sale_detail: {
-        customer: {type: SchemaTypes.ObjectId},
+        customer: {
+            name: String,
+            email: String,
+            contact_phone: String
+        },
         products: {type: []},
         total: Number,
         dateIssued: {type: Date},
