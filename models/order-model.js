@@ -1,4 +1,4 @@
-const { Schema, model, SchemaTypes} = require('mongoose');
+const { Schema, model, SchemaTypes } = require('mongoose');
 
 
 
@@ -16,9 +16,10 @@ const OrderSchema = new Schema({
             email: String,
             contact_phone: String
         },
-        products: {type: []},
+        order_id: Number,
+        products: { type: [] },
         total: Number,
-        dateIssued: {type: Date},
+        date: { type: Date },
         pay_method: String,
         status: String,
     }

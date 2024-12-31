@@ -32,6 +32,19 @@ function submitOrderToProcess(req, res){
 
     const { shipping_address, name, email, contact_phone, } = req.body
     console.log(shipping_address, name, email, contact_phone)
+    saleDetailObject = {
+        customer: {
+            name: name,
+            email: email,
+            contact_phone: contact_phone
+        }
+    }
+
+    const newOrder = {
+        shipping_address: shipping_address,
+        sale_detail: 
+    }
+
     delete userProfile.shipping_address
     console.log(userProfile);
     updateProfileCache(userProfile)
