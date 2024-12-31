@@ -10,6 +10,7 @@ export class ShippingService {
 
   API: string = 'http://localhost:4300/api/sessions';
   ORDER_API: string = 'http://localhost:4300/api/orders';
+  current_order: any
 
 
 
@@ -66,12 +67,11 @@ export class ShippingService {
         total: this.cartService.total,
       }
       console.log(orderObject)
-  
+     
+      this.loginService.selectedUser[0].current_order = orderObject
       this.loginService.selectedUser[0].orders.push(orderObject);
       this.loginService.selectedUser[0].cart = []
       console.log(this.loginService.selectedUser[0])
-
-
      return this.http.post(`${this.ORDER_API}/submit-order`, this.loginService.selectedUser[0])
       
 
