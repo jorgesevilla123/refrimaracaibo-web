@@ -6,6 +6,7 @@ const { Schema, model, SchemaTypes } = require('mongoose');
 
 const OrderSchema = new Schema({
     shipping_address: {
+        name: String,
         direccion: String,
         casa: String,
         infoExtra: String,
