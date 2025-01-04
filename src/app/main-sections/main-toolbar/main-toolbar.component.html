@@ -127,14 +127,11 @@
     </div>
 
 
-    <div style="margin-left: 20rem; padding-top: 20px" class="session-config">
+    <div style="margin-left: 10rem; padding-top: 20px" class="session-config">
 
       <div *ngIf="loginService.logged; then userLogged else notLogged"></div>
 
       <ng-template #userLogged>
-
-
-   
           <button routerLink="/cart" mat-icon-button><i style="font-size: 2rem; color: #0d6efd;" class="bi bi-cart"></i> <span
             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
             {{cartService.count}}
@@ -142,19 +139,15 @@
           </span></button>
         <button style="width: 70px; height: 70px;" mat-icon-button [routerLink]="['/dashboard/pedidos']" [queryParams]="{section: 'orders'}"><i style="font-size: 2rem; color: #0d6efd;" class="bi bi-person-circle"></i></button>
 
-
-    
       </ng-template>
 
       <ng-template #notLogged>
 
-        <button mat-button routerLink="/login">Inicia sesion <mat-icon
-            style="color: dodgerblue;">account_circle</mat-icon></button>
-        <button mat-button routerLink="/registration">Registrate! <mat-icon
-            style="color: dodgerblue;">login</mat-icon></button>
-        <button routerLink="/cart" [matBadge]="cartService.count" mat-fab
+        <button mat-button routerLink="/login">Inicia sesion <i style="font-size: 1.5rem; color: #4db3ff;" class="bi bi-box-arrow-in-right"></i></button>
+        <button mat-button [routerLink]="['/registration']" [queryParams]="{section: 'register'}">Registrate! <i style="font-size: 1.2rem; color: #4db3ff;" class="bi bi-pen"></i></button>
+        <!-- <button routerLink="/cart" [matBadge]="cartService.count" mat-fab
           style="background-color: white; width: 45px; height: 45px; color: black; margin-left: 30px;"><mat-icon
-            style="font-size: 18px;">shopping_cart</mat-icon></button>
+            style="font-size: 18px;">shopping_cart</mat-icon></button> -->
 
 
       </ng-template>
@@ -163,15 +156,12 @@
 
     </div>
 
-
-
-
-
-
-
-
-
   </mat-toolbar-row>
+
+
+
+
+  
 
   <mat-toolbar-row style="margin-top: 20px; position: relative; ">
 

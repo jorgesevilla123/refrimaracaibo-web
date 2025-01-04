@@ -14,6 +14,7 @@ export class RegistrationComponent implements OnInit {
 
   registrationForm: FormGroup = new FormGroup({
     name: new FormControl(''), 
+    apellido: new FormControl(''),
     email: new FormControl(''),
     contact_phone: new FormControl(''),
     password: new FormControl(''),
@@ -32,18 +33,20 @@ export class RegistrationComponent implements OnInit {
 
   register(){
     let name = this.registrationForm.get('name').value
+    let apellido = this.registrationForm.get('apellido').value
     let email = this.registrationForm.get('email').value
     let contact_phone = this.registrationForm.get('contact_phone').value
     let password = this.registrationForm.get('password').value
     let repeatPassword = this.registrationForm.get('repeatPassword').value
     let newUser = {
-      name: name,
+      name: `${name} ${apellido}`,
       email: email,
       contact_phone: contact_phone,
       password: password,
       repeatPassword: repeatPassword
     }
 
+    
     this.loginService.createUser(newUser).subscribe(
       val => {
         if(val.created){

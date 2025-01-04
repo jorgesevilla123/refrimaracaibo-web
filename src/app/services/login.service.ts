@@ -103,15 +103,7 @@ export class LoginService {
 
 
   setLogout() {
-    return this.http.delete(`${this.uri}/logout`).subscribe(
-      {
-        next: (val) => {
-          this.selectedUser.pop()
-          this.logged = false
-          return true
-        }
-      }
-    )
+    return this.http.delete(`${this.uri}/logout`)
   }
 
 

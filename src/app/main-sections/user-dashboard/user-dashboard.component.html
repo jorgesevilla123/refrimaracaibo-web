@@ -65,10 +65,10 @@
                    </li>
                    <!-- nav item -->
                    <li class="nav-item">
-                      <a class="nav-link text-danger"[routerLink]="['/dashboard/purchases']" [queryParams]="{section: 'logout'}">
+                      <button class="nav-link text-danger" (click)="logout()">
                         <i style="margin-right: 5px;" class="bi bi-box-arrow-right"></i>
                          Cerrar sesion
-                      </a>
+                      </button>
                    </li>
                 </ul>
              </div>

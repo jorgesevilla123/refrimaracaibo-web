@@ -64,10 +64,18 @@ export class UserDashboardComponent implements OnInit {
 
 
   logout(){
+    this.loginService.setLogout().subscribe(
+      {
+        next: (val) => {
+          console.log('user log out')
+          this.loginService.selectedUser.pop()
+          this.loginService.logged = false
+          return true
+        }
+      }
+    )
     
-    if(this.loginService.setLogout()){
    
-    }
 
   }
 

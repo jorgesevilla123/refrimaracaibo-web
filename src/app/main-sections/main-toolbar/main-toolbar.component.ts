@@ -11,9 +11,6 @@ import { SessionService } from 'src/app/services/session.service';
 
 
 
-
-
-
 @Component({
   selector: 'app-main-toolbar',
   templateUrl: './main-toolbar.component.html',

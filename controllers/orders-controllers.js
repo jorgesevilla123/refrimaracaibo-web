@@ -7,6 +7,7 @@ const { redisClient } = require('../controllers/session-controllers')
 
 
 function updateProfileCache(profile){
+    console.log(profile)
     let profileString = JSON.stringify(profile)
     redisClient.set('profile', profileString).then(
         result => {
@@ -58,30 +59,23 @@ function submitOrderToProcess(req, res){
         sale_detail: saleDetailObject
     }
 
-    console.log('loggin new order', newOrder)
-
-  
 
     const addOrder = new Orders(newOrder);
     addOrder.save((err, result) => {
         if(err){
             console.log('error saving order', err)
-
         }
         else {
+            
             delete userProfile.shipping_address //temporary data deleted when saved to orders
-            delete userProfile. // temporary data deleted when saved to orders
-            updateProfileCache(userProfile);
+            delete userProfile.current_order // temporary data deleted when saved to orders
+            updateProfileCache(userProfile)
             console.log(result);
+            console.log('order saved!', result);
             res.json({message: 'order saved!'});
-            console.log('order saved!', products);
+         
         }
     })
-  
-
- 
-
-
 }
 
 

@@ -1,4 +1,6 @@
 const User = require('../models/user-model')
+const { v4: uuidv4} = require('uuid')
+
 
 
 
@@ -17,13 +19,16 @@ let session;
 
 
 
+
+
+
+
 function getSession(req, res) {
     redisClient.get('profile').then(
         profile => {
             let parsedProfile = JSON.parse(profile)
             res.json({parsedProfile})
         }
-
     ).catch(
         err => {
             console.log('Error getting user', err)
@@ -45,7 +50,7 @@ function createUser(req, res) {
         email: email,
         contact_phone: contact_phone,
         cart: [],
-        shipping_addresses: []
+        shipping_addresses: [],
     }
 
     let passwordsMatch = password === repeatPassword
@@ -56,11 +61,15 @@ function createUser(req, res) {
 
         userData.save( (err, result) => {
             if(err){
+                console.log(result)
                 console.log('Error saving in database', err)
             }
             else {
 
-                
+                //ver si con este tipo de ID se puede buscar usuario
+              newUser.user_id = result._id
+              console.log(newUser)
+
         let profile_data = JSON.stringify(newUser)
 
         //saving id to redis
@@ -110,9 +119,6 @@ function createUser(req, res) {
 
  function login(req, res){
     let {email, password} = req.body
-
- 
-
     User.findOne({ email: email}, (err, result) => {
         if(err){
             console.log(err)
@@ -164,10 +170,7 @@ function createUser(req, res) {
 
 
  function logout(req, res){
-
     redisClient
-
-
     redisClient.del('userid').then(
         val => {
             console.log('User id was deleted')
@@ -177,8 +180,6 @@ function createUser(req, res) {
             console.log('Error login out')
         }
     )
-
-
 
     redisClient.del('profile').then(
         val => {
@@ -364,11 +365,7 @@ function sessionChecker(req, res, next) {
 
 function productSelection(req, res){
     let updatedCartProducts = req.body
-
-
     let updatedCartString = JSON.stringify(updatedCartProducts)
-
-    
         redisClient.set('profile', updatedCartString).then(
             status => {
                 res.json({message: 'cart updated', updated: true})
@@ -429,19 +426,6 @@ function sendOrderToProcess(req, res){
     let userProfile = req.body
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
