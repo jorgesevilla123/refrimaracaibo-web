@@ -32,27 +32,27 @@ export class ShippingService {
    
 
       // if the user doesnt have previous orders this code executes
-    if(!hasOrders){
-      this.loginService.selectedUser[0].orders = []    
-      let orderObject = {
-        order_number: 1246,
-        date: Date.now(),
-        products: [...this.loginService.selectedUser[0].cart],
-        state: 'pending',
-        items: this.loginService.selectedUser[0].cart.length,
-        total: 200
-      }
+    // if(!hasOrders){
+    //   this.loginService.selectedUser[0].orders = []    
+    //   let orderObject = {
+    //     order_number: 1246,
+    //     date: Date.now(),
+    //     products: [...this.loginService.selectedUser[0].cart],
+    //     state: 'pending',
+    //     items: this.loginService.selectedUser[0].cart.length,
+    //     total: 200
+    //   }
   
-      this.loginService.selectedUser[0].orders.push(orderObject);
-      this.loginService.selectedUser[0].cart.splice(0, this.loginService.selectedUser[0].cart.length);
-      console.log( this.loginService.selectedUser[0])
-     return this.http.post(`${this.API}/update-shipping`, this.loginService.selectedUser[0])
+    //   this.loginService.selectedUser[0].orders.push(orderObject);
+    //   this.loginService.selectedUser[0].cart.splice(0, this.loginService.selectedUser[0].cart.length);
+    //   console.log( this.loginService.selectedUser[0])
+    //  return this.http.post(`${this.API}/update-shipping`, this.loginService.selectedUser[0])
 
-    }
+    // }
 
 
     // if the user already have orders this code executes and creates order
-    else {
+    // else {
       let idGenerator = Math.round(Math.random()*1000)
       let products = this.loginService.selectedUser[0].cart
       console.log(products)
@@ -75,7 +75,7 @@ export class ShippingService {
      return this.http.post(`${this.ORDER_API}/submit-order`, this.loginService.selectedUser[0])
       
 
-    }
+   
 
    
    

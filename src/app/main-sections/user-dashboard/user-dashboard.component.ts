@@ -70,6 +70,7 @@ export class UserDashboardComponent implements OnInit {
           console.log('user log out')
           this.loginService.selectedUser.pop()
           this.loginService.logged = false
+          this.router.navigate(['/home'])
           return true
         }
       }

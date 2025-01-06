@@ -51,13 +51,14 @@ function createUser(req, res) {
         contact_phone: contact_phone,
         cart: [],
         shipping_addresses: [],
+        orders: []
     }
 
     let passwordsMatch = password === repeatPassword
 
     if (passwordsMatch) {
 
-        let userData = new User({name: name, email: email, password: password, contact_phone: contact_phone, cart: [], shipping_addresses: []})
+        let userData = new User({name: name, email: email, password: password, contact_phone: contact_phone, cart: [], shipping_addresses: [], orders: []})
 
         userData.save( (err, result) => {
             if(err){

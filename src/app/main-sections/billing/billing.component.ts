@@ -8,6 +8,7 @@ import { OrderStatusModalComponent } from '../../shared/order-status-modal/order
 import { CartService } from '../../services/cart.service'
 import { ConfirmationModalComponent } from 'src/app/shared/confirmation-modal/confirmation-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlertService } from 'src/app/shared/alert.service';
 interface Food {
   value: string;
   viewValue: string;
@@ -72,7 +73,8 @@ export class BillingComponent implements OnInit {
     public cartService: CartService,
     public dialog: MatDialog,
     public shippingService: ShippingService,
-    public modalService : NgbModal
+    public modalService : NgbModal,
+    public alert: AlertService
     ) {}
 
  
@@ -86,20 +88,28 @@ export class BillingComponent implements OnInit {
 
 
   openOrderSubmitModal(){
-    const modalRef = this.modalService.open(ConfirmationModalComponent, {centered: true})
-    modalRef.componentInstance.text = 'Quieres realizar la compra?'
-    modalRef.closed.subscribe({
-     next: (result) => {
-       if(result == 'accepted'){
-        console.log('the sale is accepted')
-         this.submitOrder()
-       }
-       else {
-         return 
-       }
-     },
-     error: (err) => {console.log('There was an error opening the modal')}
-   })
+    if(typeof this.loginService.selectedUser[0].shipping_address == 'undefined'){
+      this.alert.notifyWarn('Debes seleccionar una direccion de envio', 2000, 'top', 'center')
+      return
+    }
+    else {
+      const modalRef = this.modalService.open(ConfirmationModalComponent, {centered: true})
+      modalRef.componentInstance.text = 'Quieres realizar la compra?'
+      modalRef.closed.subscribe({
+       next: (result) => {
+         if(result == 'accepted'){
+          console.log('the sale is accepted')
+           this.submitOrder()
+         }
+         else {
+           return 
+         }
+       },
+       error: (err) => {console.log('There was an error opening the modal')}
+     })
+
+    }
+  
 
   }
 
@@ -109,21 +119,26 @@ export class BillingComponent implements OnInit {
 
 
   submitOrder(){
-    this.shippingService.submitOrder(this.paymentMethod).subscribe(
-      {
-        next: (value) => { 
-          console.log(this.loginService.selectedUser[0])
-          this.cartService.updateCount()
-          this.cartService.updateQuantity()
-          this.cartService.total = 0
-          
+ 
+   
+      this.shippingService.submitOrder(this.paymentMethod).subscribe(
+        {
+          next: (value) => { 
+            console.log(this.loginService.selectedUser[0])
+            this.cartService.updateCount()
+            this.cartService.updateQuantity()
+            this.cartService.total = 0
+            
+          }
         }
-      }
-    )
+      )
+    
+  
   }
 
 
-  submitForm(){
+  addShippingForm(){
+
     this.loginService.addShipping().subscribe({
       next: () => {console.log('Shipping adding in process')},
       complete: () => { console.log('Shipping added')}
