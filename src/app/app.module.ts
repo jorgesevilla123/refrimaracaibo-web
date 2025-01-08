@@ -14,7 +14,8 @@ import { UpdateModalComponent } from './shared/update-modal/update-modal.compone
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OrderStatusModalComponent } from './shared/order-status-modal/order-status-modal.component';
 import { ConfirmationModalComponent } from './shared/confirmation-modal/confirmation-modal.component';
-import { RegisterToolbarComponent } from './register-toolbar/register-toolbar.component'
+import { RegisterToolbarComponent } from './register-toolbar/register-toolbar.component';
+import { LogoutConfirmationComponent } from './shared/logout-confirmation/logout-confirmation.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RegisterToolbarComponent } from './register-toolbar/register-toolbar.co
     UpdateModalComponent,
     OrderStatusModalComponent,
     ConfirmationModalComponent,
-    RegisterToolbarComponent
+    RegisterToolbarComponent,
+    LogoutConfirmationComponent
 
   ],
   imports: [

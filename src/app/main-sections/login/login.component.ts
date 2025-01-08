@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   
   loginForm: FormGroup = new FormGroup({
-    login: new FormControl(''),
+    email: new FormControl(''),
     password: new FormControl(''),
   })
 
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 
 
   submitLogin(){
-    let email = this.loginForm.get('login').value
+    let email = this.loginForm.get('email').value
     let secret = this.loginForm.get('password').value
     console.log(email)
     console.log(secret)

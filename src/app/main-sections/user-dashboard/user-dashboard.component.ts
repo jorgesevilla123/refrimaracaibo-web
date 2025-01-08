@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from '../../services/login.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LogoutConfirmationComponent } from 'src/app/shared/logout-confirmation/logout-confirmation.component';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -21,7 +23,8 @@ export class UserDashboardComponent implements OnInit {
     public loginService: LoginService,
     public cartService: CartService,
     public route: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    public modalService : NgbModal,
   ) { }
 
   ngOnInit(): void {
@@ -75,8 +78,24 @@ export class UserDashboardComponent implements OnInit {
         }
       }
     )
+  }
+
+
+  confirmLogout(){
+    const modalRef = this.modalService.open(LogoutConfirmationComponent, {centered: true, size: 'sm'})
+    modalRef.closed.subscribe({
+      next: (val) => {
+        if(val === 'cancel'){
+          return
+        }
+        else {
+          this.logout()
+        }
+        console.log(val, 'the modal is closed')
+      }
+    })
+
     
-   
 
   }
 

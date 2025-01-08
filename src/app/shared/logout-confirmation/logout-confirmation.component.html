@@ -1,0 +1,9 @@
+<h2 style="margin-left: 20px; margin-right: 20px; margin-top: 20px;" class="modal-title fw-normal">Cerrar sesion</h2>
+<div class="modal-body">
+    <h3 class="fw-normal">Quiere cerrar la sesion?</h3>
+</div>
+
+<div style="margin-right: 20px; margin-left: 20px; margin-bottom: 20px;" class="action-buttons">
+    <button style="width: 100%; margin-bottom: 5px;"  class="btn btn-primary fw-medium" (click)="logoutModal.close('logout')">Cerrar sesion <i class="bi bi-box-arrow-right"></i></button>
+    <button style="width: 100%; background-color: #fd9d0D; color: black;"  class="btn fw-medium" (click)="logoutModal.close('cancel')">Cancelar</button>
+</div>
