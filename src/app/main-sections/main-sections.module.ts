@@ -9,13 +9,15 @@ import { AppRoutingModule } from '../app-routing.module';
 import { MainSectionTemplatesComponent } from './main-section-templates/main-section-templates.component';
 import { BillingComponent } from './billing/billing.component';
 import { ProductsModalComponent } from './products-modal/products-modal.component';
-import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component'
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { NgbRatingModule, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap'
 import { CartOverviewComponent } from './cart-overview/cart-overview.component'
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { Observable, OperatorFunction } from 'rxjs';
+import { JsonPipe } from '@angular/common';
 
 
 @NgModule({
@@ -25,7 +27,6 @@ import { CartOverviewComponent } from './cart-overview/cart-overview.component'
     MainSectionTemplatesComponent,
     BillingComponent,
     ProductsModalComponent,
-    LoginComponent,
     RegistrationComponent,
     UserDashboardComponent,
     CartOverviewComponent
@@ -41,7 +42,9 @@ import { CartOverviewComponent } from './cart-overview/cart-overview.component'
     MatInputModule,
     MatFormFieldModule,
     NgbRatingModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    NgbTypeaheadModule,
+    JsonPipe
   ],
   exports: [
    

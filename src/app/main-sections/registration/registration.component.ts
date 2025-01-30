@@ -21,6 +21,8 @@ export class RegistrationComponent implements OnInit {
     repeatPassword: new FormControl('')
   })
 
+  loading: boolean = false
+
   constructor(
     public loginService: LoginService,
     public alert: AlertService,
@@ -54,10 +56,11 @@ export class RegistrationComponent implements OnInit {
           console.log(val.profile)
           this.loginService.setLogin(val.profile)
           this.alert.notifySuccess('Usuario creado!', 2000, 'top', 'center')
+          this.loading = true
           setTimeout( () => {
             this.router.navigate(['/dashboard'])
 
-          }, 1000)
+          }, 2000)
         }
         else {
           this.alert.notifySuccess(val.message, 2000, 'top', 'center')

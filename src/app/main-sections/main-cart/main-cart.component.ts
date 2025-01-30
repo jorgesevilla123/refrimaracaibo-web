@@ -48,6 +48,7 @@ export class MainCartComponent implements OnInit {
         next: (profile) => { 
           console.log(profile)
           this.loginService.selectedUser.push(profile.parsedProfile) 
+          console.log(this.loginService.selectedUser)
         },
         error: (err) => { },
         complete: () => { console.log('updating count'), this.getCartProducts(), this.total = this.cartService.calculateTotal() }

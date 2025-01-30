@@ -72,6 +72,7 @@ export class UserDashboardComponent implements OnInit {
         next: (val) => {
           console.log('user log out')
           this.loginService.selectedUser.pop()
+          console.log(this.loginService.selectedUser)
           this.loginService.logged = false
           this.router.navigate(['/home'])
           return true
@@ -94,9 +95,12 @@ export class UserDashboardComponent implements OnInit {
         console.log(val, 'the modal is closed')
       }
     })
-
-    
-
   }
 
+
+
+
+
+
+  
 }

@@ -2,6 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs';
 import { ProductsService } from '../../services/products.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable, OperatorFunction } from 'rxjs';
+
+
+
 
 @Component({
   selector: 'app-main-search-bar',
@@ -9,27 +13,24 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./main-search-bar.component.scss']
 })
 export class MainSearchBarComponent implements OnInit {
-  products:  any
 
+
+
+
+
+  products:  any
   filteredProducts: any
   
 
   constructor(
     public productService: ProductsService,
     private router : Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
     this.productService.setProducts()
   
- 
-   
-  
-
-   
-   
-
 
     this.filteredProducts = this.productService.searchForm.get('product')?.valueChanges.pipe(
       
@@ -53,16 +54,15 @@ export class MainSearchBarComponent implements OnInit {
 
   
 
-
-
   private filterProducts(value: any){
     console.log(value)
     const filterValue = value.toLowerCase();
     return this.productService.products.filter( (product: any) => product.title.toLowerCase().includes(filterValue) )
-    
-
-    
   }
+
+
+
+
 
 
   getProducts(){
@@ -74,7 +74,7 @@ export class MainSearchBarComponent implements OnInit {
   }
 
 
-  
+
 
 
   search(value){

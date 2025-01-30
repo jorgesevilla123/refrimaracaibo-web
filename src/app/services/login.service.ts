@@ -97,12 +97,14 @@ export class LoginService {
 
 
   setLogin(user) {
+    
     return this.http.post(`${this.uri}/login`, user)
   }
 
 
 
   setLogout() {
+    
     return this.http.delete(`${this.uri}/logout`)
   }
 

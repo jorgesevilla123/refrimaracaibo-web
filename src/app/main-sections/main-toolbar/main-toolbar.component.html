@@ -117,44 +117,50 @@
    -->
 
 <mat-toolbar style="background-color: white; padding-left: 50px; margin-top: 20px">
-  <mat-toolbar-row>
-    <a routerLink="/home"><img src="../../assets/finishedlogo.png" alt=""></a>
+  <mat-toolbar-row class="d-flex flex-row mb-3 justify-content-between">
 
-    <span class="example-spacer"></span>
+      <div class="p-2">
+        <a routerLink="/home"><img src="../../assets/finishedlogo.png" alt=""></a>
+      </div>
+    
+      <div clas="search-box-container p-2" style="font-size: 13px;">
+        <app-main-search-bar></app-main-search-bar>
+      </div>
+  
+  
+      <div style="margin-left: 10rem; padding-top: 20px" class="session-config p-2">
+  
+        <div *ngIf="loginService.logged; then userLogged else notLogged"></div>
+  
+        <ng-template #userLogged>
+            <button routerLink="/cart" mat-icon-button><i style="font-size: 2rem; color: #0d6efd;" class="bi bi-cart"></i> <span
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+              {{cartService.count}}
+              <span class="visually-hidden">unread messages</span>
+            </span></button>
+          <button style="width: 70px; height: 70px;" mat-icon-button [routerLink]="['/dashboard/pedidos']" [queryParams]="{section: 'orders'}"><i style="font-size: 2rem; color: #0d6efd;" class="bi bi-person-circle"></i></button>
+  
+        </ng-template>
+  
+        <ng-template #notLogged>
+  
+          <button style="margin-right: 10px;" class="btn btn-outline-primary" [routerLink]="['/login']" [queryParams]="{section: 'register'}"><i style="font-size: auto; color: #4db3ff;" class="bi bi-box-arrow-in-right"></i> Inicia sesion</button>
+          <button class="btn btn-outline-dark" [routerLink]="['/registration']" [queryParams]="{section: 'register'}"><i style="font-size: auto; color: #4db3ff;" class="bi bi-pen"></i> Registrate!</button>
+          <!-- <button routerLink="/cart" [matBadge]="cartService.count" mat-fab
+            style="background-color: white; width: 45px; height: 45px; color: black; margin-left: 30px;"><mat-icon
+              style="font-size: 18px;">shopping_cart</mat-icon></button> -->
+  
+  
+        </ng-template>
+  
+  
+  
+      </div>
 
-    <div clas="search-box-container" style="font-size: 13px; margin-left: 80px;">
-      <app-main-search-bar></app-main-search-bar>
-    </div>
 
 
-    <div style="margin-left: 10rem; padding-top: 20px" class="session-config">
-
-      <div *ngIf="loginService.logged; then userLogged else notLogged"></div>
-
-      <ng-template #userLogged>
-          <button routerLink="/cart" mat-icon-button><i style="font-size: 2rem; color: #0d6efd;" class="bi bi-cart"></i> <span
-            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-            {{cartService.count}}
-            <span class="visually-hidden">unread messages</span>
-          </span></button>
-        <button style="width: 70px; height: 70px;" mat-icon-button [routerLink]="['/dashboard/pedidos']" [queryParams]="{section: 'orders'}"><i style="font-size: 2rem; color: #0d6efd;" class="bi bi-person-circle"></i></button>
-
-      </ng-template>
-
-      <ng-template #notLogged>
-
-        <button mat-button [routerLink]="['/login']" [queryParams]="{section: 'register'}">Inicia sesion <i style="font-size: 1.5rem; color: #4db3ff;" class="bi bi-box-arrow-in-right"></i></button>
-        <button mat-button [routerLink]="['/registration']" [queryParams]="{section: 'register'}">Registrate! <i style="font-size: 1.2rem; color: #4db3ff;" class="bi bi-pen"></i></button>
-        <!-- <button routerLink="/cart" [matBadge]="cartService.count" mat-fab
-          style="background-color: white; width: 45px; height: 45px; color: black; margin-left: 30px;"><mat-icon
-            style="font-size: 18px;">shopping_cart</mat-icon></button> -->
-
-
-      </ng-template>
-
-
-
-    </div>
+  
+  
 
   </mat-toolbar-row>
 

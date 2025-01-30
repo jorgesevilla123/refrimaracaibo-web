@@ -18,7 +18,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service'
-import { map, take } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-main-section-templates',

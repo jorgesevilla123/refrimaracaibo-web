@@ -59,9 +59,16 @@
                        </div>
                     </div>
                  </div>
-                  <!-- btn -->
-                  <div class="col-12 d-grid"><button type="submit" class="btn btn-primary" (click)="register()">Registrarse <i style="font-size: 1.2rem;" class="bi bi-check2"></i></button></div>
-
+                  <!-- btn --> 
+                   <div *ngIf="loading; then onloading else notloading"></div>
+                   <ng-template #onloading> <div class="col-12 d-grid"><button class="btn btn-primary" type="button" disabled>
+                     <span class="spinner-grow spinner-grow-sm" aria-hidden="true"></span>
+                     <span role="status"> Registrando...</span>
+                   </button></div>
+                   </ng-template>
+                   <ng-template #notloading> <div class="col-12 d-grid"><button type="submit" class="btn btn-primary" (click)="register()">Registrarse <i style="font-size: 1.2rem;" class="bi bi-check2"></i></button></div>
+                   </ng-template>
+                 
                   <!-- text -->
                   <p>
                      <small>

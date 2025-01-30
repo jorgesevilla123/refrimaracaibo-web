@@ -126,13 +126,15 @@ function createUser(req, res) {
         }
         else {
             if(result?.password === password){
+                
                 console.log('logged')
                 let user = {
                     name: result.name,
                     email: result.email,
                     contact_phone: result.contact_phone,
                     cart: result.cart,
-                    shipping_addresses: result.shipping_addresses
+                    shipping_addresses: result.shipping_addresses,
+                    orders: result.orders
                 }
 
                 redisClient.set('userid', req.session.id).then(
