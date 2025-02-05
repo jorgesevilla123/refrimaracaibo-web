@@ -1101,8 +1101,8 @@
                      <div id="flush-collapseFour" class="accordion-collapse collapse"
                         data-bs-parent="#accordionFlushExample">
                         <div class="mt-5">
-                           <div>
-                              <div [ngSwitch]="paymentMethod" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 g-lg-4">
+                           <div class="container">
+                              <div style="margin-bottom: 20px;" [ngSwitch]="paymentMethod" class="row">
                                  <!-- col -->
                
                                  <div class="col">
@@ -1147,17 +1147,86 @@
 
                   
                                
-                                    <div *ngSwitchCase="'efectivo'">
-                                       <h2>Codigo para pagos en efectivo</h2>
+                                    <div style="margin-top: 20px;" *ngSwitchCase="'efectivo'">
+                                       <h2>Subir foto del billete</h2>
+                                       <div style="margin-bottom: 20px;" class="mt-5 d-flex justify-content-end">
+                                          <a href="#" class="btn btn-outline-gray-400 text-muted" data-bs-toggle="collapse"
+                                             data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                             aria-controls="flush-collapseThree">
+                                             Previo
+                                          </a>
+                                          <button class="btn btn-primary ms-2" (click)="openOrderSubmitModal('zelle')">Realizar orden</button>
+                                       </div>
 
                                     </div>
-                                    <div *ngSwitchCase="'zelle'">
-                                       <h2>Codigo para pagos en zelle</h2>
 
+                                    
+                                    <div style="margin-top: 20px;" *ngSwitchCase="'zelle'">
+
+
+                                       <h3>Ingresa el numero de confirmacion del zelle para procesar el pago</h3>
+                                       <label class="form-label">Numero de confirmacion zelle</label>
+                                       <form [formGroup]="confirmationFormZelle">
+                                          <input style="padding-top: 10px; padding-bottom: 10px;" type="email" class="form-control" placeholder="Numero de confirmacion" required formControlName="numero_confirmacion_zelle">
+                                       </form>
+                                       <div *ngIf="numero_confirmacion_zelle.errors?.['required']; then noConfirmation else confirmation"></div>
+
+                                       <ng-template #noConfirmation>
+                                          <div style="margin-bottom: 20px;" class="mt-5 d-flex justify-content-end">
+                                             <a href="#" class="btn btn-outline-gray-400 text-muted" data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                                aria-controls="flush-collapseThree">
+                                                Previo
+                                             </a>
+                                             <button class="btn btn-primary ms-2" disabled>Realizar orden</button>
+                                          </div>
+
+                                       </ng-template>
+
+                                       <ng-template #confirmation>
+                                          <div style="margin-bottom: 20px;" class="mt-5 d-flex justify-content-end">
+                                             <a href="#" class="btn btn-outline-gray-400 text-muted" data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                                aria-controls="flush-collapseThree">
+                                                Previo
+                                             </a>
+                                             <button class="btn btn-primary ms-2" (click)="openOrderSubmitModal('zelle')">Realizar orden</button>
+                                          </div>
+
+                                       </ng-template>
+                                  
                                     </div>
 
-                                    <div *ngSwitchCase="'pago movil'">
-                                       <h2>Codigos para pago movil</h2>
+                                    <div style="margin-top: 20px;" *ngSwitchCase="'pago movil'">
+                                       <h3>Ingresa los ultimos 4 digitos de la referencia para procesar el pago</h3>
+                                       <label class="form-label">Numero de referencia pago movil</label>
+                                       <form [formGroup]="confirmationFormPagomovil">
+                                          <input style="padding-top: 10px; padding-bottom: 10px;" type="email" class="form-control" placeholder="Numero de confirmacion" required formControlName="numero_confirmacion_pagomovil">
+                                       </form>
+                                       <div *ngIf="numero_confirmacion_pagomovil.errors?.['required']; then noConfirmationPagomovil else confirmationPagomovil"></div>
+
+                                       <ng-template #noConfirmationPagomovil>
+                                          <div style="margin-bottom: 20px;" class="mt-5 d-flex justify-content-end">
+                                             <a href="#" class="btn btn-outline-gray-400 text-muted" data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                                aria-controls="flush-collapseThree">
+                                                Previo
+                                             </a>
+                                             <button class="btn btn-primary ms-2" disabled>Realizar orden</button>
+                                          </div>
+                                       </ng-template>
+
+                                       <ng-template #confirmationPagomovil>
+                                          <div style="margin-bottom: 20px;" class="mt-5 d-flex justify-content-end">
+                                             <a href="#" class="btn btn-outline-gray-400 text-muted" data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                                aria-controls="flush-collapseThree">
+                                                Previo
+                                             </a>
+                                             <button class="btn btn-primary ms-2" (click)="openOrderSubmitModal('pagomovil')">Realizar orden</button>
+                                          </div>
+
+                                       </ng-template>
 
                                     </div>
 
@@ -1174,14 +1243,7 @@
 
                             
                               <!-- Button -->
-                              <div style="margin-bottom: 20px;" class="mt-5 d-flex justify-content-end">
-                                 <a href="#" class="btn btn-outline-gray-400 text-muted" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseThree" aria-expanded="false"
-                                    aria-controls="flush-collapseThree">
-                                    Previo
-                                 </a>
-                                 <button class="btn btn-primary ms-2" (click)="openOrderSubmitModal()">Realizar orden</button>
-                              </div>
+                           
                            </div>
                         </div>
                      </div>

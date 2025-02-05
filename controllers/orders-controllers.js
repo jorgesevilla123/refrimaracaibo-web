@@ -29,11 +29,14 @@ function updateProfileCache(profile){
 
 function submitOrderToProcess(req, res){
     let userProfile = req.body
+  
    
    
 
     const { shipping_address, name, email, contact_phone, current_order } = req.body
+    console.log('showing current order confirm number', current_order.confirmation_number)
     // console.log(shipping_address, name, email, contact_phone)
+
     saleDetailObject = {
         customer: {
             name: name,
@@ -45,7 +48,8 @@ function submitOrderToProcess(req, res){
         total: current_order.total,
         date: current_order.date,
         pay_method: current_order.pay_method,
-        status: current_order.status
+        status: current_order.status,
+        confirmation_number: current_order.confirmation_number
     }
     //this objec
     shippingAddressObject = {

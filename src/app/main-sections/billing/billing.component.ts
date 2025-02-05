@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, RequiredValidator} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, RequiredValidator, Validators} from '@angular/forms';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig} from '@angular/material/dialog';
 import { LoginService } from '../../services/login.service'
 import { ShippingModalComponent } from '../../secondary-sections/shipping-modal/shipping-modal.component'
@@ -29,9 +29,20 @@ interface Car {
 })
 export class BillingComponent implements OnInit {
 
-  confirmationForm = new FormGroup({
-    numero_confirmacion: new FormControl('')
+  confirmationFormZelle = new FormGroup({
+    numero_confirmacion_zelle: new FormControl('', [
+      Validators.required
+    ]),
   })
+
+  confirmationFormPagomovil = new FormGroup({
+    numero_confirmacion_pagomovil: new FormControl('', [
+      Validators.required
+    ])
+  })
+
+
+
 
 
   selectedValue: string;
@@ -86,8 +97,16 @@ export class BillingComponent implements OnInit {
   
   } 
 
+  get numero_confirmacion_pagomovil(){
+    return this.confirmationFormPagomovil.get('numero_confirmacion_pagomovil');
+  }
 
-  openOrderSubmitModal(){
+  get numero_confirmacion_zelle(){
+    return this.confirmationFormZelle.get('numero_confirmacion_zelle');
+  }
+
+
+  openOrderSubmitModal(paymentMethod){
     if(typeof this.loginService.selectedUser[0].shipping_address == 'undefined'){
       this.alert.notifyWarn('Debes seleccionar una direccion de envio', 2000, 'top', 'center')
       return
@@ -99,7 +118,7 @@ export class BillingComponent implements OnInit {
        next: (result) => {
          if(result == 'accepted'){
           console.log('the sale is accepted')
-           this.submitOrder()
+           this.submitOrder(paymentMethod);
          }
          else {
            return 
@@ -118,17 +137,35 @@ export class BillingComponent implements OnInit {
 
 
 
-  submitOrder(){
+  submitOrder(paymentMethod){
+
+    let confirmation_number;
+    let confirmation_form;
+
+    if(paymentMethod === 'zelle'){
+      confirmation_number = this.confirmationFormZelle.get('numero_confirmacion_zelle').value;
+      confirmation_form = this.confirmationFormZelle.get('numero_confirmacion_zelle');
+    }
+    else if(paymentMethod === 'pagomovil'){
+      confirmation_number = this.confirmationFormPagomovil.get('numero_confirmacion_pagomovil').value;
+      confirmation_form = this.confirmationFormPagomovil.get('numero_confirmacion_pagomovil');
+    }
+    
+   
  
    
-      this.shippingService.submitOrder(this.paymentMethod).subscribe(
+      this.shippingService.submitOrder(this.paymentMethod, confirmation_number).subscribe(
         {
           next: (value) => { 
             console.log(this.loginService.selectedUser[0])
             this.cartService.updateCount()
             this.cartService.updateQuantity()
             this.cartService.total = 0
+            confirmation_form.reset();
             
+          },
+          complete: () => {
+            this.alert.notifySuccess('Pedido en proceso!', 2000, 'top', 'center')
           }
         }
       )
@@ -166,7 +203,7 @@ export class BillingComponent implements OnInit {
   }
 
 
-
+  
 
 
  

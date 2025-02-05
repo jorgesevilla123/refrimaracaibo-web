@@ -26,7 +26,7 @@ export class ShippingService {
 
 
 
-  submitOrder(paymethod){
+  submitOrder(paymethod, confirmation_number?){
     let hasOrders = 'orders' in this.loginService.selectedUser[0]
     console.log(hasOrders)
    
@@ -65,8 +65,11 @@ export class ShippingService {
         status: 'en proceso',
         items: this.loginService.selectedUser[0].cart.length,
         total: this.cartService.total,
+        confirmation_number: confirmation_number
       }
       console.log(orderObject)
+
+      console.log(this.loginService.selectedUser[0].orders);
      
       this.loginService.selectedUser[0].current_order = orderObject
       this.loginService.selectedUser[0].orders.push(orderObject);

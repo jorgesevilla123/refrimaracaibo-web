@@ -23,6 +23,8 @@ const OrderSchema = new Schema({
         date: { type: Date },
         pay_method: String,
         status: String,
+        confirmation_number: String
+
     }
 })
 
