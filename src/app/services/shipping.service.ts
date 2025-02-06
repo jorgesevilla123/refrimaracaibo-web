@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {LoginService} from '../services/login.service'
 import { HttpClient } from '@angular/common/http';
 import { CartService } from '../services/cart.service'
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,9 @@ export class ShippingService {
   submitOrder(paymethod, confirmation_number?){
     let hasOrders = 'orders' in this.loginService.selectedUser[0]
     console.log(hasOrders)
+    if(!hasOrders){
+      this.loginService.selectedUser[0].orders = []    
+    }
    
 
       // if the user doesnt have previous orders this code executes
@@ -53,7 +57,7 @@ export class ShippingService {
 
     // if the user already have orders this code executes and creates order
     // else {
-      let idGenerator = Math.round(Math.random()*1000)
+      let idGenerator = uuidv4();
       let products = this.loginService.selectedUser[0].cart
       console.log(products)
       console.log('passed here')

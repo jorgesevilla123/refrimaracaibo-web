@@ -10,8 +10,15 @@ const userSchema = new Schema({
     password: String,
     shipping_addresses: Array,
     cart: Array,
-    orders: Array
-
+    orders: [{
+        order_id: String,
+        date: Date,
+        items: Number,
+        pay_method: String,
+        products_cart: Array,
+        status: String,
+        total: Number
+    }]
 })
 
 
