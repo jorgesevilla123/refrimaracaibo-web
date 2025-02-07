@@ -126,9 +126,11 @@ function createUser(req, res) {
         }
         else {
             if(result?.password === password){
+                console.log('loggin user result', result)
                 
                 console.log('logged')
                 let user = {
+                    user_id: result._id,
                     name: result.name,
                     email: result.email,
                     contact_phone: result.contact_phone,

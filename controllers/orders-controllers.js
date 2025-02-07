@@ -63,6 +63,8 @@ function submitOrderToProcess(req, res){
         sale_detail: saleDetailObject
     }
 
+    saveOrderToUser()
+
 
     const addOrder = new Orders(newOrder);
     addOrder.save((err, result) => {
@@ -88,9 +90,16 @@ function submitOrderToProcess(req, res){
 
 
 
-function saveOrderToUser(order){
+function saveOrderToUser(userId, order){
 
-    Users.findByIdAndUpdate({})
+    Users.findByIdAndUpdate({_id : userId}, {$push: {orders: order}}, (err, result) => {
+        if(err){
+            console.log(err);
+        }
+        else {
+            console.log('saving order to user',result);
+        }
+    })
 
 
 
