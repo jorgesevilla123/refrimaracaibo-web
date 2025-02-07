@@ -1,7 +1,7 @@
 
 
 const Orders = require('../models/order-model')
-
+const Users = require('../models/user-model')
 const { redisClient } = require('../controllers/session-controllers')
 
 
@@ -32,7 +32,6 @@ function submitOrderToProcess(req, res){
   
    
    
-
     const { shipping_address, name, email, contact_phone, current_order } = req.body
     console.log('showing current order confirm number', current_order.confirmation_number)
     // console.log(shipping_address, name, email, contact_phone)
@@ -81,6 +80,20 @@ function submitOrderToProcess(req, res){
          
         }
     })
+}
+
+
+
+
+
+
+
+function saveOrderToUser(order){
+
+    Users.findByIdAndUpdate({})
+
+
+
 }
 
 

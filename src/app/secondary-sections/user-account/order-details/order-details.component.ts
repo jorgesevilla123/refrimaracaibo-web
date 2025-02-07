@@ -37,8 +37,8 @@ export class OrderDetailsComponent implements OnInit {
 
 
   getOrder(orderId){
-    let id = Number(orderId)
-    this.order = this.loginService.selectedUser[0].orders.find( orderFound => orderFound.order_id === id)
+    console.log(orderId)
+    this.order = this.loginService.selectedUser[0].orders.find( orderFound => orderFound.order_id === orderId)
     console.log(this.order)
 
   }

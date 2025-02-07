@@ -17,7 +17,7 @@ const OrderSchema = new Schema({
             email: String,
             contact_phone: String
         },
-        order_id: Number,
+        order_id: String,
         products: { type: [] },
         total: Number,
         date: { type: Date },
