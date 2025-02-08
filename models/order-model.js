@@ -13,6 +13,7 @@ const OrderSchema = new Schema({
     },
     sale_detail: {
         customer: {
+            customer_id: String,
             name: String,
             email: String,
             contact_phone: String

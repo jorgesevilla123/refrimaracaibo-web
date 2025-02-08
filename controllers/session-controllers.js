@@ -427,6 +427,8 @@ function handleShippingAddresses(req, res){
 }
 
 
+
+
 function sendOrderToProcess(req, res){
     let userProfile = req.body
 
