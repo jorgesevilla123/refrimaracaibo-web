@@ -58,12 +58,17 @@ function submitOrderToProcess(req, res){
         infoExtra: shipping_address.infoExtra
     }
 
+
+
+    // ADAPTAR ESTE OBJETO DE ORDEN PARA QUE SE ADAPTE AL MODELO DEL USUARIO
     const newOrder = {
         shipping_address: shippingAddressObject,
         sale_detail: saleDetailObject
     }
 
-    saveOrderToUser()
+    console.log('loggin new order', newOrder)
+
+    
 
 
     const addOrder = new Orders(newOrder);
@@ -76,6 +81,7 @@ function submitOrderToProcess(req, res){
             delete userProfile.shipping_address //temporary data deleted when saved to orders
             delete userProfile.current_order // temporary data deleted when saved to orders
             updateProfileCache(userProfile)
+            saveOrderToUser(userProfile.user_id, newOrder);
             console.log(result);
             console.log('order saved!', result);
             res.json({message: 'order saved!'});
