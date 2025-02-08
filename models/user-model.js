@@ -13,7 +13,6 @@ const userSchema = new Schema({
     orders: [{
         order_id: String,
         date: Date,
-        items: Number,
         pay_method: String,
         products_cart: Array,
         status: String,

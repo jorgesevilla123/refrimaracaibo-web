@@ -11,11 +11,10 @@
 
                <th># de orden</th>
                <th>Fecha</th>
-               <th>Items</th>
                <th>Estado</th>
                <th>Total</th>
                <th>&nbsp;</th>
-               <th>&nbsp;</th>
+         
 
                <th></th>
             </tr>
@@ -31,19 +30,14 @@
                   <a href="#" class="text-inherit">{{order.order_id}}</a>
                </td>
                <td class="align-middle border-top-0">{{order.date | date: 'short'}}</td>
-               <td class="align-middle border-top-0">{{order.items}}</td>
                <td class="align-middle border-top-0">
                   <span class="badge bg-warning">{{order.status}}</span>
                </td>
-               <td class="align-middle border-top-0">{{order.total}}</td>
+               <td class="align-middle border-top-0">{{order.total | currency: 'USD'}}</td>
                <td class="text-muted align-middle border-top-0">
                   <button class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top"
                      data-bs-title="View" (click)="orderDetails(order.order_id)">Detalle de orden <i
                         class="bi bi-clipboard2-fill"></i></button>
-               </td>
-               <td>
-                  <button style="color: #fd9d0d;" class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top"
-                  data-bs-title="View" (click)="removeOrder(order)">Eliminar <i class="bi bi-trash3"></i></button>
                </td>
             </tr>
 

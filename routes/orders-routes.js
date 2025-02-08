@@ -9,5 +9,10 @@ router.route('/submit-order').post(submitOrderToProcess)
 
 
 
+//order cancelation implementation (TO DEVELOP)
+router.route('/cancel-order').post()
+
+
+
 
 module.exports = router

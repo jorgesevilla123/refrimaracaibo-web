@@ -94,6 +94,10 @@ export class ShippingService {
 
   }
 
+  removeOrder(){
+    return
+  }
+
 
 
   //this function 
