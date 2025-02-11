@@ -69,16 +69,6 @@ export class LoginService {
 
   logged
 
-  users = [
-    {
-      name: 'Jorge Sevilla', email: 'jsdelduca@gmail.com', password: 'jorge2784', password2: 'Jorge2784', shipping_addresses: [], cart: [],
-
-    },
-    {
-      name: 'Nicole Sardi', email: 'nicoles.ardi.ns@gmail.com', password: 'miwichi', password2: 'miwichi', shipping_addresses: [], cart: [],
-
-    }
-  ]
 
 
   constructor(

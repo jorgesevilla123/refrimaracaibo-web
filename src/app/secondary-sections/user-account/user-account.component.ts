@@ -5,6 +5,7 @@ import { CartService } from 'src/app/services/cart.service';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { UpdateModalComponent } from '../../shared/update-modal/update-modal.component'
 import { ShippingService } from 'src/app/services/shipping.service';
+import { SessionService } from 'src/app/services/session.service';
 
 
 
@@ -24,11 +25,24 @@ export class UserAccountComponent implements OnInit {
     public router: Router,
     public cartService: CartService,
     public dialog: MatDialog,
-    public shippingService: ShippingService
+    public shippingService: ShippingService,
+    public sessionService: SessionService
   ) { }
 
   ngOnInit(): void {
   
+  }
+
+
+  refreshOrders(){
+    this.loginService.selectedUser.splice(0,1);
+    this.sessionService.getProfile().subscribe({
+      next: (val) => {
+        this.loginService.selectedUser.push(val.parsedProfile);
+        console.log(this.loginService.selectedUser)
+      }
+    })
+    
   }
 
 
