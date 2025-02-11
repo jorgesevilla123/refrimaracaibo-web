@@ -36,13 +36,13 @@ export class ProductsModalComponent implements OnInit {
     this.sessionService.getProfile().subscribe(
       {
         next: (profile) => {
-          this.loginService.selectedUser.push(profile.parsedProfile)
-          console.log(this.loginService.selectedUser[0])
-          if(this.loginService.selectedUser[0].cart.length === 0){
+          this.loginService.selectedUser = profile.parsedProfile
+          console.log(this.loginService.selectedUser)
+          if(this.loginService.selectedUser.cart.length === 0){
             this.cartProducts = []
           }
           else {
-            this.cartProducts = this.loginService.selectedUser[0].cart.filter(product => product.selected)
+            this.cartProducts = this.loginService.selectedUser.cart.filter(product => product.selected)
             this.total = this.cartService.calculateTotal()
           }
      

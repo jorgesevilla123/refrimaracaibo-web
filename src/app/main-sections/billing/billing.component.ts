@@ -107,7 +107,7 @@ export class BillingComponent implements OnInit {
 
 
   openOrderSubmitModal(paymentMethod){
-    if(typeof this.loginService.selectedUser[0].shipping_address == 'undefined'){
+    if(typeof this.loginService.selectedUser.shipping_address == 'undefined'){
       this.alert.notifyWarn('Debes seleccionar una direccion de envio', 2000, 'top', 'center')
       return
     }
@@ -157,7 +157,7 @@ export class BillingComponent implements OnInit {
       this.shippingService.submitOrder(this.paymentMethod, confirmation_number).subscribe(
         {
           next: (value) => { 
-            console.log(this.loginService.selectedUser[0])
+            console.log(this.loginService.selectedUser)
             this.cartService.updateCount()
             this.cartService.updateQuantity()
             this.cartService.total = 0
@@ -195,7 +195,7 @@ export class BillingComponent implements OnInit {
   selectAdress(event, address){
     if(event === 'on'){
       console.log(address)
-      this.loginService.selectedUser[0].shipping_address = address
+      this.loginService.selectedUser.shipping_address = address
     }
    
 

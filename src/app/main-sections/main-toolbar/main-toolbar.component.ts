@@ -34,7 +34,7 @@ export class MainToolbarComponent implements OnInit {
     this.loginService.sessionChecker()
     this.sessionService.getProfile().subscribe(
       	{
-          next: (profile) => {console.log(profile),  this.loginService.selectedUser.push(profile.parsedProfile)
+          next: (profile) => {console.log(profile),  this.loginService.selectedUser = profile.parsedProfile
           
           
           },

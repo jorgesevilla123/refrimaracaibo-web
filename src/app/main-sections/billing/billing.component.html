@@ -102,7 +102,7 @@
                         data-bs-parent="#accordionFlushExample">
                         <div class="mt-5">
                            <div class="row">
-                              <div *ngFor="let address of loginService.selectedUser[0].shipping_addresses" class="col-xl-6 col-lg-12 col-md-6 col-12 mb-4">
+                              <div *ngFor="let address of loginService.selectedUser.shipping_addresses" class="col-xl-6 col-lg-12 col-md-6 col-12 mb-4">
                                  <!-- form -->
                                  <div class="card card-body p-6">
                                     <div class="form-check mb-4">
@@ -1259,7 +1259,7 @@
                      <ul class="list-group list-group-flush">
                         <!-- list group item -->
                         <div style="height: auto; max-height: 420px; overflow-y: auto;" class="products-container">
-                           <li *ngFor="let product of loginService.selectedUser[0].cart"
+                           <li *ngFor="let product of loginService.selectedUser.cart"
                               class="list-group-item px-4 py-3">
                               <div class="row align-items-center">
                                  <div class="col-2 col-md-2">

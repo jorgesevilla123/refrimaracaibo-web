@@ -32,13 +32,13 @@ export class CartOverviewComponent implements OnInit {
     this.cartService.getCartProducts().subscribe(
       {
         next: (profile) => {
-          this.loginService.selectedUser.push(profile.parsedProfile)
-          console.log(this.loginService.selectedUser[0])
-          if(this.loginService.selectedUser[0].cart.length === 0){
+          this.loginService.selectedUser = profile.parsedProfile
+          console.log(this.loginService.selectedUser)
+          if(this.loginService.selectedUser.cart.length === 0){
             this.cartProducts = []
           }
           else {
-            this.cartProducts = this.loginService.selectedUser[0].cart.filter(product => product.selected)
+            this.cartProducts = this.loginService.selectedUser.cart.filter(product => product.selected)
             this.total = this.cartService.calculateTotal()
           }
      
@@ -65,8 +65,8 @@ export class CartOverviewComponent implements OnInit {
 
   increaseQuantity(product){
     let quantity = Number(product.quantity + 1)
-    let index = this.loginService.selectedUser[0].cart.findIndex(val => val.title === product.title)
-    this.loginService.selectedUser[0].cart[index].quantity = quantity
+    let index = this.loginService.selectedUser.cart.findIndex(val => val.title === product.title)
+    this.loginService.selectedUser.cart[index].quantity = quantity
     this.cartService.updateQuantity().subscribe(
       val => {
         console.log(val)
@@ -81,8 +81,8 @@ export class CartOverviewComponent implements OnInit {
 
   decreaseQuantity(product){
     let quantity = Number(product.quantity - 1)
-    let index = this.loginService.selectedUser[0].cart.findIndex(val => val.title === product.title)
-    this.loginService.selectedUser[0].cart[index].quantity = quantity
+    let index = this.loginService.selectedUser.cart.findIndex(val => val.title === product.title)
+    this.loginService.selectedUser.cart[index].quantity = quantity
     this.cartService.updateQuantity().subscribe(
       val => {
         console.log(val)

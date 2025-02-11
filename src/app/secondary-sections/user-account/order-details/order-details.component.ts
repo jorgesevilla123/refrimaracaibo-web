@@ -38,7 +38,7 @@ export class OrderDetailsComponent implements OnInit {
 
   getOrder(orderId){
     console.log(orderId)
-    this.order = this.loginService.selectedUser[0].orders.find( orderFound => orderFound.order_id === orderId)
+    this.order = this.loginService.selectedUser.orders.find( orderFound => orderFound.order_id === orderId)
     console.log(this.order)
 
   }
