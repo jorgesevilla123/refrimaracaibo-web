@@ -23,7 +23,7 @@
          <tbody>
             <!-- Table body -->
 
-            <tr *ngFor="let order of loginService.selectedUser[0].orders">
+            <tr *ngFor="let order of loginService.selectedUser.orders">
                <!-- <td class="align-middle border-top-0 w-0">
                       <a href="#"><img src="../assets/images/products/product-img-1.jpg" alt="Ecommerce" class="icon-shape icon-xl"></a>
                    </td> -->
@@ -32,7 +32,14 @@
                </td>
                <td class="align-middle border-top-0">{{order.date | date: 'short'}}</td>
                <td class="align-middle border-top-0">
-                  <span class="badge bg-warning">{{order.status}}</span>
+                  <div *ngIf="order.status === 'procesado' then procesado else noProcesado"></div>
+                  <ng-template #procesado>
+                     <span class="badge bg-success" style="color: white;">{{order.status}}</span>
+                  </ng-template>
+                  <ng-template #noProcesado>
+                     <span class="badge bg-warning" style="color: black;">{{order.status}}</span>
+                  </ng-template>
+                 
                </td>
                <td class="align-middle border-top-0">{{order.total | currency: 'USD'}}</td>
                <td class="text-muted align-middle border-top-0">

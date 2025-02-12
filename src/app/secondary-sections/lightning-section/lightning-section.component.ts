@@ -412,7 +412,7 @@ export class LightningSectionComponent implements OnInit {
 
   checkCart(product) {
   
-    if(this.loginService.selectedUser.length === 0){
+    if(this.loginService.selectedUser === ''){
       let isInCart = this.cartService.cartProducts.some( productFound => productFound.title === product.title)
       if(isInCart){
         return true
@@ -422,7 +422,7 @@ export class LightningSectionComponent implements OnInit {
       }
     }
     else{
-      let isInCart = this.loginService.selectedUser[0].cart.some(productFound => productFound.title === product.title)
+      let isInCart = this.loginService.selectedUser.cart.some(productFound => productFound.title === product.title)
     if (isInCart) {
       return true
     }
@@ -485,7 +485,7 @@ export class LightningSectionComponent implements OnInit {
 
 
   addToCart(product) {
-    let productExists = this.loginService.selectedUser[0].cart.some(productFound => productFound.title === product.title)
+    let productExists = this.loginService.selectedUser.cart.some(productFound => productFound.title === product.title)
     if(productExists){
       console.log("incart")
       this.alert.notifySuccess('Ya agregaste este producto al carrito', 2000, 'top', 'center') 
@@ -493,8 +493,8 @@ export class LightningSectionComponent implements OnInit {
     else{
       product.quantity = 1
     
-      if(this.loginService.selectedUser.length === 0){
-        console.log('user sekected for adding products')
+      if(this.loginService.selectedUser === ''){
+        console.log('user selected for adding products')
         this.cartService.addProductsNotLoggedUserCart(product)
       }
       else {

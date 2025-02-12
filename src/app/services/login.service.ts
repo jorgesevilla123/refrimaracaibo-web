@@ -25,7 +25,7 @@ export class LoginService {
 
   stateSelected: any
 
-  selectedUser: any = []
+  selectedUser: any
 
 
 
@@ -67,7 +67,7 @@ export class LoginService {
   }
 
 
-  logged
+  logged: any
 
 
 
@@ -115,7 +115,7 @@ export class LoginService {
 
   addShipping() {
     //add validation
-    let name = this.shippingAddressForm.value.name
+
     let direccion = this.shippingAddressForm.value.direccion
     let casa = this.shippingAddressForm.value.casa
     let infoExtra = this.shippingAddressForm.value.infoExtra
@@ -124,17 +124,16 @@ export class LoginService {
       isDefault = false
     }
     console.log(isDefault)
-    console.log(name, direccion, casa, infoExtra)
+    console.log(direccion, casa, infoExtra)
     let shipping = {
-      name: name,
       direccion: direccion,
       casa: casa,
       infoExtra: infoExtra,
       isDefault: isDefault
     }
-    this.selectedUser[0].shipping_addresses.push(shipping)
+    this.selectedUser.shipping_addresses.push(shipping)
     this.shippingAddressForm.reset()
-    return this.http.post(`${this.uri}/update-shipping`, this.selectedUser[0])
+    return this.http.post(`${this.uri}/update-shipping`, this.selectedUser)
   }
 
 

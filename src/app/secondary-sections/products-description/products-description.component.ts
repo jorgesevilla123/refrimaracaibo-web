@@ -122,7 +122,7 @@ export class ProductsDescriptionComponent implements OnInit{
 
 
   checkCart(product){
-    return this.loginService.selectedUser[0].cart.some( cartProduct => cartProduct._id == product._id)
+    return this.loginService.selectedUser.cart.some( cartProduct => cartProduct._id == product._id)
 
   }
 
@@ -141,7 +141,7 @@ export class ProductsDescriptionComponent implements OnInit{
         this.inCart = this.checkCart(res.product[0])
         console.log(this.inCart)
         if(this.inCart){
-          let productCart = this.loginService.selectedUser[0].cart.filter(product => product._id == id)
+          let productCart = this.loginService.selectedUser.cart.filter(product => product._id == id)
           this.product = productCart[0]
           console.log(this.product)
 
@@ -162,8 +162,8 @@ export class ProductsDescriptionComponent implements OnInit{
 
   increaseQuantity(product) {
     let quantity = Number(product.quantity + 1)
-    let index = this.loginService.selectedUser[0].cart.findIndex(val => val.title === product.title)
-    this.loginService.selectedUser[0].cart[index].quantity = quantity
+    let index = this.loginService.selectedUser.cart.findIndex(val => val.title === product.title)
+    this.loginService.selectedUser.cart[index].quantity = quantity
     this.cartService.updateQuantity().subscribe(
       val => {
         console.log(val)
@@ -177,8 +177,8 @@ export class ProductsDescriptionComponent implements OnInit{
   
   decreaseQuantity(product) {
     let quantity = Number(product.quantity - 1)
-    let index = this.loginService.selectedUser[0].cart.findIndex(val => val.title === product.title)
-    this.loginService.selectedUser[0].cart[index].quantity = quantity
+    let index = this.loginService.selectedUser.cart.findIndex(val => val.title === product.title)
+    this.loginService.selectedUser.cart[index].quantity = quantity
     this.cartService.updateQuantity().subscribe(
       val => {
         console.log(val)
@@ -210,7 +210,7 @@ export class ProductsDescriptionComponent implements OnInit{
     let message = {
       type: 'NEW_MESSAGE',
       payload: {
-        author: this.loginService.selectedUser[0].email,
+        author: this.loginService.selectedUser.email,
         message: `${val}`
       }
     }
@@ -263,7 +263,7 @@ export class ProductsDescriptionComponent implements OnInit{
       this.product.quantity = quantity
       this.inCart = true
     
-      if(this.loginService.selectedUser.length === 0){
+      if(this.loginService.selectedUser === ''){
         console.log('user sekected for adding products')
         this.cartService.addProductsNotLoggedUserCart(this.product)
       }
@@ -288,12 +288,12 @@ export class ProductsDescriptionComponent implements OnInit{
   selectQuantity(quantity){
     console.log('cliecked')
     let quantityValue = Number(quantity)
-    let index = this.loginService.selectedUser[0].cart.findIndex(val => val.title === this.product.title)
+    let index = this.loginService.selectedUser.cart.findIndex(val => val.title === this.product.title)
    if(index === -1){
     this.addToCart(quantityValue)
    }
    else {
-    this.loginService.selectedUser[0].cart[index].quantity = quantityValue
+    this.loginService.selectedUser.cart[index].quantity = quantityValue
     this.cartService.updateQuantity().subscribe(
       val => {
         console.log(val)

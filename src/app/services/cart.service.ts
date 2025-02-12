@@ -25,7 +25,7 @@ export class CartService {
 
   getCartProducts(): any {
 
-    return this.loginService.selectedUser.length === 0 ? from([this.cartProducts]) :  from([this.loginService.selectedUser[0].cart])
+    return from([this.loginService.selectedUser.cart])
 
   }
 
@@ -36,11 +36,11 @@ export class CartService {
   addProductsToLoggedUserCart(product) {
     console.log(this.loginService.selectedUser)
     product.selected = true 
-      this.loginService.selectedUser[0].cart.push(product)
-      console.log(this.loginService.selectedUser[0].cart)
-      console.log(this.loginService.selectedUser[0])
+      this.loginService.selectedUser.cart.push(product)
+      console.log(this.loginService.selectedUser.cart)
+      console.log(this.loginService.selectedUser)
       console.log('sending request to server')
-      return this.http.post(`${this.uri}/add-to-cart`, {user: this.loginService.selectedUser[0], product: product})
+      return this.http.post(`${this.uri}/add-to-cart`, {user: this.loginService.selectedUser, product: product})
     
     // this.loginService.selectedUser.length === 0 ? this.cartProducts.push(product) : this.loginService.selectedUser[0].cart.push(product) 
 
@@ -58,9 +58,9 @@ export class CartService {
 
 
   deleteProductFromCart(product) {
-    let index = this.loginService.selectedUser[0].cart.indexOf(product)
+    let index = this.loginService.selectedUser.cart.indexOf(product)
     this.loginService.selectedUser[0].cart.splice(index, 1)
-    let profile = this.loginService.selectedUser[0]
+    let profile = this.loginService.selectedUser
 
     return this.http.post(`${this.uri}/remove-from-cart`, profile)
 
@@ -71,17 +71,16 @@ export class CartService {
 
 
   deleteById(product) {
-    let index = this.loginService.selectedUser[0].cart.findIndex(val => val.title === product.title)
+    let index = this.loginService.selectedUser.cart.findIndex(val => val.title === product.title)
 
-    this.loginService.selectedUser[0].cart.splice(index, 1)
+    this.loginService.selectedUser.cart.splice(index, 1)
     return from([{ inCart: false }])
 
   }
 
 
   updateCount() {
-    console.log(this.loginService.selectedUser[0])
-    this.loginService.selectedUser.length === 0 ? this.count = this.cartProducts.length : this.count = this.loginService.selectedUser[0].cart.length
+    this.count = this.loginService.selectedUser.cart.length
  
   }
 
@@ -89,7 +88,7 @@ export class CartService {
 
   updateQuantity(){
 
-    return this.http.put(`${this.uri}/update-quantities`, this.loginService.selectedUser[0])
+    return this.http.put(`${this.uri}/update-quantities`, this.loginService.selectedUser)
 
 
   }
@@ -99,9 +98,22 @@ export class CartService {
   calculateTotal() {
     console.log(this.cartProducts)
     this.total = 0
-    if(this.loginService.selectedUser.length === 0){
+    // if(this.loginService.selectedUser.length === 0){
 
-      let productsSelected = this.cartProducts.filter( product => product.selected)
+    //   let productsSelected = this.cartProducts.filter( product => product.selected)
+
+    // productsSelected.forEach(
+    //   product => {
+
+    //     this.total += Number(product.quantity * product.precio)
+
+
+    //   }
+    // )
+    // return this.total
+    // }
+    // else {
+    let productsSelected = this.loginService.selectedUser.cart.filter( product => product.selected)
 
     productsSelected.forEach(
       product => {
@@ -112,21 +124,8 @@ export class CartService {
       }
     )
     return this.total
-    }
-    else {
-      let productsSelected = this.loginService.selectedUser[0].cart.filter( product => product.selected)
 
-    productsSelected.forEach(
-      product => {
-
-        this.total += Number(product.quantity * product.precio)
-
-
-      }
-    )
-    return this.total
-
-    }
+    // }
 
     
 
@@ -140,9 +139,9 @@ export class CartService {
   updateTotal() {
     this.total = 0
 
-    let productsSelected = this.loginService.selectedUser[0].cart.filter( product => product.selected)
+    let productsSelected = this.loginService.selectedUser.cart.filter( product => product.selected)
 
-    this.loginService.selectedUser[0].cart.forEach(
+    this.loginService.selectedUser.cart.forEach(
       product => {
 
         this.total += Number(product.quantity * product.precio)

@@ -55,8 +55,8 @@ export class LoginComponent implements OnInit {
          next:  (val: any) => {
            if(val.login){
             this.loginService.logged = true
-            this.loginService.selectedUser.length = 0
-            this.loginService.selectedUser.push(val.user);
+            this.loginService.selectedUser = ''
+            this.loginService.selectedUser = val.user 
             this.loading = true
             setTimeout(() => {
               this.router.navigate(['/home'])

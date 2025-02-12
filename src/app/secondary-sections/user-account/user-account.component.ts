@@ -35,10 +35,9 @@ export class UserAccountComponent implements OnInit {
 
 
   refreshOrders(){
-    this.loginService.selectedUser.splice(0,1);
     this.sessionService.getProfile().subscribe({
       next: (val) => {
-        this.loginService.selectedUser.push(val.parsedProfile);
+        this.loginService.selectedUser = val.parsedProfile
         console.log(this.loginService.selectedUser)
       }
     })

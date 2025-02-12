@@ -20,7 +20,7 @@
 
 
 
-      <div *ngIf="loginService.selectedUser[0].cart.length === 0; then noProducts else products"></div>
+      <div *ngIf="loginService.selectedUser.cart.length === 0; then noProducts else products"></div>
 
 
 
@@ -36,7 +36,7 @@
 
      
     
-        <div *ngFor="let product of loginService.selectedUser[0].cart" class="product-cart">
+        <div *ngFor="let product of loginService.selectedUser.cart" class="product-cart">
 
           <button style="float: right;margin-right: 40px;" mat-icon-button disableRipple (click)="removeProduct(product)">Eliminar <mat-icon style="color: red;">delete</mat-icon></button>
 

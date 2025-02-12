@@ -47,7 +47,7 @@ export class MainCartComponent implements OnInit {
       {
         next: (profile) => { 
           console.log(profile)
-          this.loginService.selectedUser.push(profile.parsedProfile) 
+          this.loginService.selectedUser = profile.parsedProfile
           console.log(this.loginService.selectedUser)
         },
         error: (err) => { },
@@ -70,8 +70,8 @@ export class MainCartComponent implements OnInit {
 
   increaseQuantity(product) {
     let quantity = Number(product.quantity + 1)
-    let index = this.loginService.selectedUser[0].cart.findIndex(val => val.title === product.title)
-    this.loginService.selectedUser[0].cart[index].quantity = quantity
+    let index = this.loginService.selectedUser.cart.findIndex(val => val.title === product.title)
+    this.loginService.selectedUser.cart[index].quantity = quantity
     this.cartService.updateQuantity().subscribe(
       val => {
         console.log(val)
@@ -86,8 +86,8 @@ export class MainCartComponent implements OnInit {
   decreaseQuantity(product) {
     let quantity = Number(product.quantity)
     quantity--
-    let index = this.loginService.selectedUser[0].cart.findIndex(val => val.title === product.title)
-    this.loginService.selectedUser[0].cart[index].quantity = quantity
+    let index = this.loginService.selectedUser.cart.findIndex(val => val.title === product.title)
+    this.loginService.selectedUser.cart[index].quantity = quantity
     this.cartService.updateTotal()
     this.cartService.updateQuantity().subscribe(
       val => {

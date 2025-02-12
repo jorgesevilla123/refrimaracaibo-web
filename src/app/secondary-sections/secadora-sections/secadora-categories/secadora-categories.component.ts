@@ -79,7 +79,7 @@ export class SecadoraCategoriesComponent implements OnInit {
     product.quantity = 1
     this.cartService.addProductsToLoggedUserCart(product)
     this.cartService.updateCount();
-    console.log(this.loginService.selectedUser[0].cart)
+    console.log(this.loginService.selectedUser.cart)
 
 
     const dialogRef = this.dialog.open(CartOverviewComponent, {

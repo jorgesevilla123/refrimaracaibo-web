@@ -223,7 +223,7 @@ export class SearchResultsComponent implements OnInit {
 
   addToCart(product) {
 
-    if(this.loginService.selectedUser[0].cart.some(cartProducts => cartProducts._id == product._id)){
+    if(this.loginService.selectedUser.cart.some(cartProducts => cartProducts._id == product._id)){
       console.log('product in cart')
       this.alert.notifyWarn('Ya tienes este producto en carrito', 2000, 'top', 'center')
     }
@@ -238,7 +238,7 @@ export class SearchResultsComponent implements OnInit {
         },
         complete: () => {
           this.cartService.updateCount();
-          console.log(this.loginService.selectedUser[0].cart)
+          console.log(this.loginService.selectedUser.cart)
           const dialogRef = this.dialog.open(CartOverviewComponent, {
             width: '550px'
           });
