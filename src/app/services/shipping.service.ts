@@ -28,10 +28,10 @@ export class ShippingService {
 
 
   submitOrder(paymethod, confirmation_number?){
-    let hasOrders = 'orders' in this.loginService.selectedUser[0]
+    let hasOrders = 'orders' in this.loginService.selectedUser
     console.log(hasOrders)
     if(!hasOrders){
-      this.loginService.selectedUser[0].orders = []    
+      this.loginService.selectedUser.orders = []    
     }
    
 
@@ -58,7 +58,7 @@ export class ShippingService {
     // if the user already have orders this code executes and creates order
     // else {
       let idGenerator = uuidv4();
-      let products = this.loginService.selectedUser[0].cart
+      let products = this.loginService.selectedUser.cart
       console.log(products)
       console.log('passed here')
       let orderObject = {
@@ -67,19 +67,19 @@ export class ShippingService {
         date: Date.now(),
         products_cart: products,
         status: 'en proceso',
-        items: this.loginService.selectedUser[0].cart.length,
+        items: this.loginService.selectedUser.cart.length,
         total: this.cartService.total,
         confirmation_number: confirmation_number
       }
       console.log(orderObject)
 
-      console.log(this.loginService.selectedUser[0].orders);
+      console.log(this.loginService.selectedUser.orders);
      
-      this.loginService.selectedUser[0].current_order = orderObject
-      this.loginService.selectedUser[0].orders.push(orderObject);
-      this.loginService.selectedUser[0].cart = []
-      console.log(this.loginService.selectedUser[0])
-     return this.http.post(`${this.ORDER_API}/submit-order`, this.loginService.selectedUser[0])
+      this.loginService.selectedUser.current_order = orderObject
+      this.loginService.selectedUser.orders.push(orderObject);
+      this.loginService.selectedUser.cart = []
+      console.log(this.loginService.selectedUser)
+     return this.http.post(`${this.ORDER_API}/submit-order`, this.loginService.selectedUser)
       
 
    
@@ -90,7 +90,7 @@ export class ShippingService {
 
 
   updateUserProfile(){
-    return this.http.post(`${this.API}/update-shipping`, this.loginService.selectedUser[0])
+    return this.http.post(`${this.API}/update-shipping`, this.loginService.selectedUser)
 
   }
 
@@ -113,7 +113,7 @@ export class ShippingService {
   
 
   haveShipping(){
-    return this.loginService.selectedUser[0].shipping_addresses.length > 0
+    return this.loginService.selectedUser.shipping_addresses.length > 0
   }
 
 

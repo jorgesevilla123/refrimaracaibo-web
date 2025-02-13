@@ -106,6 +106,14 @@ export class BillingComponent implements OnInit {
   }
 
 
+
+
+
+
+
+  
+
+
   openOrderSubmitModal(paymentMethod){
     if(typeof this.loginService.selectedUser.shipping_address == 'undefined'){
       this.alert.notifyWarn('Debes seleccionar una direccion de envio', 2000, 'top', 'center')
