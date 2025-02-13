@@ -1,0 +1,66 @@
+<div mat-dialog-title>
+    <h2>Agrega una direccion</h2>
+</div>
+
+<div mat-dialog-content>
+
+    
+
+    <form class="shipping-form" [formGroup]="loginService.shippingAddressForm">
+
+
+        
+        <mat-form-field class="address-field" appearance="outline">
+            <mat-label>Nombre de la direccion</mat-label>
+            <input matInput placeholder="Por ej. Mi Casa" formControlName="descripcion" required>
+        </mat-form-field>
+
+
+
+        <mat-form-field class="address-field" appearance="outline">
+            <mat-label>Estado</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let state of states" [value]="state.value" (onSelectionChange)="loginService.setState($event)">{{state.viewValue}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field class="address-field" appearance="outline">
+            <mat-label>Avenida</mat-label>
+            <input matInput placeholder="Avenida" formControlName="avenida" required>
+        </mat-form-field>
+
+
+        <mat-form-field class="address-field" appearance="outline">
+            <mat-label>Calle</mat-label>
+            <input matInput placeholder="Calle" formControlName="calle" required>
+        </mat-form-field>
+
+
+        <mat-form-field class="address-field" appearance="outline">
+            <mat-label>Casa o apartamento</mat-label>
+            <input matInput placeholder="Casa o apartamento" formControlName="casa_apartamento" required>
+        </mat-form-field>
+
+
+        <mat-form-field class="address-field" appearance="outline">
+            <mat-label>Informacion adicional</mat-label>
+            <input matInput placeholder="Describe tu ubicacion"
+                formControlName="info_adicional">
+        </mat-form-field>
+
+
+
+
+    </form>
+
+
+</div>
+
+
+
+
+        <div mat-dialog-actions class="action">
+            <button mat-stroked-button [mat-dialog-close] (click)="onClose()">Cancelar</button>
+            <button mat-stroked-button style="background-color: dodgerblue; color: white;" (click)="addShipping()" [mat-dialog-close]>Agregar <mat-icon>add</mat-icon></button>
+        </div>

@@ -1,0 +1,107 @@
+
+
+.container{
+    margin-top: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.wrapper{
+    display: grid;
+ 
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+
+.shipping-card{
+    width: 480px;
+    margin: 10px;
+    display: flex; align-items: baseline; margin-top: 10px; justify-content: center;
+}
+
+
+
+
+
+.radio-button{
+    margin-left: auto;
+}
+
+
+
+
+.flex-container{
+    margin: 20px;
+    display: flex;
+    flex-flow: column wrap;
+    max-width: 500px;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+
+
+
+.shipping-form{
+    margin-top: 20px;
+}
+
+
+
+
+.address-field{
+    margin: 5px;
+}
+
+
+.address-field-aditional{
+    margin: 5px;
+    width: 400px;
+}
+
+
+.new-address-button{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+
+    margin-bottom: 40px;
+    width: 400px;
+    height: 50px;
+    background-color: dodgerblue;
+    color: white;
+}
+
+
+
+.address-section{
+    margin-top: 40px;
+}
+
+
+.step1{
+    margin: 20px;
+}
+
+.fixed.button{
+    position: fixed;
+    bottom: 0px;
+    right: 0px; 
+    margin-bottom: 20px;
+    margin-right: 80px;
+    color: dodgerblue;
+    background-color: white;
+    width: auto;
+    height: 50px;
+}

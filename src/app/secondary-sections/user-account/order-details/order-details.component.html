@@ -1,0 +1,57 @@
+<div class="col-lg-9 col-md-8 col-12">
+    <div class="py-6 p-md-6 p-lg-10">
+       <!-- heading -->
+       <h2 class="mb-6">Detalles de orden #{{order.order_id}}</h2>
+     
+       <div class="d-flex flex-row mb-3 justify-content-between">
+         <h3 class="p-2">Metodo de pago: {{order.pay_method}}</h3>
+         <h3 class="p-2">Estado: <h4 class="badge rounded-pill text-bg-warning">{{order.status}}</h4></h3>
+         
+
+       </div>
+      
+ 
+       <div style="height: 400px; overflow-y: auto;" class="table-responsive-xxl border-0">
+          <!-- Table -->
+          <table class="table mb-0 text-nowrap table-centered">
+             <!-- Table Head -->
+             <thead class="bg-light">
+                <tr>
+                   <th>&nbsp;</th>
+                   <th>Productos</th>
+                   <th>Modelo</th>
+                   <th>Cantidad</th>
+                   <th>Precio</th>
+                   <th></th>
+                </tr>
+             </thead>
+             <tbody>
+                <!-- Table body -->
+                <tr  *ngFor="let product of order.products_cart" >
+                   <td class="align-middle border-top-0 w-0">
+                      <a href="#"><img style="width: auto; height: 50px;" [src]="product.imageMetadata.path_to_file" alt="Ecommerce" class="icon-shape icon-xl"></a>
+                   </td>
+                   <td class="align-middle border-top-0">
+                      <a href="#" class="fw-semibold text-inherit">
+                         <h6 class="mb-0">{{product.title}}</h6>
+                      </a>
+                   </td>
+                   <td class="align-middle border-top-0">{{product.modelo}}</td>
+                   <td class="align-middle border-top-0">{{product.quantity}}</td>
+                   <td class="align-middle border-top-0">{{product.precio | currency: 'USD'}}</td>
+                   <td class="text-muted align-middle border-top-0">
+                      <a href="#" class="text-inherit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View"><i class="feather-icon icon-eye"></i></a>
+                   </td>
+                </tr>
+ 
+             </tbody>
+          </table>
+          <div class="d-flex justify-content-around" style="margin-top: 20px;">
+            <h2>Total de orden </h2>
+            <h2 style="align-self: flex-end;">{{order.total | currency: 'USD'}}</h2>
+
+          </div>
+          
+       </div>
+    </div>
+ </div>

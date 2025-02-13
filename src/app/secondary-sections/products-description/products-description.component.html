@@ -1,0 +1,1092 @@
+
+
+    <section class="mt-8">
+
+
+      <div *ngIf="loaded; then show else notShow"></div>
+
+      
+      
+      <ng-template #notShow>
+
+      
+         
+        <div class="container">
+         <div class="row">
+            <div class="col-md-5 col-xl-6 mx-auto mt-5 placeholder-glow">
+               <span style="width: 450px ;height: 300px; margin: 20px 20px 20px 20px;" class="placeholder col-7"></span>
+            </div>
+
+            <div style="margin-top: 20px;" class="col-md-7 col-xl-6">
+               <div class="ps-lg-10 mt-6 mt-md-0">
+                  <!-- content -->
+                  <p class="placeholder-glow">
+                     <span class="placeholder col-4"></span>
+                  </p>
+                  <!-- heading -->
+                  <h1 class="placeholder-glow">
+                     <span class="placeholder col-6"></span>
+                     <span class="placeholder col-3"></span>
+                     <span class="placeholder col-4"></span>
+                  </h1>
+                  <div class="placeholder-glow">
+                     <!-- rating -->
+                      <span class="placeholder col-4 text-primary"></span>
+                  </div>
+                  <div class="fs-4 placeholder-glow">
+                     <!-- price -->
+                     <span class="placeholder col-2 text-success"></span>
+                  </div>
+                  <!-- hr -->
+                  <hr class="my-6">
+              
+                  <div>
+                     <!-- input -->
+                      <h2 class="placeholder-glow">
+                        <span class="placeholder col-2 text-primary"></span>
+                      </h2>
+                  
+                  
+                  </div>
+                  <div class="mt-3 row justify-content-start g-2 align-items-center">
+                    <h1 class="placeholder-glow">
+                     <span style="height: 40px;" class="placeholder col-2 text-success"></span>
+
+                    </h1>
+                  </div>
+                  <!-- hr -->
+                  <hr class="my-6">
+                  <div class="placeholder-glow">
+                     <!-- table -->
+                     <span class="placeholder col-6"></span>
+                     <span class="placeholder col-3"></span>
+                     <span class="placeholder col-4"></span>
+                    
+
+                  </div>
+                
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+
+      </ng-template>
+
+
+
+
+      <ng-template #show>
+         <div class="container">
+            <div class="row">
+               <div class="col-md-5 col-xl-6 mx-auto mt-5">
+                 <img style="max-width: 300px; height: auto; " [src]="product.imageMetadata?.path_to_file" alt="product photo"
+                 class="mx-auto d-block img-fluid">
+                 
+               </div>
+ 
+               <div style="margin-top: 20px;" class="col-md-7 col-xl-6">
+                  <div class="ps-lg-10 mt-6 mt-md-0">
+                     <!-- content -->
+                     <p class="mb-4 d-block link-underline-opacity-0">AUTOMOTRIZ</p>
+                     <!-- heading -->
+                     <h1 class="mb-1 fs-4">{{product.title}}</h1>
+                     <div class="mb-4">
+                        <!-- rating -->
+                        <!-- rating -->
+                        <small class="text-warning">
+                           <i class="bi bi-star-fill text-primary"></i>
+                           <i class="bi bi-star-fill text-primary"></i>
+                           <i class="bi bi-star-fill text-primary"></i>
+                           <i class="bi bi-star-fill text-primary"></i>
+                           <i class="bi bi-star-half text-primary"></i>
+                        </small>
+                        <a href="#" class="ms-2">(Sin opiniones)</a>
+                     </div>
+                     <div class="fs-4">
+                        <!-- price -->
+                        <span class="text-success">{{product.precio | currency: 'USD'}}</span>
+                     </div>
+                     <!-- hr -->
+                     <hr class="my-6">
+                 
+                     <div>
+                        <!-- input -->
+                         <div *ngIf="inCart; then productInCart else productNotCart"></div>
+                         <ng-template #productInCart>
+                            <div class="input-group input-spinner">
+                               <input [disabled]="product.quantity == 1" type="button" value="-" class=" btn btn-primary" data-field="quantity" (click)="decreaseQuantity(product)">
+                               <input type="number" step="1" max="10" name="quantity" [value]="product.quantity" class="quantity-field form-input">
+                               <input type="button" value="+" class="button-plus btn btn-primary" data-field="quantity" (click)="increaseQuantity(product)">
+                            </div>
+ 
+                         </ng-template>
+ 
+                         <ng-template #productNotCart>
+                            <div class="input-group input-spinner">
+                               <input [disabled]="formQuantity == 1" type="button" value="-" class=" btn btn-primary" data-field="quantity" (click)="decreaseFormQuantity()">
+                               <input type="number" step="1" min="1" max="10" value="1" name="quantity" [value]="formQuantity" class="quantity-field form-input">
+                               <input type="button" value="+" class="button-plus btn btn-primary" data-field="quantity" (click)="increaseFormQuantity()">
+                            </div>
+                            
+                         </ng-template>
+                     
+                     </div>
+                     <div class="mt-3 row justify-content-start g-2 align-items-center">
+                        <div class="col-xxl-4 col-lg-4 col-md-5 col-5 d-grid">
+                         <div *ngIf="inCart; then Added else notAdded"></div>
+ 
+                         <ng-template #Added>
+                            <button style="font-size: 14px; text-align: center;" type="button" class="btn btn-success disabled"><i class="bi bi-bag-check"></i>Producto en el carrito</button>
+ 
+                         </ng-template>
+ 
+                         <ng-template #notAdded>
+                            <button style="font-size: 15px; text-align: center;" type="button" class="btn btn-success btn-lg" (click)="addToCart(formQuantity)"><i
+                               class="bi bi-bag-plus-fill text-white"></i> Agregar al carrito</button>
+ 
+                         </ng-template>
+ 
+ 
+                     
+                         
+                        </div>
+                        <div class="col-md-4 col-4">
+                           <!-- btn -->
+                           <button class="btn btn-dark" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+                        </div>
+                     </div>
+                     <!-- hr -->
+                     <hr class="my-6">
+                     <div>
+                        <!-- table -->
+                        <table class="table table-borderless mb-0">
+                           <tbody>
+                              <tr>
+                                 <td>Modelo:</td>
+                                 <td>FBB00255</td>
+                              </tr>
+                              <tr>
+                                 <td>Disponibilidad:</td>
+                                 <td>In Stock</td>
+                              </tr>
+                              <tr>
+                                 <td>Categoria:</td>
+                                 <td>Fruits</td>
+                              </tr>
+                              <tr>
+                                 <td>Envios:</td>
+                                 <td>
+                                    <small>
+                                       01 day shipping.
+                                       <span class="text-muted">( Free pickup today)</span>
+                                    </small>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="mt-8">
+                        <!-- dropdown -->
+                        <div class="dropdown">
+                           <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Compartir</a>
+ 
+                           <ul class="dropdown-menu">
+                              <li>
+                                 <a class="dropdown-item" href="#">
+                                    <i class="bi bi-facebook me-2"></i>
+                                    Facebook
+                                 </a>
+                              </li>
+                              <li>
+                                 <a class="dropdown-item" href="#">
+                                    <i class="bi bi-twitter me-2"></i>
+                                    Twitter
+                                 </a>
+                              </li>
+                              <li>
+                                 <a class="dropdown-item" href="#">
+                                    <i class="bi bi-instagram me-2"></i>
+                                    Instagram
+                                 </a>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+
+
+
+
+
+
+      </ng-template>
+
+
+
+
+      
+     </section>
+
+
+
+
+
+
+
+
+     <mat-divider style="margin-top: 40px; margin-bottom: 20px;"></mat-divider>
+
+
+
+     <section class="mt-lg-14 mt-8">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-12">
+                 <ul class="nav nav-pills nav-lb-tab" id="myTab" role="tablist">
+                    <!-- nav item -->
+                    <li class="nav-item" role="presentation">
+                       <!-- btn -->
+                       <button class="nav-link active" id="product-tab" data-bs-toggle="tab" data-bs-target="#product-tab-pane" type="button" role="tab" aria-controls="product-tab-pane" aria-selected="true">
+                          Detalles del producto
+                       </button>
+                    </li>
+                    <!-- nav item -->
+                    <li class="nav-item" role="presentation">
+                       <!-- btn -->
+                       <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details-tab-pane" type="button" role="tab" aria-controls="details-tab-pane" aria-selected="false" tabindex="-1">
+                          Informacion
+                       </button>
+                    </li>
+                    <!-- nav item -->
+                    <li class="nav-item" role="presentation">
+                       <!-- btn -->
+                       <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane" aria-selected="false" tabindex="-1">
+                          Reseñas
+                       </button>
+                    </li>
+                
+                 </ul>
+                 <!-- tab content -->
+                 <div class="tab-content" id="myTabContent">
+                    <!-- tab pane -->
+                    <div class="tab-pane fade active show" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab" tabindex="0">
+                       <div class="my-8">
+                          <div class="mb-3 mt-3">
+                             <!-- text -->
+                             <h3 class="mb-2">Nutrient Value &amp; Benefits</h3>
+                             <p class="mb-0">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, tellus iaculis urna bibendum in lacus, integer. Id imperdiet vitae varius sed magnis eu nisi nunc
+                                sit. Vel, varius habitant ornare ac rhoncus. Consequat risus facilisis ante ipsum netus risus adipiscing sagittis sed. Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit.
+                             </p>
+                          </div>
+                          <div class="mb-3">
+                             <h3 class="mb-2">Storage Tips</h3>
+                             <p class="mb-0">
+                                Nisi, tellus iaculis urna bibendum in lacus, integer. Id imperdiet vitae varius sed magnis eu nisi nunc sit. Vel, varius habitant ornare ac rhoncus. Consequat risus
+                                facilisis ante ipsum netus risus adipiscing sagittis sed.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                             </p>
+                          </div>
+                          <!-- content -->
+                          <div class="mb-3">
+                             <h5 class="mb-2">Unit</h5>
+                             <p class="mb-0">3 units</p>
+                          </div>
+                          <div class="mb-3">
+                             <h5 class="mb-2">Seller</h5>
+                             <p class="mb-0">DMart Pvt. LTD</p>
+                          </div>
+                          <div>
+                             <h5 class="mb-2">Disclaimer</h5>
+                             <p class="mb-0">
+                                Image shown is a representation and may slightly vary from the actual product. Every effort is made to maintain accuracy of all information displayed.
+                             </p>
+                          </div>
+                       </div>
+                    </div>
+                    <!-- tab pane -->
+                    <div class="tab-pane fade" id="details-tab-pane" role="tabpanel" aria-labelledby="details-tab" tabindex="0">
+                       <div class="my-8">
+                          <div class="row">
+                             <div class="col-12">
+                                <h4 class="mb-4">Details</h4>
+                             </div>
+                             <div class="col-12 col-lg-6">
+                                <table class="table table-striped">
+                                   <!-- table -->
+                                   <tbody>
+                                      <tr>
+                                         <th>Weight</th>
+                                         <td>1000 Grams</td>
+                                      </tr>
+                                      <tr>
+                                         <th>Ingredient Type</th>
+                                         <td>Vegetarian</td>
+                                      </tr>
+                                      <tr>
+                                         <th>Brand</th>
+                                         <td>Dmart</td>
+                                      </tr>
+                                      <tr>
+                                         <th>Item Package Quantity</th>
+                                         <td>1</td>
+                                      </tr>
+                                      <tr>
+                                         <th>Form</th>
+                                         <td>Larry the Bird</td>
+                                      </tr>
+                                      <tr>
+                                         <th>Manufacturer</th>
+                                         <td>Dmart</td>
+                                      </tr>
+                                      <tr>
+                                         <th>Net Quantity</th>
+                                         <td>340.0 Gram</td>
+                                      </tr>
+                                      <tr>
+                                         <th>Product Dimensions</th>
+                                         <td>9.6 x 7.49 x 18.49 cm</td>
+                                      </tr>
+                                   </tbody>
+                                </table>
+                             </div>
+                             <div class="col-12 col-lg-6">
+                                <table class="table table-striped">
+                                   <!-- table -->
+                                   <tbody>
+                                      <tr>
+                                         <th>ASIN</th>
+                                         <td>SB0025UJ75W</td>
+                                      </tr>
+                                      <tr>
+                                         <th>Best Sellers Rank</th>
+                                         <td>#2 in Fruits</td>
+                                      </tr>
+                                      <tr>
+                                         <th>Date First Available</th>
+                                         <td>30 April 2022</td>
+                                      </tr>
+                                      <tr>
+                                         <th>Item Weight</th>
+                                         <td>500g</td>
+                                      </tr>
+                                      <tr>
+                                         <th>Generic Name</th>
+                                         <td>Banana Robusta</td>
+                                      </tr>
+                                   </tbody>
+                                </table>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <!-- tab pane -->
+                    <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
+                       <div class="my-8">
+                          <!-- row -->
+                          <div class="row">
+                             <div class="col-md-4">
+                                <div class="me-lg-12 mb-6 mb-md-0">
+                                   <div class="mb-5">
+                                      <!-- title -->
+                                      <h4 class="mb-3">Customer reviews</h4>
+                                      <span>
+                                         <!-- rating -->
+                                         <small class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-half"></i>
+                                         </small>
+                                         <span class="ms-3">4.1 out of 5</span>
+                                         <small class="ms-3">11,130 global ratings</small>
+                                      </span>
+                                   </div>
+                                   <div class="mb-8">
+                                      <!-- progress -->
+                                      <div class="d-flex align-items-center mb-2">
+                                         <div class="text-nowrap me-3 text-muted">
+                                            <span class="d-inline-block align-middle text-muted">5</span>
+                                            <i class="bi bi-star-fill ms-1 small text-warning"></i>
+                                         </div>
+                                         <div class="w-100">
+                                            <div class="progress" style="height: 6px">
+                                               <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                         </div>
+                                         <span class="text-muted ms-3">53%</span>
+                                      </div>
+                                      <!-- progress -->
+                                      <div class="d-flex align-items-center mb-2">
+                                         <div class="text-nowrap me-3 text-muted">
+                                            <span class="d-inline-block align-middle text-muted">4</span>
+                                            <i class="bi bi-star-fill ms-1 small text-warning"></i>
+                                         </div>
+                                         <div class="w-100">
+                                            <div class="progress" style="height: 6px">
+                                               <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="50"></div>
+                                            </div>
+                                         </div>
+                                         <span class="text-muted ms-3">22%</span>
+                                      </div>
+                                      <!-- progress -->
+                                      <div class="d-flex align-items-center mb-2">
+                                         <div class="text-nowrap me-3 text-muted">
+                                            <span class="d-inline-block align-middle text-muted">3</span>
+                                            <i class="bi bi-star-fill ms-1 small text-warning"></i>
+                                         </div>
+                                         <div class="w-100">
+                                            <div class="progress" style="height: 6px">
+                                               <div class="progress-bar bg-warning" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="35"></div>
+                                            </div>
+                                         </div>
+                                         <span class="text-muted ms-3">14%</span>
+                                      </div>
+                                      <!-- progress -->
+                                      <div class="d-flex align-items-center mb-2">
+                                         <div class="text-nowrap me-3 text-muted">
+                                            <span class="d-inline-block align-middle text-muted">2</span>
+                                            <i class="bi bi-star-fill ms-1 small text-warning"></i>
+                                         </div>
+                                         <div class="w-100">
+                                            <div class="progress" style="height: 6px">
+                                               <div class="progress-bar bg-warning" role="progressbar" style="width: 22%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="22"></div>
+                                            </div>
+                                         </div>
+                                         <span class="text-muted ms-3">5%</span>
+                                      </div>
+                                      <!-- progress -->
+                                      <div class="d-flex align-items-center mb-2">
+                                         <div class="text-nowrap me-3 text-muted">
+                                            <span class="d-inline-block align-middle text-muted">1</span>
+                                            <i class="bi bi-star-fill ms-1 small text-warning"></i>
+                                         </div>
+                                         <div class="w-100">
+                                            <div class="progress" style="height: 6px">
+                                               <div class="progress-bar bg-warning" role="progressbar" style="width: 14%" aria-valuenow="14" aria-valuemin="0" aria-valuemax="14"></div>
+                                            </div>
+                                         </div>
+                                         <span class="text-muted ms-3">7%</span>
+                                      </div>
+                                   </div>
+                                   <div class="d-grid">
+                                      <h4>Review this product</h4>
+                                      <p class="mb-0">Share your thoughts with other customers.</p>
+                                      <a href="#" class="btn btn-outline-gray-400 mt-4 text-muted">Write the Review</a>
+                                   </div>
+                                </div>
+                             </div>
+                             <!-- col -->
+                             <div class="col-md-8">
+                                <div class="mb-10">
+                                   <div class="d-flex justify-content-between align-items-center mb-8">
+                                      <div>
+                                         <!-- heading -->
+                                         <h4>Reviews</h4>
+                                      </div>
+                                      <div>
+                                         <select class="form-select">
+                                            <option selected="">Top Reviews</option>
+                                            <option value="Most Recent">Most Recent</option>
+                                         </select>
+                                      </div>
+                                   </div>
+                                   <div class="d-flex border-bottom pb-6 mb-6">
+                                      <!-- img -->
+                                      <!-- img -->
+                                      <img src="../assets/images/avatar/avatar-10.jpg" alt="" class="rounded-circle avatar-lg">
+                                      <div class="ms-5">
+                                         <h6 class="mb-1">Shankar Subbaraman</h6>
+                                         <!-- select option -->
+                                         <!-- content -->
+                                         <p class="small">
+                                            <span class="text-muted">30 December 2022</span>
+                                            <span class="text-primary ms-3 fw-bold">Verified Purchase</span>
+                                         </p>
+                                         <!-- rating -->
+                                         <div class="mb-2">
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <span class="ms-3 text-dark fw-bold">Need to recheck the weight at delivery point</span>
+                                         </div>
+                                         <!-- text-->
+                                         <p>
+                                            Product quality is good. But, weight seemed less than 1kg. Since it is being sent in open package, there is a possibility of pilferage in between.
+                                            FreshCart sends the veggies and fruits through sealed plastic covers and Barcode on the weight etc. .
+                                         </p>
+                                         <div>
+                                            <div class="border icon-shape icon-lg border-2">
+                                               <!-- img -->
+                                               <img src="../assets/images/products/product-img-1.jpg" alt="" class="img-fluid">
+                                            </div>
+                                            <div class="border icon-shape icon-lg border-2 ms-1">
+                                               <!-- img -->
+                                               <img src="../assets/images/products/product-img-2.jpg" alt="" class="img-fluid">
+                                            </div>
+                                            <div class="border icon-shape icon-lg border-2 ms-1">
+                                               <!-- img -->
+                                               <img src="../assets/images/products/product-img-3.jpg" alt="" class="img-fluid">
+                                            </div>
+                                         </div>
+                                         <!-- icon -->
+                                         <div class="d-flex justify-content-end mt-4">
+                                            <a href="#" class="text-muted">
+                                               <i class="feather-icon icon-thumbs-up me-1"></i>
+                                               Helpful
+                                            </a>
+                                            <a href="#" class="text-muted ms-4">
+                                               <i class="feather-icon icon-flag me-2"></i>
+                                               Report abuse
+                                            </a>
+                                         </div>
+                                      </div>
+                                   </div>
+                                   <div class="d-flex border-bottom pb-6 mb-6 pt-4">
+                                      <!-- img -->
+                                      <img src="../assets/images/avatar/avatar-12.jpg" alt="" class="rounded-circle avatar-lg">
+                                      <div class="ms-5">
+                                         <h6 class="mb-1">Robert Thomas</h6>
+                                         <!-- content -->
+                                         <p class="small">
+                                            <span class="text-muted">29 December 2022</span>
+                                            <span class="text-primary ms-3 fw-bold">Verified Purchase</span>
+                                         </p>
+                                         <!-- rating -->
+                                         <div class="mb-2">
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star text-warning"></i>
+                                            <span class="ms-3 text-dark fw-bold">Need to recheck the weight at delivery point</span>
+                                         </div>
+
+                                         <p>
+                                            Product quality is good. But, weight seemed less than 1kg. Since it is being sent in open package, there is a possibility of pilferage in between.
+                                            FreshCart sends the veggies and fruits through sealed plastic covers and Barcode on the weight etc. .
+                                         </p>
+
+                                         <!-- icon -->
+                                         <div class="d-flex justify-content-end mt-4">
+                                            <a href="#" class="text-muted">
+                                               <i class="feather-icon icon-thumbs-up me-1"></i>
+                                               Helpful
+                                            </a>
+                                            <a href="#" class="text-muted ms-4">
+                                               <i class="feather-icon icon-flag me-2"></i>
+                                               Report abuse
+                                            </a>
+                                         </div>
+                                      </div>
+                                   </div>
+                                   <div class="d-flex border-bottom pb-6 mb-6 pt-4">
+                                      <!-- img -->
+                                      <img src="../assets/images/avatar/avatar-9.jpg" alt="" class="rounded-circle avatar-lg">
+                                      <div class="ms-5">
+                                         <h6 class="mb-1">Barbara Tay</h6>
+                                         <!-- content -->
+                                         <p class="small">
+                                            <span class="text-muted">28 December 2022</span>
+                                            <span class="text-danger ms-3 fw-bold">Unverified Purchase</span>
+                                         </p>
+                                         <!-- rating -->
+                                         <div class="mb-2">
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star text-warning"></i>
+                                            <span class="ms-3 text-dark fw-bold">Need to recheck the weight at delivery point</span>
+                                         </div>
+
+                                         <p>Everytime i ordered from fresh i got greenish yellow bananas just like i wanted so go for it , its happens very rare that u get over riped ones.</p>
+
+                                         <!-- icon -->
+                                         <div class="d-flex justify-content-end mt-4">
+                                            <a href="#" class="text-muted">
+                                               <i class="feather-icon icon-thumbs-up me-1"></i>
+                                               Helpful
+                                            </a>
+                                            <a href="#" class="text-muted ms-4">
+                                               <i class="feather-icon icon-flag me-2"></i>
+                                               Report abuse
+                                            </a>
+                                         </div>
+                                      </div>
+                                   </div>
+                                   <div class="d-flex border-bottom pb-6 mb-6 pt-4">
+                                      <!-- img -->
+                                      <img src="../assets/images/avatar/avatar-8.jpg" alt="" class="rounded-circle avatar-lg">
+                                      <div class="ms-5 flex-grow-1">
+                                         <h6 class="mb-1">Sandra Langevin</h6>
+                                         <!-- content -->
+                                         <p class="small">
+                                            <span class="text-muted">8 December 2022</span>
+                                            <span class="text-danger ms-3 fw-bold">Unverified Purchase</span>
+                                         </p>
+                                         <!-- rating -->
+                                         <div class="mb-2">
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star text-warning"></i>
+                                            <span class="ms-3 text-dark fw-bold">Great product</span>
+                                         </div>
+
+                                         <p>Great product &amp; package. Delivery can be expedited.</p>
+
+                                         <!-- icon -->
+                                         <div class="d-flex justify-content-end mt-4">
+                                            <a href="#" class="text-muted">
+                                               <i class="feather-icon icon-thumbs-up me-1"></i>
+                                               Helpful
+                                            </a>
+                                            <a href="#" class="text-muted ms-4">
+                                               <i class="feather-icon icon-flag me-2"></i>
+                                               Report abuse
+                                            </a>
+                                         </div>
+                                      </div>
+                                   </div>
+                                   <div>
+                                      <a href="#" class="btn btn-outline-gray-400 text-muted">Read More Reviews</a>
+                                   </div>
+                                </div>
+                                <div>
+                                   <!-- rating -->
+                                   <h3 class="mb-5">Create Review</h3>
+                                   <div class="border-bottom py-4 mb-4">
+                                      <h4 class="mb-3">Overall rating</h4>
+                                      <div class="rater star-rating" style="width: 100px; height: 20px; background-size: 20px;"><div class="star-value" style="background-size: 20px; width: 0px;"></div></div>
+                                   </div>
+                                   <div class="border-bottom py-4 mb-4">
+                                      <h4 class="mb-0">Rate Features</h4>
+                                      <div class="my-5">
+                                         <h5>Flavor</h5>
+                                         <div class="rater star-rating" style="width: 100px; height: 20px; background-size: 20px;"><div class="star-value" style="background-size: 20px; width: 0px;"></div></div>
+                                      </div>
+                                      <div class="my-5">
+                                         <h5>Value for money</h5>
+                                         <div class="rater star-rating" style="width: 100px; height: 20px; background-size: 20px;"><div class="star-value" style="background-size: 20px; width: 0px;"></div></div>
+                                      </div>
+                                      <div class="my-5">
+                                         <h5>Scent</h5>
+                                         <div class="rater star-rating" style="width: 100px; height: 20px; background-size: 20px;"><div class="star-value" style="background-size: 20px; width: 0px;"></div></div>
+                                      </div>
+                                   </div>
+                                   <!-- form control -->
+                                   <div class="border-bottom py-4 mb-4">
+                                      <h5>Add a headline</h5>
+                                      <input type="text" class="form-control" placeholder="What’s most important to know">
+                                   </div>
+                                   <div class="border-bottom py-4 mb-4">
+                                      <h5>Add a photo or video</h5>
+                                      <p>Shoppers find images and videos more helpful than text alone.</p>
+
+                                      <div id="my-dropzone" class="dropzone mt-4 border-dashed rounded-2 min-h-0 dz-clickable"><div class="dz-default dz-message"><button class="dz-button" type="button">Drop files here to upload</button></div></div>
+                                   </div>
+                                   <div class="py-4 mb-4">
+                                      <!-- heading -->
+                                      <h5>Add a written review</h5>
+                                      <textarea class="form-control" rows="3" placeholder="What did you like or dislike? What did you use this product for?"></textarea>
+                                   </div>
+                                   <!-- button -->
+                                   <div class="d-flex justify-content-end">
+                                      <a href="#" class="btn btn-primary">Submit Review</a>
+                                   </div>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <!-- tab pane -->
+                    <div class="tab-pane fade" id="sellerInfo-tab-pane" role="tabpanel" aria-labelledby="sellerInfo-tab" tabindex="0">...</div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </section>
+
+
+
+
+
+
+
+<!-- 
+
+    
+
+    <div class="container">
+
+
+
+
+
+
+        <div class="grid">
+
+
+            <div class="card-3 product-container">
+
+                <div class="product-image">
+                    <img src="../../../assets/bombillo 15w.jpeg" width="400px" height="400px" alt="">
+                </div>
+
+                <div class="product-description">
+                    <h2>{{product.title}}</h2>
+
+
+                    <h2><b>Modelo: </b>{{product.modelo}}</h2>
+           
+                </div>
+
+
+               
+
+               </div>
+
+
+
+               
+               <div class="card-3 produc-actions">
+                <h3 style="margin-top: 20px; margin-left: 20px;">Calificacion del producto</h3>
+                
+
+                <div class="rating-container">
+                <ngb-rating style="margin-left: 20px;" [(rate)]="currentRate" [max]="5">
+                    <ng-template let-fill="fill" let-index="index">
+                        <i class="bi-star{{fill === 100 ? '-fill' : ''}}" [class.filled]="fill === 100"></i>
+                    </ng-template>
+                </ngb-rating>
+
+                <h2 style="margin-left: 20px; font-weight: bold;">{{currentRate | number: '1.1-1'}}</h2>
+
+                </div>
+
+                
+                <h4 style="margin-top: 20px; margin-left: 20px;">¿Alguna duda?</h4>
+                <button (click)="openChat()" style="width: 80%; margin-left: auto; margin-right: auto;" mat-raised-button>Escribenos! <i class="bi bi-chat-text"></i></button>
+
+                <div class="quantity-field" style="margin-left: 20px; margin-top: 20px">
+                    <mat-form-field>
+                        <mat-label>Cantidad</mat-label>
+                        <mat-select name="food">
+                          <mat-option *ngFor="let quantity of quantities" [value]="quantity.value" (click)="selectQuantity(quantity.value)">
+                            {{quantity.value}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+            
+                </div>
+                
+
+                    <h1 style="font-weight: 700; margin-top: 20px; font-size: 30px; margin-left: 20px;">{{price | currency: 'USD'}}</h1>
+       
+             -->
+
+              
+    
+                    <!-- <mat-form-field appearance="fill" style="width: 90%; margin-left: auto; margin-right: auto;">
+         
+                        <mat-label>Cantidad</mat-label>
+                        <mat-select [(value)]="selectedQuantity" (valueChange)="updateQuantity()">
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let option of quantities" [value]="option">{{option}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+              -->
+
+
+              
+<!--                     
+              
+                                      <button style="width: 90%; height: 50px; margin-left: auto; margin-right: auto; margin-bottom: 20px;" mat-raised-button (click)="addToCart(1)">Agregar al carrito <mat-icon>add_shopping_cart</mat-icon></button>
+                              
+                                
+                    <button routerLink="/cart" style="width: 90%; height: 50px; margin-left: auto; margin-right: auto; margin-bottom: 10px; background-color: dodgerblue; color: white;" mat-raised-button>Verificar y comprar <mat-icon>shopping_bag</mat-icon></button>
+
+
+                  
+               </div>
+
+            </div>   
+
+
+
+        </div>
+
+
+ -->
+
+
+
+<!-- 
+
+        <div class="also-searched">
+
+            <h1 style="margin-top: 20px; margin-left: 20px;">Tambien se busco</h1>
+
+
+ <ngb-carousel>
+
+    <ng-template ngbSlide>
+        <div style="display: flex; margin-left: 30px; margin-right: 30px; justify-content: center;">
+            
+            
+      
+            <div class="card-2">
+                <div class="image">
+                    <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
+                </div>
+
+                <div class="heading"> Bombillo de 15W
+                </div>
+                <div class="author">{{200 | currency: 'USD'}}</div>
+            </div>
+
+
+
+            <div class="card-2">
+                <div class="image">
+                    <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
+                </div>
+        
+                <div class="heading"> Bombillo de 15W
+                </div>
+                <div class="author">{{200 | currency: 'USD'}}</div>
+            </div>
+
+
+
+            <div class="card-2">
+                <div class="image">
+                        <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
+                </div>
+        
+                <div class="heading"> Bombillo de 15W
+                </div>
+                <div class="author">{{200 | currency: 'USD'}}</div>
+            </div>
+
+            <div class="card-2">
+                <div class="image">
+                            <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
+                </div>
+        
+                <div class="heading"> Bombillo de 15W
+                </div>
+                <div class="author">{{200 | currency: 'USD'}}</div>
+            </div>
+
+
+
+             <div class="card-2">
+                <div class="image">
+                                <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
+                </div>
+        
+                <div class="heading"> Bombillo de 15W
+                </div>
+                <div class="author">{{200 | currency: 'USD'}}</div>
+            </div>
+
+          
+
+
+
+        </div>
+
+
+
+    </ng-template>
+    <ng-template ngbSlide>
+        <div style="display: flex; margin-left: 30px; margin-right: 30px; justify-content: center;">
+            
+            
+            
+            <div class="card-2">
+                <div class="image">
+                    <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
+                </div>
+
+                <div class="heading"> Bombillo de 15W
+                </div>
+                <div class="author">{{200 | currency: 'USD'}}</div>
+            </div>
+
+
+
+            <div class="card-2">
+                <div class="image">
+                    <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
+                </div>
+        
+                <div class="heading"> Bombillo de 15W
+                </div>
+                <div class="author">{{200 | currency: 'USD'}}</div>
+            </div>
+
+
+
+            <div class="card-2">
+                <div class="image">
+                        <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
+                </div>
+        
+                <div class="heading"> Bombillo de 15W
+                </div>
+                <div class="author">{{200 | currency: 'USD'}}</div>
+            </div>
+
+            <div class="card-2">
+                <div class="image">
+                            <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
+                </div>
+        
+                <div class="heading"> Bombillo de 15W
+                </div>
+                <div class="author">{{200 | currency: 'USD'}}</div>
+            </div>
+
+
+
+             <div class="card-2">
+                <div class="image">
+                                <img class="recommended-products-img" src="../../../assets/bombillo 15w.jpeg">
+                </div>
+        
+                <div class="heading"> Bombillo de 15W
+                </div>
+                <div class="author">{{200 | currency: 'USD'}}</div>
+            </div>
+
+          
+
+
+
+        </div>
+
+    </ng-template>
+</ngb-carousel>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="openMessage">
+    
+<div class="box">
+    <nav class="navbar bg-body-tertiary bg-dark">
+        <div class="container-fluid">
+          <div class="navbar-brand">
+            <i class="bi bi-person-circle"></i>
+            <h3>Ayudante en linea</h3>
+
+
+                <i (click)="closeChat()" style="margin-left: auto" class="close bi bi-x-circle-fill"></i>
+           
+            
+
+          </div>
+        </div>
+      </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div (scroll)="scrolled($event)" class="chat-section" id="chat-container" #scrollFrame>
+
+
+
+        <div class="client">
+            <h3 class="message-2">Text</h3>
+        </div>
+        
+        <div #message *ngFor="let message of websocket.chat" [class]="message.payload.author === loginService.selectedUser[0].email ? 'server' : 'client'">
+        
+
+        <div *ngIf="message.payload.author === loginService.selectedUser[0].email then clientMessage else serverMessage"></div>
+        <ng-template #clientMessage>
+            <h4 class="message-1">{{message.payload.message}}</h4>
+            <small style="margin: 20px">tu</small>
+        </ng-template>
+
+        <ng-template #serverMessage>
+            <h4 class="message-2">{{message.payload.message}}</h4>
+            <small style="margin: 20px">Servidor</small>
+        </ng-template>
+   
+        </div>
+
+       
+     
+
+    </div>
+
+
+
+
+
+<div style="background-color: #00000029; height: 100px;">
+    <form (submit)="sendMessage(input.value)" #chatForm>
+
+        <div style="display: flex; width: 95%; margin-left: auto; margin-right: auto;" class="input-group">
+            <input style="margin-top: 10px;" (submit)="sendMessage(input.value)"  #input type="text" class="form-control" placeholder="Escribe algun mensaje" aria-label="Input group example" aria-describedby="btnGroupAddon"> 
+            <button style="margin-top: 10px;" type="submit" class="btn btn-primary"><i style="color: white;" class="bi bi-send"></i></button>
+        </div>
+
+   
+        
+  
+    </form>
+
+
+</div>
+ 
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+ -->

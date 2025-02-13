@@ -1,0 +1,164 @@
+
+
+<div class="container text-center">
+    <div class="row">
+      <div class="col container">
+         <img class="img-fluid" src="../../../assets/login.jpg" width="400px" height="auto" alt="">
+         
+       </div>
+        <div style="margin-right: 10rem; margin-top: 2rem;" class="col-12 col-md-6 offset-lg-1 col-lg-4 order-lg-2 order-1 d-block">
+            <div>
+               <h2 class="fw-normal lh-1" style="text-align: left;">Bienvenido a refrimaracaibo en linea!</h2>
+               <h3 class="fw-normal" style="text-align: left;">Registrate y consigue los repuestos que buscas!</h3>
+
+            </div>
+            <!-- form -->
+            <form [formGroup]="registrationForm">
+               <div class="row g-3">
+                  <!-- col -->
+                  <div class="col">
+                     <!-- input -->
+                     <label for="formSignupfname" class="form-label visually-hidden">Nombre</label>
+                     <input style="padding-top: 10px; padding-bottom: 10px;" type="text" class="form-control" placeholder="Nombre" required formControlName="name">
+                     <div class="invalid-feedback">Please enter first name.</div>
+                  </div>
+                  <div class="col">
+                     <!-- input -->
+                     <label for="formSignuplname" class="form-label visually-hidden">Last Name</label>
+                     <input style="padding-top: 10px; padding-bottom: 10px;" type="text" class="form-control" id="formSignuplname" placeholder="Apellido" required formControlName="apellido">
+                     <div class="invalid-feedback">Please enter last name.</div>
+                  </div>
+                  <div class="col-12">
+                    <!-- input -->
+                    <label class="form-label visually-hidden">Numero de contacto</label>
+                    <input style="padding-top: 10px; padding-bottom: 10px;" type="number" class="form-control" placeholder="Numero de telefono" required formControlName="contact_phone">
+                    <div class="invalid-feedback">Porfavor ingresa el numero de telefono</div>
+                 </div>
+                  <div class="col-12">
+                     <!-- input -->
+                     <label for="formSignupEmail" class="form-label visually-hidden">Correo electronico</label>
+                     <input style="padding-top: 10px; padding-bottom: 10px;" type="email" class="form-control" placeholder="Correo electronico" required formControlName="email">
+                     <div class="invalid-feedback">Please enter email.</div>
+                  </div>
+                  <div class="col-12">
+                     <div class="password-field position-relative">
+                        <label for="formSignupPassword" class="form-label visually-hidden">Contraseña</label>
+                        <div class="password-field position-relative">
+                           <input style="padding-top: 10px; padding-bottom: 10px;" type="password" class="form-control fakePassword" id="formSignupPassword" placeholder="Contraseña" required formControlName="password">
+               
+                           <div class="invalid-feedback">Please enter password.</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="password-field position-relative">
+                       <label for="formSignupPassword" class="form-label visually-hidden">Contraseña</label>
+                       <div class="password-field position-relative">
+                          <input style="padding-top: 10px; padding-bottom: 10px;" type="password" class="form-control fakePassword" id="formSignupPassword" placeholder="Repetir contraseña" required formControlName="repeatPassword">
+                          <div class="invalid-feedback">Please enter password.</div>
+                       </div>
+                    </div>
+                 </div>
+                  <!-- btn --> 
+                   <div *ngIf="loading; then onloading else notloading"></div>
+                   <ng-template #onloading> <div class="col-12 d-grid"><button class="btn btn-primary" type="button" disabled>
+                     <span class="spinner-grow spinner-grow-sm" aria-hidden="true"></span>
+                     <span role="status"> Registrando...</span>
+                   </button></div>
+                   </ng-template>
+                   <ng-template #notloading> <div class="col-12 d-grid"><button type="submit" class="btn btn-primary" (click)="register()">Registrarse <i style="font-size: 1.2rem;" class="bi bi-check2"></i></button></div>
+                   </ng-template>
+                 
+                  <!-- text -->
+                  <p>
+                     <small>
+                        By continuing, you agree to our
+                        <a href="#!">Terms of Service</a>
+                        &amp;
+                        <a href="#!">Privacy Policy</a>
+                     </small>
+                  </p>
+               </div>
+            </form>
+         </div>
+    </div>
+  </div>
+
+
+
+
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="wrapper">
+    <div class="box1">
+        <mat-card style="display: grid; place-items: center;">
+            <img style="width: 200px;" src="../../assets/finishedlogo.png" alt="">
+            <br/>
+        
+            <h2 mat-card-title>Iniciar sesion</h2>
+            <div class="input-group">
+                <form [formGroup]="registrationForm">
+
+                    <div class="email-form">
+                        <label class="label">Nombre</label>
+                        <input placeholder="Tu nombre y apellido" autocomplete="off" formControlName="name" name="name" class="input" type="text">
+                        <div></div>
+                    </div>
+                    
+
+                    <div class="email-form">
+                        <label class="label">Correo electronico</label>
+                        <input autocomplete="off" formControlName="email" name="Email" class="input" type="email">
+                        <div></div>
+                    </div>
+                    
+
+                    <div class="email-form">
+                        <label class="label">Numero telefonico</label>
+                        <input autocomplete="off" formControlName="contact_phone" name="Email" class="input" type="email">
+                        <div></div>
+                    </div>
+
+                    
+                    <div class="email-form">
+                        <label class="label">Contraseña</label>
+                        <input placeholder="minimo 8 caracteres" autocomplete="off" formControlName="password" name="Email" class="input" type="password">
+                        <div></div>
+                    </div>
+
+
+                    <div class="email-form">
+                        <label class="label">Vuelve a escribir tu contraseña</label>
+                        <input autocomplete="off" formControlName="repeatPassword" name="Email" class="input" type="password">
+                        <div></div>
+                    </div>
+                     
+                        <button style="width: 100%; margin-top: 20px; background-color: #1e90ff; color: white;" mat-stroked-button type="submit" (click)="register()">Crear  <mat-icon>login</mat-icon></button>
+                </form>
+            </div>
+            </mat-card>
+    </div>
+  </div>
+   -->

@@ -1,0 +1,449 @@
+<!-- <div *ngIf="isLoggeedIn(); else productsCart">
+    <h4>No hay productos en el carrito</h4>
+</div> -->
+
+
+
+
+
+
+
+<section style="margin-top: 20px;">
+    <div class="container">
+       <!-- row -->
+       <div class="row">
+          <div class="col-12">
+             <!-- card -->
+             <div class="card py-1 border-0 mb-8">
+                <div>
+                   <h1 class="fw-bold">Carrito de compras</h1>
+                   <p class="mb-0">Comprando en <b>El milagro</b></p>
+                </div>
+             </div>
+          </div>
+       </div>
+       <!-- row -->
+       <div class="row">
+          <div class="col-lg-8 col-md-7">
+
+            <div class="py-3">
+                <!-- alert -->
+                <div class="alert alert-success p-2" role="alert">
+                   Tienes delivery gratis!
+                   <a href="#!" class="alert-link">compra ahora!</a>
+                </div>
+
+                <div *ngIf="loginService.selectedUser.cart.length == 0; then noProducts else yesProducts"></div>
+
+                <ng-template #noProducts>
+
+                  <h2>No tienes productos en el carrito <i class="bi bi-emoji-frown"></i></h2>
+                </ng-template>
+                <ng-template #yesProducts>
+                  
+                <div style="height: 400px; overflow-y: auto;" class="products-container">
+                  <ul *ngFor="let product of loginService.selectedUser.cart" class="list-group list-group-flush">
+                     <!-- list group -->
+                     <li class="list-group-item py-3 ps-0 border-top">
+                        <!-- row -->
+                        <div class="row align-items-center">
+                           <div class="col-6 col-md-6 col-lg-7">
+                              <div class="d-flex">
+                                 <img [src]="product.imageMetadata.path_to_file" alt="Ecommerce" class="icon-shape icon-xxl">
+                                 <div class="ms-3">
+                                    <!-- title -->
+                                      <button class="btn text-truncate product-description" style="font-size: 12px; width: 200px;" (click)="productDescription(product._id)">{{product.title}}</button>
+                                    <span><small class="text-muted">{{product.modelo}}</small></span>
+                                    <!-- text -->
+                                    <div class="mt-2 small lh-1">
+                                      <button class="text-danger" mat-button (click)="removeProduct(product)">Eliminar <i class="bi bi-trash"></i></button>
+                                      
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- input group -->
+                           <div class="col-4 col-md-4 col-lg-3">
+                              <!-- input -->
+                              <!-- input -->
+                              <div class="input-group input-spinner">
+                                 <input [disabled]="product.quantity == 1" type="button" value="-" class="button-minus btn btn-sm btn-primary" data-field="quantity" (click)="decreaseQuantity(product)">
+                                 <input style="color: black;" type="number" step="1" min="1" max="10" [value]="product.quantity" name="quantity" class="quantity-field form-control-sm form-input" >
+                                 <input type="button" value="+" class="button-plus btn btn-sm btn-primary" data-field="quantity" (click)="increaseQuantity(product)">
+                              </div>
+                           </div>
+                           <!-- price -->
+                           <div class="col-2 text-lg-end text-start text-md-end col-md-2">
+                              <span class="fw-bold">{{product.precio*product.quantity | currency: 'USD'}}</span>
+                           </div>
+                        </div>
+                     </li>
+                     <!-- list group -->
+                  </ul>
+                  </div>
+                  <!-- btn -->
+                  <div class="d-flex justify-content-end mt-4">
+                     <button [routerLink]="['/home']" class="btn btn-primary">Seguir comprando <i class="bi bi-cart-plus-fill"></i></button>
+                  </div>
+                </ng-template>
+
+
+             </div>
+          </div>
+
+          <!-- sidebar -->
+          <div class="col-12 col-lg-4 col-md-5">
+             <!-- card -->
+             <div class="mb-5 card mt-6">
+                <div class="card-body p-6">
+                   <!-- heading -->
+                   <h2 class="fs-4 mb-4">Resumen de compra</h2>
+                   <div class="card mb-2">
+                      <!-- list group -->
+                      <ul class="list-group list-group-flush">
+                         <!-- list group item -->
+                         <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="me-auto">
+                               <div>Subtotal</div>
+                            </div>
+                            <span>{{total | currency: 'USD'}}</span>
+                         </li>
+
+                         <!-- list group item -->
+                         <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="me-auto">
+                               <div>Tarifa de servicio</div>
+                            </div>
+                            <span>{{total}}</span>
+                         </li>
+                         <!-- list group item -->
+                         <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="me-auto">
+                               <div class="fw-bold">Total</div>
+                            </div>
+                            <span class="fw-bold">{{total | currency: 'USD'}}</span>
+                         </li>
+                      </ul>
+                   </div>
+                   <div class="d-grid mb-1 mt-4">
+                     <div *ngIf="loginService.selectedUser.cart.length == 0; then empty else fullCart"></div>
+                     <ng-template #fullCart>
+                           <!-- btn -->
+                      <button [routerLink]="['/pago']" class="btn btn-primary btn-lg d-flex justify-content-between align-items-center" type="submit">
+                        Ir a pago
+                        <span class="fw-bold">{{cartService.total| currency}}</span>
+                     </button>
+                     </ng-template>
+
+                     <ng-template #empty>
+                           <!-- btn -->
+                      <button disabled class="btn btn-secondary btn-lg d-flex justify-content-between align-items-center" type="submit">
+                        No tienes productos en el carrito 
+                       
+                     </button>
+
+                     </ng-template>
+                   
+                   </div>
+                   <!-- text -->
+                   <p>
+                      <small>
+                         By placing your order, you agree to be bound by the Freshcart
+                         <a href="#!">Terms of Service</a>
+                         and
+                         <a href="#!">Privacy Policy.</a>
+                      </small>
+                   </p>
+
+                   <!-- heading -->
+                   <div class="mt-8">
+                      <h4 class="mb-3">Agrega un codigo de promocion o tarjeta de regalo</h4>
+                      <form>
+                         <div class="mb-2">
+                            <!-- input -->
+                            <input type="text" class="form-control" id="giftcard" placeholder="Promo o tarjeta de regalo">
+                         </div>
+                         <!-- btn -->
+                         <div class="d-grid"><button type="submit" class="btn btn-outline-dark mb-1">Canjear</button></div>
+                         <p class="text-muted mb-0"><small>Terms &amp; Conditions apply</small></p>
+                      </form>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+
+
+
+
+
+<!-- 
+
+    <div class="container">
+
+        <h1 style="margin-top: 20px; margin-left: 20px;">Carrito de compras</h1>
+
+        <mat-checkbox style="margin-left: 20px;" (change)="toggleAll($event)"><b>Seleccionar todos los productos</b></mat-checkbox>
+
+
+
+        <div class="grid-cart-container">
+
+
+
+
+
+
+
+            <div class="cart-section">
+
+
+
+                <div *ngFor="let product of cartProducts" class="product-cart">
+
+                    <button style="float: right;margin-right: 40px;" mat-icon-button disableRipple
+                        (click)="removeProduct(product)"><mat-icon style="color: red;">delete</mat-icon></button>
+
+
+
+
+                    <mat-checkbox #checkbox [checked]="product.selected" (change)="selectProduct(checkbox, product)"></mat-checkbox>
+
+
+                    <div class="image">
+                        <img class="products-img"  [src]="product.imageMetadata.path_to_file">
+                    </div>
+
+
+
+
+
+                    <div class="product-title">
+                        <p style="font-size: 12px; text-align: center;">{{product.title}}</p>
+
+                    </div>
+
+                    <div class="price-quantity" style="display:flex; margin-left: 20px; align-items: baseline;">
+
+
+                        <mat-button-toggle-group  name="fontStyle" aria-label="Font Style">
+                            <mat-button-toggle
+                                (click)="decreaseQuantity(product)"><mat-icon>remove</mat-icon></mat-button-toggle>
+                            <mat-button-toggle>{{product.quantity}}</mat-button-toggle>
+                            <mat-button-toggle
+                                (click)="increaseQuantity(product)"><mat-icon>add</mat-icon></mat-button-toggle>
+                        </mat-button-toggle-group>
+
+
+                        <h3 style="margin-left: 20px; color: green">{{product.quantity*product.precio | currency:
+                            'USD'}}</h3>
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+            <div class="payment-section">
+                <div class="card-original">
+
+                    <h2 style="margin-top: 20px; margin-left: 10px">Resumen del pedido</h2>
+
+                    <div style="display: flex; flex-flow: row nowrap;">
+                        <h3 style="align-self: flex-start;margin-left: 20px;">Subtotal</h3>
+                        <h1 style="color: green; margin-left:auto; margin-right: 20px; font-weight: 200;">{{total |
+                            currency: 'USD'}}</h1>
+
+                    </div>
+                    <button routerLink="/pago" mat-stroked-button [disabled]="deselected" [ngClass]=" deselected ? { gray: true} : {green: true }"
+                        style="margin-left: auto; margin-right: auto; color: white; width: 80%; height: 50px; font-size: 18px; font-weight: 100; margin-top: auto; margin-bottom: 20px;">Procesar
+                        compra</button>
+
+
+
+
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--     
+
+    <mat-card>
+
+        <div mat-card-title>
+            <h1>Producto en el carrito</h1>
+        </div>
+
+        <div class="card-content" mat-card-content>
+
+            <div *ngFor="let product of cartProducts" class="product-cart">
+                <button style="float: right;margin-right: 40px;" mat-icon-button disableRipple (click)="removeProduct(product)">Eliminar <mat-icon style="color: red;">delete</mat-icon></button>
+          
+                  <div class="image">
+                      <img class="products-img" 
+                          [src]="product.imagePath" >
+                  </div>
+          
+          
+                  <div class="product-title">
+                    <button mat-button >{{product.title}}</button>
+          
+                  </div>
+          
+                  <div class="price-quantity" style="display:flex; margin-left: 20px;">
+
+                    <div *ngIf="product.quantity >= 2; then active else disabled"></div>
+      
+      
+                    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                      <ng-template #active>
+                        <mat-button-toggle (click)="decreaseQuantity(product)"><mat-icon>remove</mat-icon></mat-button-toggle>
+                      </ng-template>
+                      <ng-template #disabled>
+                        <mat-button-toggle disabled style="background-color: rgb(132, 132, 132)"><mat-icon>remove</mat-icon></mat-button-toggle>
+                      </ng-template>
+                      <mat-button-toggle>{{product.quantity}}</mat-button-toggle>
+                      <mat-button-toggle   (click)="increaseQuantity(product)"><mat-icon>add</mat-icon></mat-button-toggle>
+                    </mat-button-toggle-group>
+      
+                    <h1 style="margin-left: auto; margin-right: 10px; color: black">{{product.quantity*product.precio | currency: 'USD'}}</h1>
+      
+      
+      
+                  </div>
+          
+             
+              </div>
+          
+
+
+
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div mat-card-action class="card-action">
+            <h1>Total</h1>
+            <h1 style="margin-left: 40px;">{{total | currency: 'USD'}}</h1>
+            <button class="pay-button" mat-stroked-button routerLink="/pago">Continuar a pago <mat-icon>payments</mat-icon></button>
+
+
+
+        </div>
+
+
+
+    </mat-card>
+
+
+ -->
+
+
+
+    <!-- 
+
+
+
+        <mat-grid-list style="background-color: white; height: 100%;" rowHeight="450px" cols="3">
+            <h2>Productos en el carrito</h2>
+
+
+            <mat-grid-tile *ngFor="let product of cartProducts">
+
+
+
+                <div style="width: 250px" class="products-ui">
+
+
+                    <div class="image">
+                        <img class="products-img" [src]="product.imagePath" alt="">
+
+                    </div>
+
+                    <div>
+
+                        <h4 class="product-title">{{product.title}}</h4>
+                        <div style="display: inline-flex;">
+                            <h3 style="color: rgb(1, 157, 1); margin-right: 50px;">{{product.precio | currency: 'USD'}}</h3>
+                            <h3 style="font-weight: 400;">Cantidad: {{product.quantity}}</h3>
+
+
+                        </div>
+                       
+
+                            <button class="cart-button" mat-stroked-button (click)="updateQuantity(product)">
+                                Editar cantidad <mat-icon>edit</mat-icon>
+                            </button>
+                 
+
+                            <button class="cart-button-delete" mat-stroked-button (click)="removeProduct(product)">
+                                Eliminar del carrito <mat-icon>delete_forever</mat-icon>
+                            </button>
+                  
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+            </mat-grid-tile>
+
+
+        </mat-grid-list> -->
+

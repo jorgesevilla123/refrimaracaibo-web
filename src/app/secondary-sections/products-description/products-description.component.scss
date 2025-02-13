@@ -1,0 +1,323 @@
+
+.container{
+  --fc-gutter-x: 2rem;
+  --fc-gutter-y: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: calc(var(--fc-gutter-x)*.5);
+  padding-right: calc(var(--fc-gutter-x)*.5);
+  width: 100%
+
+}
+
+
+
+
+///////////////////////////////////// styles for the quantity field
+
+.icon-shape {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle
+}
+
+.icon-xxl {
+  height: 4rem;
+  line-height: 4rem;
+  width: 4rem;
+}
+
+
+
+
+
+.quantity-field, input[type=number]::-webkit-inner-spin-button, 
+.quantity-field, input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+
+.input-spinner .form-input {
+  background: 0 0;
+  height: 100%;
+  min-height: 2rem;
+  text-align: center;
+  width: 50px !important;
+  height: 50px;
+  font-size: 15px;
+  font-weight: 500;
+  border-color: rgba(0, 0, 0, 0.237);
+  border-width: 0.5px;
+  
+}
+
+.form-control-sm {
+  border-radius: .25rem;
+  font-size: .765625rem;
+  min-height: calc(1.6em + .5rem + 2px);
+  padding: .25rem .5rem;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+.grid{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    column-gap: 10px;
+}
+
+
+.card-3{
+    display: flex;
+    flex-direction: column;
+     width: 100%;
+     height: auto;
+     background: white;
+     box-shadow: 15px 15px 30px #bebebe,
+         -15px -15px 30px #ffffff;
+}
+
+
+
+.product-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+
+.product-description{
+    margin-top: 100px;
+}
+
+
+i {
+    font-size: 1.5rem;
+    padding-right: 0.1rem;
+    color: #b0c4de;
+}
+
+
+.filled {
+    color: #F8D32F;
+}
+
+.filled.low {
+    color: #ff1e1e;
+}
+
+
+.bi-chat-text {
+    color: black;
+
+}
+
+
+.card-2 {
+    width: 250px;
+    height: 274px;
+    background: white;
+    padding: .4em;
+    border-radius: 6px;
+  }
+  
+
+  .category {
+    text-transform: uppercase;
+    font-size: 0.7em;
+    font-weight: 600;
+    color: rgb(63, 121, 230);
+    padding: 10px 7px 0;
+  }
+  
+  .category:hover {
+    cursor: pointer;
+  }
+  
+  
+  .heading {
+    font-weight: 400;
+    font-size: 18px;
+    color: black;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .heading:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .author {
+    color: green;
+    font-weight: 400;
+    font-size: 18px;
+    padding-top: 20px;
+    text-align: center;
+  }
+  
+  .name {
+    font-weight: 600;
+  }
+  
+  .name:hover {
+    cursor: pointer;
+  }
+
+
+ .image {
+    display: block;
+     margin-left: auto;
+     margin-right: auto;
+
+ }
+
+
+
+
+  .recommended-products-img {
+    height: auto;
+    width: 120px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+
+
+
+.also-searched{
+    margin-top: 40px;
+    height: auto;
+    overflow-y: auto;
+    max-height: 420px;
+    width: 100%;
+    background: white;
+    box-shadow: 15px 15px 30px #bebebe,
+        -15px -15px 30px #ffffff;
+   
+
+
+}
+
+
+.rating-container{
+  display: flex;
+
+}
+
+
+.box{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 400px;
+  height: 500px;
+  background-color: white;
+  box-shadow: 15px 15px 30px #bebebe,
+  -15px -15px 30px #ffffff;
+
+
+
+}
+
+.navbar{
+  height: 50px;
+}
+
+.navbar-brand, .helper{
+  color: white;
+}
+
+
+.navbar-brand{
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  width: 100%;
+}
+
+
+.close{
+  margin-left: auto;
+}
+
+
+.close:hover{
+  cursor: pointer;
+}
+
+.chat-section{
+  overflow-y: scroll;
+  max-height: 380px;
+  min-height: 380px;
+  max-width: 400px;
+  
+}
+
+
+.message-1{
+  margin-right: 5px;
+  color: white;
+  background-color: dodgerblue;
+  border: white solid 1px;
+  border-radius: 20px;
+  max-width: 200px;
+  width: fit-content;
+  padding-left: 10px;
+  padding-right: 10px;
+  word-wrap: break-word;
+
+}
+
+.message-2{
+  margin-left: 5px;
+  color: white;
+  background-color: rgb(7, 168, 42);
+  border: white solid 1px;
+  border-radius: 20px;
+  max-width: 200px;
+  width: fit-content;
+  padding-left: 10px;
+  padding-right: 10px;
+  word-wrap: break-word;
+  
+
+}
+
+.server{
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row-reverse;
+}
+
+.client{
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+}
+
+
+.login-button:hover{
+  transition: 300ms;
+  color: dodgerblue;
+}
+
+
+
+
+
+
+
+
+

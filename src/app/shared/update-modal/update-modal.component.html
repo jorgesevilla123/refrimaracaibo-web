@@ -1,0 +1,107 @@
+<div mat-dialog title>
+    <h2>{{modalName}}</h2>
+</div>
+
+
+
+<div [ngSwitch]="formToUpdate">
+
+
+
+    <div *ngSwitchCase="'email'">
+        <div mat-dialog-content >
+            <form [formGroup]="emailUpdateForm" action="">
+                <mat-form-field class="form-container" appearance="outline">
+                    <mat-label>
+                        Nueva direccion de correo
+                    </mat-label>
+                    <input matInput type="text" formControlName="email">
+                </mat-form-field>
+            </form>
+    
+        </div>
+        
+        <div mat-dialog-actions class="action">
+            <button mat-stroked-button [mat-dialog-close]>Cancelar</button>
+            <button mat-stroked-button style="background-color: dodgerblue; color: white;" (click)="submitDialog()">Actualizar correo</button>
+        </div>
+    
+    
+
+    </div>
+
+
+ 
+
+    <div  *ngSwitchCase="'password'">
+        <div mat-dialog-content>
+            <img style="width: 200px; display: block; margin-right: auto; margin-left: auto; margin-bottom: 20px;" src="../../assets/finishedlogo.png" alt="">
+            <form [formGroup]="passwordUpdateForm" action="">
+                <mat-form-field class="form-container" appearance="outline">
+                    <mat-label>
+                        Nueva contraseña
+                    </mat-label>
+                    <input matInput type="text" formControlName="newPassword">
+                </mat-form-field>
+
+                <mat-form-field class="form-container" appearance="outline">
+                    <mat-label>
+                        repite nueva contraseña
+                    </mat-label>
+                    <input matInput type="text" formControlName="repeatPassword">
+                </mat-form-field>
+            </form>
+          
+        </div>
+
+        <div mat-dialog-actions class="action">
+            <button mat-stroked-button [mat-dialog-close]>Cancelar</button>
+            <button mat-stroked-button style="background-color: dodgerblue; color: white;" (click)="submitDialog()">Actualizar contraseña</button>
+        </div>
+
+
+
+
+    </div>
+ 
+   
+
+    <div *ngSwitchCase="'number'">
+        <div mat-dialog-content >
+            <form [formGroup]="numberUpdateForm" action="">
+                <mat-form-field class="form-container" appearance="outline">
+                    <mat-label>
+                       Nuevo numero telefonico
+                    </mat-label>
+                    <input matInput type="text" formControlName="number">
+                </mat-form-field>
+            </form>
+          
+        </div>
+
+        <div mat-dialog-actions class="action">
+            <button mat-stroked-button [mat-dialog-close]>Cancelar</button>
+            <button mat-stroked-button style="background-color: dodgerblue; color: white;" (click)="submitDialog()">Actualizar numero telefonico</button>
+        </div>
+    
+
+
+
+
+
+
+
+
+    </div>
+   
+
+
+
+
+
+
+
+
+
+</div>
+

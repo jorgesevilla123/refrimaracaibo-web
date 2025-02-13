@@ -1,0 +1,60 @@
+
+
+.container{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+
+
+@mixin doublegrid-template{
+    max-height: 160px;
+    overflow-y: scroll;
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    column-gap: 20px;
+    row-gap: 20px;
+
+   
+}
+
+
+.user-shipping-container{
+
+    margin: 40px;
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+
+}
+
+.shipping-card{
+    width: 200px;
+}
+
+.add-button{
+    margin: 20px;
+}
+
+
+.add-ship-button{
+
+    width: 200px;
+    height: 50px;
+
+}
+
+.shipping-grid{
+    @include doublegrid-template;
+}
+
+
+.addresses{
+   
+    
+    margin: 20px;
+}
+
+
+

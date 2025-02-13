@@ -1,0 +1,139 @@
+
+
+
+<div *ngFor="let section of sections">
+
+
+
+    <mat-card style="margin-bottom: 20px;">
+
+
+
+        <div class="filter-controls">
+
+
+           
+
+
+
+
+            <app-main-search-bar></app-main-search-bar>
+
+
+
+            <mat-form-field appearance="outline" class="filter-form" style="margin-left: 20px;">
+                <mat-label>Filtrar marca</mat-label>
+                <mat-select [formControl]="filters" multiple>
+                    <!-- <mat-select-trigger>
+                        {{filters.value?.[0].label_value || ''}}
+                        <span *ngIf="(filters.value?.length || 0) > 1">
+                            (+{{(filters.value?.length || 0) -1}} {{filters.value?.length === 2 ? 'otro': 'otros'}})
+                        </span>
+                    </mat-select-trigger> -->
+                    <mat-option *ngFor="let category of categories" [value]="category" (onSelectionChange)="optionHandler($event)">
+                        <span><b>{{category.label_name}}</b></span> | <span>{{category.label_value}}</span>
+                    </mat-option>
+                </mat-select>
+                <mat-icon matSuffix>filter_alt</mat-icon>
+
+            </mat-form-field>
+
+
+
+
+
+
+<!-- 
+            
+            <mat-form-field appearance="outline" class="filter-form">
+                <mat-label>Categorias</mat-label>
+                <mat-select [formControl]="categoryFilterForm" multiple (valueChange)="filterCategory($event)">
+                    <mat-select-trigger>
+                        {{categoryFilterForm.value?.[0] || ''}}
+                        <span *ngIf="(categoryFilterForm.value?.length || 0) > 1">
+                            (+{{(categoryFilterForm.value?.length || 0) -1}} {{categoryFilterForm.value?.length === 2 ? 'otro': 'otros'}})
+                        </span>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let sort of categoryFilter" [value]="sort">{{sort}}</mat-option>
+                </mat-select>
+                <mat-icon matSuffix>category</mat-icon>
+
+
+
+            </mat-form-field>
+
+ -->
+
+
+
+
+        </div>
+
+        
+        <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip style="margin-bottom: 20px; background-color: dodgerblue; color: white;" *ngFor="let label of categoryChips" (removed)="remove(label)">
+              {{label.name}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+         
+          </mat-chip-list>
+
+
+
+
+          
+
+        <mat-divider></mat-divider>
+
+
+        
+        <h3 style="text-align: center; font-weight: 200; font-size: 30px; margin-top: 20px;">{{page_name}}</h3>
+
+
+
+
+        <div *ngIf="isFiltering && matchExist; else noMatch">
+            <mat-grid-list cols="{{section.cols}}" rowHeight="{{section.rowHeight}}">
+                <mat-grid-tile *ngFor="let template of sectionsToRender" class="tile-img" (click)="filterBrand(template)">
+                    <div>
+    
+    
+                        <div class="image">
+                            <img class="products-img" [attr.width]="template.img_w" [attr.height]="template.img_h"
+                                [src]="template.img_src" alt="">
+    
+                        </div>
+    
+
+                    </div>
+    
+    
+                </mat-grid-tile>
+    
+    
+            </mat-grid-list>
+
+        </div>
+
+
+        <ng-template #noMatch>
+            <h2 style="margin-top: 10px;">No hay productos que coincidan</h2>
+
+        </ng-template>
+
+  
+    
+        <app-pagination [isMobile]="isMobile" [currentPage]="currentPage"></app-pagination>
+
+
+
+    </mat-card>
+
+
+</div>
+
+
+
+  

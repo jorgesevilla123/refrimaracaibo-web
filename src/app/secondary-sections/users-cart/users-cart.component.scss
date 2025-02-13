@@ -1,0 +1,25 @@
+.container{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+
+
+
+.user-cart-container{
+
+    margin: 40px;
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+
+}
+
+
+.add-cart-button{
+
+    width: auto;
+    height: 50px;
+
+}

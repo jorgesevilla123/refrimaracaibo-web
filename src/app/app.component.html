@@ -1,0 +1,17 @@
+
+
+<div *ngIf="showRegisterToolbar; then showRegister else showMain"></div>
+
+<ng-template #showRegister>
+    <app-register-toolbar></app-register-toolbar>
+</ng-template>
+ 
+
+<ng-template #showMain>
+    <app-main-toolbar>
+    </app-main-toolbar>
+</ng-template>
+ 
+
+<router-outlet></router-outlet>
+

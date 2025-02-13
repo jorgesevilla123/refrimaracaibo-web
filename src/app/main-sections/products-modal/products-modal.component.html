@@ -1,0 +1,111 @@
+
+
+<mat-card>
+
+  <div *ngIf="cartProducts.length === 0; then noTitle else title"></div>
+
+  <ng-template #noTitle>
+
+    <div mat-card-title>
+
+    </div>
+
+
+  </ng-template>
+
+
+  <ng-template #title>
+    <div mat-card-title>
+      <h2>Resumen de venta</h2>
+  
+    </div>
+  
+
+  </ng-template> 
+
+ 
+
+
+<div *ngIf="cartProducts.length === 0; then noProducts else products"></div>
+
+<ng-template #products>
+
+
+
+<div class="product-cart-content" style="height: 400px; margin-bottom: 10px;" mat-card-content>
+
+
+    <div *ngFor="let product of cartProducts" class="product-cart">
+  
+
+        <div class="image">
+            <img class="products-img" 
+            [src]="product.imageMetadata.path_to_file"  >
+        </div>
+
+
+        <div class="product-title">
+          <button mat-button >{{product.title}}</button>
+
+        </div>
+
+        <h3 style="margin-left: 10px">Cantidad: {{product.quantity}}</h3>
+
+   
+    </div>
+
+
+
+     
+</div>
+
+<mat-divider></mat-divider>
+
+
+
+<div style="display: flex; align-items: baseline;">
+    
+
+  <h1 style="margin-left: 10px; margin-top: 30px;">
+    TOTAL
+  </h1>
+
+  <h1 style="margin-left: auto; margin-right: 20px; margin-top: 30px;">
+    {{total | currency: 'USD'}}
+  </h1>
+
+  <button style="height: 35px;"  mat-stroked-button routerLink="/cart">Editar carrito</button>
+
+
+</div>
+
+
+
+</ng-template>
+
+
+
+
+
+
+<ng-template #noProducts>
+
+  <div class="no-products-content" style="height: 320px; margin-bottom: 10px;">
+
+
+
+  <h2>Agrega algun producto que quieras comprar!</h2>
+  <button routerLink="/home" style="background-color: dodgerblue; color: white;" mat-stroked-button >Explorar categorias de productos</button>
+
+
+</div>
+
+</ng-template>
+
+
+
+
+</mat-card>
+
+
+

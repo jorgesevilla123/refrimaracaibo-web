@@ -1,0 +1,39 @@
+
+
+
+
+
+
+.container{
+    margin-top: 40px;
+}
+
+.wrapper{
+    margin: 20px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+
+
+.sidebar-button{
+    width: 100%;
+    background-color: dodgerblue;
+    color: white;
+    margin-bottom: 20px;
+    height: 50px;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.dashboard-title{
+    margin-left: 20px;
+    font-weight: 300;
+
+}
+
+.sidebar-title{
+    margin-left: 20px;
+    font-weight: 300;
+}

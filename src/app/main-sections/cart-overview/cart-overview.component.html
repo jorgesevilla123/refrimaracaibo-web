@@ -1,0 +1,155 @@
+
+
+
+
+
+  <div style="display: flex; text-align: center; margin-top: 10px; align-items: baseline; flex-direction: row;" class="title">
+
+
+    <h2 mat-dialog-title style="margin-left: 20px;">Resumen del carrito</h2>
+
+    <button mat-button mat-dialog-close style="margin-left: auto; font-size: 30px;"><i class="bi bi-x-circle"></i></button>
+
+    
+    
+
+  </div>
+
+  <mat-divider style="margin-top: 10px;"></mat-divider>
+
+
+
+
+      <div *ngIf="loginService.selectedUser.cart.length === 0; then noProducts else products"></div>
+
+
+
+      
+      <ng-template #products >
+
+
+
+        <div>
+          <mat-dialog-content style="background-color: white; max-height: 280px;" class="example-container">
+ 
+
+
+     
+    
+        <div *ngFor="let product of loginService.selectedUser.cart" class="product-cart">
+
+          <button style="float: right;margin-right: 40px;" mat-icon-button disableRipple (click)="removeProduct(product)">Eliminar <mat-icon style="color: red;">delete</mat-icon></button>
+
+          
+    
+    
+            <div class="image">
+                <img class="products-img" 
+                [src]="product.imageMetadata.path_to_file" >
+            </div>
+
+
+
+
+
+            <div class="product-title">
+              <button mat-button >{{product.title}}</button>
+
+            </div>
+
+            <h3 style="margin-left: 10px">Cantidad</h3>
+
+            <div class="price-quantity" style="display:flex; margin-left: 20px;">
+
+              <div *ngIf="product.quantity >= 2; then active else disabled"></div>
+
+
+              <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                <ng-template #active>
+                  <mat-button-toggle style="background-color: rgb(124, 186, 249)" (click)="decreaseQuantity(product)"><mat-icon>remove</mat-icon></mat-button-toggle>
+                </ng-template>
+                <ng-template #disabled>
+                  <mat-button-toggle disabled style="background-color: rgb(132, 132, 132)"><mat-icon>remove</mat-icon></mat-button-toggle>
+                </ng-template>
+                <mat-button-toggle>{{product.quantity}}</mat-button-toggle>
+                <mat-button-toggle  style="background-color: rgb(124, 186, 249);" (click)="increaseQuantity(product)"><mat-icon>add</mat-icon></mat-button-toggle>
+              </mat-button-toggle-group>
+
+              <h1 style="margin-left: auto; margin-right: 10px; color: black">{{product.quantity*product.precio | currency: 'USD'}}</h1>
+
+
+
+            </div>
+
+
+     
+
+         
+        
+
+
+
+        </div>
+      </mat-dialog-content>
+        </div>
+
+        <mat-divider style="margin-top: 10px;"></mat-divider>
+
+      
+        <mat-dialog-actions>
+          <div class="checkout-section" style="text-align: center; padding-bottom: 10px;">
+
+            <div style="display: flex;">
+  
+              <h2 style="margin-left: 10px; margin-top: 10px;">
+                TOTAL
+              </h2>
+    
+              <h2 style="margin-left: auto; margin-right: 20px; margin-top: 20px;">
+                {{total | currency: 'USD'}}
+              </h2>
+    
+  
+            </div>
+  
+        
+            <button routerLink="/pago" mat-flat-button style="margin-top: 20px; margin-bottom: 10px;font-weight: 200;font-size: 15px;color: white;background-color: dodgerblue; width: 500px; height: 40px; margin-right: auto; margin-left: auto; display: block;" >
+              Verificar y pagar <mat-icon>credit_card</mat-icon>
+            </button>
+  
+            <button class="btn btn-light" mat-dialog-close style="font-weight: 400; font-size: 15px;" routerLink="/cart" >Ver detalle de carrito <i class="bi bi-cart4"></i></button>
+  
+       
+          </div>
+
+        </mat-dialog-actions>
+     
+
+        
+
+
+    
+
+
+     
+   
+
+
+      </ng-template>
+    
+      <ng-template #noProducts>
+        <div class="no-products-content">
+         
+            <h1>Tu carrito esta vacio </h1>
+         
+         
+          <button style="background-color: dodgerblue; color: white;" mat-stroked-button>Agrega productos!</button>
+
+        </div>
+ 
+      </ng-template>
+    
+      
+
+
+ 
