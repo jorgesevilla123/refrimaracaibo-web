@@ -405,7 +405,8 @@ it does not handle shipping addresses, it can be used for updating user profile 
 */
 
 function handleShippingAddresses(req, res){   
-    let userProfile = req.body
+    console.log('LOGGIN BODY', req.body)
+    let userProfile = req.body.user
     console.log(userProfile)
     let profileString = JSON.stringify(userProfile)
     redisClient.set('profile', profileString).then(
@@ -429,8 +430,49 @@ function handleShippingAddresses(req, res){
 
 
 
+function addShippingAddress(req, res){
+    let userProfile = req.body.user
+    let address = req.body.address;
+    let profileString = JSON.stringify(userProfile)
+    redisClient.set('profile', profileString).then(
+        result => {
+            if('OK'){
+                console.log('order processed')
+                res.json('Profile updated succesfully')
+                saveShippingAddressInDb(userProfile.user_id, address)
+            }
+            else {
+                console.log('error in redis')
+
+            }
+        }
+    ).catch(
+        err => {
+            console.log('Error adding shipping address')
+        }
+    )
+}
+
+
+function saveShippingAddressInDb(user_id, address){
+
+    User.findByIdAndUpdate({_id : user_id}, {$push: {shipping_addresses: address}}, (err, result) => {
+        if(err){
+            console.log(err);
+        }
+        else {
+            console.log(result);
+        }
+    })
+
+}
+
+
+
+
 function sendOrderToProcess(req, res){
     let userProfile = req.body
+    let profileString = JSON.stringify(userProfile)
 
 }
 
@@ -446,4 +488,4 @@ function saveCartToDb(user){
 
 module.exports = { getSession, sessionChecker, createUser,
  addToCart, removeFromCart, updateQuantities, 
- productSelection, login, logout, handleShippingAddresses, redisClient }
+ productSelection, login, logout, handleShippingAddresses, redisClient, addShippingAddress }

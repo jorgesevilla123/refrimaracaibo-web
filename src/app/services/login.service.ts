@@ -133,7 +133,11 @@ export class LoginService {
     }
     this.selectedUser.shipping_addresses.push(shipping)
     this.shippingAddressForm.reset()
-    return this.http.post(`${this.uri}/update-shipping`, this.selectedUser)
+    let bodyData = {
+      user: this.selectedUser,
+      address: shipping
+    }
+    return this.http.post(`${this.uri}/add-shipping-address`, bodyData)
   }
 
 
@@ -151,19 +155,26 @@ export class LoginService {
 
 
   updateShippingAddress(address) {
-    console.log(address)
-    let name = this.shippingAddressForm.get('name').value
+  
     let direccion = this.shippingAddressForm.get('direccion').value
     let casa = this.shippingAddressForm.get('casa').value
     let infoExtra = this.shippingAddressForm.get('infoExtra').value
-    let index = this.selectedUser[0].shipping_addresses.findIndex(userAddress => userAddress.name === address.name)
+    let index = this.selectedUser.shipping_addresses.findIndex(userAddress => userAddress.name === address.name)
     console.log(index)
-    this.selectedUser[0].shipping_addresses[index].name = name
-    this.selectedUser[0].shipping_addresses[index].direccion = direccion
-    this.selectedUser[0].shipping_addresses[index].casa = casa
-    this.selectedUser[0].shipping_addresses[index].infoExtra = infoExtra
-    console.log(this.selectedUser[0])
-    return this.http.post(`${this.uri}/update-shipping`, this.selectedUser[0])
+    this.selectedUser.shipping_addresses[index].direccion = direccion
+    this.selectedUser.shipping_addresses[index].casa = casa
+    this.selectedUser.shipping_addresses[index].infoExtra = infoExtra
+    console.log(this.selectedUser)
+    let bodyData = {
+      user: this.selectedUser,
+      address: {
+        direccion: direccion,
+        casa: casa,
+        infoExtra: infoExtra
+      }
+
+    }
+    return this.http.post(`${this.uri}/update-shipping`, bodyData)
 
   }
 

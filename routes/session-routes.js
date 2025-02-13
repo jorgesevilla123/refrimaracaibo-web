@@ -63,6 +63,9 @@ sessionRouter.route('/update-account-details').post()
 sessionRouter.route('/update-shipping').post(handleShippingAddresses)
 
 
+sessionRouter.route('/add-shipping-address').post(addShippingAddress)
+
+
 sessionRouter.route('/submit-order').post()
 
 
