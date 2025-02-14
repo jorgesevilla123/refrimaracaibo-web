@@ -52,13 +52,7 @@
                                  <div class="modal-body">
                                     <form [formGroup]="loginService.shippingAddressForm" (submit)="addShippingForm()">
 
-                                       <div style="margin-left: 20px; margin-right: 20px;">
-                                          <label for="exampleFormControlInput1" class="form-label">Nombre de direccion</label>
-                                          <input style="border-color: black;" type="text" class="form-control"
-                                             placeholder="Nombre de direccion. Ej casa, trabajo" aria-label="Username"
-                                             formControlName="name">
-                                       </div>
-
+                              
                                        <div style="margin-left: 20px; margin-right: 20px; margin-top: 10px;">
                                           <label for="exampleFormControlInput1" class="form-label">Direccion</label>
                                           <input style="border-color: black;" type="text" class="form-control"
@@ -102,32 +96,37 @@
                         data-bs-parent="#accordionFlushExample">
                         <div class="mt-5">
                            <div class="row">
-                              <div *ngFor="let address of loginService.selectedUser.shipping_addresses" class="col-xl-6 col-lg-12 col-md-6 col-12 mb-4">
-                                 <!-- form -->
-                                 <div class="card card-body p-6">
-                                    <div class="form-check mb-4">
-                                       <input #checkInput style="border-color: black;" class="form-check-input" type="radio" name="flexRadioDefault"
-                                          id="homeRadio" (change)="selectAdress(checkInput.value, address)">
-                                    </div>
-                                    <!-- address -->
-                                    <address>
-                                       <br>
+                              <div *ngIf="loginService.selectedUser.shipping_addresses.length === 0; then noshipping else shippings"></div>
 
-                                       {{address.direccion}}
-                                       <br>
-
-                                       {{address.casa}}
-                                       <br>
-
-                                       <abbr title="Phone">P: 402-776-1106</abbr>
-                                    </address>
-                                    <div *ngIf="address.isDefault; then defaultAddress else notDefault"></div>
-                                    <ng-template #defaultAddress><span class="text-primary">Direccion principal</span></ng-template>
-                                    <ng-template #notDefault><button class="btn btn-sm">Seleccionar como direccion principal</button> </ng-template>
-
-                                    
+                              <ng-template #noshipping>
+                                 <div style="margin-bottom: 20px; margin-left: 40px;">
+                                    <h2>No tienes direcciones de envio <i class="bi bi-truck"></i></h2>
                                  </div>
-                              </div>
+                               
+
+                              </ng-template>
+                              <ng-template #shippings>
+                                 <div *ngFor="let address of loginService.selectedUser.shipping_addresses" class="col-xl-6 col-lg-12 col-md-6 col-12 mb-4">
+                                    <!-- form -->
+                                    <div class="card card-body p-6">
+                                       <div class="form-check mb-4">
+                                          <input #checkInput style="border-color: black;" class="form-check-input" type="radio" name="flexRadioDefault"
+                                             id="homeRadio" (change)="selectAdress(checkInput.value, address)">
+                                       </div>
+                                       <!-- address -->
+                                       <address>
+                                          <h4>{{address.direccion}}</h4>
+                                          <h4>{{address.casa}}</h4>
+                                       
+                                          <abbr title="Phone">Contacto: {{loginService.selectedUser.contact_number}}</abbr>
+                                       </address>
+                                       <div *ngIf="address.isDefault; then defaultAddress else notDefault"></div>
+                                       <ng-template #defaultAddress><span class="text-primary">Direccion principal</span></ng-template>
+                                       <ng-template #notDefault><button class="btn btn-sm">Seleccionar como direccion principal</button> </ng-template>
+                                    </div>
+                                 </div>
+                              </ng-template>
+                             
                            </div>
                         </div>
                      </div>

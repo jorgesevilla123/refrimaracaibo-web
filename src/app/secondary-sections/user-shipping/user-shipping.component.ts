@@ -5,7 +5,7 @@ import { LoginService } from '../../services/login.service'
 import { ShippingService } from '../../services/shipping.service'
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from '../../shared/confirmation-modal/confirmation-modal.component'
-
+import { v4 as uuidv4 } from 'uuid';
 
 
 @Component({
@@ -126,9 +126,9 @@ export class UserShippingComponent implements OnInit {
 
   deleteShippingAddress(address_name){
     console.log('clicked')
-    let index = this.loginService.selectedUser[0].shipping_addresses.findIndex( address => address.descripcion === address_name)
-    this.loginService.selectedUser[0].shipping_addresses.splice(index, 1)
-    this.loginService.deleteShippingAddress(this.loginService.selectedUser[0]).subscribe(
+    let index = this.loginService.selectedUser.shipping_addresses.findIndex( address => address.descripcion === address_name)
+    this.loginService.selectedUser.shipping_addresses.splice(index, 1)
+    this.loginService.deleteShippingAddress(this.loginService.selectedUser).subscribe(
       val => {
         console.log('shipping deleted')
       }

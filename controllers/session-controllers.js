@@ -274,9 +274,6 @@ function removeFromCart(req, res) {
             else {
                 res.json({message: 'Error setting removed products'})
             }
-            
-    
-
         }
     ).catch( err => {console.log('Error removing products in redis: ', err)})
         saveCartToDb(profile).then(
@@ -288,9 +285,6 @@ function removeFromCart(req, res) {
                 console.log('err saving to db')
             }
         )
-
-
-
 }
 
 
@@ -454,6 +448,37 @@ function addShippingAddress(req, res){
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////// helper functions for managing changes in DB //////////////////////////////////////
+
+
+
+function removeShippingAddressInDb(user_id, address_id){
+
+    User.findByIdAndUpdate({_id: ''}, {$unset})
+
+}
+
+
+
+
+
+
+
+
+
 function saveShippingAddressInDb(user_id, address){
 
     User.findByIdAndUpdate({_id : user_id}, {$push: {shipping_addresses: address}}, (err, result) => {
@@ -464,8 +489,13 @@ function saveShippingAddressInDb(user_id, address){
             console.log(result);
         }
     })
-
 }
+
+
+
+
+
+
 
 
 

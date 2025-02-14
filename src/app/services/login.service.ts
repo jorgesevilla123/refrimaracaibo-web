@@ -4,6 +4,7 @@ import { CartService } from '../services/cart.service'
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subscription, from } from 'rxjs';
 import { AlertService } from '../shared/alert.service';
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -60,9 +61,9 @@ export class LoginService {
 
   populateAccountDetailsForm() {
     this.accountDetailsForm.patchValue({
-      name: this.selectedUser[0].name,
-      email: this.selectedUser[0].email,
-      contact_number: this.selectedUser[0].contact_phone
+      name: this.selectedUser.name,
+      email: this.selectedUser.email,
+      contact_number: this.selectedUser.contact_phone
     })
   }
 
@@ -126,6 +127,7 @@ export class LoginService {
     console.log(isDefault)
     console.log(direccion, casa, infoExtra)
     let shipping = {
+      shipping_id: uuidv4(),
       direccion: direccion,
       casa: casa,
       infoExtra: infoExtra,
