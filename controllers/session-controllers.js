@@ -491,7 +491,7 @@ function removeShippingAddressInDb(user_id, address_id){
             console.log('hubo un error: ', err)
         }
         else {
-            console.log('Direccion eliminada')
+            console.log('Direccion eliminada, resultado: ', result)
         }
     })
 
