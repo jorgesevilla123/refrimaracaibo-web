@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { getSession, sessionChecker, createUser, addToCart, removeFromCart, updateQuantities, productSelection, login, logout, addShippingAddress, handleShippingAddresses } = require('../controllers/session-controllers')
+const { getSession, sessionChecker, createUser, addToCart, removeFromCart, updateQuantities, productSelection, login, logout, addShippingAddress, handleShippingAddresses, removeShippingAddress } = require('../controllers/session-controllers')
 
 
 
@@ -37,6 +37,9 @@ sessionRouter.route('/add-to-cart').post(addToCart)
 
 
 sessionRouter.route('/remove-from-cart').post(removeFromCart)
+
+
+sessionRouter.route('remove-shipping-address').post(removeShippingAddress);
 
 
 

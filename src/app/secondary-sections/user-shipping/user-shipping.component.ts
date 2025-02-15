@@ -49,7 +49,7 @@ export class UserShippingComponent implements OnInit {
      modalRef.closed.subscribe({
       next: (result) => {
         if(result == 'accepted'){
-          this.deleteShippingAddress(address.name)
+          this.deleteShippingAddress(address.shipping_id)
         }
         else {
           return 
@@ -124,11 +124,11 @@ export class UserShippingComponent implements OnInit {
 
 
 
-  deleteShippingAddress(address_name){
+  deleteShippingAddress(address_id){
     console.log('clicked')
-    let index = this.loginService.selectedUser.shipping_addresses.findIndex( address => address.descripcion === address_name)
+    let index = this.loginService.selectedUser.shipping_addresses.findIndex( address => address.shipping_id === address_id)
     this.loginService.selectedUser.shipping_addresses.splice(index, 1)
-    this.loginService.deleteShippingAddress(this.loginService.selectedUser).subscribe(
+    this.loginService.deleteShippingAddress(this.loginService.selectedUser, address_id).subscribe(
       val => {
         console.log('shipping deleted')
       }

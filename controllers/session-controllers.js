@@ -251,8 +251,6 @@ function addToCart(req, res){
             console.log('Error saving products to cart in db', err)
         }
     )
-
-
 }
 
 
@@ -285,6 +283,27 @@ function removeFromCart(req, res) {
                 console.log('err saving to db')
             }
         )
+}
+
+
+
+function removeShippingAddress(req, res){
+    let profile = req.body
+    console.log(profile)
+    let parsedProfile = JSON.stringify(profile)
+
+    redisClient.set('profile', parsedProfile).then(
+        status => {
+            if(status === 'OK'){
+                
+                removeShippingAddressInDb()
+                res.json({message: 'Products set'}) 
+            }
+            else {
+                res.json({message: 'Error setting removed products'})
+            }
+        }
+    ).catch( err => {console.log('Error removing products in redis: ', err)})
 }
 
 
@@ -467,7 +486,14 @@ function addShippingAddress(req, res){
 
 function removeShippingAddressInDb(user_id, address_id){
 
-    User.findByIdAndUpdate({_id: ''}, {$unset})
+    User.findOneAndDelete({_id: user_id, "shipping_addresses.shipping_id": address_id}, (err, result) => {
+        if(err){
+            console.log('hubo un error: ', err)
+        }
+        else {
+            console.log('Direccion eliminada')
+        }
+    })
 
 }
 
@@ -518,4 +544,4 @@ function saveCartToDb(user){
 
 module.exports = { getSession, sessionChecker, createUser,
  addToCart, removeFromCart, updateQuantities, 
- productSelection, login, logout, handleShippingAddresses, redisClient, addShippingAddress }
+ productSelection, login, logout, handleShippingAddresses, redisClient, addShippingAddress, removeShippingAddress }

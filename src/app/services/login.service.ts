@@ -217,9 +217,15 @@ export class LoginService {
 
 
 
-  deleteShippingAddress(user) {
+  deleteShippingAddress(user, address_id) {
     console.log(user.shipping_addresses)
-    return this.http.post(`${this.uri}/remove-from-cart`, user)
+    const bodyData = {
+      profile: user,
+      shipping_id: address_id
+      
+
+    }
+    return this.http.post(`${this.uri}/remove-shipping-address`, user)
   }
 
 
