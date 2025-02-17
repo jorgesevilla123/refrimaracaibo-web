@@ -40,8 +40,7 @@ sessionRouter.route('/remove-from-cart').post(removeFromCart)
 
 
 
-
-sessionRouter.route('remove-shipping-address').post(removeShippingAddress);
+sessionRouter.route('/remove-shipping-address').post(removeShippingAddress);
 
 
 
