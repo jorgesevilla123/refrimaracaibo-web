@@ -225,7 +225,7 @@ export class LoginService {
       
 
     }
-    return this.http.post(`${this.uri}/remove-shipping-address`, user)
+    return this.http.post(`${this.uri}/remove-shipping-address`, bodyData)
   }
 
 

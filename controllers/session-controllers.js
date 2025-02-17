@@ -288,15 +288,15 @@ function removeFromCart(req, res) {
 
 
 function removeShippingAddress(req, res){
-    let profile = req.body
-    console.log(profile)
-    let parsedProfile = JSON.stringify(profile)
+    let data = req.body
+    console.log('loggin profile: ',data)
+    let parsedProfile = JSON.stringify(data.profile);
 
     redisClient.set('profile', parsedProfile).then(
         status => {
             if(status === 'OK'){
                 
-                removeShippingAddressInDb()
+                removeShippingAddressInDb(data.profile.user_id, data.shipping_id);
                 res.json({message: 'Products set'}) 
             }
             else {
@@ -445,6 +445,7 @@ function handleShippingAddresses(req, res){
 
 function addShippingAddress(req, res){
     let userProfile = req.body.user
+    console.log('loggin user profile')
     let address = req.body.address;
     let profileString = JSON.stringify(userProfile)
     redisClient.set('profile', profileString).then(
@@ -485,6 +486,7 @@ function addShippingAddress(req, res){
 
 
 function removeShippingAddressInDb(user_id, address_id){
+    console.log(user_id)
 
     User.findOneAndUpdate({_id: user_id}, {$pull: {shipping_addresses: { shipping_id: address_id }}}, (err, result) => {
         if(err){
