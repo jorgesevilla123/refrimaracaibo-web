@@ -486,12 +486,12 @@ function addShippingAddress(req, res){
 
 function removeShippingAddressInDb(user_id, address_id){
 
-    User.findOneAndDelete({_id: user_id, "shipping_addresses.shipping_id": address_id}, (err, result) => {
+    User.findOneAndUpdate({_id: user_id}, {$pull: {shipping_addresses: { shipping_id: address_id }}}, (err, result) => {
         if(err){
             console.log('hubo un error: ', err)
         }
         else {
-            console.log('Direccion eliminada')
+            console.log('Direccion eliminada', result)
         }
     })
 
