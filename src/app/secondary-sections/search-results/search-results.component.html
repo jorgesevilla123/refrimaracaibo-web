@@ -109,16 +109,16 @@
 
    <div class="main-content">
       <!-- row -->
-      <div class="row gx-10">
+      <div class="row">
          <!-- col -->
 
-         <aside style="margin-top: 100px" class="col-lg-3 col-md-4 mb-6 mb-md-0">
-           <h2 style="color: black; margin-top: 20px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory"
-           aria-expanded="false" aria-controls="collapseExample"> Categorias <i
-           class="bi bi-chevron-down"></i></h2>
+         <aside style="margin-top: 100px; width: 250px;" class="col-lg-3 col-md-4 mb-6 mb-md-0">
+           <h3 style="color: black; margin-top: 20px; font-weight: bold;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory"
+           aria-expanded="false" aria-controls="collapseExample">Categorias <i
+           class="bi bi-chevron-down"></i></h3>
 
            <div class="collapse" id="collapseCategory">
-            <h3>Aire acondicionado</h3>
+            <h4>Aire acondicionado</h4>
 
             </div>
 
@@ -126,12 +126,12 @@
                    <mat-divider style="margin-top: 20px;"></mat-divider>
 
 
-                   <h2 style="color: black; margin-top: 20px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrice"
-           aria-expanded="false" aria-controls="collapseExample"> Filtrar precio <i
-           class="bi bi-chevron-down"></i></h2>
+                   <h3 style="color: black; margin-top: 20px; font-weight: bold;" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrice"
+           aria-expanded="false" aria-controls="collapseExample">Filtrar precio <i
+           class="bi bi-chevron-down"></i></h3>
 
            <div class="collapse" id="collapsePrice">
-            <h3>Aire acondicionado</h3>
+            <h4>Aire acondicionado</h4>
 
             </div>
 
@@ -145,7 +145,7 @@
                      <!-- Banner Design -->
                      <!-- Banner Content -->
                      <div>
-                        <h3 style="font-size: 20px;margin-top: 40px; font-family: sans-serif;"><b>Ofertas!</b></h3>
+                        <h2 style="font-weight: bold;"><b>Ofertas!</b></h2>
 
                         <h3>Promociones en productos seleccionados!</h3>
                      
@@ -169,11 +169,11 @@
 
 
          </aside>
-         <section style="margin-top: 60px;" class="col-lg-9 col-md-12">
+         <section style="margin-top: 40px;" class="col-lg-9 col-md-12">
 
 
             <!-- card -->
-            <div style="margin-top: 20px; padding-top: 5px; padding-bottom: 5px; background-color: rgba(30, 143, 255, 0.151);"
+            <div style="margin-top: 10px; padding-top: 5px; padding-bottom: 5px; background-color: rgba(30, 143, 255, 0.151);"
             class="card mb-4 border-0">
             <!-- card body -->
             <div class="card-body p-9">
@@ -229,8 +229,7 @@
                            </div>
                            <a href="shop-single.html">
                               <!-- img -->
-                              <img [src]="product.imageMetadata?.path_to_file" alt="product photo"
-                                 class="products-img mx-auto d-block">
+                              <img [src]="product.imageMetadata?.path_to_file" alt="product photo" class="img-fluid products-img mx-auto d-block">
                            </a>
                            <!-- action btn -->
                            <!-- <div class="card-product-action">
