@@ -70,7 +70,9 @@ const routes: Routes = [
     path: 'herramientas', component: HerramientasSectionComponent,
     children: [
       { path: '', redirectTo: 'principal', pathMatch: 'full' },
-      { path: 'principal', component: MainHerramientasComponent },
+      { path: 'principal', component: MainHerramientasComponent 
+        
+      },
       { path: 'categorias', component: HerramientasCategoriesComponent}
     ]
   },
