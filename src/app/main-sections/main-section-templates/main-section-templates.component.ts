@@ -13,12 +13,6 @@ import { tns } from 'tiny-slider/src/tiny-slider';
 
 
 
-
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ProductsService } from '../../services/products.service';
-import {tns} from 'tiny-slider/src/tiny-slider';
-
-
 @Component({
   selector: 'app-main-section-templates',
   templateUrl: './main-section-templates.component.html',
@@ -28,7 +22,7 @@ import {tns} from 'tiny-slider/src/tiny-slider';
 
 
 export class MainSectionTemplatesComponent implements OnInit, AfterViewInit {
-export class MainSectionTemplatesComponent implements OnInit, AfterViewInit {
+
 
   products: any
 
