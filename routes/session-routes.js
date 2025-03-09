@@ -36,7 +36,7 @@ sessionRouter.route('/add-to-cart').post(addToCart)
 
 
 
-sessionRouter.route('/remove-from-cart').post(removeFromCart)
+sessionRouter.route('/remove-from-cart').post(removeFromCart);
 
 
 
@@ -44,18 +44,18 @@ sessionRouter.route('/remove-shipping-address').post(removeShippingAddress);
 
 
 
-sessionRouter.route('/update-quantities').put(updateQuantities)
+sessionRouter.route('/update-quantities').put(updateQuantities);
 
 
 
 
-sessionRouter.route('/product-selection').post(productSelection)
+sessionRouter.route('/product-selection').post(productSelection);
 
 
 
 
 
-sessionRouter.route('/login').post(login)
+sessionRouter.route('/login').post(login);
 
 
 

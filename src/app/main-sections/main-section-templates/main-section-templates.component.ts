@@ -14,6 +14,10 @@ import { tns } from 'tiny-slider/src/tiny-slider';
 
 
 
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { ProductsService } from '../../services/products.service';
+import {tns} from 'tiny-slider/src/tiny-slider';
+
 
 @Component({
   selector: 'app-main-section-templates',
@@ -23,6 +27,7 @@ import { tns } from 'tiny-slider/src/tiny-slider';
 
 
 
+export class MainSectionTemplatesComponent implements OnInit, AfterViewInit {
 export class MainSectionTemplatesComponent implements OnInit, AfterViewInit {
 
   products: any
@@ -45,13 +50,12 @@ export class MainSectionTemplatesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    tns({
+    var slider = tns({
       container: '.my-slider',
       items: 3,
       slideBy: 'page',
       autoplay: true
     });
-    
   }
 
 
@@ -62,11 +66,5 @@ export class MainSectionTemplatesComponent implements OnInit, AfterViewInit {
       }
     )
   }
-
-
-
-
-
-
 
 }
