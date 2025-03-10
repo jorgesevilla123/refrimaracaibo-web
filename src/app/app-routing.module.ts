@@ -41,6 +41,7 @@ import { HerramientasCategoriesComponent } from './secondary-sections/herramient
 import { AireAcondicionadoCategoriesComponent } from './secondary-sections/aire-acondicionado-section/aire-acondicionado-categories/aire-acondicionado-categories.component';
 import { HogarCategoriesComponent } from './secondary-sections/hogar-section/hogar-categories/hogar-categories.component';
 import { OrderDetailsComponent } from './secondary-sections/user-account/order-details/order-details.component'
+import { LavadoraMakeComponent } from './secondary-sections/lavadora-make/lavadora-make.component';
 
 
 
@@ -90,7 +91,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'principal', pathMatch: 'full' },
       { path: 'principal', component: MainLavadoraComponent},
-      { path: 'categorias', component:  LavadoraCategoriesComponent}
+      { path: 'categorias', component:  LavadoraCategoriesComponent},
+      { path: 'marcas', component: LavadoraMakeComponent}
     ]
   },
   {

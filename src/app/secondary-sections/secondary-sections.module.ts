@@ -40,7 +40,8 @@ import { CommercialRefriCategoriesComponent } from './commercial-refri/commercia
 import { HerramientasCategoriesComponent } from './herramientas-section/herramientas-categories/herramientas-categories.component';
 import { AireAcondicionadoCategoriesComponent } from './aire-acondicionado-section/aire-acondicionado-categories/aire-acondicionado-categories.component';
 import { HogarCategoriesComponent } from './hogar-section/hogar-categories/hogar-categories.component';
-import { OrderDetailsComponent } from './user-account/order-details/order-details.component'
+import { OrderDetailsComponent } from './user-account/order-details/order-details.component';
+import { LavadoraMakeComponent } from './lavadora-make/lavadora-make.component'
 
 
 
@@ -83,6 +84,7 @@ import { OrderDetailsComponent } from './user-account/order-details/order-detail
     AireAcondicionadoCategoriesComponent,
     HogarCategoriesComponent,
     OrderDetailsComponent,
+    LavadoraMakeComponent,
 
   ],
   imports: [
