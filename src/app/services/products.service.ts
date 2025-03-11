@@ -54,8 +54,16 @@ export class ProductsService {
 
   filterTools(): Observable<any> {
     let api = `${this.API}/get-herramientas`
-    return this.http.get<any>(api)
+    return this.http.get<any>(api);
   }
+
+
+  filterMake(filter, page): Observable<any>{
+    let api = `${this.API}/general-filter?filter=${filter}&page=${page}`
+    return this.http.get<any>(api);
+  }
+
+  
 
   getSomeProducts(): Observable<any> {
     let api = `${this.API}/get-some-products`

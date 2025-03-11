@@ -227,6 +227,33 @@ function filterCategory(req, res){
 
 
 
+function generalFilter(req, res){
+    let category = req.query.filter
+    let page = req.query.page
+    let itemsPerPage = 42
+    let queryFilter = {
+        categoria: category
+    }
+
+    console.log(queryFilter);
+    Product.find(queryFilter).exec((err, products) => {
+        if(err){
+            res.json({message:'hubo un error buscando la categoria: ', error: err})
+        }
+        else {
+            // console.log(products)
+            let count = products.length
+            let pageToInt = parseInt(page);
+            const pager = paginate(products.length, pageToInt, itemsPerPage);
+            const pageOfItems = products.slice(pager.startIndex, pager.endIndex + 1);
+            res.json({ products: products, current: page, pages: Math.ceil(products.length / itemsPerPage), count: count, pageOfItems, pager})
+        }
+    })
+}
+
+
+
+
 
 
 
@@ -258,6 +285,19 @@ function decreaseInventory(products){
 
 function increaseInventory(req, res){
 
+
+
+}
+
+
+
+
+function generalPaginationFunction(req, res){
+    let query = req.query.q
+    let make = req.query.make
+    let category = req.query.categoria
+    let price = req.query.precio
+
 }
 
 
@@ -267,6 +307,6 @@ function increaseInventory(req, res){
 
 
 
-module.exports = {getProducts, searchProducts, decreaseInventory, getProductsByCategory, filterCategory, getSomeProducts, filterTools, getOneProduct}
+module.exports = {getProducts, searchProducts, decreaseInventory, getProductsByCategory, filterCategory, getSomeProducts, filterTools, getOneProduct, generalFilter}
 
 

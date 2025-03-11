@@ -111,14 +111,13 @@
 <div class="main-content">
     <!-- row -->
     <div class="row gx-10">
-        <!-- col -->
 
-        <aside style="margin-top: 100px" class="col-lg-3 col-md-4 mb-6 mb-md-0">
-            <h2 style="color: black;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                aria-expanded="false" aria-controls="collapseExample">Filtrar por marca <i
-                    class="bi bi-chevron-down"></i></h2>
-            <!-- this code is the collapsible -->
-            <div class="collapse" id="collapseExample">
+        <aside style="margin-top: 100px; width: 250px;" class="col-lg-3 col-md-4 mb-6 mb-md-0">
+            <h3 style="color: black; margin-top: 20px; font-weight: bold;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategories"
+            aria-expanded="false" aria-controls="collapseCategories">Categorias <i
+            class="bi bi-chevron-down"></i></h3>
+ 
+            <div class="collapse" id="collapseCategories">
 
                 <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> Whirlpool</h3>
                 <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> Frigidaire, electrolux</h3>
@@ -127,58 +126,63 @@
                 <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> Samsung</h3>
                 <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> Maytag</h3>
             </div>
-
-
-
-            <mat-divider style="margin-top: 20px"></mat-divider>
-
-
-            <h2 style="color: black; margin-top: 20px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrice"
-                aria-expanded="false" aria-controls="collapseExample">Filtrar por precio<i
-                    class="bi bi-chevron-down"></i></h2>
-
-                    <div class="collapse" id="collapsePrice">
-                        <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> {{0 |
-                currency: 'USD'}} - {{19 | currency: 'USD'}}</h3>
-                        <h3><input style="font-size: 20px;border-width: 1px; border-color: black; margin-right: 10px;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> {{20 |
-                currency: 'USD'}} - {{39 | currency: 'USD'}}</h3>
-                        <h3><input style="font-size: 20px;border-width: 1px; border-color: black; margin-right: 10px;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> {{40 |
-                currency: 'USD'}} - {{1000 | currency: 'USD'}}</h3>
-
-                    </div>
-
-
-            <mat-divider style="margin-top: 20px;"></mat-divider>
-
-            <div style="margin-top: 20px;">
-                <!-- Banner Design -->
-                <!-- Banner Content -->
-                <div>
-                    <h2 style="color: black; margin-top: 20px;">Ofertas!</h2>
-
-                    <h3>Promociones en productos seleccionados!</h3>
-
-                </div>
-                <!-- Banner Content -->
-                <!-- Banner Image -->
-                <!-- img -->
-                <img style="width: auto; height: 200px;" src="../../../assets/fridge.png" alt=""
-                    class="img-fluid rounded">
-
-
-                <a href="#" style="color: white; margin-top: 20px; width: 100%;" class="btn btn-primary">
-                    Ver promociones
-                    <i class="bi bi-arrow-right-short"></i>
-                </a>
-                <!-- Banner Image -->
+ 
+ 
+                    <mat-divider style="margin-top: 20px;"></mat-divider>
+ 
+ 
+                    <h3 style="color: black; margin-top: 20px; font-weight: bold;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                    aria-expanded="false" aria-controls="collapseExample">Filtrar precio <i
+            class="bi bi-chevron-down"></i></h3>
+ 
+            <div class="collapse" id="collapseExample">
+                <mat-slider min="200" max="500">
+                    <input value="300" matSliderStartThumb>
+                    <input value="400" matSliderEndThumb>
+                  </mat-slider>
             </div>
+ 
+ 
+ 
+ 
+                
+                    <mat-divider style="margin-top: 20px;"></mat-divider>
+ 
+                    <div style="margin-top: 40px;">
+                      <!-- Banner Design -->
+                      <!-- Banner Content -->
+                      <div>
+                         <h2 style="font-weight: bold;"><b>Ofertas!</b></h2>
+ 
+                         <h3>Promociones en productos seleccionados!</h3>
+                      
+                      </div>
+                      <!-- Banner Content -->
+                      <!-- Banner Image -->
+                      <!-- img -->
+                      <img style="width: auto; height: 200px;" src="../../../assets/fridge.png" alt="" class="img-fluid rounded">
+ 
+ 
+                      <a href="#" style="color: white; margin-top: 20px; width: 100%" class="btn btn-primary">
+                         Ver promociones
+                         <i class="bi bi-arrow-right-short"></i>
+                      </a>
+                      <!-- Banner Image -->
+                   </div>
+ 
+ 
+ 
+ 
+ 
+ 
+          </aside>
+ 
+ 
+        <!-- col -->
 
+    
 
-
-
-
-
-        </aside>
+        
         <section style="margin-top: 60px;" class="col-lg-9 col-md-12">
 
 
