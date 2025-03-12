@@ -292,12 +292,45 @@ function increaseInventory(req, res){
 
 
 
+
+//this function will be the queryBuilder
 function generalPaginationFunction(req, res){
     let query = req.query.q
     let make = req.query.make
     let category = req.query.categoria
     let price = req.query.precio
+    let regex;
+    
+    //destructuring queries coming from the client
+    const queryObj = {...req.query}
+    // let dbQueryBody = {$and: [{categoria: category, title: regex}]}
+    let dbQueryBody = {$and:[]}
+    
 
+    var size = Object.keys(queryObj).length;
+    console.log(size);
+
+
+    if('q' in queryObj){
+    regex = new RegExp(`${query}`, 'gi')
+    dbQueryBody.$and.push({$or: [{title: regex}, {modelo: regex}]})
+    }
+    if('categoria' in queryObj){
+        dbQueryBody.$and.push({categoria: category})
+    }
+    if('precio' in queryObj){
+        dbQueryBody.$and.push({precio: {$lte: price}})
+    }
+
+    console.log('loggin query object', queryObj);
+    console.log('showing dbquery', dbQueryBody);
+    queryObj
+    console.log(dbQueryBody);
+
+    Product.find(dbQueryBody).exec((err, result) => {
+        res.json(result)
+        // console.log(result)
+    })
 }
 
 
@@ -307,6 +340,6 @@ function generalPaginationFunction(req, res){
 
 
 
-module.exports = {getProducts, searchProducts, decreaseInventory, getProductsByCategory, filterCategory, getSomeProducts, filterTools, getOneProduct, generalFilter}
+module.exports = {getProducts, searchProducts, decreaseInventory, getProductsByCategory, filterCategory, getSomeProducts, filterTools, getOneProduct, generalFilter, generalPaginationFunction}
 
 

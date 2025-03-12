@@ -88,10 +88,12 @@ export class SearchResultsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log(this.route.snapshot)
 
 
     this.route.queryParamMap.subscribe(
       ({ params }: any) => {
+        console.log(params)
         this.query = params.q
         this.paginationService.query = this.query
         this.searchProducts(this.query, params.page)

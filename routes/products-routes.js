@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { getProducts, searchProducts, getProductsByCategory, filterCategory, getSomeProducts, filterTools, getOneProduct, generalFilter} =  require('../controllers/products-controllers')
+const { getProducts, searchProducts, getProductsByCategory, filterCategory, getSomeProducts, filterTools, getOneProduct, generalFilter, generalPaginationFunction} =  require('../controllers/products-controllers')
 
 let router = Router()
 
@@ -19,6 +19,9 @@ router.route('/filter').get(filterCategory)
 
 
 router.route('/general-filter').get(generalFilter)
+
+
+router.route('/general-pagination').get(generalPaginationFunction);
 
 
 router.route('/get-herramientas').get(filterTools)
