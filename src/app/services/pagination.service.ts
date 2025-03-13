@@ -15,6 +15,8 @@ export class PaginationService {
   currentPage: any
   parentRouteName: string //name of the parent route coming from the categories components
   parentCategory: string //name of the main category 
+  paginatorRoutePath: string //this is the path that is going to be used when routing 
+  paginatorQueryParams
 
   constructor(
     private productService: ProductsService,
@@ -39,19 +41,19 @@ export class PaginationService {
 
 
 
-
+  //we need to add dynamic url path and passing queryParams dynamically
   route(page) {
     console.log(this.query)
 
     if (this.pagerSearch == 'search') {
       console.log('searching route')
-      console.log(this.pageName, page)
-      this.productService.searchProducts(this.pageName, page).subscribe(
+      this.productService.searchProducts(this.query, page).subscribe(
         {
           next: (val) => {
             this.pager = val
             console.log(this.pager)
-            this.router.navigate([`/search`], { queryParams: { q: this.query, page: page }, fragment: 'resultados' })
+            console.log(this.paginatorRoutePath)
+            this.router.navigate([`${this.paginatorRoutePath}`], { queryParams: { q: this.query, page: page }, fragment: 'resultados' })
           },
           error: (err) => { console.log(err) },
           complete: () => {

@@ -21,7 +21,7 @@ router.route('/filter').get(filterCategory)
 router.route('/general-filter').get(generalFilter)
 
 
-router.route('/general-pagination').get(generalPaginationFunction);
+router.route('/general-pagination').post(generalPaginationFunction);
 
 
 router.route('/get-herramientas').get(filterTools)

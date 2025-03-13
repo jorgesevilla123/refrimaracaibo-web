@@ -119,15 +119,16 @@ export class ProductsService {
 
 
 
+  generalQuery(query, routePath){
+    
+    let api = `${this.API}/general-pagination${query}`
+    let bodyData = {
+      routePath: `${routePath}`
+    }
+    console.log(bodyData);
+    return this.http.post(api, bodyData)
 
-
-
-
-
-
-
-
-
+  }
 
 
 

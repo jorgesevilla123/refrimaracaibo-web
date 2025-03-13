@@ -128,6 +128,7 @@ export class SecadoraSectionsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    
     this.pageName = 'secadora'
 
     this.isFiltering = true

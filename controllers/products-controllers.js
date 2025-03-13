@@ -295,11 +295,15 @@ function increaseInventory(req, res){
 
 //this function will be the queryBuilder
 function generalPaginationFunction(req, res){
+    let itemsPerPage = 43
     let query = req.query.q
     let make = req.query.make
     let category = req.query.categoria
     let price = req.query.precio
     let regex;
+    let page = req.query.page
+    let {routePath} = req.body;
+    console.log(routePath)
     
     //destructuring queries coming from the client
     const queryObj = {...req.query}
@@ -327,9 +331,18 @@ function generalPaginationFunction(req, res){
     queryObj
     console.log(dbQueryBody);
 
-    Product.find(dbQueryBody).exec((err, result) => {
-        res.json(result)
-        // console.log(result)
+    Product.find(dbQueryBody).exec((err, foundProducts) => {
+        Product.countDocuments((err, count) => {
+            if (err) {
+                console.log(err)
+            }
+            else {
+                let pageToInt = parseInt(page);
+                const pager = paginate(foundProducts.length, pageToInt, itemsPerPage);
+                const pageOfItems = foundProducts.slice(pager.startIndex, pager.endIndex + 1);
+                res.json({ products: foundProducts, current: page, pages: Math.ceil(foundProducts.length / itemsPerPage), count: count, pageOfItems, pager, paginatorRoute: routePath})
+            }
+        })
     })
 }
 

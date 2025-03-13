@@ -88,15 +88,22 @@ export class SearchResultsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.route.snapshot)
 
 
     this.route.queryParamMap.subscribe(
       ({ params }: any) => {
+        console.log(window.location.pathname)
         console.log(params)
+        let queryString = window.location.search;
+
         this.query = params.q
         this.paginationService.query = this.query
         this.searchProducts(this.query, params.page)
+
+        //send route path here 
+        let routePath = window.location.pathname;
+        this.generalPagination(queryString, routePath);
+      
       }
     )
 
@@ -107,6 +114,28 @@ export class SearchResultsComponent implements OnInit {
   productDescription(id){
     console.log(id)
     this.router.navigate(['/product-details'], {queryParams: {id: id}})
+  }
+
+
+
+  generalPagination(query, routePath){
+    this.productsService.generalQuery(query, routePath).subscribe({
+      next: (pager: any) => {
+        this.paginationService.pagerSearch = 'search'
+        console.log(pager);
+        this.paginationService.pager = pager
+        this.paginationService.parentRouteName = pager.paginatorRoute
+        console.log(this.paginationService.parentRouteName)
+        this.resultsLength = pager.pageOfItems.length
+        this.products = pager.pageOfItems
+
+        setTimeout(() => {
+          this.completed = true
+        }, 200)
+      }
+    })
+
+
   }
 
 
@@ -124,9 +153,13 @@ export class SearchResultsComponent implements OnInit {
     this.productsService.searchProducts(query, page).subscribe(
       pager => {
         this.paginationService.pagerSearch = 'search'
+        console.log(pager);
         this.paginationService.pager = pager
+        this.paginationService.parentRouteName = pager.paginatorRoute
+        console.log(this.paginationService.parentRouteName)
         this.resultsLength = pager.pageOfItems.length
         this.products = pager.pageOfItems
+
         setTimeout(() => {
           this.completed = true
         }, 200)
@@ -166,11 +199,7 @@ export class SearchResultsComponent implements OnInit {
         }
       }
     )
-
     }
-
-   
-  
   }
 
 

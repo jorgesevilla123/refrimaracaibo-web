@@ -114,6 +114,7 @@ export class ProductsDescriptionComponent implements OnInit{
 
 
   ngOnInit(): void {
+    console.log(this.route.snapshot.url.map(segment => segment.path).join('/'))
 
     this.getParams()
     console.log(this.product)
