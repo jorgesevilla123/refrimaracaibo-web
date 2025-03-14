@@ -16,7 +16,7 @@ export class PaginationService {
   parentRouteName: string //name of the parent route coming from the categories components
   parentCategory: string //name of the main category 
   paginatorRoutePath: string //this is the path that is going to be used when routing 
-  paginatorQueryParams
+  paginatorQueryParams: any
 
   constructor(
     private productService: ProductsService,
@@ -44,34 +44,40 @@ export class PaginationService {
   //we need to add dynamic url path and passing queryParams dynamically
   route(page) {
     console.log(this.query)
-
-    if (this.pagerSearch == 'search') {
+    console.log(this.paginatorRoutePath);
+    this.paginatorQueryParams.queryParams.page = page
+    // if (this.pagerSearch == 'search') {
       console.log('searching route')
-      this.productService.searchProducts(this.query, page).subscribe(
-        {
-          next: (val) => {
-            this.pager = val
-            console.log(this.pager)
-            console.log(this.paginatorRoutePath)
-            this.router.navigate([`${this.paginatorRoutePath}`], { queryParams: { q: this.query, page: page }, fragment: 'resultados' })
-          },
-          error: (err) => { console.log(err) },
-          complete: () => {
+      console.log(this.paginatorQueryParams)
+      this.router.navigate([`${this.paginatorRoutePath}`], this.paginatorQueryParams)
+      // this.productService.generalQuery(this.query, this.paginatorRoutePath).subscribe(
+      //   {
+      //     next: (val) => {
+      //       this.pager = val
+      //       console.log(this.pager)
+      //       console.log(this.paginatorRoutePath)
+      //       this.router.navigate([`${this.paginatorRoutePath}`], { queryParams: { q: this.query, page: page }, fragment: 'resultados' })
+      //     },
+      //     error: (err) => { console.log(err) },
+      //     complete: () => {
 
-          }
+      //     }
 
-        }
-      )
+      //   }
+      // )
 
-    }
+    // }
 
-    else if (this.pagerSearch == 'categorias'){
-      console.log(this.routeState.pathFromRoot)
-      this.productService.filterCategory(this.query, page, this.parentCategory).subscribe(
-        {next: (products) => {
-          this.router.navigate([`/${this.parentRouteName}/categorias`], {queryParams: {categoria: this.query, page: page}})
-          console.log(products)}}
-      )
+    // else if (this.pagerSearch == 'categorias'){
+    //   console.log(this.routeState.pathFromRoot)
+    //   this.productService.filterCategory(this.query, page, this.parentCategory).subscribe(
+    //     {next: (products) => {
+    //       this.router.navigate([`/${this.parentRouteName}/categorias`], {queryParams: {categoria: this.query, page: page}})
+    //       console.log(products)}}
+    //   )
+
+
+
       // this.productService.getProductsCategory(this.pageName, page, this.pageName).subscribe(
       //   {
       //     next: (val) => {
@@ -87,11 +93,11 @@ export class PaginationService {
       //   }
       // )
 
-    }
+    // }
 
-    else if(this.pagerSearch === 'make'){
+    // else if(this.pagerSearch === 'make'){
 
-    }
+    // }
 
 
   }

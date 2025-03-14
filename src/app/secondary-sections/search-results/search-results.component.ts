@@ -92,13 +92,11 @@ export class SearchResultsComponent implements OnInit {
 
     this.route.queryParamMap.subscribe(
       ({ params }: any) => {
-        console.log(window.location.pathname)
-        console.log(params)
         let queryString = window.location.search;
 
         this.query = params.q
         this.paginationService.query = this.query
-        this.searchProducts(this.query, params.page)
+        // this.searchProducts(this.query, params.page)
 
         //send route path here 
         let routePath = window.location.pathname;
@@ -122,13 +120,13 @@ export class SearchResultsComponent implements OnInit {
     this.productsService.generalQuery(query, routePath).subscribe({
       next: (pager: any) => {
         this.paginationService.pagerSearch = 'search'
+        this.paginationService.paginatorQueryParams = pager.queryParams;
         console.log(pager);
         this.paginationService.pager = pager
-        this.paginationService.parentRouteName = pager.paginatorRoute
-        console.log(this.paginationService.parentRouteName)
+        this.paginationService.query = query;
+        this.paginationService.paginatorRoutePath = pager.paginatorRoute
         this.resultsLength = pager.pageOfItems.length
         this.products = pager.pageOfItems
-
         setTimeout(() => {
           this.completed = true
         }, 200)
@@ -159,7 +157,6 @@ export class SearchResultsComponent implements OnInit {
         console.log(this.paginationService.parentRouteName)
         this.resultsLength = pager.pageOfItems.length
         this.products = pager.pageOfItems
-
         setTimeout(() => {
           this.completed = true
         }, 200)

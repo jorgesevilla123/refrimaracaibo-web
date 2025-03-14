@@ -242,6 +242,7 @@ function generalFilter(req, res){
         }
         else {
             // console.log(products)
+      
             let count = products.length
             let pageToInt = parseInt(page);
             const pager = paginate(products.length, pageToInt, itemsPerPage);
@@ -337,10 +338,13 @@ function generalPaginationFunction(req, res){
                 console.log(err)
             }
             else {
+                let queryParams = {
+                    queryParams: queryObj
+                }
                 let pageToInt = parseInt(page);
                 const pager = paginate(foundProducts.length, pageToInt, itemsPerPage);
                 const pageOfItems = foundProducts.slice(pager.startIndex, pager.endIndex + 1);
-                res.json({ products: foundProducts, current: page, pages: Math.ceil(foundProducts.length / itemsPerPage), count: count, pageOfItems, pager, paginatorRoute: routePath})
+                res.json({ products: foundProducts, current: page, pages: Math.ceil(foundProducts.length / itemsPerPage), count: count, pageOfItems, pager, paginatorRoute: routePath, queryParams})
             }
         })
     })
