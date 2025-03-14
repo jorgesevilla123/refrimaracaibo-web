@@ -93,11 +93,9 @@ export class SearchResultsComponent implements OnInit {
     this.route.queryParamMap.subscribe(
       ({ params }: any) => {
         let queryString = window.location.search;
-
         this.query = params.q
         this.paginationService.query = this.query
         // this.searchProducts(this.query, params.page)
-
         //send route path here 
         let routePath = window.location.pathname;
         this.generalPagination(queryString, routePath);
@@ -116,6 +114,9 @@ export class SearchResultsComponent implements OnInit {
 
 
 
+
+
+  // this function does all searching 
   generalPagination(query, routePath){
     this.productsService.generalQuery(query, routePath).subscribe({
       next: (pager: any) => {
@@ -132,8 +133,6 @@ export class SearchResultsComponent implements OnInit {
         }, 200)
       }
     })
-
-
   }
 
 

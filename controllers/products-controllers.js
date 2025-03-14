@@ -338,6 +338,7 @@ function generalPaginationFunction(req, res){
                 console.log(err)
             }
             else {
+                console.log(foundProducts);
                 let queryParams = {
                     queryParams: queryObj
                 }
