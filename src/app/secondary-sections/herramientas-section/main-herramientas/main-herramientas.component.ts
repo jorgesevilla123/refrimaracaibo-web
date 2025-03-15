@@ -22,7 +22,7 @@ export class MainHerramientasComponent implements OnInit {
 
 
   route(category){
-    this.router.navigate(['herramientas/categorias'], {queryParams: {categoria: category, page: 1}})
+    this.router.navigate(['herramientas/categorias'], {queryParams: {q: category, categoria:'HERRAMIENTAS',page: 1}})
   }
 
 
