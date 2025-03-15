@@ -23,7 +23,7 @@ export class MainNeveraComponent implements OnInit {
 
 
   route(category){
-    this.router.navigate(['nevera/categorias'], {queryParams: {categoria: category, page: 1}})
+    this.router.navigate(['nevera/categorias'], {queryParams: {q: category, categoria: 'NEVERA', page: 1}})
   }
 
 

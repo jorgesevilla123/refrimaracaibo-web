@@ -18,9 +18,9 @@ export class MainLavadoraComponent implements OnInit {
 
 
   route(category){
-    this.router.navigate(['lavadora/categorias'], {queryParams: {title: category, page: 1}})
+    this.router.navigate(['lavadora/categorias'], {queryParams: {q: category, categoria: 'LAVADORA', page: 1}})
   }
-
+ 
 
 
 
