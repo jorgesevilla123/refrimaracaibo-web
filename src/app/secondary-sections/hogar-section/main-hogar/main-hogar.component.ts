@@ -23,7 +23,7 @@ export class MainHogarComponent implements OnInit {
 
 
   route(category){
-    this.router.navigate(['hogar/categorias'], {queryParams: {categoria: category, page: 1}})
+    this.router.navigate(['hogar/categorias'], {queryParams: {q: category, categoria: 'HOGAR',page: 1}})
   }
 
 

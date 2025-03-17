@@ -22,7 +22,7 @@ export class MainAireAcondicionadoComponent implements OnInit {
 
 
   route(category){
-    this.router.navigate(['aire-acondicionado/categorias'], {queryParams: {categoria: category, page: 1}})
+    this.router.navigate(['aire-acondicionado/categorias'], {queryParams: {q: category, categoria: 'AIRE ACONDICIONADO',page: 1}})
   }
 
 

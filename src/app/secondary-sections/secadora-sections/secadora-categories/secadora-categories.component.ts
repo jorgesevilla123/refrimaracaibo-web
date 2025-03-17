@@ -44,33 +44,35 @@ export class SecadoraCategoriesComponent implements OnInit {
 
   
   showRoute(){
-    this.route.queryParams.subscribe({
-      next: (query) => {
-        this.category = query.categoria
-        this.getCategory(query.categoria, query.page
-          )},
-      error: (e) => console.log(e),
-      complete: () => console.log('observable   ')
-    })
+    this.route.queryParamMap.subscribe(
+      ({ params }: any) => {
+        let queryString = window.location.search;
+        this.query = params.q
+        this.paginationService.query = this.query
+        // this.searchProducts(this.query, params.page)
+        //send route path here 
+        let routePath = window.location.pathname;
+        this.generalPagination(queryString, routePath);
+      }
+    )
   }
 
-  getCategory(category, page){
-    console.log(page)
-    this.productsService.filterCategory(category, page, 'SECADORA').subscribe({
-      next: (res) => {
-        let parentRoute = this.route.parent.snapshot.routeConfig.path
-          this.paginationService.parentCategory = 'SECADORA'
-        this.paginationService.parentRouteName = parentRoute
-        this.paginationService.query = category
-        this.paginationService.pagerSearch = 'categorias'
-        this.paginationService.pager = res
-        this.resultsLength = res.pageOfItems.length
-        this.products = res.pageOfItems
-        console.log(res)
-      },
-      complete: () => {this.completed = true}
-    })
 
+  generalPagination(query, routePath){
+    this.productsService.generalQuery(query, routePath).subscribe({
+      next: (pager: any) => {
+        this.paginationService.paginatorQueryParams = pager.queryParams;
+        console.log(pager);
+        this.paginationService.pager = pager
+        this.paginationService.query = query;
+        this.paginationService.paginatorRoutePath = pager.paginatorRoute
+        this.resultsLength = pager.pageOfItems.length
+        this.products = pager.pageOfItems
+        setTimeout(() => {
+          this.completed = true
+        }, 200)
+      }
+    })
   }
 
   

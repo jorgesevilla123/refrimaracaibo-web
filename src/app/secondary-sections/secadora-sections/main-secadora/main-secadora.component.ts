@@ -18,7 +18,7 @@ export class MainSecadoraComponent implements OnInit {
 
 
   route(category){
-    this.router.navigate(['secadora/categorias'], {queryParams: {categoria: category, page: 1}})
+    this.router.navigate(['secadora/categorias'], {queryParams: {q: category, categoria: 'SECADORA',page: 1}})
   }
 
 
