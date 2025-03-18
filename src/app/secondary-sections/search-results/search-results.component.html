@@ -1,18 +1,15 @@
-
-
-
 <!--
 
       <mat-form-field appearance="outline" class="filter-form">
          <mat-label>Filtrar por precio</mat-label>
          <mat-select [formControl]="filters" multiple> -->
-            <!-- <mat-select-trigger>
+<!-- <mat-select-trigger>
                 {{filters.value?.[0].label_value || ''}}
                 <span *ngIf="(filters.value?.length || 0) > 1">
                     (+{{(filters.value?.length || 0) -1}} {{filters.value?.length === 2 ? 'otro': 'otros'}})
                 </span>
             </mat-select-trigger> -->
-            <!-- <mat-option *ngFor="let category of categories" [value]="category.category_name"
+<!-- <mat-option *ngFor="let category of categories" [value]="category.category_name"
                (onSelectionChange)="optionHandler($event)">
                <span><b>Categoria</b></span> | <span>{{category.category_name}}</span>
             </mat-option>
@@ -27,14 +24,14 @@
 
 
 
-   <mat-divider></mat-divider>
+<mat-divider></mat-divider>
 
 
 
 
 
 
-   <!--
+<!--
 
 
 
@@ -43,15 +40,15 @@
         <h3 style="margin-top: 20px;">Filtrar por categorias</h3>
 
         <mat-tree [dataSource]="dataSource" [treeControl]="treeControl"> -->
-   <!-- This is the tree node template for leaf nodes -->
-   <!-- <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding> -->
-   <!-- use a disabled button to provide padding for tree leaf -->
-   <!-- <button mat-icon-button disabled></button>
+<!-- This is the tree node template for leaf nodes -->
+<!-- <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding> -->
+<!-- use a disabled button to provide padding for tree leaf -->
+<!-- <button mat-icon-button disabled></button>
               <mat-checkbox>{{node.name}}</mat-checkbox>
             </mat-tree-node>
             <mat-divider></mat-divider> -->
-   <!-- This is the tree node template for expandable nodes -->
-   <!-- <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+<!-- This is the tree node template for expandable nodes -->
+<!-- <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
               <button mat-icon-button matTreeNodeToggle
                       [attr.aria-label]="'Toggle ' + node.name">
                 <mat-icon class="mat-icon-rtl-mirror">
@@ -70,10 +67,10 @@
 
 
 
-   <!-- <mat-grid-tile *ngFor="let product of products"> -->
+<!-- <mat-grid-tile *ngFor="let product of products"> -->
 
-   <!-- this is the product card -->
-   <!-- <div style="width: 250px" class="products-ui" >
+<!-- this is the product card -->
+<!-- <div style="width: 250px" class="products-ui" >
 
 
             <div class="image">
@@ -107,136 +104,153 @@
 </mat-drawer-container> -->
 
 
-   <div class="main-content">
-      <!-- row -->
-      <div class="row">
-         <!-- col -->
+<div class="main-content">
+   <!-- row -->
+   <div class="row">
+      <!-- col -->
 
-         <aside style="margin-top: 100px; width: 250px;" class="col-lg-3 col-md-4 mb-6 mb-md-0">
-           <h3 style="color: black; margin-top: 20px; font-weight: bold;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory"
-           aria-expanded="false" aria-controls="collapseExample">Categorias <i
-           class="bi bi-chevron-down"></i></h3>
+      <aside style="margin-top: 100px; width: 250px;" class="col-lg-3 col-md-4 mb-6 mb-md-0">
+         <h4 style="color: black; margin-top: 20px; font-weight: bold;" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">Filtrar por Categorias <i
+               class="bi bi-chevron-down"></i></h4>
 
-           <div class="collapse" id="collapseCategory">
+         <div class="collapse" id="collapseCategory">
+
+            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;"
+                  class="form-check-input" type="checkbox" value="" id="flexCheckDefault">Aire acondicionad</h3>
+            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;"
+                  class="form-check-input" type="checkbox" value="" id="flexCheckDefault">Automotriz</h3>
+            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;"
+                  class="form-check-input" type="checkbox" value="" id="flexCheckDefault">Herramientas</h3>
+            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;"
+                  class="form-check-input" type="checkbox" value="" id="flexCheckDefault">Hogar</h3>
+            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;"
+                  class="form-check-input" type="checkbox" value="" id="flexCheckDefault">Lavadora</h3>
+            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;"
+                  class="form-check-input" type="checkbox" value="" id="flexCheckDefault">Nevera</h3>
+            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;"
+                  class="form-check-input" type="checkbox" value="" id="flexCheckDefault">Secadora</h3>
+            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;"
+                  class="form-check-input" type="checkbox" value="" id="flexCheckDefault">Refrigeracion comercial</h3>
+         </div>
+
+
+         <mat-divider style="margin-top: 20px;"></mat-divider>
+
+
+         <h4 style="color: black; margin-top: 20px; font-weight: bold;" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapsePrice" aria-expanded="false" aria-controls="collapseExample">Filtrar precio <i
+               class="bi bi-chevron-down"></i></h4>
+
+         <div class="collapse" id="collapsePrice">
             <h4>Aire acondicionado</h4>
 
+         </div>
+
+
+
+
+
+         <mat-divider style="margin-top: 20px;"></mat-divider>
+
+         <div style="margin-top: 40px;">
+            <!-- Banner Design -->
+            <!-- Banner Content -->
+            <div>
+               <h2 style="font-weight: bold;"><b>Ofertas!</b></h2>
+
+               <h3>Promociones en productos seleccionados!</h3>
+
             </div>
+            <!-- Banner Content -->
+            <!-- Banner Image -->
+            <!-- img -->
+            <img style="width: auto; height: 200px;" src="../../../assets/fridge.png" alt="" class="img-fluid rounded">
 
 
-                   <mat-divider style="margin-top: 20px;"></mat-divider>
-
-
-                   <h3 style="color: black; margin-top: 20px; font-weight: bold;" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrice"
-           aria-expanded="false" aria-controls="collapseExample">Filtrar precio <i
-           class="bi bi-chevron-down"></i></h3>
-
-           <div class="collapse" id="collapsePrice">
-            <h4>Aire acondicionado</h4>
-
-            </div>
-
-
-
-
-               
-                   <mat-divider style="margin-top: 20px;"></mat-divider>
-
-                   <div style="margin-top: 40px;">
-                     <!-- Banner Design -->
-                     <!-- Banner Content -->
-                     <div>
-                        <h2 style="font-weight: bold;"><b>Ofertas!</b></h2>
-
-                        <h3>Promociones en productos seleccionados!</h3>
-                     
-                     </div>
-                     <!-- Banner Content -->
-                     <!-- Banner Image -->
-                     <!-- img -->
-                     <img style="width: auto; height: 200px;" src="../../../assets/fridge.png" alt="" class="img-fluid rounded">
-
-
-                     <a href="#" style="color: white; margin-top: 20px; width: 100%" class="btn btn-primary">
-                        Ver promociones
-                        <i class="bi bi-arrow-right-short"></i>
-                     </a>
-                     <!-- Banner Image -->
-                  </div>
+            <a href="#" style="color: white; margin-top: 20px; width: 100%" class="btn btn-primary">
+               Ver promociones
+               <i class="bi bi-arrow-right-short"></i>
+            </a>
+            <!-- Banner Image -->
+         </div>
 
 
 
 
 
 
-         </aside>
+      </aside>
 
 
 
-         
-         <section style="margin-top: 40px;" class="col-lg-9 col-md-12">
+
+      <section style="margin-top: 40px;" class="col-lg-9 col-md-12">
 
 
-            <!-- card -->
-            <div style="margin-top: 10px; padding-top: 5px; padding-bottom: 5px; background-color: rgba(30, 143, 255, 0.151);"
+         <!-- card -->
+         <div
+            style="margin-top: 10px; padding-top: 5px; padding-bottom: 5px; background-color: rgba(30, 143, 255, 0.151);"
             class="card mb-4 border-0">
             <!-- card body -->
             <div class="card-body p-9">
-                <h2 id="resultados" class="mb-0">{{ resultsLength}} Resultados para busqueda de "{{query}}"</h2>
+               <h2 id="resultados" class="mb-0">{{ resultsLength}} Resultados para busqueda de "{{query}}"</h2>
             </div>
-        </div>
-            <!-- list icon -->
-            <div class="d-lg-flex justify-content-between align-items-center">
+         </div>
+         <!-- list icon -->
+         <div class="d-lg-flex justify-content-between align-items-center">
 
-               <!-- icon -->
-               <div class="d-md-flex justify-content-between align-items-center">
-                  <div class="d-flex align-items-center justify-content-between">
+            <!-- icon -->
+            <div class="d-md-flex justify-content-between align-items-center">
+               <div class="d-flex align-items-center justify-content-between">
 
-                     <div class="ms-2 d-lg-none">
-                        <a class="btn btn-outline-gray-400 text-muted" data-bs-toggle="offcanvas"
-                           href="#offcanvasCategory" role="button" aria-controls="offcanvasCategory">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                              stroke-linejoin="round" class="feather feather-filter me-2">
-                              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-                           </svg>
-                           Filters
-                        </a>
-                     </div>
+                  <div class="ms-2 d-lg-none">
+                     <a class="btn btn-outline-gray-400 text-muted" data-bs-toggle="offcanvas" href="#offcanvasCategory"
+                        role="button" aria-controls="offcanvasCategory">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                           class="feather feather-filter me-2">
+                           <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                        </svg>
+                        Filters
+                     </a>
                   </div>
+               </div>
 
-                  <div class="d-flex mt-2 mt-lg-0">
-                  
-                     <div>
-                        <!-- select option -->
-                        <select class="form-select">
-                           <option selected="">Ordenar por: Featured</option>
-                           <option value="Low to High">Price: Low to High</option>
-                           <option value="High to Low">Price: High to Low</option>
-                           <option value="Release Date">Release Date</option>
-                           <option value="Avg. Rating">Avg. Rating</option>
-                        </select>
-                     </div>
+               <div class="d-flex mt-2 mt-lg-0">
+
+                  <div>
+                     <!-- select option -->
+                     <select class="form-select">
+                        <option selected="">Ordenar por: Featured</option>
+                        <option value="Low to High">Price: Low to High</option>
+                        <option value="High to Low">Price: High to Low</option>
+                        <option value="Release Date">Release Date</option>
+                        <option value="Avg. Rating">Avg. Rating</option>
+                     </select>
                   </div>
                </div>
             </div>
-            <!-- row -->
-            <div class="row g-4 row-cols-xl-4 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
-               <!-- col -->
-               <div class="col" *ngFor="let product of products">
-                  <!-- card -->
-                  <div style="width: 230px; margin: 10px;" class="card card-product">
-                     <div class="card-body">
-                        <!-- badge -->
-                        <div class="text-center position-relative">
-                           <div class="position-absolute top-0 start-0">
-                              <span class="badge bg-success">{{product.cantidad}} Disponible</span>
-                           </div>
-                           <a href="shop-single.html">
-                              <!-- img -->
-                              <img [src]="product.imageMetadata?.path_to_file" alt="product photo" class="img-fluid products-img mx-auto d-block">
-                           </a>
-                           <!-- action btn -->
-                           <!-- <div class="card-product-action">
+         </div>
+         <!-- row -->
+         <div class="row g-4 row-cols-xl-4 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
+            <!-- col -->
+            <div class="col" *ngFor="let product of products">
+               <!-- card -->
+               <div style="width: 230px; margin: 10px;" class="card card-product">
+                  <div class="card-body">
+                     <!-- badge -->
+                     <div class="text-center position-relative">
+                        <div class="position-absolute top-0 start-0">
+                           <span class="badge bg-success">{{product.cantidad}} Disponible</span>
+                        </div>
+                        <a href="shop-single.html">
+                           <!-- img -->
+                           <img [src]="product.imageMetadata?.path_to_file" alt="product photo"
+                              class="img-fluid products-img mx-auto d-block">
+                        </a>
+                        <!-- action btn -->
+                        <!-- <div class="card-product-action">
                               <a href="#!" class="btn-action" data-bs-toggle="modal" data-bs-target="#quickViewModal">
                                  <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true"
                                     aria-label="Quick View" data-bs-original-title="Quick View"></i>
@@ -248,17 +262,19 @@
                                  aria-label="Compare" data-bs-original-title="Compare"><i
                                     class="bi bi-arrow-left-right"></i></a>
                            </div> -->
-                        </div>
-                        <!-- heading -->
-                        <div class="text-small mb-1">
-                           <a href="#!" class="text-decoration-none text-muted"><small style="font-family: sans-serif;">{{product.categoria}}</small></a>
-                        </div>
-                        <button style="font-size: 12px; text-align:start;" class="btn btn-sm product-description" (click)="productDescription(product._id)">{{product.title}}</button>
-                              <h2 class="h6" style="font-size: 13px"><a style="font-family: sans-serif;"
-                                 class="text-inherit text-decoration-none">{{product.modelo}}</a></h2>
-                        <!-- <div> -->
-                           <!-- rating -->
-                           <!-- <small class="text-warning">
+                     </div>
+                     <!-- heading -->
+                     <div class="text-small mb-1">
+                        <a href="#!" class="text-decoration-none text-muted"><small
+                              style="font-family: sans-serif;">{{product.categoria}}</small></a>
+                     </div>
+                     <button style="font-size: 12px; text-align:start;" class="btn btn-sm product-description"
+                        (click)="productDescription(product._id)">{{product.title}}</button>
+                     <h2 class="h6" style="font-size: 13px"><a style="font-family: sans-serif;"
+                           class="text-inherit text-decoration-none">{{product.modelo}}</a></h2>
+                     <!-- <div> -->
+                     <!-- rating -->
+                     <!-- <small class="text-warning">
                               <i class="bi bi-star-fill"></i>
                               <i class="bi bi-star-fill"></i>
                               <i class="bi bi-star-fill"></i>
@@ -267,55 +283,57 @@
                            </small>
                            <span class="text-muted small">4.5(149)</span>
                         </div> -->
-                        <!-- price -->
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                           <div>
-                              <span style="font-size: 15px; font-family: sans-serif;" class="text-dark">{{product.precio | currency: 'USD'}}</span>
-                              <!-- <span class="text-decoration-line-through text-muted">$24</span> -->
-                           </div>
-                           <!-- btn -->
-                           <div>
-                          
-                              <button style="font-size: 12px; font-family: sans-serif;" type="button" class="btn btn-primary" (click)="addToCart(product)">Agregar <i
-                                    class="bi bi-bag-plus"></i></button>
-                           </div>
+                     <!-- price -->
+                     <div class="d-flex justify-content-between align-items-center mt-3">
+                        <div>
+                           <span style="font-size: 15px; font-family: sans-serif;" class="text-dark">{{product.precio |
+                              currency: 'USD'}}</span>
+                           <!-- <span class="text-decoration-line-through text-muted">$24</span> -->
+                        </div>
+                        <!-- btn -->
+                        <div>
+
+                           <button style="font-size: 12px; font-family: sans-serif;" type="button"
+                              class="btn btn-primary" (click)="addToCart(product)">Agregar <i
+                                 class="bi bi-bag-plus"></i></button>
                         </div>
                      </div>
                   </div>
                </div>
-
             </div>
-            <div class="row mt-8">
-               <div class="col">
-                  <!-- nav -->
-                  <nav>
+
+         </div>
+         <div class="row mt-8">
+            <div class="col">
+               <!-- nav -->
+               <nav>
 
 
 
-                     <div *ngIf="!completed; else paginator">
-                        <h2>load</h2>
+                  <div *ngIf="!completed; else paginator">
+                     <h2>load</h2>
 
-                     </div>
-
-
-
-                     <ng-template #paginator>
-                        <app-pagination></app-pagination>
-                     </ng-template>
+                  </div>
 
 
-                  </nav>
-               </div>
+
+                  <ng-template #paginator>
+                     <app-pagination></app-pagination>
+                  </ng-template>
+
+
+               </nav>
             </div>
-         </section>
-      </div>
+         </div>
+      </section>
    </div>
+</div>
 
 
 
 
 
-   <mat-divider style="margin-top: 20px;"></mat-divider>
+<mat-divider style="margin-top: 20px;"></mat-divider>
 
 
 <footer style="margin-top: 20px" class="footer">
