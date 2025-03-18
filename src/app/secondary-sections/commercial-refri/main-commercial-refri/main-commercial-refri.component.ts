@@ -22,7 +22,7 @@ export class MainCommercialRefriComponent implements OnInit {
 
 
   route(category){
-    this.router.navigate(['refrigeracion-comercial/categorias'], {queryParams: {categoria: category, page: 1}})
+    this.router.navigate(['refrigeracion-comercial/categorias'], {queryParams: {q: category, categoria: 'REFRIGERACION COMERCIAL',page: 1}})
   }
 
 

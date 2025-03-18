@@ -58,7 +58,15 @@ export class SearchResultsComponent implements OnInit {
 
   categoryChips: any = []
 
-  categoryValues: Array<any> = []
+  categoryValues: Array<any> = [
+    { category_name: 'Aire acondicionado' },
+    { category_name: 'Automotriz' },
+    { category_name: 'Herramientas' },
+    { category_name: 'Hogar' },
+    { category_name: 'Lavadora' },
+    { category_name: 'Nevera' },
+    { category_name: 'Secadora' },
+  ]
 
 
 
@@ -80,10 +88,10 @@ export class SearchResultsComponent implements OnInit {
     public loginService: LoginService
 
   ) {
-  
+
   }
 
- 
+
 
 
 
@@ -99,17 +107,36 @@ export class SearchResultsComponent implements OnInit {
         //send route path here 
         let routePath = window.location.pathname;
         this.generalPagination(queryString, routePath);
-      
+
       }
     )
-
-
   }
 
 
-  productDescription(id){
+
+
+
+
+
+  productDescription(id) {
     console.log(id)
-    this.router.navigate(['/product-details'], {queryParams: {id: id}})
+    this.router.navigate(['/product-details'], { queryParams: { id: id } })
+  }
+
+
+  multiSelection(product, event){
+    if (event.checked) {
+      console.log('event checked', event.checked, product)
+      // this.productsSelected.push(product);
+      // console.log(this.productsSelected)
+    }
+    else {
+      console.log('Event not checked!', event.checked,product)
+      // let index = this.productsSelected.findIndex((arrayProduct) => arrayProduct._id === product._id)
+      // this.productsSelected.splice(index, 1)
+      // console.log(this.productsSelected)
+    }
+
   }
 
 
@@ -117,7 +144,7 @@ export class SearchResultsComponent implements OnInit {
 
 
   // this function does all searching 
-  generalPagination(query, routePath){
+  generalPagination(query, routePath) {
     this.productsService.generalQuery(query, routePath).subscribe({
       next: (pager: any) => {
         this.paginationService.pagerSearch = 'search'
@@ -165,36 +192,40 @@ export class SearchResultsComponent implements OnInit {
 
 
 
-  addToCart(product) {
 
-    if(this.loginService.selectedUser.cart.some(cartProducts => cartProducts._id == product._id)){
+
+
+
+
+  addToCart(product) {
+    if (this.loginService.selectedUser.cart.some(cartProducts => cartProducts._id == product._id)) {
       console.log('product in cart')
       this.alert.notifyWarn('Ya tienes este producto en carrito', 2000, 'top', 'center')
     }
     else {
-      
-    
-    product.quantity = 1
-    this.cartService.addProductsToLoggedUserCart(product).subscribe(
-      {
-        next: (value) => {
-          console.log(value)
-        },
-        complete: () => {
-          this.cartService.updateCount();
-          console.log(this.loginService.selectedUser.cart)
-          const dialogRef = this.dialog.open(CartOverviewComponent, {
-            width: '550px'
-          });
-          dialogRef.afterClosed().subscribe(
-            () => {
-              console.log('cerrado')
-            }
-          )
 
+
+      product.quantity = 1
+      this.cartService.addProductsToLoggedUserCart(product).subscribe(
+        {
+          next: (value) => {
+            console.log(value)
+          },
+          complete: () => {
+            this.cartService.updateCount();
+            console.log(this.loginService.selectedUser.cart)
+            const dialogRef = this.dialog.open(CartOverviewComponent, {
+              width: '550px'
+            });
+            dialogRef.afterClosed().subscribe(
+              () => {
+                console.log('cerrado')
+              }
+            )
+
+          }
         }
-      }
-    )
+      )
     }
   }
 
