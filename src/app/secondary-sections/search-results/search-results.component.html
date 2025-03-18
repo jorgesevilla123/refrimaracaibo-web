@@ -192,7 +192,7 @@
          <div class="d-lg-flex justify-content-between align-items-center">
 
             <!-- icon -->
-            <div class="d-md-flex justify-content-between align-items-center">
+            <div class=" justify-content-between align-items-center">
                <div class="d-flex align-items-center justify-content-between">
 
                   <div class="ms-2 d-lg-none">
@@ -207,8 +207,20 @@
                      </a>
                   </div>
                </div>
-
+               <div *ngIf="categoriesFilters.length > 0; then showFilters" class="chip-group"></div>
+               <ng-template #showFilters>
+                  <h3>Filtrar por:</h3>
+                <div class="d-flex">
+                  <div style="display: flexbox; margin-left: 3px;" *ngFor="let values of categoriesFilters">
+                     <span style="font-size: 12px;" class="badge text-bg-primary">{{values}}</span>
+                  </div>
+                </div>
+               
+               </ng-template>
+            </div>
+   
                <div class="d-flex mt-2 mt-lg-0">
+                  
 
                   <div>
                      <!-- select option -->
@@ -222,9 +234,13 @@
                   </div>
                </div>
             </div>
-         </div>
+         
+      
+         
          <!-- row -->
          <div class="row g-4 row-cols-xl-4 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
+            
+            
             <!-- col -->
             <div class="col" *ngFor="let product of products">
                <!-- card -->

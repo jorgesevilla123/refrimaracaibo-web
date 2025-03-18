@@ -57,6 +57,7 @@ export class SearchResultsComponent implements OnInit {
   isFiltering: boolean
 
   categoryChips: any = []
+  queryString: any
 
   categoryValues: Array<any> = [
     { category_name: 'Aire acondicionado' },
@@ -67,6 +68,8 @@ export class SearchResultsComponent implements OnInit {
     { category_name: 'Nevera' },
     { category_name: 'Secadora' },
   ]
+
+  categoriesFilters: Array<any> = []
 
 
 
@@ -100,13 +103,13 @@ export class SearchResultsComponent implements OnInit {
 
     this.route.queryParamMap.subscribe(
       ({ params }: any) => {
-        let queryString = window.location.search;
+        this.queryString = window.location.search;
         this.query = params.q
         this.paginationService.query = this.query
         // this.searchProducts(this.query, params.page)
         //send route path here 
         let routePath = window.location.pathname;
-        this.generalPagination(queryString, routePath);
+        this.generalPagination(this.queryString, routePath);
 
       }
     )
@@ -127,14 +130,20 @@ export class SearchResultsComponent implements OnInit {
   multiSelection(product, event){
     if (event.checked) {
       console.log('event checked', event.checked, product)
-      // this.productsSelected.push(product);
-      // console.log(this.productsSelected)
+      this.categoriesFilters.push(product);
+      console.log(this.categoriesFilters)
+      let string = JSON.stringify(this.categoriesFilters)
+      console.log(this.paginationService.paginatorRoutePath)
+      this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, categoria: string} })
+      
+      
+      
     }
     else {
       console.log('Event not checked!', event.checked,product)
-      // let index = this.productsSelected.findIndex((arrayProduct) => arrayProduct._id === product._id)
-      // this.productsSelected.splice(index, 1)
-      // console.log(this.productsSelected)
+      let index = this.categoriesFilters.findIndex((arrayProduct) => arrayProduct === product)
+      this.categoriesFilters.splice(index, 1)
+      console.log(this.categoriesFilters)
     }
 
   }

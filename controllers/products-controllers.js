@@ -305,6 +305,7 @@ function generalPaginationFunction(req, res){
     let page = req.query.page
     let {routePath} = req.body;
     console.log(routePath)
+    console.log('loggin category: ', category)
     
     //destructuring queries coming from the client
     const queryObj = {...req.query}
@@ -322,6 +323,7 @@ function generalPaginationFunction(req, res){
     }
     if('categoria' in queryObj){
         dbQueryBody.$and.push({categoria: category})
+      
     }
     if('precio' in queryObj){
         dbQueryBody.$and.push({precio: {$lte: price}})
