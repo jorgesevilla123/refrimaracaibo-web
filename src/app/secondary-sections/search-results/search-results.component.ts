@@ -60,13 +60,13 @@ export class SearchResultsComponent implements OnInit {
   queryString: any
 
   categoryValues: Array<any> = [
-    { category_name: 'Aire acondicionado' },
-    { category_name: 'Automotriz' },
-    { category_name: 'Herramientas' },
-    { category_name: 'Hogar' },
-    { category_name: 'Lavadora' },
-    { category_name: 'Nevera' },
-    { category_name: 'Secadora' },
+    { category_name: 'AIRE ACONDICIONADO' },
+    { category_name: 'AUTOMOTRIZ' },
+    { category_name: 'HERRAMIENTAS' },
+    { category_name: 'HOGAR' },
+    { category_name: 'LAVADORA' },
+    { category_name: 'NEVERA' },
+    { category_name: 'SECADORA' },
   ]
 
   categoriesFilters: Array<any> = []
@@ -89,7 +89,6 @@ export class SearchResultsComponent implements OnInit {
     public paginationService: PaginationService,
     public dialog: MatDialog,
     public loginService: LoginService
-
   ) {
 
   }
@@ -128,22 +127,31 @@ export class SearchResultsComponent implements OnInit {
 
 
   multiSelection(product, event){
-    if (event.checked) {
+    if (event.checked ) {
+      let index = this.paginationService.categoryValues.findIndex( categoryValue => categoryValue.category_name === product )
+      this.paginationService.categoryValues[index].checked = true
       console.log('event checked', event.checked, product)
       this.categoriesFilters.push(product);
       console.log(this.categoriesFilters)
       let string = JSON.stringify(this.categoriesFilters)
+
       console.log(this.paginationService.paginatorRoutePath)
-      this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, categoria: string} })
+      this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage,categoria: string} })
       
       
       
     }
-    else {
+    else if(!event.checked && this.categoriesFilters.length == 1){
+      this.paginationService.categoryValues[product].checked = false
       console.log('Event not checked!', event.checked,product)
       let index = this.categoriesFilters.findIndex((arrayProduct) => arrayProduct === product)
       this.categoriesFilters.splice(index, 1)
-      console.log(this.categoriesFilters)
+      let string = JSON.stringify(this.categoriesFilters)
+      this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage ,categoria: string} })
+    }
+    else {
+      this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage} })
+
     }
 
   }
@@ -158,12 +166,13 @@ export class SearchResultsComponent implements OnInit {
       next: (pager: any) => {
         this.paginationService.pagerSearch = 'search'
         this.paginationService.paginatorQueryParams = pager.queryParams;
-        console.log(pager);
         this.paginationService.pager = pager
         this.paginationService.query = query;
         this.paginationService.paginatorRoutePath = pager.paginatorRoute
-        this.resultsLength = pager.pageOfItems.length
+        this.resultsLength = pager.products.length
         this.products = pager.pageOfItems
+        console.log(pager)
+        console.log(this.products)
         setTimeout(() => {
           this.completed = true
         }, 200)

@@ -18,6 +18,16 @@ export class PaginationService {
   paginatorRoutePath: string //this is the path that is going to be used when routing 
   paginatorQueryParams: any
 
+  categoryValues: any = [
+    { category_name: 'AIRE ACONDICIONADO', checked: false },
+    { category_name: 'AUTOMOTRIZ', checked: false },
+    { category_name: 'HERRAMIENTAS', checked: false },
+    { category_name: 'HOGAR', checked: false },
+    { category_name: 'LAVADORA', checked: false },
+    { category_name: 'NEVERA', checked: false },
+    { category_name: 'SECADORA', checked: false },
+  ]
+
   constructor(
     private productService: ProductsService,
     private router: Router,

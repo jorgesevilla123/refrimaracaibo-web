@@ -303,9 +303,15 @@ function generalPaginationFunction(req, res){
     let price = req.query.precio
     let regex;
     let page = req.query.page
+    console.log(page)
     let {routePath} = req.body;
     console.log(routePath)
-    console.log('loggin category: ', category)
+    let parsedCategory;
+    if(category){
+        parsedCategory = JSON.parse(category)
+    }
+  
+    console.log('loggin parsed category: ', parsedCategory)
     
     //destructuring queries coming from the client
     const queryObj = {...req.query}
@@ -322,7 +328,7 @@ function generalPaginationFunction(req, res){
     dbQueryBody.$and.push({$or: [{title: regex}, {modelo: regex}]})
     }
     if('categoria' in queryObj){
-        dbQueryBody.$and.push({categoria: category})
+        dbQueryBody.$and.push({categoria: {$in: parsedCategory}})
       
     }
     if('precio' in queryObj){
@@ -340,7 +346,8 @@ function generalPaginationFunction(req, res){
                 console.log(err)
             }
             else {
-                console.log(foundProducts);
+                console.log(foundProducts)
+
                 let queryParams = {
                     queryParams: queryObj
                 }
