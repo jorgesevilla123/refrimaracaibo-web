@@ -207,11 +207,11 @@
                      </a>
                   </div>
                </div>
-               <div *ngIf="categoriesFilters.length > 0; then showFilters" class="chip-group"></div>
+               <div *ngIf="paginationService.categoriesSelected.length > 0; then showFilters" class="chip-group"></div>
                <ng-template #showFilters>
                   <h3>Filtrar por:</h3>
                 <div class="d-flex">
-                  <div style="display: flexbox; margin-left: 3px;" *ngFor="let values of categoriesFilters">
+                  <div style="display: flexbox; margin-left: 3px;" *ngFor="let values of paginationService.categoriesSelected">
                      <span style="font-size: 12px;" class="badge text-bg-primary">{{values}}</span>
                   </div>
                 </div>

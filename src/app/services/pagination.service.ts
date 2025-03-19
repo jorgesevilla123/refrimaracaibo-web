@@ -28,6 +28,12 @@ export class PaginationService {
     { category_name: 'SECADORA', checked: false },
   ]
 
+  categoriesSelected: Array<any> = []
+
+
+
+
+
   constructor(
     private productService: ProductsService,
     private router: Router,

@@ -53,27 +53,11 @@ export class SearchResultsComponent implements OnInit {
 
 
 
-  matchExist: boolean
-  isFiltering: boolean
-
-  categoryChips: any = []
   queryString: any
 
-  categoryValues: Array<any> = [
-    { category_name: 'AIRE ACONDICIONADO' },
-    { category_name: 'AUTOMOTRIZ' },
-    { category_name: 'HERRAMIENTAS' },
-    { category_name: 'HOGAR' },
-    { category_name: 'LAVADORA' },
-    { category_name: 'NEVERA' },
-    { category_name: 'SECADORA' },
-  ]
-
-  categoriesFilters: Array<any> = []
 
 
-
-
+ 
 
 
 
@@ -98,6 +82,7 @@ export class SearchResultsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getLocalStorage()
 
 
     this.route.queryParamMap.subscribe(
@@ -130,29 +115,34 @@ export class SearchResultsComponent implements OnInit {
     if (event.checked ) {
       let index = this.paginationService.categoryValues.findIndex( categoryValue => categoryValue.category_name === product )
       this.paginationService.categoryValues[index].checked = true
+      this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
+
       console.log('event checked', event.checked, product)
-      this.categoriesFilters.push(product);
-      console.log(this.categoriesFilters)
-      let string = JSON.stringify(this.categoriesFilters)
+      this.paginationService.categoriesSelected.push(product);
+      console.log(this.paginationService.categoriesSelected)
+      let string = JSON.stringify(this.paginationService.categoriesSelected)
 
       console.log(this.paginationService.paginatorRoutePath)
       this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage,categoria: string} })
       
       
       
-    }
-    else if(!event.checked && this.categoriesFilters.length == 1){
-      this.paginationService.categoryValues[product].checked = false
-      console.log('Event not checked!', event.checked,product)
-      let index = this.categoriesFilters.findIndex((arrayProduct) => arrayProduct === product)
-      this.categoriesFilters.splice(index, 1)
-      let string = JSON.stringify(this.categoriesFilters)
-      this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage ,categoria: string} })
-    }
-    else {
+    } 
+    else if(!event.checked && this.paginationService.categoriesSelected.length == 0){
       this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage} })
 
     }
+    else if(!event.checked){
+      let indexValues = this.paginationService.categoryValues.findIndex( categoryValue => categoryValue.category_name === product )
+      this.paginationService.categoryValues[indexValues].checked = false
+      this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
+      console.log('Event not checked!', event.checked,product)
+      let index = this.paginationService.categoriesSelected.findIndex((arrayProduct) => arrayProduct === product)
+      this.paginationService.categoriesSelected.splice(index, 1)
+      let string = JSON.stringify(this.paginationService.categoriesSelected)
+      this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage ,categoria: string} })
+    }
+   
 
   }
 
@@ -255,6 +245,28 @@ export class SearchResultsComponent implements OnInit {
     this.cartService.deleteById(product)
     this.cartService.updateCount()
     this.alert.notifySuccess('Producto eliminado del carrito', 800, 'top', 'center');
+  }
+
+
+
+  setCategoriesInLocalStorage(categoryValuesArray){
+    let categoryValues = JSON.stringify(categoryValuesArray);
+    console.log(categoryValues)
+    localStorage.setItem('category_values', categoryValues);
+    console.log('local storage set')
+  }
+
+
+  getLocalStorage(){
+    let values = localStorage.getItem('category_values');
+    if(values === null){
+      return
+    }else {
+      console.log(values)
+    let category_values = JSON.parse(values);
+    this.paginationService.categoryValues = category_values;
+    }
+
   }
 
 
