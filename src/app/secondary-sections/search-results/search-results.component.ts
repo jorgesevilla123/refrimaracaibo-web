@@ -82,7 +82,8 @@ export class SearchResultsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getLocalStorage()
+    this.getCategoriesValuesLocalStorage();
+    this.getCategoriesSelectedLocalStorage();
 
 
     this.route.queryParamMap.subscribe(
@@ -115,11 +116,10 @@ export class SearchResultsComponent implements OnInit {
     if (event.checked ) {
       let index = this.paginationService.categoryValues.findIndex( categoryValue => categoryValue.category_name === product )
       this.paginationService.categoryValues[index].checked = true
-      this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
-
-      console.log('event checked', event.checked, product)
       this.paginationService.categoriesSelected.push(product);
-      console.log(this.paginationService.categoriesSelected)
+      this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
+      this.setSelectedCategoriesInLocalStorage(this.paginationService.categoriesSelected);
+  
       let string = JSON.stringify(this.paginationService.categoriesSelected)
 
       console.log(this.paginationService.paginatorRoutePath)
@@ -128,7 +128,7 @@ export class SearchResultsComponent implements OnInit {
       
       
     } 
-    else if(!event.checked && this.paginationService.categoriesSelected.length == 0){
+    else if(!event.checked && this.paginationService.categoriesSelected.length < 1){
       this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage} })
 
     }
@@ -139,6 +139,7 @@ export class SearchResultsComponent implements OnInit {
       console.log('Event not checked!', event.checked,product)
       let index = this.paginationService.categoriesSelected.findIndex((arrayProduct) => arrayProduct === product)
       this.paginationService.categoriesSelected.splice(index, 1)
+      this.setSelectedCategoriesInLocalStorage(this.paginationService.categoriesSelected);
       let string = JSON.stringify(this.paginationService.categoriesSelected)
       this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage ,categoria: string} })
     }
@@ -257,7 +258,7 @@ export class SearchResultsComponent implements OnInit {
   }
 
 
-  getLocalStorage(){
+  getCategoriesValuesLocalStorage(){
     let values = localStorage.getItem('category_values');
     if(values === null){
       return
@@ -266,7 +267,24 @@ export class SearchResultsComponent implements OnInit {
     let category_values = JSON.parse(values);
     this.paginationService.categoryValues = category_values;
     }
+  }
 
+  setSelectedCategoriesInLocalStorage(categoriesSelectedArray){
+    let categoriesSelected = JSON.stringify(categoriesSelectedArray);
+    localStorage.setItem('categories_selected', categoriesSelected);
+  }
+
+
+
+  getCategoriesSelectedLocalStorage(){
+    let values = localStorage.getItem('category_values');
+    if(values === null){
+      return
+    }else {
+      console.log(values)
+    let categories_selected = JSON.parse(values);
+    this.paginationService.categoriesSelected = categories_selected;
+    }
   }
 
 
