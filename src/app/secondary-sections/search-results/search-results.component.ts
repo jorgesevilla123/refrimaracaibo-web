@@ -136,11 +136,10 @@ export class SearchResultsComponent implements OnInit {
     else if(!event.checked){
       let indexValues = this.paginationService.categoryValues.findIndex( categoryValue => categoryValue.category_name === product )
       this.paginationService.categoryValues[indexValues].checked = false
-    
-      console.log('Event not checked!', event.checked,product)
       let index = this.paginationService.categoriesSelected.findIndex((arrayProduct) => arrayProduct === product)
       this.paginationService.categoriesSelected.splice(index, 1)
       this.setSelectedCategoriesInLocalStorage(this.paginationService.categoriesSelected);
+      this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
       let string = JSON.stringify(this.paginationService.categoriesSelected)
       this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage ,categoria: string} })
     }
@@ -251,24 +250,21 @@ export class SearchResultsComponent implements OnInit {
 
 
 
-  setCategoriesInLocalStorage(categoryValuesArray, categoriesSelectedArray){
+  setCategoriesInLocalStorage(categoryValuesArray){
     let categoryValues = JSON.stringify(categoryValuesArray);
-    let categoriesSelected = JSON.stringify(categoriesSelectedArray);
     console.log(categoryValues)
     localStorage.setItem('category_values', categoryValues);
-    localStorage.setItem('categories_selected', categoriesSelected);
     console.log('local storage set')
   }
 
 
   getCategoriesValuesLocalStorage(){
-    let values = localStorage.getItem('category_values');
-    if(values === null){
+    let categoriesValues = localStorage.getItem('category_values');
+    if(categoriesValues === null){
       return
     }else {
   
     let category_values = JSON.parse(categoriesValues);
-    let categories_selected = JSON.parse(categoriesSelected);
     this.paginationService.categoryValues = category_values;
     }
   }
@@ -281,12 +277,13 @@ export class SearchResultsComponent implements OnInit {
 
 
   getCategoriesSelectedLocalStorage(){
-    let values = localStorage.getItem('category_values');
+    let values = localStorage.getItem('categories_selected');
     if(values === null){
       return
     }else {
       console.log(values)
     let categories_selected = JSON.parse(values);
+    console.log('setting categories selected from the local storage')
     this.paginationService.categoriesSelected = categories_selected;
     }
   }
