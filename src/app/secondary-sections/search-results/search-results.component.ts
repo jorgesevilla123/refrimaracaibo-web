@@ -277,7 +277,7 @@ export class SearchResultsComponent implements OnInit {
 
 
   getCategoriesSelectedLocalStorage(){
-    let values = localStorage.getItem('category_values');
+    let values = localStorage.getItem('categories_selected');
     if(values === null){
       return
     }else {
