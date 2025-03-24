@@ -3,6 +3,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs';
 import { ProductsService } from '../../services/products.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, OperatorFunction } from 'rxjs';
+import { PaginationService } from 'src/app/services/pagination.service';
 
 
 
@@ -24,6 +25,7 @@ export class MainSearchBarComponent implements OnInit {
 
   constructor(
     public productService: ProductsService,
+    public paginationService: PaginationService,
     private router : Router,
     private route: ActivatedRoute,
   ) { }
@@ -80,6 +82,9 @@ export class MainSearchBarComponent implements OnInit {
   search(value){
     console.log(value)
 
+
+    this.paginationService.categoryValues.forEach( (category) => category.checked = false)
+    this.paginationService.categoriesSelected = []
     this.router.navigate(['/search'], {queryParams: { q: value, page: 1}})
   }
 

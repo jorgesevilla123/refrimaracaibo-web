@@ -1,18 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CartService } from '../../services/cart.service'
 import { LoginService } from '../../services/login.service'
 import { AlertService } from 'src/app/shared/alert.service';
 import { FormControl } from '@angular/forms'
-import { getCategories, getRootCategories } from 'FOR-TEST/products-management'
 import { PaginationService } from '../../services/pagination.service'
 import { PaginationComponent } from '../pagination/pagination.component'
-import { MatOptionSelectionChange } from '@angular/material/core';
-import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
-import { FlatTreeControl } from '@angular/cdk/tree';
 import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-overview.component';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
+import { MatDialog } from '@angular/material/dialog'
 
 
 
@@ -31,7 +27,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss']
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent implements OnInit, OnDestroy {
 
 
 
@@ -78,6 +74,20 @@ export class SearchResultsComponent implements OnInit {
   }
 
 
+  ngOnDestroy(): void {
+    //clearing categories from localstorage
+    localStorage.clear();
+    console.log('component destroyed');
+    //setting categories to false when exiting the component
+    this.paginationService.categoryValues.forEach( (category) => category.checked = false)
+    this.paginationService.categoriesSelected = []
+  }
+
+
+
+
+
+
 
 
 
@@ -85,15 +95,16 @@ export class SearchResultsComponent implements OnInit {
     this.getCategoriesValuesLocalStorage();
     this.getCategoriesSelectedLocalStorage();
 
-
     this.route.queryParamMap.subscribe(
       ({ params }: any) => {
+        console.log('routing')
         this.queryString = window.location.search;
         this.query = params.q
         this.paginationService.query = this.query
         // this.searchProducts(this.query, params.page)
         //send route path here 
         let routePath = window.location.pathname;
+        console.log(routePath)
         this.generalPagination(this.queryString, routePath);
 
       }
@@ -106,10 +117,16 @@ export class SearchResultsComponent implements OnInit {
 
 
 
+
+
+
   productDescription(id) {
     console.log(id)
     this.router.navigate(['/product-details'], { queryParams: { id: id } })
   }
+
+
+
 
 
   multiSelection(product, event){
@@ -125,11 +142,14 @@ export class SearchResultsComponent implements OnInit {
 
       console.log(this.paginationService.paginatorRoutePath)
       this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage,categoria: string} })
-      
-      
-      
     } 
-    else if(!event.checked && this.paginationService.categoriesSelected.length < 1){
+    else if(!event.checked && this.paginationService.categoriesSelected.length == 1){
+      let indexValues = this.paginationService.categoryValues.findIndex( categoryValue => categoryValue.category_name === product )
+      this.paginationService.categoryValues[indexValues].checked = false
+      let index = this.paginationService.categoriesSelected.findIndex((arrayProduct) => arrayProduct === product)
+      this.paginationService.categoriesSelected.splice(index, 1)
+      this.setSelectedCategoriesInLocalStorage(this.paginationService.categoriesSelected);
+      this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
       this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage} })
 
     }
@@ -143,8 +163,6 @@ export class SearchResultsComponent implements OnInit {
       let string = JSON.stringify(this.paginationService.categoriesSelected)
       this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage ,categoria: string} })
     }
-   
-
   }
 
 
@@ -256,6 +274,8 @@ export class SearchResultsComponent implements OnInit {
     localStorage.setItem('category_values', categoryValues);
     console.log('local storage set')
   }
+
+
 
 
   getCategoriesValuesLocalStorage(){
