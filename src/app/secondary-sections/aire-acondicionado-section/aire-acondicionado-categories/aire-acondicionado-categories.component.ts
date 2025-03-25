@@ -105,6 +105,12 @@ export class AireAcondicionadoCategoriesComponent implements OnInit {
 
 
 
+  multiSelection(product, event){
+    
+  }
+
+
+
 
 
 
