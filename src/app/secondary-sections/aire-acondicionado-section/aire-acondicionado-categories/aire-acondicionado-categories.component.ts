@@ -59,14 +59,14 @@ export class AireAcondicionadoCategoriesComponent implements OnInit {
   
   generalPagination(query, routePath){
 
-    console.log(query);
-    console.log(routePath);
+  
     this.productsService.generalQuery(query, routePath).subscribe({
       next: (pager: any) => {
         this.paginationService.paginatorQueryParams = pager.queryParams;
         console.log(pager);
         this.paginationService.pager = pager
         this.paginationService.query = query;
+        console.log(query)
         this.paginationService.paginatorRoutePath = pager.paginatorRoute
         this.resultsLength = pager.pageOfItems.length
         this.products = pager.pageOfItems
@@ -109,7 +109,7 @@ export class AireAcondicionadoCategoriesComponent implements OnInit {
 
 
   multiSelection(product, event){
-    
+
   }
 
 

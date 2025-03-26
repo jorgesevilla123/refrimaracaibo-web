@@ -303,14 +303,37 @@ function generalPaginationFunction(req, res){
     let price = req.query.precio
     let regex;
     let page = req.query.page
-    console.log(page)
+    console.log(category);
+    
+    const isValidJson = str => {
+        try {
+            JSON.parse(str)
+            return true
+            
+        } catch (error) {
+            return false
+        }
+    }
+
+ 
+
+
+
     let {routePath} = req.body;
     console.log(routePath)
     let parsedCategory;
     if(category){
-        console.log(typeof category)
+        if(isValidJson(category)){
+            console.log('is a valid json')
+            
+            parsedCategory = JSON.parse(category)
+        }
+        else {
+            console.log('not a valid json')
+            parsedCategory = category
+        }
         console.log('loggin category: ', category)
-        parsedCategory = JSON.parse(category)
+
     }
   
     console.log('loggin parsed category: ', parsedCategory)

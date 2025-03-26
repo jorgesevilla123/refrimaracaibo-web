@@ -137,9 +137,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       this.paginationService.categoriesSelected.push(product);
       this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
       this.setSelectedCategoriesInLocalStorage(this.paginationService.categoriesSelected);
-  
       let string = JSON.stringify(this.paginationService.categoriesSelected)
-
       console.log(this.paginationService.paginatorRoutePath)
       this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage,categoria: string} })
     } 
