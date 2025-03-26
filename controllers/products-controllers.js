@@ -308,6 +308,8 @@ function generalPaginationFunction(req, res){
     console.log(routePath)
     let parsedCategory;
     if(category){
+        console.log(typeof category)
+        console.log('loggin category: ', category)
         parsedCategory = JSON.parse(category)
     }
   
@@ -346,7 +348,7 @@ function generalPaginationFunction(req, res){
                 console.log(err)
             }
             else {
-                console.log(foundProducts)
+            
 
                 let queryParams = {
                     queryParams: queryObj
