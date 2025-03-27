@@ -11,7 +11,10 @@ const productSchema = new Schema({
     imagePath: String,
     rootCategory: String,
     categories: Array,
-    categoria: String
+    categoria: String,
+    make: String,
+    product_type: String 
+
 })
 
 
