@@ -92,6 +92,7 @@
                      <p class="mb-4 d-block link-underline-opacity-0">AUTOMOTRIZ</p>
                      <!-- heading -->
                      <h1 class="mb-1 fs-4">{{product.title}}</h1>
+                     <h3 class="mb-1">Marca: {{product.make}}</h3>
                      <div class="mb-4">
                         <!-- rating -->
                         <!-- rating -->
@@ -143,9 +144,8 @@
                          </ng-template>
  
                          <ng-template #notAdded>
-                            <button style="font-size: 15px; text-align: center;" type="button" class="btn btn-success btn-lg" (click)="addToCart(formQuantity)"><i
-                               class="bi bi-bag-plus-fill text-white"></i> Agregar al carrito</button>
- 
+                            <button style="font-size: 15px; text-align: center; background-color: #179c0e; color: white; font-weight: 500;" type="button" class="btn" (click)="addToCart(formQuantity)">Agregar al carrito <i class="bi bi-cart-plus text-white"></i></button>
+                           
                          </ng-template>
  
  
@@ -154,7 +154,7 @@
                         </div>
                         <div class="col-md-4 col-4">
                            <!-- btn -->
-                           <button class="btn btn-dark" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+                           <button class="btn btn-danger" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Wishlist"><i class="bi bi-heart-fill text-white"></i></button>
                         </div>
                      </div>
                      <!-- hr -->

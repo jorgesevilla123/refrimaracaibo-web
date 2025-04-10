@@ -59,7 +59,7 @@ export class CartService {
 
   deleteProductFromCart(product) {
     let index = this.loginService.selectedUser.cart.indexOf(product)
-    this.loginService.selectedUser[0].cart.splice(index, 1)
+    this.loginService.selectedUser.cart.splice(index, 1)
     let profile = this.loginService.selectedUser
 
     return this.http.post(`${this.uri}/remove-from-cart`, profile)
