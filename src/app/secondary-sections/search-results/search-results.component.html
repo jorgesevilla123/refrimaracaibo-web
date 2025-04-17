@@ -109,56 +109,73 @@
    <div class="row">
       <!-- col -->
 
-         <aside style="margin-top: 100px; width: 250px;" class="col-lg-3 col-md-4 mb-6 mb-md-0">
-           <h4 style="color: black; margin-top: 20px; font-weight: bold;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory"
-           aria-expanded="false" aria-controls="collapseCategory">Filtrar por categorias <i
-           class="bi bi-chevron-down"></i></h4>
-
-           <div class="collapse" id="collapseCategory" *ngFor="let category of paginationService.categoryValues">
-
-            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;" class="form-check-input" [checked]="category.checked" type="checkbox" #categoryOption (change)="multiSelection(category.category_name, categoryOption)"> {{category.category_name}}</h3>
-
-        </div>
-
-
-         <mat-divider style="margin-top: 20px;"></mat-divider>
-
-
-                   <h4 style="color: black; margin-top: 20px; font-weight: bold;" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrice"
-           aria-expanded="false" aria-controls="collapseExample">Filtrar precio <i
-           class="bi bi-chevron-down"></i></h4>
-
-           <div class="collapse" id="collapsePrice">
-
-            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> Whirlpool</h3>
-            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> Frigidaire, electrolux</h3>
-            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> Haier</h3>
-            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> LG</h3>
-            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> Samsung</h3>
-            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;" class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> Maytag</h3>
-        </div>
-
-
-
+      <aside style="margin-top: 100px; width: 250px;" class="col-lg-3 col-md-4 mb-6 mb-md-0">
+         <h4 style="color: black; margin-top: 20px; font-weight: bold;" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">Filtrar por
+            categorias <i class="bi bi-chevron-down"></i></h4>
+         <div class="collapse" id="collapseCategory" *ngFor="let category of paginationService.categoryValues">
+            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;"
+                  class="form-check-input" [checked]="category.checked" type="checkbox" #categoryOption
+                  (change)="multiSelection(category.category_name, categoryOption)"> {{category.category_name}}</h3>
+         </div>
 
 
          <mat-divider style="margin-top: 20px;"></mat-divider>
 
+
+
+         <h4 style="color: black; margin-top: 20px; font-weight: bold;" type="button" data-bs-toggle="collapse"
+         data-bs-target="#collapseMake" aria-expanded="false" aria-controls="collapseMake">Filtrar por
+         marcas <i class="bi bi-chevron-down"></i></h4>
+      <div style="max-height: 200px; overflow-y: scroll;" class="collapse" id="collapseMake" >
+         <div *ngFor="let category of makeValues">
+            <h3><input style="font-size: 15px; border-width: 1px; border-color: black; margin-right: 10px;"
+               class="form-check-input" [checked]="category.checked" type="checkbox" #makeOption
+               (change)="multiSelection(category.category_name, makeOption)"> {{category.category_name}}</h3>
+         </div>
+        
+      </div>
+
+
+      <mat-divider style="margin-top: 20px;"></mat-divider>
+
+
+
+         <h4 style="color: black; margin-top: 20px; font-weight: bold;" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapsePrice" aria-expanded="false" aria-controls="collapseExample">Filtrar precio <i
+               class="bi bi-chevron-down"></i></h4>
+
+         <div class="collapse" id="collapsePrice">
+
+            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;"
+                  class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> Whirlpool</h3>
+            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;"
+                  class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> Frigidaire, electrolux</h3>
+            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;"
+                  class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> Haier</h3>
+            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;"
+                  class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> LG</h3>
+            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;"
+                  class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> Samsung</h3>
+            <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;"
+                  class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> Maytag</h3>
+         </div>
+
+
+
+
+         <mat-divider style="margin-top: 20px;"></mat-divider>
          <div style="margin-top: 40px;">
             <!-- Banner Design -->
             <!-- Banner Content -->
             <div>
                <h2 style="font-weight: bold;"><b>Ofertas!</b></h2>
-
                <h3>Promociones en productos seleccionados!</h3>
-
             </div>
             <!-- Banner Content -->
             <!-- Banner Image -->
             <!-- img -->
             <img style="width: auto; height: 200px;" src="../../../assets/fridge.png" alt="" class="img-fluid rounded">
-
-
             <a href="#" style="color: white; margin-top: 20px; width: 100%" class="btn btn-primary">
                Ver promociones
                <i class="bi bi-arrow-right-short"></i>
@@ -167,18 +184,12 @@
          </div>
 
 
-
-
-
-
       </aside>
 
 
 
 
       <section style="margin-top: 40px;" class="col-lg-9 col-md-12">
-
-
          <!-- card -->
          <div
             style="margin-top: 10px; padding-top: 5px; padding-bottom: 5px; background-color: rgba(30, 143, 255, 0.151);"
@@ -210,37 +221,38 @@
                <div *ngIf="paginationService.categoriesSelected.length > 0; then showFilters" class="chip-group"></div>
                <ng-template #showFilters>
                   <h3>Filtrar por:</h3>
-                <div class="d-flex">
-                  <div style="display: flexbox; margin-left: 3px;" *ngFor="let values of paginationService.categoriesSelected">
-                     <span style="font-size: 12px;" class="badge text-bg-primary">{{values}}</span>
+                  <div class="d-flex">
+                     <div style="display: flexbox; margin-left: 3px;"
+                        *ngFor="let values of paginationService.categoriesSelected">
+                        <span style="font-size: 12px;" class="badge text-bg-primary">{{values}}</span>
+                     </div>
                   </div>
-                </div>
-               
+
                </ng-template>
             </div>
-   
-               <div class="d-flex mt-2 mt-lg-0">
-                  
 
-                  <div>
-                     <!-- select option -->
-                     <select class="form-select">
-                        <option selected="">Ordenar por: Featured</option>
-                        <option value="Low to High">Price: Low to High</option>
-                        <option value="High to Low">Price: High to Low</option>
-                        <option value="Release Date">Release Date</option>
-                        <option value="Avg. Rating">Avg. Rating</option>
-                     </select>
-                  </div>
+            <div class="d-flex mt-2 mt-lg-0">
+
+
+               <div>
+                  <!-- select option -->
+                  <select class="form-select">
+                     <option selected="">Ordenar por: Featured</option>
+                     <option value="Low to High">Price: Low to High</option>
+                     <option value="High to Low">Price: High to Low</option>
+                     <option value="Release Date">Release Date</option>
+                     <option value="Avg. Rating">Avg. Rating</option>
+                  </select>
                </div>
             </div>
-         
-      
-         
+         </div>
+
+
+
          <!-- row -->
          <div class="row g-4 row-cols-xl-4 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
-            
-            
+
+
             <!-- col -->
             <div class="col" *ngFor="let product of products">
                <!-- card -->

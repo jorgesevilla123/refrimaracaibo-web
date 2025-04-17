@@ -68,6 +68,36 @@ function paginate(
 
 
 
+function showMake(req, res){
+
+
+ 
+    Product.find( (err, products) => {
+        if(err){
+            console.log(err)
+        }
+        else {
+            let makeList = []
+           products.forEach( (product) => {
+            if(makeList.includes(product.make)){
+               
+            }
+            else {
+                makeList.push(product.make);
+            
+            }
+           })
+           console.log(makeList.sort());
+        }
+    })
+  
+    res.send('sending the values');
+
+    
+}
+
+
+
 
 
 
@@ -80,9 +110,10 @@ function getProducts(req, res){
         else {
             res.json(products)
         }
-
     })
 }
+
+
 
 function getOneProduct(req, res){
     let id = req.query.id
@@ -392,6 +423,7 @@ function generalPaginationFunction(req, res){
 
 
 
-module.exports = {getProducts, searchProducts, decreaseInventory, getProductsByCategory, filterCategory, getSomeProducts, filterTools, getOneProduct, generalFilter, generalPaginationFunction}
+module.exports = {getProducts, searchProducts, decreaseInventory, getProductsByCategory, 
+    filterCategory, getSomeProducts, filterTools, getOneProduct, generalFilter, generalPaginationFunction, showMake}
 
 

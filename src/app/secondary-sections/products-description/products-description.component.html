@@ -139,7 +139,8 @@
                          <div *ngIf="inCart; then Added else notAdded"></div>
  
                          <ng-template #Added>
-                            <button style="font-size: 14px; text-align: center;" type="button" class="btn btn-success disabled"><i class="bi bi-bag-check"></i>Producto en el carrito</button>
+                           <small style="font-size: 15px;" class="text-success">Este producto esta en el carrito</small>
+                            <button style="font-size: 15px; text-align: center;color: white" type="button" class="btn btn-primary" routerLink="/cart">Ver carrito <i class="bi bi-cart text-white"></i></button>
  
                          </ng-template>
  
@@ -154,7 +155,7 @@
                         </div>
                         <div class="col-md-4 col-4">
                            <!-- btn -->
-                           <button class="btn btn-danger" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Wishlist"><i class="bi bi-heart-fill text-white"></i></button>
+                           <!-- <button class="btn btn-danger" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Wishlist"><i class="bi bi-heart-fill text-white"></i></button> -->
                         </div>
                      </div>
                      <!-- hr -->
@@ -165,22 +166,30 @@
                            <tbody>
                               <tr>
                                  <td>Modelo:</td>
-                                 <td>FBB00255</td>
+                                 <td>{{product.modelo}}</td>
                               </tr>
                               <tr>
                                  <td>Disponibilidad:</td>
-                                 <td>In Stock</td>
+                                 <td>
+                                    <div *ngIf="product.cantidad > 0; then inStock else noStock"></div>
+                                    <ng-template #inStock>
+                                       <small class="text-success">Disponible</small>
+                                    </ng-template>
+                                    <ng-template #noStock>
+                                       <small class="text-success">No disponible</small>
+                                    </ng-template>
+                                 </td>
                               </tr>
                               <tr>
                                  <td>Categoria:</td>
-                                 <td>Fruits</td>
+                                 <td>{{product.categoria}}</td>
                               </tr>
                               <tr>
                                  <td>Envios:</td>
                                  <td>
-                                    <small>
-                                       01 day shipping.
-                                       <span class="text-muted">( Free pickup today)</span>
+                                    <small style="font-size: 15px;">
+                                       Envio inmediato.
+                                       <span class="text-muted">( por la compra de +20$ envio gratis )</span>
                                     </small>
                                  </td>
                               </tr>
@@ -195,19 +204,19 @@
                            <ul class="dropdown-menu">
                               <li>
                                  <a class="dropdown-item" href="#">
-                                    <i class="bi bi-facebook me-2"></i>
+                                    <i class="bi bi-facebook me-2 text-black"></i>
                                     Facebook
                                  </a>
                               </li>
                               <li>
                                  <a class="dropdown-item" href="#">
-                                    <i class="bi bi-twitter me-2"></i>
-                                    Twitter
+                                    <i class="bi bi-whatsapp text-black"></i>
+                                    Whatsapp
                                  </a>
                               </li>
                               <li>
                                  <a class="dropdown-item" href="#">
-                                    <i class="bi bi-instagram me-2"></i>
+                                    <i class="bi bi-instagram me-2 text-black"></i>
                                     Instagram
                                  </a>
                               </li>
