@@ -390,6 +390,9 @@ function generalPaginationFunction(req, res){
     if('precio' in queryObj){
         dbQueryBody.$and.push({precio: {$lte: price}})
     }
+    if('make' in queryObj){
+        dbQueryBody.$and.push({make: {$in: }})
+    }
 
     console.log('loggin query object', queryObj);
     console.log('showing dbquery', dbQueryBody);
