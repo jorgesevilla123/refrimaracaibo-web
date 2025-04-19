@@ -353,6 +353,7 @@ function generalPaginationFunction(req, res){
     let {routePath} = req.body;
     console.log(routePath)
     let parsedCategory;
+    let parsedMake;
     if(category){
         if(isValidJson(category)){
             console.log('is a valid json')
@@ -364,10 +365,33 @@ function generalPaginationFunction(req, res){
             parsedCategory = category
         }
         console.log('loggin category: ', category)
-
     }
-  
     console.log('loggin parsed category: ', parsedCategory)
+
+
+
+
+    if(make){
+        if(isValidJson(make)){
+            console.log('is a valid json')
+            parsedMake = JSON.parse(make)
+        }
+        else {
+            console.log('not a valid json')
+            parsedMake = make
+        }
+    }
+
+    console.log('loggin parsed make: ', parsedMake)
+
+
+
+
+
+
+
+
+
     
     //destructuring queries coming from the client
     const queryObj = {...req.query}
@@ -391,7 +415,7 @@ function generalPaginationFunction(req, res){
         dbQueryBody.$and.push({precio: {$lte: price}})
     }
     if('make' in queryObj){
-        dbQueryBody.$and.push({make: {$in: }})
+        dbQueryBody.$and.push({make: {$in: parsedMake}})
     }
 
     console.log('loggin query object', queryObj);
