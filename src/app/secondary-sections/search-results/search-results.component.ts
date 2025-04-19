@@ -94,6 +94,8 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getCategoriesValuesLocalStorage();
     this.getCategoriesSelectedLocalStorage();
+    this.getMakesSelectedLocalStorage();
+    this.getMakesValuesLocalStorage();
 
     this.route.queryParamMap.subscribe(
       ({ params }: any) => {
@@ -129,7 +131,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
 
 
-  multiSelection(product, event){
+  categoryMultiSelection(product, event){
     console.log(this.paginationService.categoriesSelected)
     if (event.checked ) {
       let index = this.paginationService.categoryValues.findIndex( categoryValue => categoryValue.category_name === product )
@@ -162,6 +164,44 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage ,categoria: string} })
     }
   }
+
+
+
+
+  makeMultiSelection(product, event){
+    console.log(this.paginationService.categoriesSelected)
+    if (event.checked ) {
+      let index = this.paginationService.makeValues.findIndex( makeValue => makeValue.make_name === product )
+      this.paginationService.makeValues[index].checked = true
+      this.paginationService.makesSelected.push(product);
+      this.setMakeInLocalStorage(this.paginationService.makeValues);
+      this.setSelectedMakesInLocalStorage(this.paginationService.makesSelected);
+      let string = JSON.stringify(this.paginationService.makesSelected)
+      console.log(this.paginationService.paginatorRoutePath)
+      // this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage,categoria: string} })
+    } 
+    else if(!event.checked && this.paginationService.categoriesSelected.length == 1){
+      let indexValues = this.paginationService.categoryValues.findIndex( categoryValue => categoryValue.category_name === product )
+      this.paginationService.categoryValues[indexValues].checked = false
+      let index = this.paginationService.categoriesSelected.findIndex((arrayProduct) => arrayProduct === product)
+      this.paginationService.categoriesSelected.splice(index, 1)
+      this.setSelectedCategoriesInLocalStorage(this.paginationService.categoriesSelected);
+      this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
+      // this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage} })
+
+    }
+    else if(!event.checked){
+      let indexValues = this.paginationService.categoryValues.findIndex( categoryValue => categoryValue.category_name === product )
+      this.paginationService.categoryValues[indexValues].checked = false
+      let index = this.paginationService.categoriesSelected.findIndex((arrayProduct) => arrayProduct === product)
+      this.paginationService.categoriesSelected.splice(index, 1)
+      this.setSelectedCategoriesInLocalStorage(this.paginationService.categoriesSelected);
+      this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
+      let string = JSON.stringify(this.paginationService.categoriesSelected)
+      // this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage ,categoria: string} })
+    }
+  }
+
 
 
 
@@ -273,6 +313,14 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     console.log('local storage set')
   }
 
+  setMakeInLocalStorage(makeValuesArray){
+    let makeValues = JSON.stringify(makeValuesArray);
+    console.log(makeValues);
+    localStorage.setItem('make_values', makeValues);
+    console.log('local storage set for make')
+
+  }
+
 
 
 
@@ -287,10 +335,33 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     }
   }
 
+
+  getMakesValuesLocalStorage(){
+    let makesValues = localStorage.getItem('make_values');
+    if(makesValues === null){
+      return
+    }else {
+  
+    let make_values = JSON.parse(makesValues);
+    this.paginationService.makeValues = make_values;
+    }
+  }
+
+
+
   setSelectedCategoriesInLocalStorage(categoriesSelectedArray){
     let categoriesSelected = JSON.stringify(categoriesSelectedArray);
     localStorage.setItem('categories_selected', categoriesSelected);
   }
+
+
+
+  setSelectedMakesInLocalStorage(makesSelectedArray){
+    let makesSelected = JSON.stringify(makesSelectedArray);
+    localStorage.setItem('makes_selected', makesSelected);
+  }
+
+
 
 
 
@@ -304,6 +375,19 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     console.log('setting categories selected from the local storage')
     this.paginationService.categoriesSelected = categories_selected;
     }
+  }
+
+  getMakesSelectedLocalStorage(){
+    let values = localStorage.getItem('makes_selected');
+    if(values === null){
+      return
+    }else {
+      console.log(values)
+    let makes_selected = JSON.parse(values);
+    console.log('setting categories selected from the local storage')
+    this.paginationService.categoriesSelected = makes_selected;
+    }
+
   }
 
 

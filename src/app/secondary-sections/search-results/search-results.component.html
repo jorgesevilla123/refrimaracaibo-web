@@ -116,7 +116,7 @@
          <div class="collapse" id="collapseCategory" *ngFor="let category of paginationService.categoryValues">
             <h3><input style="font-size: 20px; border-width: 1px; border-color: black; margin-right: 10px;"
                   class="form-check-input" [checked]="category.checked" type="checkbox" #categoryOption
-                  (change)="multiSelection(category.category_name, categoryOption)"> {{category.category_name}}</h3>
+                  (change)="categoryMultiSelection(category.category_name, categoryOption)"> {{category.category_name}}</h3>
          </div>
 
 
@@ -128,10 +128,10 @@
          data-bs-target="#collapseMake" aria-expanded="false" aria-controls="collapseMake">Filtrar por
          marcas <i class="bi bi-chevron-down"></i></h4>
       <div style="max-height: 200px; overflow-y: scroll;" class="collapse" id="collapseMake" >
-         <div *ngFor="let category of makeValues">
+         <div *ngFor="let make of paginationService.makeValues">
             <h3><input style="font-size: 15px; border-width: 1px; border-color: black; margin-right: 10px;"
-               class="form-check-input" [checked]="category.checked" type="checkbox" #makeOption
-               (change)="multiSelection(category.category_name, makeOption)"> {{category.category_name}}</h3>
+               class="form-check-input" [checked]="make.checked" type="checkbox" #makeOption
+               (change)="makeMultiSelection(make.make_name, makeOption)"> {{make.make_name}}</h3>
          </div>
         
       </div>
@@ -226,6 +226,10 @@
                         *ngFor="let values of paginationService.categoriesSelected">
                         <span style="font-size: 12px;" class="badge text-bg-primary">{{values}}</span>
                      </div>
+                     <div style="display: flexbox; margin-left: 3px;"
+                     *ngFor="let values of paginationService.makesSelected">
+                     <span style="font-size: 12px;" class="badge text-bg-primary">{{values}}</span>
+                  </div>
                   </div>
 
                </ng-template>
