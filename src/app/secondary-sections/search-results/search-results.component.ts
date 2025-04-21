@@ -94,10 +94,10 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.getCategoriesValuesLocalStorage();
-    this.getCategoriesSelectedLocalStorage();
-    this.getMakesSelectedLocalStorage();
-    this.getMakesValuesLocalStorage();
+    // this.getCategoriesValuesLocalStorage();
+    // this.getCategoriesSelectedLocalStorage();
+    // this.getMakesSelectedLocalStorage();
+    // this.getMakesValuesLocalStorage();
 
     this.route.queryParamMap.subscribe(
       ({ params }: any) => {
@@ -139,31 +139,31 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       let index = this.paginationService.categoryValues.findIndex( categoryValue => categoryValue.category_name === product )
       this.paginationService.categoryValues[index].checked = true
       this.paginationService.categoriesSelected.push(product);
-      this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
-      this.setSelectedCategoriesInLocalStorage(this.paginationService.categoriesSelected);
+      // this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
+      // this.setSelectedCategoriesInLocalStorage(this.paginationService.categoriesSelected);
       this.categoriesSelectedString = JSON.stringify(this.paginationService.categoriesSelected)
       console.log(this.paginationService.paginatorRoutePath)
-      this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage,categoria: this.categoriesSelectedString} })
+      this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage, categoria: this.categoriesSelectedString, make: this.makesSelectedString} })
     } 
-    else if(!event.checked && this.paginationService.categoriesSelected.length == 1){
-      let indexValues = this.paginationService.categoryValues.findIndex( categoryValue => categoryValue.category_name === product )
-      this.paginationService.categoryValues[indexValues].checked = false
-      let index = this.paginationService.categoriesSelected.findIndex((arrayProduct) => arrayProduct === product)
-      this.paginationService.categoriesSelected.splice(index, 1)
-      this.setSelectedCategoriesInLocalStorage(this.paginationService.categoriesSelected);
-      this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
-      this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage} })
+    // else if(!event.checked && this.paginationService.categoriesSelected.length == 1){
+    //   let indexValues = this.paginationService.categoryValues.findIndex( categoryValue => categoryValue.category_name === product )
+    //   this.paginationService.categoryValues[indexValues].checked = false
+    //   let index = this.paginationService.categoriesSelected.findIndex((arrayProduct) => arrayProduct === product)
+    //   this.paginationService.categoriesSelected.splice(index, 1)
+    //   // this.setSelectedCategoriesInLocalStorage(this.paginationService.categoriesSelected);
+    //   // this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
+    //   this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage,categoria: this.categoriesSelectedString, make: this.makesSelectedString} })
 
-    }
+    // }
     else if(!event.checked){
       let indexValues = this.paginationService.categoryValues.findIndex( categoryValue => categoryValue.category_name === product )
       this.paginationService.categoryValues[indexValues].checked = false
       let index = this.paginationService.categoriesSelected.findIndex((arrayProduct) => arrayProduct === product)
       this.paginationService.categoriesSelected.splice(index, 1)
-      this.setSelectedCategoriesInLocalStorage(this.paginationService.categoriesSelected);
-      this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
+      // this.setSelectedCategoriesInLocalStorage(this.paginationService.categoriesSelected);
+      // this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
       this.categoriesSelectedString = JSON.stringify(this.paginationService.categoriesSelected)
-      this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage ,categoria: this.categoriesSelectedString} })
+      this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage ,categoria: this.categoriesSelectedString, make: this.makesSelectedString} })
     }
   }
 
@@ -176,30 +176,30 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       let index = this.paginationService.makeValues.findIndex( makeValue => makeValue.make_name === product )
       this.paginationService.makeValues[index].checked = true
       this.paginationService.makesSelected.push(product);
-      this.setMakeInLocalStorage(this.paginationService.makeValues);
-      this.setSelectedMakesInLocalStorage(this.paginationService.makesSelected);
+      // this.setMakeInLocalStorage(this.paginationService.makeValues);
+      // this.setSelectedMakesInLocalStorage(this.paginationService.makesSelected);
       this.makesSelectedString = JSON.stringify(this.paginationService.makesSelected)
       console.log(this.paginationService.paginatorRoutePath)
       this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage,categoria: this.categoriesSelectedString, make: this.makesSelectedString} })
     } 
-    else if(!event.checked && this.paginationService.categoriesSelected.length == 1){
-      let indexValues = this.paginationService.categoryValues.findIndex( categoryValue => categoryValue.category_name === product )
-      this.paginationService.categoryValues[indexValues].checked = false
-      let index = this.paginationService.categoriesSelected.findIndex((arrayProduct) => arrayProduct === product)
-      this.paginationService.categoriesSelected.splice(index, 1)
-      this.setSelectedCategoriesInLocalStorage(this.paginationService.categoriesSelected);
-      this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
-      this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage} })
+    // else if(!event.checked && this.paginationService.categoriesSelected.length == 1){
+    //   let indexValues = this.paginationService.makeValues.findIndex( makeValue => makeValue.make_name === product )
+    //   this.paginationService.makeValues[indexValues].checked = false
+    //   let index = this.paginationService.makesSelected.findIndex((arrayProduct) => arrayProduct === product)
+    //   this.paginationService.makesSelected.splice(index, 1)
+    //   // this.setSelectedCategoriesInLocalStorage(this.paginationService.categoriesSelected);
+    //   // this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
+    //   this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage,categoria: this.categoriesSelectedString, make: this.makesSelectedString} })
 
-    }
+    // }
     else if(!event.checked){
-      let indexValues = this.paginationService.categoryValues.findIndex( categoryValue => categoryValue.category_name === product )
-      this.paginationService.categoryValues[indexValues].checked = false
-      let index = this.paginationService.categoriesSelected.findIndex((arrayProduct) => arrayProduct === product)
-      this.paginationService.categoriesSelected.splice(index, 1)
-      this.setSelectedCategoriesInLocalStorage(this.paginationService.categoriesSelected);
-      this.setCategoriesInLocalStorage(this.paginationService.categoryValues);
-      this.makesSelectedString = JSON.stringify(this.paginationService.categoriesSelected)
+      let indexValues = this.paginationService.makeValues.findIndex( makeValue => makeValue.make_name === product )
+      this.paginationService.makeValues[indexValues].checked = false
+      let index = this.paginationService.makesSelected.findIndex((arrayProduct) => arrayProduct === product)
+      this.paginationService.makesSelected.splice(index, 1)
+      // this.setSelectedCategoriesInLocalStorage(this.paginationService.makesSelected);
+      // this.setCategoriesInLocalStorage(this.paginationService.makeValues);
+      this.makesSelectedString = JSON.stringify(this.paginationService.makesSelected)
       this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage ,categoria: this.categoriesSelectedString, make: this.makesSelectedString} })
     }
   }

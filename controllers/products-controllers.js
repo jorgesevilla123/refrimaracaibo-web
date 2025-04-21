@@ -334,7 +334,9 @@ function generalPaginationFunction(req, res){
     let price = req.query.precio
     let regex;
     let page = req.query.page
-    console.log(category);
+    console.log('logggin category', category);
+
+    console.log('loggin query', req.query)
     
     const isValidJson = str => {
         try {
@@ -346,19 +348,17 @@ function generalPaginationFunction(req, res){
         }
     }
 
- 
-
-
 
     let {routePath} = req.body;
-    console.log(routePath)
-    let parsedCategory;
-    let parsedMake;
+
+    let parsedCategory = ''
+    let parsedMake = ''
     if(category){
         if(isValidJson(category)){
             console.log('is a valid json')
             
             parsedCategory = JSON.parse(category)
+            console.log('showing parsed category: ', parsedCategory)
         }
         else {
             console.log('not a valid json')
@@ -366,10 +366,7 @@ function generalPaginationFunction(req, res){
         }
         console.log('loggin category: ', category)
     }
-    console.log('loggin parsed category: ', parsedCategory)
-
-
-
+    
 
     if(make){
         if(isValidJson(make)){
@@ -407,21 +404,23 @@ function generalPaginationFunction(req, res){
     regex = new RegExp(`${query}`, 'gi')
     dbQueryBody.$and.push({$or: [{title: regex}, {modelo: regex}]})
     }
-    if('categoria' in queryObj){
+    if('categoria' in queryObj && typeof parsedCategory !== "string" && parsedCategory.length !== 0){
+        console.log('loggin parsed category because is not a string')
         dbQueryBody.$and.push({categoria: {$in: parsedCategory}})
       
     }
     if('precio' in queryObj){
         dbQueryBody.$and.push({precio: {$lte: price}})
     }
-    if('make' in queryObj){
+
+
+    if('make' in queryObj && typeof parsedMake !== "string" && parsedMake.length !== 0){
+        console.log('loggin parsed make because is not a string')
         dbQueryBody.$and.push({make: {$in: parsedMake}})
     }
 
-    console.log('loggin query object', queryObj);
-    console.log('showing dbquery', dbQueryBody);
     queryObj
-    console.log(dbQueryBody);
+
 
     Product.find(dbQueryBody).exec((err, foundProducts) => {
         Product.countDocuments((err, count) => {
@@ -429,6 +428,7 @@ function generalPaginationFunction(req, res){
                 console.log(err)
             }
             else {
+                console.log(foundProducts)
             
 
                 let queryParams = {

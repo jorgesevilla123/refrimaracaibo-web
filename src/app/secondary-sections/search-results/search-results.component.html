@@ -127,7 +127,7 @@
          <h4 style="color: black; margin-top: 20px; font-weight: bold;" type="button" data-bs-toggle="collapse"
          data-bs-target="#collapseMake" aria-expanded="false" aria-controls="collapseMake">Filtrar por
          marcas <i class="bi bi-chevron-down"></i></h4>
-      <div style="max-height: 200px; overflow-y: scroll;" class="collapse" id="collapseMake" >
+      <div style="max-height: 300px; overflow-y: scroll;" class="collapse" id="collapseMake" >
          <div *ngFor="let make of paginationService.makeValues">
             <h3><input style="font-size: 15px; border-width: 1px; border-color: black; margin-right: 10px;"
                class="form-check-input" [checked]="make.checked" type="checkbox" #makeOption
