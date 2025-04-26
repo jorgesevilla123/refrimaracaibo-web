@@ -85,6 +85,8 @@ export class MainSearchBarComponent implements OnInit {
 
     this.paginationService.categoryValues.forEach( (category) => category.checked = false)
     this.paginationService.categoriesSelected = []
+    this.paginationService.makeValues.forEach( (make) => {make.checked = false})
+    this.paginationService.makesSelected = []
     this.router.navigate(['/search'], {queryParams: { q: value, page: 1}})
   }
 
