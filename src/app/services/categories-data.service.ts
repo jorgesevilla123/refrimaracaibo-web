@@ -43,6 +43,20 @@ accompressorsMakeFilter = [
   { category_name: 'TOSHIBA', checked: false },  
 ]
 
+acfiltersMakeFilter = [
+  { category_name: 'BULL', checked: false },  
+  { category_name: 'TOP FLO', checked: false },  
+  { category_name: 'HONGSEN', checked: false },  
+  { category_name: 'FREEZE', checked: false },  
+  { category_name: 'MASLEX', checked: false },  
+  { category_name: 'DEGAR', checked: false },  
+  { category_name: 'TOSHIBA', checked: false },  
+  { category_name: 'TOSHIBA', checked: false },  
+  { category_name: 'TOSHIBA', checked: false },  
+  { category_name: 'TOSHIBA', checked: false },  
+
+]
+
 
   constructor() { }
 }
