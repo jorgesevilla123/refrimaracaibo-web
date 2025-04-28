@@ -171,7 +171,6 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
 
   makeMultiSelection(product, event){
-    console.log(this.paginationService.categoriesSelected)
     if (event.checked ) {
       let index = this.paginationService.makeValues.findIndex( makeValue => makeValue.make_name === product )
       this.paginationService.makeValues[index].checked = true
@@ -182,7 +181,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       console.log(this.paginationService.paginatorRoutePath)
       this.router.navigate([`${this.paginationService.paginatorRoutePath}`], { queryParams: {q: this.query, page: this.currentPage,categoria: this.categoriesSelectedString, make: this.makesSelectedString} })
     } 
-    else if(!event.checked && this.paginationService.categoriesSelected.length == 1){
+    else if(!event.checked && this.paginationService.makesSelected.length == 1){
       let indexValues = this.paginationService.categoryValues.findIndex( categoryValue => categoryValue.category_name === product )
       this.paginationService.categoryValues[indexValues].checked = false
       let index = this.paginationService.categoriesSelected.findIndex((arrayProduct) => arrayProduct === product)
