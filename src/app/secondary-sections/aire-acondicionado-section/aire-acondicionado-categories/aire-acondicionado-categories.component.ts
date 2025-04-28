@@ -59,7 +59,6 @@ export class AireAcondicionadoCategoriesComponent implements OnInit {
   
   generalPagination(query, routePath){
 
-  
     this.productsService.generalQuery(query, routePath).subscribe({
       next: (pager: any) => {
         this.paginationService.paginatorQueryParams = pager.queryParams;
