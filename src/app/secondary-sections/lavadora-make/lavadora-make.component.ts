@@ -7,7 +7,7 @@ import { LoginService } from '../../services/login.service'
 import { AlertService } from 'src/app/shared/alert.service';
 import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-overview.component';
 import { ProductsService } from 'src/app/services/products.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 @Component({
   selector: 'app-lavadora-make',

@@ -10,8 +10,8 @@ import { MainSectionTemplatesComponent } from './main-section-templates/main-sec
 import { BillingComponent } from './billing/billing.component';
 import { ProductsModalComponent } from './products-modal/products-modal.component';
 import { RegistrationComponent } from './registration/registration.component'
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
+import { MatLegacyFormFieldModule as MatFormFieldModule } from "@angular/material/legacy-form-field";
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { NgbRatingModule, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap'
 import { CartOverviewComponent } from './cart-overview/cart-overview.component'

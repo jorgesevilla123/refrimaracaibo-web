@@ -29,7 +29,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl, FormGroup } from '@angular/forms'
 
 import { getCategories } from 'FOR-TEST/products-management'
-import { MatOptionSelectionChange } from '@angular/material/core';
+import { MatLegacyOptionSelectionChange as MatOptionSelectionChange } from '@angular/material/legacy-core';
 import { CartService } from '../../services/cart.service'
 import { AlertService } from '../../shared/alert.service'
 import { ProductsService } from '../../services/products.service'

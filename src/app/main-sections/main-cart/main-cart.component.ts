@@ -3,7 +3,7 @@ import { CartService } from '../../services/cart.service'
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../shared/alert.service'
 import { LoginService } from '../../services/login.service'
-import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MatLegacyCheckboxChange as MatCheckboxChange } from '@angular/material/legacy-checkbox';
 import { SessionService } from 'src/app/services/session.service';
 import { Observable } from 'rxjs';
 

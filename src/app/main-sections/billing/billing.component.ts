@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, RequiredValidator, Validators} from '@angular/forms';
-import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig} from '@angular/material/dialog';
+import {MatLegacyDialog as MatDialog, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef, MatLegacyDialogConfig as MatDialogConfig} from '@angular/material/legacy-dialog';
 import { LoginService } from '../../services/login.service'
 import { ShippingModalComponent } from '../../secondary-sections/shipping-modal/shipping-modal.component'
 import { ShippingService } from '../../services/shipping.service'

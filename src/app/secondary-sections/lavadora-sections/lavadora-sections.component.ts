@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild,} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms'
-import { MatOptionSelectionChange } from '@angular/material/core';
+import { MatLegacyOptionSelectionChange as MatOptionSelectionChange } from '@angular/material/legacy-core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { getCategories } from 'FOR-TEST/products-management'
 import { CartService } from 'src/app/services/cart.service';

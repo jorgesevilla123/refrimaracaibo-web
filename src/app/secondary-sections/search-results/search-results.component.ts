@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms'
 import { PaginationService } from '../../services/pagination.service'
 import { PaginationComponent } from '../pagination/pagination.component'
 import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-overview.component';
-import { MatDialog } from '@angular/material/dialog'
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog'
 
 
 

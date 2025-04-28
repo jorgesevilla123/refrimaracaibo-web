@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { LoginService } from '../../services/login.service'
 import { Router } from '@angular/router'
 import { CartService } from 'src/app/services/cart.service';
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig} from "@angular/material/legacy-dialog";
 import { UpdateModalComponent } from '../../shared/update-modal/update-modal.component'
 import { ShippingService } from 'src/app/services/shipping.service';
 import { SessionService } from 'src/app/services/session.service';
