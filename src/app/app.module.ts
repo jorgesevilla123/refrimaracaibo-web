@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HomeComponent } from './main-sections/home/home.component';
 import { MainSectionsModule } from './main-sections/main-sections.module';
 import { SecondarySectionsModule } from './secondary-sections/secondary-sections.module';
@@ -17,36 +17,28 @@ import { ConfirmationModalComponent } from './shared/confirmation-modal/confirma
 import { RegisterToolbarComponent } from './register-toolbar/register-toolbar.component';
 import { LogoutConfirmationComponent } from './shared/logout-confirmation/logout-confirmation.component'
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    MainToolbarComponent,
-    UpdateModalComponent,
-    OrderStatusModalComponent,
-    ConfirmationModalComponent,
-    RegisterToolbarComponent,
-    LogoutConfirmationComponent
-
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MainSectionsModule,
-    SecondarySectionsModule,
-    NgbModule
-  ],
-  exports: [
-    MainToolbarComponent
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HomeComponent,
+        MainToolbarComponent,
+        UpdateModalComponent,
+        OrderStatusModalComponent,
+        ConfirmationModalComponent,
+        RegisterToolbarComponent,
+        LogoutConfirmationComponent
+    ],
+    exports: [
+        MainToolbarComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MainSectionsModule,
+        SecondarySectionsModule,
+        NgbModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { 
 
 
