@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShippingModalComponent } from '../shipping-modal/shipping-modal.component'
-import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef, MatLegacyDialogConfig as MatDialogConfig } from '@angular/material/legacy-dialog'
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog'
 import { LoginService } from '../../services/login.service'
 import { ShippingService } from '../../services/shipping.service'
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
