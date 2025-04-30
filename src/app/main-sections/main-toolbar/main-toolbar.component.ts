@@ -4,6 +4,11 @@ import { ProductsService } from '../../services/products.service';
 import { CartService } from '../../services/cart.service';
 import { LoginService } from '../../services/login.service';
 import { SessionService } from 'src/app/services/session.service';
+import { MaterialModule } from 'src/app/material/material.module';
+import { MainSearchBarComponent } from '../main-search-bar/main-search-bar.component';
+import { MainSectionsModule } from '../main-sections.module';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -12,6 +17,8 @@ import { SessionService } from 'src/app/services/session.service';
 
 
 @Component({
+  standalone: true,
+  imports: [MaterialModule, MainSectionsModule, CommonModule, RouterModule],
   selector: 'app-main-toolbar',
   templateUrl: './main-toolbar.component.html',
   styleUrls: ['./main-toolbar.component.scss']

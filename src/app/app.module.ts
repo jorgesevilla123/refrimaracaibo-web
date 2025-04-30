@@ -20,15 +20,11 @@ import { LogoutConfirmationComponent } from './shared/logout-confirmation/logout
 @NgModule({ declarations: [
         AppComponent,
         HomeComponent,
-        MainToolbarComponent,
         UpdateModalComponent,
         OrderStatusModalComponent,
         ConfirmationModalComponent,
         RegisterToolbarComponent,
         LogoutConfirmationComponent
-    ],
-    exports: [
-        MainToolbarComponent
     ],
     bootstrap: [AppComponent], imports: [BrowserModule,
         AppRoutingModule,
