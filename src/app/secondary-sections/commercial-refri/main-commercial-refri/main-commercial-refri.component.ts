@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../../services/products.service' 
-import { Router } from '@angular/router'
+import { Router, RouterModule } from '@angular/router'
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/app/material/material.module';
+import { PaginationComponent } from '../../pagination/pagination.component';
 @Component({
   selector: 'app-main-commercial-refri',
+  standalone: true,
+  imports: [MaterialModule, CommonModule, RouterModule, ReactiveFormsModule, FormsModule, PaginationComponent],
   templateUrl: './main-commercial-refri.component.html',
   styleUrls: ['./main-commercial-refri.component.scss']
 })

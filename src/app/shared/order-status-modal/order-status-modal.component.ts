@@ -1,9 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog'
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { CartService } from '../../services/cart.service'
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule,],
   selector: 'app-order-status-modal',
   templateUrl: './order-status-modal.component.html',
   styleUrls: ['./order-status-modal.component.scss']

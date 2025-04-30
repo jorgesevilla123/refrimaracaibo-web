@@ -1,15 +1,19 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms'
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatLegacyOptionSelectionChange as MatOptionSelectionChange } from '@angular/material/legacy-core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { getCategories } from 'FOR-TEST/products-management'
 import { CartService } from 'src/app/services/cart.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { AlertService } from 'src/app/shared/alert.service';
 import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-overview.component'
 import { LoginService } from '../../services/login.service'
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from 'src/app/material/material.module';
 
 @Component({
+  standalone: true,
+  imports: [MaterialModule, CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   selector: 'app-secadora-sections',
   templateUrl: './secadora-sections.component.html',
   styleUrls: ['./secadora-sections.component.scss']
@@ -19,7 +23,7 @@ export class SecadoraSectionsComponent implements OnInit {
   @Input() data: any
 
 
-  
+
   constructor(
     public route: ActivatedRoute,
     public router: Router,
@@ -42,7 +46,7 @@ export class SecadoraSectionsComponent implements OnInit {
   isFiltering: boolean
   page_name: any
 
-  
+
 
   sections_template: Array<any> = [
     { category_name: 'Switch secadora', category_id: [3], capacity: '12w', route: "/product-details", query: 'bombillos', img_src: '../assets/bombillo 15w.jpeg', img_w: '100px', img_h: '100px', quantity: 20 },
@@ -84,10 +88,10 @@ export class SecadoraSectionsComponent implements OnInit {
     { category_name: 'kit tabor de secadora', category_id: [], capacity: '9w', route: "/product-details", query: 'Lamparas de tungsteno', img_src: '../assets/lampara tungsteno.jpeg', img_w: '100px', img_h: '100px', quantity: 20 },
     { category_name: 'kit tabor de secadora', category_id: [], capacity: '9w', route: "/product-details", query: 'Lamparas de tungsteno', img_src: '../assets/lampara tungsteno.jpeg', img_w: '100px', img_h: '100px', quantity: 20 },
     { category_name: 'kit tabor de secadora', category_id: [], capacity: '9w', route: "/product-details", query: 'Lamparas de tungsteno', img_src: '../assets/lampara tungsteno.jpeg', img_w: '100px', img_h: '100px', quantity: 20 },
- 
+
   ]
 
-  
+
 
 
   sectionsToRender: any
@@ -96,17 +100,17 @@ export class SecadoraSectionsComponent implements OnInit {
   sortList = [
     'menor precio a mayor precio',
     'mayor precio a menor precio'
-  ]  
+  ]
 
 
-  
+
 
   sections = [
     {
       section_name: 'Iluminacion', route: "/categories", query: 'iluminacion', all_button: 'Ver toda la iluminacion', cols: 4, rowHeight: '220px'
-    }  
+    }
 
-  ]  
+  ]
 
   routeData: any
   category: any
@@ -116,19 +120,19 @@ export class SecadoraSectionsComponent implements OnInit {
   pager: any
   pageName: any
   completed: boolean = false
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
 
 
 
 
 
   ngOnInit(): void {
-    
+
     this.pageName = 'secadora'
 
     this.isFiltering = true
@@ -145,7 +149,7 @@ export class SecadoraSectionsComponent implements OnInit {
     //   }
     // )
 
-    
+
     // this.route.queryParams.subscribe(
     //   val => {
     //     console.log(val)
@@ -168,8 +172,8 @@ export class SecadoraSectionsComponent implements OnInit {
 
 
 
-  
-  getProducts(category, page){
+
+  getProducts(category, page) {
     console.log(category)
     this.productService.getProductsCategory(category, page, 'iluminacion').subscribe(
       pager => {
@@ -298,17 +302,17 @@ export class SecadoraSectionsComponent implements OnInit {
 
 
 
-  
 
-  filter(){
+
+  filter() {
     let filterValues = new Set(this.categoryValues)
 
 
-    let matched = this.sections_template.filter( value => 
-     value.category_id.some( n => filterValues.has(n))
+    let matched = this.sections_template.filter(value =>
+      value.category_id.some(n => filterValues.has(n))
     )
 
-    if(matched.length === 0){
+    if (matched.length === 0) {
       this.isFiltering = true
       this.matchExist = false
 
@@ -317,13 +321,13 @@ export class SecadoraSectionsComponent implements OnInit {
     }
 
     else {
-      
+
       this.sectionsToRender = matched
       this.isFiltering = true
       this.matchExist = true
     }
- 
- 
+
+
   }
 
 
@@ -331,7 +335,7 @@ export class SecadoraSectionsComponent implements OnInit {
 
 
 
-  
+
 
 
 
@@ -345,11 +349,11 @@ export class SecadoraSectionsComponent implements OnInit {
 
 
 
-  
 
-  checkCart(product){
-    let isInCart = this.loginService.selectedUser.cart.some( productFound => productFound.title === product.title)
-    if(isInCart){
+
+  checkCart(product) {
+    let isInCart = this.loginService.selectedUser.cart.some(productFound => productFound.title === product.title)
+    if (isInCart) {
       return true
     }
     else {
@@ -359,22 +363,22 @@ export class SecadoraSectionsComponent implements OnInit {
 
 
 
-  
-  addToCart(product){
+
+  addToCart(product) {
     product.quantity = 1
     this.cartService.addProductsToLoggedUserCart(product)
     this.cartService.updateCount();
     this.cartDrawer.open()
- 
+
   }
 
 
 
-  removeFromCart(product){
+  removeFromCart(product) {
     this.cartService.deleteById(product)
     this.checkCart(product)
     this.cartService.updateCount()
-  
+
   }
 
 

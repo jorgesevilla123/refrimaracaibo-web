@@ -6,10 +6,15 @@ import { ShippingService } from '../../services/shipping.service'
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from '../../shared/confirmation-modal/confirmation-modal.component'
 import { v4 as uuidv4 } from 'uuid';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, RouterModule, ReactiveFormsModule],
   selector: 'app-user-shipping',
   templateUrl: './user-shipping.component.html',
   styleUrls: ['./user-shipping.component.scss']

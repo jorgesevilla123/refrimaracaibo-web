@@ -2,11 +2,17 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav'
 import { CartService } from '../../services/cart.service'
 import { LoginService } from 'src/app/services/login.service';
+import { MaterialModule } from 'src/app/material/material.module';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 
 
 @Component({
+  standalone: true,
+  imports: [MaterialModule, RouterModule, ReactiveFormsModule, CommonModule],
   selector: 'app-cart-overview',
   templateUrl: './cart-overview.component.html',
   styleUrls: ['./cart-overview.component.scss']

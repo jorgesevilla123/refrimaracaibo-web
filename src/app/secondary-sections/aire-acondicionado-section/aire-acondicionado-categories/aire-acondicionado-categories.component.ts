@@ -1,16 +1,22 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, RouterModule } from '@angular/router'
 import { CartOverviewComponent } from 'src/app/main-sections/cart-overview/cart-overview.component';
+import { MaterialModule } from 'src/app/material/material.module';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
 import { PaginationService } from 'src/app/services/pagination.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { AlertService } from 'src/app/shared/alert.service';
+import { PaginationComponent } from '../../pagination/pagination.component';
 
 @Component({
   selector: 'app-aire-acondicionado-categories',
+  standalone: true,
+  imports: [MaterialModule, CommonModule, RouterModule, ReactiveFormsModule, FormsModule, PaginationComponent],
   templateUrl: './aire-acondicionado-categories.component.html',
   styleUrls: ['./aire-acondicionado-categories.component.scss']
 })

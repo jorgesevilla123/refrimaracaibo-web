@@ -1,14 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms'
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatLegacyOptionSelectionChange as MatOptionSelectionChange } from '@angular/material/legacy-core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { getCategories } from 'FOR-TEST/products-management'
+import { MaterialModule } from 'src/app/material/material.module';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { AlertService } from 'src/app/shared/alert.service';
+import { PaginationComponent } from '../pagination/pagination.component';
+import { MainSearchBarComponent } from 'src/app/main-sections/main-search-bar/main-search-bar.component';
 
 @Component({
   selector: 'app-marcas',
+  standalone: true,
+  imports: [MaterialModule, CommonModule, RouterModule, ReactiveFormsModule, FormsModule, PaginationComponent, MainSearchBarComponent],
   templateUrl: './marcas.component.html',
   styleUrls: ['./marcas.component.scss']
 })

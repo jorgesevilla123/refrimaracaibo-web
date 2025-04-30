@@ -1,14 +1,18 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, RouterModule } from '@angular/router'
 import { CartOverviewComponent } from 'src/app/main-sections/cart-overview/cart-overview.component';
+import { MaterialModule } from 'src/app/material/material.module';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
 import { PaginationService } from 'src/app/services/pagination.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { AlertService } from 'src/app/shared/alert.service';
+import { PaginationComponent } from '../../pagination/pagination.component';
 
 
 
@@ -112,6 +116,8 @@ interface ExampleFlatNode {
 
 @Component({
   selector: 'app-automotriz-categories',
+  standalone: true,
+  imports: [MaterialModule, CommonModule, RouterModule, ReactiveFormsModule, FormsModule, PaginationComponent],
   templateUrl: './automotriz-categories.component.html',
   styleUrls: ['./automotriz-categories.component.scss']
 })

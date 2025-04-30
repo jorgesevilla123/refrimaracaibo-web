@@ -5,10 +5,10 @@ import { CartService } from '../../services/cart.service';
 import { LoginService } from '../../services/login.service';
 import { SessionService } from 'src/app/services/session.service';
 import { MaterialModule } from 'src/app/material/material.module';
-import { MainSearchBarComponent } from '../main-search-bar/main-search-bar.component';
-import { MainSectionsModule } from '../main-sections.module';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MainSearchBarComponent } from '../main-search-bar/main-search-bar.component';
 
 
 
@@ -17,9 +17,9 @@ import { RouterModule } from '@angular/router';
 
 
 @Component({
-  standalone: true,
-  imports: [MaterialModule, MainSectionsModule, CommonModule, RouterModule],
   selector: 'app-main-toolbar',
+  standalone: true,
+  imports: [MaterialModule, CommonModule, RouterModule, ReactiveFormsModule, FormsModule, MainSearchBarComponent],
   templateUrl: './main-toolbar.component.html',
   styleUrls: ['./main-toolbar.component.scss']
 })

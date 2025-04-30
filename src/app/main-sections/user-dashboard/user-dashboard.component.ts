@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from '../../services/login.service';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
+import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LogoutConfirmationComponent } from 'src/app/shared/logout-confirmation/logout-confirmation.component';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/app/material/material.module';
 
 @Component({
   selector: 'app-user-dashboard',
+  standalone: true,
+  imports: [MaterialModule, CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   templateUrl: './user-dashboard.component.html',
   styleUrls: ['./user-dashboard.component.scss']
 })

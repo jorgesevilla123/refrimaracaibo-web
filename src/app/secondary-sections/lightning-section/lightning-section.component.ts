@@ -24,9 +24,9 @@
 
 
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { FormControl, FormGroup } from '@angular/forms'
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { getCategories } from 'FOR-TEST/products-management'
 import { MatLegacyOptionSelectionChange as MatOptionSelectionChange } from '@angular/material/legacy-core';
@@ -37,6 +37,10 @@ import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-ov
 import { LoginService } from '../../services/login.service'
 import { SessionService } from 'src/app/services/session.service';
 import { PaginationService } from 'src/app/services/pagination.service';
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from 'src/app/material/material.module';
+import { PaginationComponent } from '../pagination/pagination.component';
+import { MainSearchBarComponent } from 'src/app/main-sections/main-search-bar/main-search-bar.component';
 
 
 
@@ -56,6 +60,8 @@ import { PaginationService } from 'src/app/services/pagination.service';
 
 @Component({
   selector: 'app-lightning-section',
+  standalone: true,
+  imports: [MaterialModule, CommonModule, RouterModule, ReactiveFormsModule, FormsModule, PaginationComponent, MainSearchBarComponent],
   templateUrl: './lightning-section.component.html',
   styleUrls: ['./lightning-section.component.scss']
 })

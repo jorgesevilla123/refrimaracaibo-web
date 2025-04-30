@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../../services/products.service' 
-import { Router } from '@angular/router'
+import { Router, RouterModule } from '@angular/router'
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from 'src/app/material/material.module';
 
 @Component({
   selector: 'app-main-nevera',
+  standalone: true,
+  imports: [MaterialModule, CommonModule, RouterModule],
   templateUrl: './main-nevera.component.html',
   styleUrls: ['./main-nevera.component.scss']
 })

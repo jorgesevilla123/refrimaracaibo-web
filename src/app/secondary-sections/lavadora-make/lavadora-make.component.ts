@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { PaginationService } from '../../services/pagination.service'
 import { PaginationComponent } from '../pagination/pagination.component'
 import { CartService } from '../../services/cart.service'
@@ -7,10 +7,15 @@ import { LoginService } from '../../services/login.service'
 import { AlertService } from 'src/app/shared/alert.service';
 import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-overview.component';
 import { ProductsService } from 'src/app/services/products.service';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/app/material/material.module';
 
 @Component({
   selector: 'app-lavadora-make',
+  standalone: true,
+  imports: [MaterialModule, CommonModule, RouterModule, ReactiveFormsModule, FormsModule, PaginationComponent],
   templateUrl: './lavadora-make.component.html',
   styleUrls: ['./lavadora-make.component.scss']
 })

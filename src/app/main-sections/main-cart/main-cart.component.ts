@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service'
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { AlertService } from '../../shared/alert.service'
 import { LoginService } from '../../services/login.service'
 import { MatLegacyCheckboxChange as MatCheckboxChange } from '@angular/material/legacy-checkbox';
 import { SessionService } from 'src/app/services/session.service';
 import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from 'src/app/material/material.module';
 
 @Component({
+  standalone: true,
+  imports: [RouterModule, CommonModule, MaterialModule],
   selector: 'app-main-cart',
   templateUrl: './main-cart.component.html',
   styleUrls: ['./main-cart.component.scss']

@@ -1,18 +1,22 @@
 import { Component, OnInit, Input, ViewChild,} from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms'
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatLegacyOptionSelectionChange as MatOptionSelectionChange } from '@angular/material/legacy-core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { getCategories } from 'FOR-TEST/products-management'
 import { CartService } from 'src/app/services/cart.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { AlertService } from 'src/app/shared/alert.service';
 import { CartOverviewComponent } from '../../main-sections/cart-overview/cart-overview.component'
 import { LoginService } from '../../services/login.service'
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from 'src/app/material/material.module';
 
 
 
 @Component({
   selector: 'app-lavadora-sections',
+  standalone: true,
+  imports: [MaterialModule, CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   templateUrl: './lavadora-sections.component.html',
   styleUrls: ['./lavadora-sections.component.scss']
 })

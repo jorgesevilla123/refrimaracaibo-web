@@ -20,9 +20,9 @@ import { UsersCartComponent } from './secondary-sections/users-cart/users-cart.c
 import { UserShippingComponent } from './secondary-sections/user-shipping/user-shipping.component';
 import { UserSettingsComponent } from './secondary-sections/user-settings/user-settings.component';
 import { LoginGuardGuard } from './login-guard.guard'
-import { MainAutomotrizComponent } from '../app/secondary-sections/automotriz-sections/main-automotriz/main-automotriz.component'
-import { AutomotrizCategoriesComponent } from '../app/secondary-sections/automotriz-sections/automotriz-categories/automotriz-categories.component'
-import { MainHerramientasComponent } from '../app/secondary-sections/herramientas-section/main-herramientas/main-herramientas.component'
+import { MainAutomotrizComponent } from './secondary-sections/automotriz-sections/main-automotriz/main-automotriz.component'
+import { AutomotrizCategoriesComponent } from './secondary-sections/automotriz-sections/automotriz-categories/automotriz-categories.component'
+import { MainHerramientasComponent } from './secondary-sections/herramientas-section/main-herramientas/main-herramientas.component'
 import { MainLavadoraComponent } from './secondary-sections/lavadora-sections/main-lavadora/main-lavadora.component';
 import { MainSecadoraComponent } from './secondary-sections/secadora-sections/main-secadora/main-secadora.component';
 import { MainNeveraComponent } from './secondary-sections/nevera-section/main-nevera/main-nevera.component';
@@ -53,7 +53,7 @@ const routerOptions: ExtraOptions = {
 
 
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
   { path: 'home', component: HomeComponent },
   { path: 'cart', component: MainCartComponent },
@@ -155,8 +155,4 @@ const routes: Routes = [
 
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes, routerOptions)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+

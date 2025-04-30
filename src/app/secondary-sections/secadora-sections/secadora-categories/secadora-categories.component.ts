@@ -1,23 +1,29 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, RouterModule } from '@angular/router'
 import { CartOverviewComponent } from 'src/app/main-sections/cart-overview/cart-overview.component';
+import { MaterialModule } from 'src/app/material/material.module';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
 import { PaginationService } from 'src/app/services/pagination.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { AlertService } from 'src/app/shared/alert.service';
+import { PaginationComponent } from '../../pagination/pagination.component';
 
 
 @Component({
+  standalone: true,
+  imports: [MaterialModule, CommonModule, RouterModule, ReactiveFormsModule, FormsModule, PaginationComponent],
   selector: 'app-secadora-categories',
   templateUrl: './secadora-categories.component.html',
   styleUrls: ['./secadora-categories.component.scss']
 })
 export class SecadoraCategoriesComponent implements OnInit {
 
-  
+
   category: any
   completed: boolean = false
   query: any
@@ -35,15 +41,15 @@ export class SecadoraCategoriesComponent implements OnInit {
     public paginationService: PaginationService,
     public dialog: MatDialog,
     public loginService: LoginService,
-   
+
   ) { }
 
   ngOnInit(): void {
     this.showRoute()
   }
 
-  
-  showRoute(){
+
+  showRoute() {
     this.route.queryParamMap.subscribe(
       ({ params }: any) => {
         let queryString = window.location.search;
@@ -58,7 +64,7 @@ export class SecadoraCategoriesComponent implements OnInit {
   }
 
 
-  generalPagination(query, routePath){
+  generalPagination(query, routePath) {
     this.productsService.generalQuery(query, routePath).subscribe({
       next: (pager: any) => {
         this.paginationService.paginatorQueryParams = pager.queryParams;
@@ -75,8 +81,8 @@ export class SecadoraCategoriesComponent implements OnInit {
     })
   }
 
-  
-  
+
+
   addToCart(product) {
     product.quantity = 1
     this.cartService.addProductsToLoggedUserCart(product)

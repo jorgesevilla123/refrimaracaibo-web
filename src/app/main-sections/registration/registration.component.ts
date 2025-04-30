@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from '../../services/login.service'
 import { AlertService } from 'src/app/shared/alert.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from 'src/app/material/material.module';
 
 
 @Component({
   selector: 'app-registration',
+  standalone: true,
+  imports: [MaterialModule, CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })

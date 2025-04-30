@@ -3,8 +3,13 @@ import { LoginService } from '../../services/login.service'
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from '../../shared/confirmation-modal/confirmation-modal.component'
 import { AlertService } from '../../shared/alert.service'
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   selector: 'app-user-settings',
   templateUrl: './user-settings.component.html',
   styleUrls: ['./user-settings.component.scss']
