@@ -5,7 +5,7 @@ import { MainSearchBarComponent } from './main-search-bar/main-search-bar.compon
 import { MainToolbarComponent } from './main-toolbar/main-toolbar.component'
 import { MaterialModule } from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from '../app-routing.module';
+import { AppRoutingModule } from '../app.routes';
 import { MainSectionTemplatesComponent } from './main-section-templates/main-section-templates.component';
 import { BillingComponent } from './billing/billing.component';
 import { ProductsModalComponent } from './products-modal/products-modal.component';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, RequiredValidator, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, RequiredValidator, Validators} from '@angular/forms';
 import {MatLegacyDialog as MatDialog, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef, MatLegacyDialogConfig as MatDialogConfig} from '@angular/material/legacy-dialog';
 import { LoginService } from '../../services/login.service'
 import { ShippingModalComponent } from '../../secondary-sections/shipping-modal/shipping-modal.component'
@@ -9,6 +9,8 @@ import { CartService } from '../../services/cart.service'
 import { ConfirmationModalComponent } from 'src/app/shared/confirmation-modal/confirmation-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertService } from 'src/app/shared/alert.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 interface Food {
   value: string;
   viewValue: string;
@@ -23,6 +25,8 @@ interface Car {
 
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   selector: 'app-billing',
   templateUrl: './billing.component.html',
   styleUrls: ['./billing.component.scss']

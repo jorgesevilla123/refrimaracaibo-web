@@ -1,9 +1,14 @@
 import { Component, OnInit} from '@angular/core';
 import { ProductsService } from './services/products.service';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, RouterModule } from '@angular/router'
 import { LoginService } from './services/login.service';
+import { MainToolbarComponent } from './main-sections/main-toolbar/main-toolbar.component';
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from './material/material.module';
 
 @Component({
+  standalone: true,
+  imports: [MainToolbarComponent, CommonModule, RouterModule, MaterialModule],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

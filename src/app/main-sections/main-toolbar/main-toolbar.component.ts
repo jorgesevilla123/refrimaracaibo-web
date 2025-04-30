@@ -4,6 +4,7 @@ import { ProductsService } from '../../services/products.service';
 import { CartService } from '../../services/cart.service';
 import { LoginService } from '../../services/login.service';
 import { SessionService } from 'src/app/services/session.service';
+import { MaterialModule } from 'src/app/material/material.module';
 
 
 
@@ -12,6 +13,8 @@ import { SessionService } from 'src/app/services/session.service';
 
 
 @Component({
+  standalone: true,
+  imports: [MaterialModule],
   selector: 'app-main-toolbar',
   templateUrl: './main-toolbar.component.html',
   styleUrls: ['./main-toolbar.component.scss']

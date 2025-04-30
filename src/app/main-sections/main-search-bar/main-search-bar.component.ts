@@ -1,14 +1,18 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs';
 import { ProductsService } from '../../services/products.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable, OperatorFunction } from 'rxjs';
 import { PaginationService } from 'src/app/services/pagination.service';
+import { MaterialModule } from 'src/app/material/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 
 @Component({
+  standalone: true,
+  imports: [MaterialModule, RouterModule, FormsModule, ReactiveFormsModule],
   selector: 'app-main-search-bar',
   templateUrl: './main-search-bar.component.html',
   styleUrls: ['./main-search-bar.component.scss']

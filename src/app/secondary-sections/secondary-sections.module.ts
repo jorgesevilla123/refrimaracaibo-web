@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppRoutingModule } from '../app-routing.module';
+import { routes } from '../app.routes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { MainSectionsModule } from '../main-sections/main-sections.module';
@@ -89,11 +89,9 @@ import { LavadoraMakeComponent } from './lavadora-make/lavadora-make.component'
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    MainSectionsModule,
     NgbRatingModule,
      NgbCarouselModule,
      NgbDropdownModule
