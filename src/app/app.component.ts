@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { RegisterToolbarComponent } from './register-toolbar/register-toolbar.component';
 
+
 @Component({
   standalone: true,
   imports: [MainToolbarComponent, CommonModule, RouterModule, MaterialModule, RegisterToolbarComponent],
