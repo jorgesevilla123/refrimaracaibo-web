@@ -13,7 +13,7 @@ export class AlertService {
   verticalPosition: MatSnackBarVerticalPosition | undefined
 
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(public snackBar: MatSnackBar) { }
 
   
   
