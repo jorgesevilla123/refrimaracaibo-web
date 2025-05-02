@@ -5,13 +5,12 @@ import { MainSearchBarComponent } from './main-search-bar/main-search-bar.compon
 import { MainToolbarComponent } from './main-toolbar/main-toolbar.component'
 import { MaterialModule } from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from '../app.routes';
 import { MainSectionTemplatesComponent } from './main-section-templates/main-section-templates.component';
 import { BillingComponent } from './billing/billing.component';
 import { ProductsModalComponent } from './products-modal/products-modal.component';
 import { RegistrationComponent } from './registration/registration.component'
-import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
-import { MatLegacyFormFieldModule as MatFormFieldModule } from "@angular/material/legacy-form-field";
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { NgbRatingModule, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap'
 import { CartOverviewComponent } from './cart-overview/cart-overview.component'
@@ -38,7 +37,6 @@ import { JsonPipe } from '@angular/common';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule,
     MatInputModule,
     MatFormFieldModule,
     NgbRatingModule,

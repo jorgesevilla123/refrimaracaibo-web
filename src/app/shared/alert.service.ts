@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
 
 
@@ -9,11 +9,14 @@ import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnack
 })
 export class AlertService {
 
+
+  snackBar = inject(MatSnackBar)
+
   horizontalPosition: MatSnackBarHorizontalPosition | undefined
   verticalPosition: MatSnackBarVerticalPosition | undefined
 
 
-  constructor(public snackBar: MatSnackBar) { }
+  constructor() { }
 
   
   
