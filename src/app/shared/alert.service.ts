@@ -10,10 +10,10 @@ import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnack
 export class AlertService {
 
 
-  snackBar = inject(MatSnackBar)
+  // snackBar = inject(MatSnackBar)
 
-  horizontalPosition: MatSnackBarHorizontalPosition | undefined
-  verticalPosition: MatSnackBarVerticalPosition | undefined
+  // horizontalPosition: MatSnackBarHorizontalPosition | undefined
+  // verticalPosition: MatSnackBarVerticalPosition | undefined
 
 
   constructor() { }
@@ -21,27 +21,27 @@ export class AlertService {
   
   
   notifySuccess(message: string, duration: number, verticalAlign?: MatSnackBarVerticalPosition, horizontalAlign?: MatSnackBarHorizontalPosition){
-    this.horizontalPosition = horizontalAlign;
-    this.verticalPosition = verticalAlign;
-    let snackConfig = new MatSnackBarConfig();
-    snackConfig.duration = duration;
-    snackConfig.horizontalPosition = this.horizontalPosition;
-    snackConfig.verticalPosition = this.verticalPosition;
-    snackConfig.panelClass = ['success-class'];
-    this.snackBar.open(message, 'Aceptar', snackConfig);
+    // this.horizontalPosition = horizontalAlign;
+    // this.verticalPosition = verticalAlign;
+    // let snackConfig = new MatSnackBarConfig();
+    // snackConfig.duration = duration;
+    // snackConfig.horizontalPosition = this.horizontalPosition;
+    // snackConfig.verticalPosition = this.verticalPosition;
+    // snackConfig.panelClass = ['success-class'];
+    // this.snackBar.open(message, 'Aceptar', snackConfig);
 
 
   }
 
   notifyWarn(message: string, duration: number, verticalAlign?: MatSnackBarVerticalPosition, horizontalAlign?: MatSnackBarHorizontalPosition){
-    this.horizontalPosition = horizontalAlign;
-    this.verticalPosition = verticalAlign;
-    let snackConfig = new MatSnackBarConfig();
-    snackConfig.duration = duration;
-    snackConfig.horizontalPosition = this.horizontalPosition;
-    snackConfig.verticalPosition = this.verticalPosition;
-    snackConfig.panelClass = ['web-warn'];
-    this.snackBar.open(message, '', snackConfig);
+    // this.horizontalPosition = horizontalAlign;
+    // this.verticalPosition = verticalAlign;
+    // let snackConfig = new MatSnackBarConfig();
+    // snackConfig.duration = duration;
+    // snackConfig.horizontalPosition = this.horizontalPosition;
+    // snackConfig.verticalPosition = this.verticalPosition;
+    // snackConfig.panelClass = ['web-warn'];
+    // this.snackBar.open(message, '', snackConfig);
 
   }
 
