@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "dev": "ng serve",
+    "dev": "ng serve", 
     "build": "npm run config -- --environment=prod & ng build --legacy-peer-deps",
     "config": "node set-env.js",
     "watch": "ng build --watch --configuration development",
