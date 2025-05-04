@@ -119,8 +119,9 @@
 
 
 
-
-
+   
+   @if(responsiveService.largeWidth()){
+    
 
 
 <mat-toolbar style="background-color: white; padding-left: 50px; margin-top: 20px">
@@ -140,7 +141,9 @@
         <div *ngIf="loginService.logged; then userLogged else notLogged"></div>
   
         <ng-template #userLogged>
-          <h2>hello</h2>
+
+
+
             <button routerLink="/cart" mat-icon-button><i style="font-size: 2rem; color: #0d6efd;" class="bi bi-cart"></i> <span
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
               {{cartService.count}}
@@ -311,14 +314,6 @@
     </div>
 
 
-
-
-
-
-
-
-
-
     <div class="dragdown">
       <button style="font-size: 15px;  font-family: sans-serif;" class="desktop-display" mat-button
         >Condensadores automotriz<mat-icon>expand_more</mat-icon></button>
@@ -363,10 +358,6 @@
       </div>
     </div>
 
-
-
-
-
     <div class="dragdown">
 
       <button style="font-size: 15px; font-family: sans-serif;" class="desktop-display"
@@ -380,22 +371,63 @@
           <button style="font-family: sans-serif;" mat-button>Filtros</button>
           <button style="font-family: sans-serif;" mat-button>Codos</button>
           <button style="font-family: sans-serif;" mat-button>Anillos</button>
-
-    
-          
         </div>
-
-
       </div>
     </div>
-
-
-
-
-
-
-
   </mat-toolbar-row>
 </mat-toolbar>
 
 <mat-divider></mat-divider>
+
+
+  }
+  @else if(responsiveService.mediumWidth() || responsiveService.smallWidth()){
+    <nav class="navbar bg-body-tertiary fixed-top">
+      <div class="container-fluid">
+        <a routerLink="/home"><img src="../../assets/finishedlogo.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div style="width: 100%;" class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <a routerLink="/home"><img src="../../assets/finishedlogo.png" alt="logo refrimaracaibo"></a>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <form style="margin-bottom: 10px;" class="d-flex mt-3" role="search">
+                <input class="form-control me-2" type="search" placeholder="Buscar productos" aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">Buscar <i class="bi bi-search"></i></button>
+              </form>
+              <li class="nav-item">
+                <button style="width: 100%; margin-left: 10px; margin-right: 10px;" class="btn btn-primary" aria-current="page" href="#">Home</button>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+            </ul>
+          
+          </div>
+        </div>
+      </div>
+    </nav>
+  }
+
+
+
+
+
+

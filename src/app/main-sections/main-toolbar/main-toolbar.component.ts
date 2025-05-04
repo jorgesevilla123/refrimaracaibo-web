@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { map } from 'rxjs';
 import { ProductsService } from '../../services/products.service';
 import { CartService } from '../../services/cart.service';
@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MainSearchBarComponent } from '../main-search-bar/main-search-bar.component';
-
+import { ResponsiveLayoutService } from '../../services/responsive-layout.service'
 
 
 
@@ -27,6 +27,8 @@ export class MainToolbarComponent implements OnInit {
 
   public products: any
   public productCount: any
+
+  public responsiveService = inject(ResponsiveLayoutService)
 
   constructor(
     private productService: ProductsService,
