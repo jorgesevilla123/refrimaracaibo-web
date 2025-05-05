@@ -2,7 +2,7 @@
 <form style="margin-top: 10px;" (submit)="search(searchBox.value)">
 
 
-        <mat-form-field class="custom-form" [formGroup]="productService.searchForm" appearance="outline" class="search-form" >
+        <mat-form-field [formGroup]="productService.searchForm" appearance="outline" class="search-form" >
             <mat-label>Buscar productos</mat-label>
             <input [matAutocomplete]="autoProduct"  #searchBox matInput id="search-box" placeholder="Buscar" formControlName="product" />
             <mat-autocomplete #autoProduct="matAutocomplete">
